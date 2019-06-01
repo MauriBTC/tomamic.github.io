@@ -1,0 +1,926 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Funzioni e oggetti</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/oop/balls.png"></figure>
+  <hgroup>
+    <h2>Introduzione alla programmazione</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>Definizione di funzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/function.png">
+        
+      </figure><ul>
+<li><em>Operatore</em>, applicato a <em>operandi</em>, per ottenere un <em>risultato</em><ul>
+<li><strong><code>def</code></strong> per definire una funzione</li>
+<li><strong><code>return</code></strong> per terminare e restituire un risultato</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def hypotenuse(a, b):
+    c = (a ** 2 + b ** 2) ** 0.5
+    return c
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Chiamata di funzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong><code>def</code></strong> definisce una funzione, ma non la esegue!</li>
+<li>Bisogna <em>chiamarla</em></li>
+<li>Funzione, quando eseguita, crea nuovo <em>spazio di nomi</em><ul>
+<li>Parametri e variabili hanno <strong>ambito locale</strong></li>
+<li>Non visibili nel resto del programma</li>
+<li>Nomi uguali, definiti in ambiti diversi, restano distinti</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>side1 = float(input('1st side? '))
+side2 = float(input('2nd side? '))
+side3 = hypotenuse(side1, side2)
+print('3rd side:', side3)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Funzione main</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>A volte si preferisce creare una <em>funzione principale</em><ul>
+<li>In questo modo si limitano le <strong>variabili globali</strong></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def hypotenuse(a, b):
+    c = (a ** 2 + b ** 2) ** 0.5
+    return c
+
+def main():
+    side1 = float(input("1st side? "))
+    side2 = float(input("2nd side? "))
+    side3 = hypotenuse(side1, side2)
+    print("3rd side:", side3)
+
+main()  ## remove, if importing the module elsewhere
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p2_fun_hypotenuse.py">http://www.ce.unipr.it/brython/?p2_fun_hypotenuse.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Parametri di funzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Parametri formali</strong>: nomi usati nella <em>definizione</em></li>
+<li><strong>Parametri effettivi</strong>: oggetti passati alla funz.</li>
+<li>Parametri passati “<em>per oggetto</em>”<ul>
+<li>Variabili all'esterno: non vengono modificate</li>
+<li>Liste e oggetti passati ad una funz.: modifiche <em>permanenti</em></li>
+</ul>
+</li>
+<li>Si possono restituire più valori, come <em>tupla</em><ul>
+<li><code>return 7, 5, 'black'</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def inc(a):
+    a += 1
+    print(a)  # just for debug
+x = 10
+inc(x)
+print(x)      # just for debug
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Documentazione di funzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Annotazioni</strong>: utili per documentare il tipo di param. e valore di ritorno (ma non c'è verifica!)</li>
+<li><strong>Docstring</strong>: descrizione testuale di una funzione</li>
+<li><strong><code>help</code></strong>: funzione per visualizzare la documentazione</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def hypotenuse(leg1: float, leg2: float) -&gt; float:
+    '''
+    Return the hypotenuse of a right triangle,
+    given both its legs (catheti).
+    '''
+    return (leg1 ** 2 + leg2 ** 2) ** 0.5
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html">https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli su stringhe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
+<li>Una stringa è una sequenza di caratteri</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>text = input("text? ")
+min_char = input("Min char to uppercase? ")
+max_char = input("Max char to uppercase? ")
+
+for c in text:
+    if min_char &lt;= c &lt;= max_char:
+        print(c.upper(), end="")
+    else:
+        print(c, end="")
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli e annidamento</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/multiplication-table.jpg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>size = 10
+y = int(input("Insert a value: "))
+for x in range(1, size + 1):
+    print(x * y, end=" ")  # ends with blank
+                           # no newline
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>size = 10
+for y in range(1, size + 1):
+    for x in range(1, size + 1):
+        val = x * y
+        print(f"{val:3}", end=" ")  # val represented as text
+                                    # with at least 3 chars
+    print()
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p2_for_tables.py">http://www.ce.unipr.it/brython/?p2_for_tables.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Procedura</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Funzione senza <code>return</code>, solo I/O ed effetti collaterali<ul>
+<li><em>Astrazione</em>, per riuso e leggibilità</li>
+<li>Riduce i livelli di annidamento</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def print_row(y: int, size: int):
+    for x in range(1, size + 1):
+        val = x * y
+        print(f"{val:3}", end=" ")
+    print()
+
+def print_table(size: int):
+    for y in range(1, size + 1):
+        print_row(y, size)
+
+def main():
+    print_table(10)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Animazione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-right.png">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+
+x, y, dx = 50, 50, 5
+ARENA_W, ARENA_H = 320, 240
+image = g2d.load_image("ball.png")
+
+def update():
+    global x
+    g2d.fill_canvas((255, 255, 255))  # Draw background
+    g2d.draw_image(image, (x, y))     # Draw foreground
+    x = (x + dx) ##% ARENA_W          # Update ball's position
+
+g2d.init_canvas((ARENA_W, ARENA_H))
+g2d.main_loop(update, 1000 // 30)     # &lt;-- Call update 30 times/second
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p2_fun_anim.py">http://www.ce.unipr.it/brython/?p2_fun_anim.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Eventi della tastiera</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="py"><code>import g2d
+
+def keydown(code: str):
+    print("Key pressed: ", code)
+
+def keyup(code: str):
+    print("Key released: ", code)
+
+g2d.init_canvas((320, 240))
+g2d.handle_keyboard(keydown, keyup)  # &lt;-- Keyb events
+g2d.main_loop()
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/code">https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/code</a></p>
+<p><a href="http://www.ce.unipr.it/brython/?p2_fun_keyb.py">http://www.ce.unipr.it/brython/?p2_fun_keyb.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Funzione per rimbalzi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-bounce.png">
+        
+      </figure><ul>
+<li>Le funzioni forniscono limitata astrazione<ul>
+<li>Incapsulano il comportamento</li>
+<li>Ma espongono i dati</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>def move_ball(x: int, y: int,
+              dx: int, dy: int) -&gt; (int, int, int, int):
+    if x + dx &lt; 0 or x + dx + BALL_W &gt; ARENA_W:
+        dx = -dx
+    x += dx
+    if y + dy &lt; 0 or y + dy + BALL_H &gt; ARENA_H:
+        dy = -dy
+    y += dy
+    return x, y, dx, dy
+</code></pre>
+<p><a href="http://www.ce.unipr.it/brython/?p2_fun_ball.py">http://www.ce.unipr.it/brython/?p2_fun_ball.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Effetti collaterali 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Modifica di oggetti passati come parametri o variabili globali, operazioni di lettura/scrittura...</li>
+<li>Annullano la <strong>trasparenza referenziale</strong><ul>
+<li>Impossibile semplificare, sostituendo una chiamata a funzione col suo valore di ritorno (es. presenti operazioni di I/O)</li>
+</ul>
+</li>
+<li>Rendono la funzione <strong>non idempotente</strong><ul>
+<li>Chiamata più volte, con gli stessi parametri, restituisce risultati diversi</li>
+</ul>
+</li>
+<li>→ Difficile fare verifiche matematiche<ul>
+<li><code>z = f(sqrt(2), sqrt(2))</code></li>
+<li><code>s = sqrt(2)</code> <br> <code>z = f(s, s)</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Funzioni non idempotenti 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Esempio di semplificazione<ul>
+<li><code>p = rq(x) + rq(y) * (rq(x) – rq(x))</code></li>
+<li><code>p = rq(x) + rq(y) * (0)</code></li>
+<li><code>p = rq(x) + 0</code></li>
+<li><code>p = rq(x)</code></li>
+</ul>
+</li>
+<li>Ma se <code>rq</code> ha effetti collaterali, non si può!</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>base_value = 0  # global variable
+
+def rq(x: int) -&gt; int:
+    global base_value
+    base_value += 1
+    return x + base_value
+</code></pre>
+<blockquote></blockquote>
+<p>Ad esempio, con <code>x = 3</code> e <code>y = 4</code> i due risultati sono <code>-2</code> e <code>4</code></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Oggetti</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Oggetto</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/basic-object.svg">
+        
+      </figure><ul>
+<li>Rappresenta un <em>oggetto fisico</em> o un <em>concetto</em> del dominio</li>
+<li>Memorizza il suo <strong>stato</strong> interno in <em>campi privati</em><ul>
+<li><em>Incapsulamento (black box)</em></li>
+</ul>
+</li>
+<li>Offre un insieme di <strong>servizi</strong>, come <em>metodi pubblici</em><ul>
+<li>Realizza un <em>tipo di dato astratto (ADT)</em></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Classi ed oggetti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/cookie-cutter.png">
+        
+      </figure><ul>
+<li>Ogni <em>oggetto</em> ha una <strong>classe</strong> di origine<ul>
+<li>La classe dà la stessa forma iniziale (campi e metodi) a tutti i suoi oggetti</li>
+</ul>
+</li>
+<li>Ma ogni <em>oggetto</em> ha la sua <strong>identità</strong><ul>
+<li>Stato e locazione in memoria distinti da quelli di altri oggetti</li>
+<li>Sia instanze di classi diverse che della stessa classe</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Definizione della classe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
+        <figcaption>Class diagram UML</figcaption>
+      </figure><ul>
+<li><strong>Incapsulamento</strong> dei dati: <em>convenzione</em> sui nomi<ul>
+<li>Prefisso <code>_</code> per i nomi dei <em>campi privati</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>We're all consenting adults here. <em>(GvR)</em></p>
+</blockquote>
+<pre class="prettyprint" data-lang="py"><code>class Ball:
+
+    def __init__(self, x: int, y: int):
+        self._x = x
+        self._y = y
+        self._dx = 5
+        self._dy = 5
+    # ...
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Costruzione oggetti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/bob-builder.jpg">
+        
+      </figure><ul>
+<li><strong><code>__init__</code></strong>: metodo <em>inizializzatore</em><ul>
+<li>Eseguito automaticamente alla creazione di un oggetto</li>
+<li><em>Instantiation is initialization</em></li>
+</ul>
+</li>
+<li><strong><code>self</code></strong>: primo parametro di tutti i metodi<ul>
+<li>Non bisogna passare un valore esplicito</li>
+<li>Assegnato l'oggetto di cui si chiama il metodo</li>
+<li>Permette ai metodi di accedere ai campi</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>ball = Ball(40, 80)  # Allocation and initialization
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Metodi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-bounce.png">
+        
+      </figure><ul>
+<li>Espongono <em>servizi</em> ad altri oggetti</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>ARENA_W, ARENA_H = 320, 240
+BALL_W, BALL_H = 20, 20
+
+class Ball:
+    # ...
+    def move(self):
+        if not (0 &lt;= self._x + self._dx &lt;= ARENA_W - BALL_W):
+            self._dx = -self._dx
+        if not (0 &lt;= self._y + self._dy &lt;= ARENA_H - BALL_H):
+            self._dy = -self._dy
+        self._x += self._dx
+        self._y += self._dy
+
+    def position(self) -&gt; (int, int, int, int):
+        return self._x, self._y, BALL_W, BALL_H
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Uso degli oggetti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/balls.png">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code># Create two objects, instances of the Ball class
+b1 = Ball(140, 180)
+b2 = Ball(180, 140)
+
+for i in range(25):
+    b1.move()
+    b2.move()
+    print("b1 @", b1.position(),
+          "b2 @", b2.position())
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p2_oop_ball.py">http://www.ce.unipr.it/brython/?p2_oop_ball.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Il primo parametro, self</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Il primo parametro di ogni metodo si chiama <code>self</code> (per convenzione)</li>
+<li>L'oggetto, di cui viene invocato il metodo, viene assegnato come valore di <code>self</code></li>
+<li>In Python, una chiamata a metodo è interpretata così:</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>b1 = Ball(40, 80)
+b1.move()
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code># Python internals, DON'T do this!
+b1 = object.__new__(Ball)
+Ball.__init__(b1, 40, 80)
+Ball.move(b1)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Animazione di due palline</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="py"><code>import g2d
+from p2_oop_ball import Ball, ARENA_W, ARENA_H
+
+def update():
+    g2d.fill_canvas((255, 255, 255))  # BG
+    b1.move()
+    b2.move()
+    g2d.draw_rect((127, 127, 127), b1.position())  # FG
+    g2d.draw_rect((127, 127, 127), b2.position())  # FG
+
+b1 = Ball(40, 80)
+b2 = Ball(80, 40)
+g2d.init_canvas((ARENA_W, ARENA_H))
+g2d.main_loop(update, 1000 // 30)  # Millis
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p2_oop_ball_anim.py">http://www.ce.unipr.it/brython/?p2_oop_ball_anim.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Variabili locali, parametri, campi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><em>Campi</em>: memorizzano i dati caratteristici di una istanza<ul>
+<li>Ogni pallina ha la sua posizione <code>(x, y)</code> e la sua direzione <code>(dx, dy)</code></li>
+</ul>
+</li>
+<li><em>Parametri</em>: passano altri valori ad un metodo<ul>
+<li>Se alcuni dati necessari non sono nei campi</li>
+</ul>
+</li>
+<li><em>Variabili locali</em>: memorizzano risultati parziali<ul>
+<li>Generati durante l'elaborazione del metodo</li>
+<li>Nomi cancellati dopo l'uscita dal metodo</li>
+</ul>
+</li>
+<li><em>Variabili globali</em>: definite fuori da tutte le funzioni<ul>
+<li>Usare sono se strettamente necessario</li>
+<li>Meglio avere qualche parametro in più, per le funzioni</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Proprietà 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Permettono un accesso controllato allo stato</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>class Ball:
+
+    @property  # a getter for the pos property
+    def pos(self) -&gt; (int, int):
+        return self._x, self._y
+
+    # @pos.setter  # if you also really need a setter
+    # def pos(self, val: (int, int)):
+    #     self._x, self._y = val
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>ball = Ball(40, 80)
+print('ball @', ball.pos)
+# ball.pos = (60, 20)   # with the setter, you could change the pos
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercizi</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.1 Area di un'ellisse</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/ellipse.svg">
+        
+      </figure><ul>
+<li>Definire una <em>funzione</em> <code>ellipse_area</code> che:<ul>
+<li>Riceve come <em>parametri</em> i semiassi di una ellisse: <code>a</code>, <code>b</code></li>
+<li>Restituisce come risultato l'area dell'ellisse: <code>π⋅a⋅b</code></li>
+</ul>
+</li>
+<li>Definire una <em>funzione</em> <code>main</code> che:<ul>
+<li>Chiede all'utente due valori</li>
+<li>Invoca la funzione <code>ellipse_area</code> con questi parametri</li>
+<li>Stampa il risultato ottenuto</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?x21_fun_ellipse.py">http://www.ce.unipr.it/brython/?x21_fun_ellipse.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.2 Griglia di colori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/color-grid.png"><img src="images/oop/raster-tile.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente dei valori per <code>rows</code> e <code>cols</code></li>
+<li>Mostrare una griglia di rettangoli di dimensione <code>rows×cols</code></li>
+<li>Partire da un rettangolo nero in alto a sinistra</li>
+<li>In orizzontale, aumentare gradatamente la componente di blu</li>
+<li>In verticale, aumentare gradatamente la componente di verde</li>
+</ul>
+<blockquote></blockquote>
+<p>Cominciare a creare una griglia di riquadri tutti neri, con due cicli annidati</p>
+<p>Lasciare tra i riquadri un piccolo margine</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.3 Movimento orizzontale</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/frogger.png">
+        
+      </figure><ul>
+<li>Mostrare una pallina che si muove in orizzontale<ul>
+<li>Variabile <code>dx</code> indica lo spostamento da effettuare ad ogni ciclo</li>
+</ul>
+</li>
+<li>La pallina riappare dal bordo opposto, dopo un po' di tempo<ul>
+<li>Permettere alla <code>x</code> della pallina di superare i bordi laterali</li>
+<li>Fissare dei margini esterni di *100px" (p.es.) rispetto ai bordi dell'arena</li>
+<li>Se però la <code>x</code> raggiunge uno dei margini esterni, viene riportata al margine opposto</li>
+</ul>
+</li>
+<li>Alla pressione del tasto <code>Enter</code>, la pallina inverte la direzione</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.4 Movimento per 5 fotogrammi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/frogger.png">
+        
+      </figure><ul>
+<li>Riprendere l'esercizio 2.3</li>
+<li>La pallina si muove solo dopo la pressione del tasto <code>Enter</code></li>
+<li>Esegue i suoi comportamenti già definiti, ma solo per 5 fotogrammi</li>
+<li>Dopo 5 fotogrammi si ferma, in attesa di una nuova pressione del tasto</li>
+</ul>
+<blockquote></blockquote>
+<p>Incrementare (o decrementare) un contatore ad ogni chiamata a <code>tick</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.5 Classe per ellisse</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/ellipse.svg">
+        
+      </figure><ul>
+<li>Classe che modella un'ellisse</li>
+<li>Campi privati (parametri del costruttore)<ul>
+<li>Semiassi: <code>a, b</code></li>
+</ul>
+</li>
+<li>Metodi pubblici per ottenere...<ul>
+<li>Area: <code>π⋅a⋅b</code></li>
+<li>Distanza focale: <code>2⋅√|a<sup>2</sup> - b<sup>2</sup>|</code></li>
+</ul>
+</li>
+<li>Nel corpo principale del programma...<ul>
+<li>Creare un oggetto con dati forniti dall'utente</li>
+<li>Visualizzare area e distanza focale dell'ellisse</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.6 Animazione di un veicolo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/frogger.png">
+        
+      </figure><ul>
+<li>Creare un veicolo modificando la classe <code>Ball</code> vista a lezione</li>
+<li>Eseguire l'animazione<ul>
+<li>Per ogni frame, chiamare il metodo <code>move</code> del veicolo</li>
+<li>Rappresentare un rettangolo nella posizione aggiornata del veicolo</li>
+</ul>
+</li>
+<li>Modificare però il metodo <code>move</code><ul>
+<li>Il veicolo si sposta sempre di pochi pixel, solo in orizzontale</li>
+<li>Se supera 100px oltre il bordo destro, ricompare a 100px prima del bordo sinistro e viceversa</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.7 Pallina con conteggio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/frogger.png">
+        
+      </figure><ul>
+<li>Partire di nuovo dalla classe <code>Ball</code> vista a lezione</li>
+<li>La pallina si muove solo dopo la pressione del tasto <code>Enter</code></li>
+<li>Esegue i suoi comportamenti già definiti, ma solo per 5 fotogrammi</li>
+<li>Dopo 5 fotogrammi si ferma, in attesa di una nuova pressione del tasto</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.8 Animazione di un alieno</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/science-of-spaceships.jpg">
+        
+      </figure><ul>
+<li>Partire di nuovo dalla classe <code>Ball</code> vista a lezione</li>
+<li>Il movimento di base però è solo orizzontale</li>
+<li>Arrivato al bordo, il personaggio:<ul>
+<li>Si sposta di qualche pixel verso il basso</li>
+<li>Poi cambia direzione orizzontale</li>
+</ul>
+</li>
+<li>Fare in modo che, in ogni frame, lo spostamento sia solo orizzontale, o solo verticale, ma <em>non</em> diagonale</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.9 Spirale ad oggetti 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/spiral-circles.png">
+        
+      </figure><ul>
+<li>Mostrare l'<em>animazione</em> di un cerchio lungo una spirale</li>
+<li>Realizzare una classe per gestire dati e comportamento del cerchio</li>
+<li>Implementare il movimento in un metodo <code>move()</code></li>
+<li>Campi: <code>xc</code>, <code>yc</code>, <code>i</code><ul>
+<li><code>i</code> conta i passi; se eccede il limite, torna a 0</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

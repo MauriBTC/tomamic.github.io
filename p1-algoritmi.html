@@ -1,0 +1,926 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Algoritmi in Python 3</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/algo/rubik-cube.png"></figure>
+  <hgroup>
+    <h2>Introduzione alla programmazione</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>Python!</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/algo/antigravity.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Applicazioni in Python</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/algo/python-cases.jpg" /></p>
+<ul>
+<li>Web, data analysis, scripting, teaching, games, hardware, multiplatform...</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tipi di dati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Un <strong>tipo di dato</strong> specifica un insieme di <em>valori</em> e le <em>operazioni</em> ammesse<ul>
+<li><code>int, float, bool, str</code></li>
+<li>Operazioni aritmetiche e logiche, confronti</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; 3 + 4
+7
+&gt;&gt;&gt; 3 / 4
+0.75
+&gt;&gt;&gt; 4 == 5  # Do not confuse with assignment!
+False
+&gt;&gt;&gt; 2 &lt; 3 or not True
+True
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Valori numerici e booleani</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong><code>int</code></strong> o <strong><code>float</code></strong>, per numeri interi o reali<ul>
+<li>Operazioni di base: <code>+, -, *, /</code></li>
+<li>Divisione intera, resto, potenza: <code>//, %, **</code></li>
+<li>Confronti: <code>&lt;, &lt;=, &gt;, &gt;=, ==, !=</code></li>
+</ul>
+</li>
+<li><strong><code>bool</code></strong>, per valori booleani: <code>True, False</code><ul>
+<li>Operazioni consentite: <code>and, or, not</code></li>
+<li>I confronti danno un risultato booleano</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; -2 // 3    # floored integer division
+-1
+&gt;&gt;&gt; -2 % 3     # reminder is always positive
+1
+&gt;&gt;&gt; 2 ** 1000  # no limits (but memory)
+107150[...]069376
+</code></pre></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Assegnamento</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/assign.png">
+        
+      </figure><ul>
+<li>Una <strong>variabile</strong> serve per conservare un risultato</li>
+<li>Assegnamento, operatore <code>=</code><ul>
+<li>Alla sinistra una variabile</li>
+<li>Alla destra un valore</li>
+</ul>
+</li>
+<li><em>Non confondere</em> con confronto di uguaglianza <code>==</code></li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; pi = 3.14  # Assignment
+&gt;&gt;&gt; radius = 2.2
+&gt;&gt;&gt; area = pi * (radius ** 2)
+&gt;&gt;&gt; area
+15.1976
+&gt;&gt;&gt; radius = radius + 1  # guess radius... and area!
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Variabile</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/var-label.svg">
+        
+      </figure><ul>
+<li><strong>Nome</strong> (etichetta) associato ad un certo <strong>valore</strong> (oggetto)<ul>
+<li>Oggetto assegnato a più variabili: non viene copiato, ma riceve più etichette</li>
+<li>Il <strong>tipo</strong> dipende dal valore attualmente assegnato</li>
+<li>Una var. non dev'essere <em>dichiarata</em>, ma dev'essere <em>inizializzata</em></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; x = 100
+&gt;&gt;&gt; DELTA = 5          # Constants: UPPER_CASE
+&gt;&gt;&gt; x = x + DELTA      # Variables: lower_case
+&gt;&gt;&gt; next_position = x  # Use explicative names!
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Stringhe di testo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong><code>str</code></strong> per sequenze di caratteri <em>Unicode</em></li>
+<li>Primi 128 codici <em>Unicode</em> == <em>ASCII</em><ul>
+<li>A capo: <code>'\n'</code> (10, o 13-10... ma conversione automatica)</li>
+<li>Tabulazione: <code>'\t'</code> (9)</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; str1 = "Monty Python's "
+&gt;&gt;&gt; str2 = 'Flying Circus'
+&gt;&gt;&gt; result = str1 + str2
+&gt;&gt;&gt; result
+"Monty Python's Flying Circus"
+</code></pre></article>
+ 
+</slide>
+
+<slide class="large-image" >
+  
+    <hgroup>
+      <h2>Tabella ASCII</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/repr/ascii.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Confronto tra stringhe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Confronto tra stringhe, in ordine <em>lessicografico</em><ul>
+<li><code>&lt;, &lt;=, &gt;, &gt;=, ==, !=</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; 'first' &lt; 'second'
+True
+&gt;&gt;&gt; 'Second' &lt;  'first'
+True
+&gt;&gt;&gt; chr(90)
+'Z'
+&gt;&gt;&gt; ord('Z')
+90
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Leggere e scrivere</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/hello-user.svg">
+        
+      </figure><ul>
+<li><strong><code>input</code></strong> legge una riga di testo, inserita dall'utente, in una <em>variabile</em><ul>
+<li>Prima mostra un messaggio</li>
+</ul>
+</li>
+<li><strong><code>print</code></strong> scrive una serie di valori su una riga<ul>
+<li>Tra i valori (parametri) viene inserito uno spazio</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>user = input("What's your name? ")
+
+print("Hello,", user)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Somma di tre numeri</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/sum3.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code># File sum3.py - to run: python3 sum3.py
+
+a = float(input("Insert 1st val: "))
+b = float(input("Insert 2nd val: "))
+c = float(input("Insert 3rd val: "))
+
+total = a + b + c
+
+print("The sum is", total)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Moduli</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><em>Python Standard Library</em>: <a href="http://docs.python.org/3/library/">http://docs.python.org/3/library/</a></li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>import math
+y = math.sin(math.pi / 4)
+print(y)  # √2 / 2
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>from math import sin, pi
+print(sin(pi / 4))
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>from random import randint
+die1 = randint(1, 6)  # like rolling a die
+die2 = randint(1, 6)  # like rolling a die
+print(die1, die2)
+</code></pre>
+<blockquote></blockquote>
+<p>Tutti gli <code>import</code> all'inizio dello script, per evidenziare le dipendenze</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tupla</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Sequenza <strong>immutabile</strong> di valori, anche di <em>tipo diverso</em></li>
+<li>Spesso tra parentesi, per separarla da altri valori</li>
+<li>Utili anche per grafica:<ul>
+<li><em>Color</em>: <code>(red, green, blue)</code> <br> Ogni componente nel range <code>0..255</code><br></li>
+<li><em>Point</em>: <code>(x, y)</code><br></li>
+<li><em>Size</em>: <code>(width, height)</code><br></li>
+<li><em>Rect</em>: <code>(left, top, width, height)</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>center_pt = (150, 100)
+bluette_color = (47, 102, 207)  # ~ blue
+window_size = (640, 480)
+some_rectangle = (150, 100, 200, 200)  # square
+</code></pre></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Disegno su canvas</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/raster-coord.png">
+        
+      </figure><ul>
+<li>Useremo un modulo <em>ad-hoc</em>: <code>g2d</code><ul>
+<li>Definisce funzioni di disegno</li>
+<li>Coordinate <em>raster</em>: origine in alto a sinistra</li>
+</ul>
+</li>
+<li>Esiste anche una versione per il browser<ul>
+<li>Genera html e lancia web-server locale</li>
+<li>Sfrutta il sistema Brython: <a href="http://brython.info/">http://brython.info/</a></li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Per l'esecuzione locale, copiare nella carella di lavoro il file <code>g2d.py</code>, da <code>examples</code></p>
+<p><a href="https://github.com/tomamic/fondinfo/archive/master.zip">https://github.com/tomamic/fondinfo/archive/master.zip</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Rettangoli e cerchi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="py"><code>import g2d
+
+g2d.init_canvas((600, 400))  # width, height
+
+# red + green = yellow
+g2d.set_color((255, 255, 0))         # color
+g2d.fill_rect((150, 100, 250, 200))  # rect
+
+g2d.set_color((0, 0, 255))
+g2d.fill_circle((400, 300), 20)      # center, radius
+
+g2d.main_loop()  # manage the window/canvas
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Linee e testi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="py"><code>import g2d
+
+g2d.init_canvas((600, 400))
+
+g2d.set_color((0, 255, 0))
+g2d.draw_line((150, 100), (400, 300))   # pt1, pt2
+
+g2d.set_color((255, 0, 0))
+g2d.draw_text("Hello", (150, 100), 40)  # text, left-top, font-size
+
+g2d.main_loop()
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p1_draw.py">http://www.ce.unipr.it/brython/?p1_draw.py</a></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Strutture di controllo</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Selezione: if</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Indentazione</strong> del corpo di <code>if</code> o <code>else</code><ul>
+<li>Richiesta per sintassi, non opzionale!</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Readability counts <em>(The Zen of Python)</em></p>
+</blockquote>
+<pre class="prettyprint" data-lang="py"><code>import g2d
+g2d.init_canvas((600, 400))  # default drawing color is grey
+ans = g2d.prompt("Do you like red (y/n)? ")  # same as input
+
+if ans == "y":
+    g2d.set_color((255, 0, 0))
+
+g2d.fill_circle((300, 200), 150)
+g2d.main_loop()
+</code></pre>
+<ul>
+<li>Clausola <code>else</code>: opzionale<ul>
+<li>Eseguita sse la condizione non è verificata</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>If-else</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/abs.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+g2d.init_canvas((600, 400))
+ans = g2d.prompt("Do you like red (y/n)? ")  ## same as input
+
+if ans == "y":
+    g2d.set_color((255, 0, 0))
+    g2d.fill_circle((300, 200), 150)
+else:
+    g2d.set_color((0, 255, 255))
+    g2d.fill_rect((100, 100, 400, 200))
+
+g2d.main_loop()
+</code></pre>
+<ul>
+<li>Corpo di <code>if</code> o <code>else</code>: qualsiasi istruzione</li>
+<li>Anche altri blocchi <code>if</code> o <code>while</code> annidati!</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Confronto tra parole</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/words.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>a = input("First word? ")
+b = input("Second word? ")
+
+if a &lt; b:
+    print("The words are ordered")
+elif a &gt; b:
+    print("The words are inverted")
+else:
+    print("The words are equal")
+</code></pre>
+<ul>
+<li><strong><code>elif</code></strong>: clausola <code>else</code> che contiene un altro <code>if</code></li>
+<li>No <code>switch</code>, no <code>do-while</code></li>
+</ul>
+<blockquote>
+<p>There should be one -- and preferably only one -- obvious way to do it <em>(ZoP)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Operazioni aritmetiche</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/calc.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>a = float(input())
+b = float(input())
+op = input()
+
+if op == '+':
+    print(a + b)
+elif op == '-':
+    print(a - b)
+elif op == '*':
+    print(a * b)
+elif op == '/' and b != 0:
+    print(a / b)
+else:
+    print("Operation not allowed")
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Iterazione: while</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/sum1n.svg">
+        
+      </figure><ul>
+<li>Condizione booleana di <em>permanenza</em> nel ciclo</li>
+<li>Controllo <em>preliminare</em>, possibile che il corpo non sia mai eseguito</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code># Sum of the numbers from 1 to n
+total = 0
+count = 1
+n = int(input("n? "))
+
+while count &lt;= n:
+    total = total + count
+    count = count + 1
+
+print("The sum is", total)
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://it.wikipedia.org/wiki/Gauss#Biografia">http://it.wikipedia.org/wiki/Gauss#Biografia</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Media di N valori dell'utente</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/average.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>n = int(input("How many values? "))
+count = 0
+total = 0
+
+while count &lt; n:
+    val = int(input("Val? "))
+    total += val  # total = total + val
+    count += 1    # count = count + 1
+
+if count != 0:
+    print("The average is", total / count)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Ciclo con sentinella</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/sentinel.svg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>count = 0
+total = 0
+val = int(input("Val? (0 to finish) "))
+
+while val != 0:
+    total += val
+    count += 1
+    val = int(input("Val? (0 to finish) "))
+
+if count != 0:
+    print("The average is", total / count)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Intervalli di valori: range</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/sum10.svg">
+        
+      </figure><ul>
+<li><strong><code>range</code></strong>: intervallo di valori aperto a destra<ul>
+<li>Estremo inferiore <em>incluso</em></li>
+<li>Estremo superiore <em>escluso</em></li>
+<li>Iterabile con un ciclo <code>for</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code># Add up numbers from 1 to 10
+
+total = 0
+for i in range(1, 11):
+    total += i
+
+# total = 0;  i = 1
+# while i &lt; 11:
+#     total += i;  i += 1
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sequenza di quadrati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/red-squares.png">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+
+g2d.init_canvas((300, 300))
+
+for i in range(5):  ## range(0, 5)
+    x = i * 40
+    y = x
+    red = i * 60
+    g2d.draw_rect((red, 0, 0), (x, y, 140, 140))
+
+g2d.main_loop()
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?p1_red_squares.py">http://www.ce.unipr.it/brython/?p1_red_squares.py</a></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercizi</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.1 Cerchio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/greek-pi.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente il valore del raggio <code>r</code> di un cerchio<ul>
+<li><code>r</code> reale compreso tra 0 e 200</li>
+</ul>
+</li>
+<li>Se <code>r</code> è valido<ul>
+<li>Visualizzare il cerchio</li>
+<li>Mostrare il valore dell'area e della circonferenza</li>
+</ul>
+</li>
+<li>Se invece <code>r</code> è fuori range<ul>
+<li>Mostrare un messaggio d'errore</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.2 Minore e maggiore</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/three-brothers.png">
+        
+      </figure><ul>
+<li>Generare e stampare tre numeri interi casuali: <code>a</code>, <code>b</code>, <code>c</code></li>
+<li>Ciascuno compreso tra 1 e 6</li>
+<li>Determinare e mostrare qual è il minore dei tre</li>
+</ul>
+<blockquote></blockquote>
+<p>Controllare prima di tutto se <code>a</code> è minore degli altri due <br>
+Altrimenti controllare se <code>b</code> è minore di <code>c</code> <br>
+Altrimenti ...</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.3 Calcolo dell'età</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Chidere all'utente<ul>
+<li>Anno, mese e giorno della data di nascita</li>
+<li>Anno, mese e giorno corrente</li>
+</ul>
+</li>
+<li>Comunicare l'età esatta<ul>
+<li>Numero di compleanni già compiuti</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Nell'anno corrente, l'utente ha già avuto il compleanno?</p>
+<p>Espressione booleana composta con <code>and</code>, <code>or</code>, <code>not</code>...</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.4 Quadrati casuali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/random-squares.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Disegnare <code>n</code> quadrati<ul>
+<li>Tutti con lato di 100 pixel</li>
+<li>Ciascuno in posizione casuale</li>
+<li>Ciascuno con un colore casuale</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Cominciare a disegnare un solo quadrato grigio, in posizione casuale</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.5 Fila di quadrati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/red-squares.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Disegnare <code>n</code> quadrati<ul>
+<li>Tutti con lato di 100 pixel</li>
+<li>Tutti sulla diagonale, distanziati uniformemente</li>
+<li>Ciascuno colorato con una sfumatura di rosso via via più accesa</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Soluzione bozza: ad ogni passo aggiungere <code>10</code> (p.es.) alla posizione e al livello di rosso</p>
+<p>Soluzione finale: determinare automaticamente, prima del ciclo, le variazioni migliori per posizione e colore</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.6 Numero segreto</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bingo-balls.png">
+        
+      </figure><ul>
+<li>Generare all'inizio del programma un numero “segreto” a caso tra 1 e 90</li>
+<li>Chiedere ripetutamente all'utente di immettere un numero, finché non indovina quello generato</li>
+<li>Ad ogni tentativo, dire se il numero immesso è maggiore o minore del numero segreto</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.7 Resistenze, ciclo 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/resistors.png">
+        
+      </figure><ul>
+<li>Leggere, attraverso un ciclo, una sequenza di valori di resistenze elettriche</li>
+<li>La sequenza termina quando l'utente immette il valore 0</li>
+<li>Alla fine, visualizzare la resistenza equivalente, sia nel caso di resistenze disposte in serie, che in parallelo</li>
+</ul>
+<blockquote></blockquote>
+<p>Formule utili:</p>
+<p>R<sub>s</sub> = ∑ R<sub>i</sub></p>
+<p>1/R<sub>p</sub> = ∑ (1/R<sub>i</sub>)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.8 Orologio classico 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/classical-watch.jpg">
+        
+      </figure><ul>
+<li>Disegnare 12 tacche a raggiera, come in un orologio classico</li>
+<li>Miglioramento: disegnare anche le tacche dei minuti, più piccole</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare <code>math.Sin</code> e <code>math.Cos</code> per determinare le posizioni in cui disegnare</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.9 La stanza del mostro 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/monster.png">
+        
+      </figure><ul>
+<li>Il giocatore si muove su una scacchiera di 5x5 celle, partendo da un angolo<ul>
+<li>Le righe e le colonne sono numerate da 0 a 4</li>
+</ul>
+</li>
+<li>Un tesoro ed un mostro sono nascosti in due posizioni casuali, all'inizio del gioco</li>
+<li>Ad ogni turno, il giocatore:<ul>
+<li>Sceglie una direzione verso cui spostarsi (alto, basso, sinistra, destra)</li>
+<li>Se capita sulla cella del tesoro, ha vinto</li>
+<li>Se capita sulla cella del mostro, ha perso</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Basta memorizzare tre coppie di coordinate cartesiane</p>
+<p>Non è richiesto di utilizzare la grafica</p></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

@@ -1,0 +1,1090 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Qualità del software</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/dev/bug-feature.jpg"></figure>
+  <hgroup>
+    <h2>Introduzione all'informatica</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Ciclo di vita del software</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/waterfall-model.svg">
+        
+      </figure><ul>
+<li><strong>Analisi</strong><ul>
+<li>Modello, requisiti, fattibilità</li>
+</ul>
+</li>
+<li><strong>Progetto e implementazione</strong><ul>
+<li>Componenti architetturali... dettaglio classi</li>
+</ul>
+</li>
+<li><strong>Collaudo</strong><ul>
+<li>Rispetto requisiti, qualità sw</li>
+</ul>
+</li>
+<li><strong>Rilascio e manutenzione</strong><ul>
+<li>40%-80% del costo totale (DoD, HP)</li>
+<li>Non noti o non colti correttamente i requisiti</li>
+<li>Cambiano le condizioni operative …</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www-scf.usc.edu/~csci201/lectures/Lecture11/royce1970.pdf">Winston W. Royce, 1970</a> - <a href="http://www.eng.auburn.edu/~kchang/comp6710/readings/Forgotten_Fundamentals_IEEE_Software_May_2001.pdf">Robert L. Glass, 2001</a></p></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Evoluzione di un sistema sw</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/rup-cycle.png">
+        
+      </figure><ul>
+<li>Evoluzione ineliminabile per molti sistemi<ul>
+<li>Prestazioni, qualità, funzionalità (manutenzione <em>perfettiva</em>, ~60%)</li>
+<li>Anomalie ed errori (manutenzione <em>correttiva</em>, ~20%)</li>
+<li>Mutamenti dell’ambiente (manutenzione <em>adattativa</em>, ~20%)</li>
+</ul>
+</li>
+<li>Sviluppo iterativo e metodologie agili<ul>
+<li>Rilascio frequente ed incrementale</li>
+<li><a href="http://agilemanifesto.org/">http://agilemanifesto.org/</a></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Qualità del software</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/programmer.jpg">
+        
+      </figure><ul>
+<li>Le qualità su cui si basa la valutazione di un sistema software possono essere:<ul>
+<li><strong>Interne</strong>, riguardano le caratteristiche legate al <strong>processo</strong> di sviluppo e non sono direttamente visibili agli utenti</li>
+<li><strong>Esterne</strong>, riguardano le funzionalità fornite dal <strong>prodotto</strong> sw e sono direttamente visibili agli utenti</li>
+</ul>
+</li>
+<li>Le categorie sono legate:<ul>
+<li><em>Product quality is process quality</em></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Qualità esterne</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Correttezza e affidabilità</strong>: il sistema rispetta le specifiche, l'utente può affidarsi al programma</li>
+<li><strong>Robustezza</strong>: il sistema si comporta in modo ragionevole anche fuori dalle specifiche</li>
+<li><strong>Efficienza</strong>: usa bene le risorse di calcolo</li>
+<li><strong>Scalabilità</strong>: migliori prestazioni con più risorse</li>
+<li><strong>Sicurezza</strong>: riservatezza, autenticazione, autorizzazione, accounting</li>
+<li><strong>Facilità d’uso</strong>: interfaccia utente permette di interagire in modo naturale</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Qualità interne</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Verificabilità</strong>: sistema basato su modello formale</li>
+<li><strong>Riusabilità</strong>: parti per costruire nuovi sistemi</li>
+<li><strong>Manutenibilità</strong>: riparabilità, evolvibilità (nuove specifiche), adattabilità (cambiamenti ambiente)</li>
+<li><strong>Interoperabilità</strong>: capacità di co-operare con altri sistemi, anche di altri produttori</li>
+<li><strong>Portabilità</strong>: adatto a più piattaforme hw/sw</li>
+<li><strong>Comprensibilità</strong>: codice leggibile, documentato</li>
+<li><strong>Modularità</strong>: interazione tra componenti coesi</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Specifiche</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/gearwheel.png">
+        
+      </figure><ul>
+<li>Rispetto a cosa valutiamo <strong>correttezza</strong> o <strong>affidabilità</strong> di un programma?</li>
+<li>Idea del programmatore<ul>
+<li>Non formulata, non documentata</li>
+<li>Incompleta, mutevole, facilmente dimenticata</li>
+</ul>
+</li>
+<li>Specifiche (formali o informali)<ul>
+<li>Formulate, scritte, studiate e condivise <br> → Parte del progetto e del programma</li>
+<li>Spec. assiomatiche: espressioni logiche o asserzioni <br> → <strong>Precondizioni, postcondizioni e invarianti</strong></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pre- e post-condizioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Precondizioni</strong><ul>
+<li>Stabiliscono se è possibile chiamare un metodo</li>
+<li>Prerequisiti per l’attivazione</li>
+</ul>
+</li>
+<li><strong>Postcondizioni</strong><ul>
+<li>Stabiliscono se il metodo restituisce il valore atteso, cioè se produce l’effetto desiderato</li>
+<li>… In relazione ai parametri (che soddisfano le precondizioni)</li>
+<li>Definiscono il significato del metodo</li>
+</ul>
+</li>
+<li><strong>Divisione delle responsabilità</strong> tra moduli<ul>
+<li>Errore del codice <em>chiamante</em> (<em>client</em>) se precondizioni non soddisfatte</li>
+<li>Errore del codice <em>chiamato</em> (<em>server</em>), se postcondizioni non soddisfatte</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Responsabilità e contratti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Precondizioni + postcondizioni = contratto</strong><ul>
+<li>… tra modulo chiamante e modulo chiamato</li>
+</ul>
+</li>
+<li>Infrazione di un contratto: problema serio<ul>
+<li>Errore rispetto alle specifiche</li>
+<li>Eccezione e/o terminazione</li>
+</ul>
+</li>
+<li>No <strong>divisione responsabilità</strong> → sovrapposizioni<ul>
+<li>Tutti i moduli assumono molte responsabilità</li>
+<li>Programmazione difensiva: tutte le parti del programma controllano tutte le condizioni</li>
+<li>Grosso programma → ancora più grosso</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Esempio di contratto</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="Python"><code>def sqrt(x: float) -&gt; float
+</code></pre>
+<ul>
+<li>Precondizioni: <code>x &gt;= 0</code></li>
+<li>Postcondizioni: <code>abs(result * result - x) &lt;= 0.00001</code></li>
+<li>Codice chiamante<ul>
+<li>Obblighi: deve passare un numero non negativo</li>
+<li>Benefici: riceve la radice del numero</li>
+</ul>
+</li>
+<li>Codice chiamato<ul>
+<li>Obblighi: restituisce un numero <code>r</code> tale che <code>r * r ≃ x</code></li>
+<li>Benefici: può assumere che <code>x</code> non è negativo</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Invariante di classe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Vincolo che deve valere per ogni stato stabile di un oggetto, durante tutto il suo ciclo di vita</li>
+<li>Rafforzamento generale di pre- e post-condizioni</li>
+<li>“Criterio di sanità” dell’oggetto</li>
+<li>Deve essere soddisfatto dal costruttore</li>
+<li>Deve essere mantenuto dai metodi pubblici</li>
+<li>Ma non necessariamente da metodi privati o protetti</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Ereditarietà e contratti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/dev/contract-inherit.svg" /></p>
+<ul>
+<li><em>Che relazione c’è tra le asserzioni di una classe e quelle dei suoi discendenti?</em></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Principio di sostituibilità</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Polimorfismo: possibile esecuzione metodo di una sottoclasse, anziché della classe base<ul>
+<li>I metodi delle sottoclassi possono ridefinire i metodi delle classi base... ma non arbitrariamente</li>
+</ul>
+</li>
+<li>I contratti della sottoclasse devono <em>rispettare i contratti della classe base</em> (“sottocontratti”)<ul>
+<li>Precondizioni: non devono essere più forti</li>
+<li>Postcondizioni: non devono essere più deboli</li>
+<li>Invarianti di classe: non devono essere più deboli</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Require no more, promise no less</p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Design by contract</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Paradigma proposto nel linguaggio <em>Eiffel</em> (Betrand <em>Meyer</em>, 1986)</li>
+<li>Uso di asserzioni in varie fasi di sviluppo<ul>
+<li>Progetto: approccio pragmatico alle specifiche</li>
+<li>Implementazione: guida per la programmazione</li>
+<li>Documentazione: interfacce con info aggiuntive</li>
+<li>Collaudo: DbC delimita i casi da testare (per affidabilità)</li>
+<li>Manutenzione: DbC fa emergere prima gli errori</li>
+<li>Uso finale: sollevate eccezioni se violazioni</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Asserzioni Python</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Espressioni booleane, simili a predicati matematici</li>
+<li>Esprimono proprietà semantiche di classi e metodi</li>
+<li>Utili per collaudo e debugging, ma anche documentazione</li>
+<li>Violazione → <strong>AssertionError</strong> (e normalmente <em>abort</em>, terminazione programma)</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>assert age &gt; 0
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Asserzioni e contratti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Asserzioni in genere utili per:<ul>
+<li>Precondizioni, postcondizioni, invarianti di classe</li>
+<li>Invarianti interne e di controllo del flusso</li>
+</ul>
+</li>
+<li>Argomenti di metodi pubblici sbagliati → eccezione<ul>
+<li><code>ValueError</code> o <code>TypeError</code></li>
+</ul>
+</li>
+<li>Di solito, asserzioni usate per debug, ma disabilitate in produzione<ul>
+<li><code>python -O some_code.py</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pre- e post-condizioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="Python"><code>def sqrt(x: float) -&gt; float:
+    '''
+    Precondition: x &gt;= 0
+    Postcondition: abs(result * result - x) &lt;= 0.00001
+    '''
+    if x &lt; 0:
+        raise ValueError("sqrt: arg &lt; 0")
+
+    # ...
+
+    assert abs(result * result - x) &lt;= 0.00001
+    return result
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Verifica e validazione</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Verifica e validazione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/v-model.png">
+        
+      </figure><ul>
+<li>Mostrare che il sistema...<ul>
+<li>È conforme alle specifiche</li>
+<li>Soddisfa i bisogni dell’utente</li>
+</ul>
+</li>
+<li>Comprende revisione e collaudo del sistema</li>
+<li><strong>Test case</strong>, derivati dalle specifiche</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Costo dei bug</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/first-bug.jpg">
+        
+      </figure><ul>
+<li>Scovare bug non è un compito facile, e nemmeno una esperienza eccitante…<ul>
+<li>Costoso: non è insolito dedicare al testing il 40% del tempo e delle risorse di un progetto</li>
+</ul>
+</li>
+<li><strong>Far emergere</strong> bug in prime fasi dello sviluppo!<ul>
+<li>B. Boehm: se trovare e correggere un problema in fase di specifica dei requisiti costa 1$...</li>
+<li>5$ in progetto, 10$ in programmazione,</li>
+<li>20$ in unit testing, fino a 200$ dopo consegna</li>
+<li>Alcuni bug possono capitare già a causa di specifiche non ben chiare e capite</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Prove formali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Dimostrazione matematica di un programma: alternativa (~ accademica) al testing<ul>
+<li>Annotazione del programma con asserzioni matematiche: comportamento atteso</li>
+<li>Proprietà valide per i vari costrutti del programma</li>
+<li>Spesso per <em>linguaggi funzionali</em> (privi di effetti collaterali)</li>
+</ul>
+</li>
+<li>Prova che post-condizioni verificate, se:<ul>
+<li>Precondizioni verificate</li>
+<li>Programma termina</li>
+</ul>
+</li>
+<li>Dimostrazioni automatiche<ul>
+<li>Se a mano → errori (più che nel programma?)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://coq.inria.fr/about-coq">https://coq.inria.fr/about-coq</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Revisione del software</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Analisi del codice (o pseudocodice) per capirne le caratteristiche e le funzionalità</li>
+<li><strong>Code walk-through</strong><ul>
+<li>Selezione porzioni di codice e valori di input</li>
+<li>Simulazione su carta comportamento del sistema</li>
+</ul>
+</li>
+<li><strong>Code inspection</strong>, più formale e focalizzato<ul>
+<li>Uso di variabili non inizializzate</li>
+<li>Loop infiniti</li>
+<li>Letture di porzioni di memoria non allocata</li>
+<li>Rilascio improprio della memoria</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Testing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <blockquote>
+<p>Le operazioni di testing possono individuare la presenza di errori nel software ma non ne possono dimostrare la correttezza. <em>(E. Dijkstra)</em></p>
+<p>Eseguire un programma con l'intento di trovare errori. <em>(Glen Myers, “The art of Software Testing”)</em></p>
+</blockquote>
+<ul>
+<li>Verificare sistema in un insieme abbastanza ampio di casi... → plausibile comportamento analogo anche nelle restanti situazioni</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Classificazione dei test</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/v-model.png">
+        
+      </figure><ul>
+<li>Tipi di test<ul>
+<li><strong>White box</strong> (<em>in the small</em>)</li>
+<li><strong>Black box</strong> (<em>in the large</em>)</li>
+</ul>
+</li>
+<li>Livelli di test<ul>
+<li><em>Unit test</em></li>
+<li><em>Integration test</em></li>
+<li><em>System test</em></li>
+</ul>
+</li>
+<li>Ripetizione di test<ul>
+<li><em>Regression test</em></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Testabilità</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Qualità software che facilitano rilevazione errori<ul>
+<li><strong>Osservabilità</strong> – Disponibili i risultati dei test</li>
+<li><strong>Controllabilità</strong> – Possibilità di impostare ingressi e stato del programma prima di eseguire un test</li>
+<li><strong>Decomponibilità</strong> – Programma diviso in parti che possono essere testate individualmente</li>
+<li><strong>Comprensibilità</strong> – Si capisce il comportamento corretto (desiderato) del programma</li>
+</ul>
+</li>
+<li>→ Sviluppo per testabilità</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>White-box testing</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>White-box testing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Test basati sulla conoscenza della struttura interna del codice</li>
+<li>Un errore non può essere scoperto se la parte di codice che lo contiene non viene mai eseguita</li>
+<li><strong>Statement test</strong><ul>
+<li>Insieme di test T tali che, eseguendo su tutti i casi di T il programma P, ogni istruzione di P venga eseguita almeno una volta (test utopia?)</li>
+<li><strong>Branch test</strong> (copertura delle decisioni)</li>
+<li><strong>Branch &amp; condition test</strong> (… condizioni)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Basic path testing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Scelto insieme minimo di percorsi per coprire tutte le istruzioni e condizioni (<em>white box</em>)<ul>
+<li>Tracciare diagramma di flusso</li>
+<li>Astrarre il diagramma in un grafo di flusso</li>
+<li>Complessità ciclomatica <code>n</code> = metrica di test</li>
+<li>Trovare <code>n</code> casi di test che seguono ciascun cammino indipendente</li>
+</ul>
+</li>
+<li>Cammino: sequenza di comandi, da inizio a fine</li>
+<li>Cammino indipendente: aggiunge almeno una nuova istruzione rispetto ai cammini già identificati</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Diagramma di flusso</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/flow-chart.png">
+        
+      </figure><pre class="prettyprint" data-lang="Python"><code>def f():
+    // entry
+    while a:
+        x()
+        if b:
+            if c: y()
+            else z()
+            # p
+        else:
+             v()
+             w()
+        # q
+    # exit: r
+</code></pre></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Grafo di flusso</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/flow-graph.png">
+        
+      </figure><ul>
+<li>Piccola astrazione rispetto a diagramma di flusso</li>
+<li><strong>Complessità ciclomatica</strong>, dalla teoria dei grafi:<ul>
+<li>Numero di possibili cammini indipendenti, o...</li>
+<li>Numero di regioni del grafo di flusso, o...</li>
+<li>Numero di nodi predicato + 1 <br> &nbsp;</li>
+</ul>
+</li>
+<li><code>A, r</code></li>
+<li><code>A, X, B, C, Y, p, q, A, r</code></li>
+<li><code>A, X, B, C, Z, p, q, A, r</code></li>
+<li><code>A, X, B, V, W, q, A, r</code></li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Black box testing</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Black box testing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Sistema = scatola nera; si verificano le corrispondenze di input e output<ul>
+<li>White-box testing: impossibile per grandi sistemi</li>
+<li>Test case scelti in base alle specifiche dei requisiti</li>
+</ul>
+</li>
+<li>Desiderata: trovare errori...<ul>
+<li>Funzionali: otteniamo i risultati attesi per dati input di un metodo?</li>
+<li>Interfaccia: dati passati correttamente tra i metodi?</li>
+<li>Efficienza: il metodo è abbastanza veloce?</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Partizioni d’equivalenza</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Partizionamento ingressi in <strong>classi di equivalenza</strong><ul>
+<li>Irrealistico testare tutti i possibili ingressi (es. <code>sqrt</code>)</li>
+<li>Ipotesi: sufficiente testare un solo caso per classe</li>
+<li>Si includono casi limite e valori non validi</li>
+<li>Precondizioni: riducono il numero di casi di test</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>def swap_elements(v: list, i: int, j: int):
+    '''
+    Exchange element i and j in list v
+    v: empty, one element, more elements
+    i, j: one or both indexes out of range... or both in range: i &lt; j, i &gt; j, i = j
+    '''
+    # ...
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Regression testing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Scopo: trovare errori di regressione<ul>
+<li>Errori in un programma che prima era corretto, ed è stato modificato di recente</li>
+<li>Un errore di regressione è un errore che prima non c’era</li>
+</ul>
+</li>
+<li>Dopo la modifica di una parte <code>P</code> nel programma <code>Q</code><ul>
+<li>Testare che la parte <code>P</code> funzioni correttamente</li>
+<li>Testare che l’intero programma <code>Q</code> non sia stato danneggiato dalla modifica</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Collaudo in Python</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Come collaudare il codice?</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Usare un <em>debugger</em> per valutare espressioni in fase di esecuzione<ul>
+<li>Si può decidere cosa valutare a seconda del flusso di esecuzione e dei valori generati, senza ricompilare</li>
+</ul>
+</li>
+<li>Istruzioni di <em>stampa</em> all'interno del programma<ul>
+<li>Valore di espressioni scritto a console o su file di log</li>
+</ul>
+</li>
+<li>Entrambi gli stili, scarsamente <em>automatizzati</em><ul>
+<li>Necessità di intervento attivo durante i test</li>
+<li>Giudizio dei risultati da parte dell'utente</li>
+<li>Quali valori analizzare? Sono coerenti?</li>
+</ul>
+</li>
+<li>Scarsamente <em>componibili</em><ul>
+<li>Difficile controllare molte espressioni nel debugger</li>
+<li>"<em>Scroll blindness</em>": troppe istruzioni di stampa ⇒ codice poco leggibile</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Libreria unittest</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>I test <code>unittest</code> non richiedono continuo intervento o giudizio da parte dell'utente</li>
+<li>Facile eseguire molti test assieme, su un certo progetto</li>
+<li>Come definire un test?<ul>
+<li>Creare una sottoclasse di <code>unittest.TestCase</code></li>
+<li>Scrivere metodi di test, denominati con prefisso <code>test</code></li>
+<li>Per controllare la validità di una espressione, usare <code>assertTrue(bool)</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Esempio di test</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Controllare che una pallina rimbalzi correttamente all'angolo</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>import unittest
+
+class SimpleBallTest(unittest.TestCase):
+
+    def test_corner(self):
+        b = Ball(300, 220)  # dx = 5, dy = 5
+        b.move()
+        self.assertTrue(b.position() == (295, 215, 20, 20))
+
+if __name__ == '__main__':
+    unittest.main()
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Esecuzione dei test</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Meccanismi per definire i test da eseguire e organizzare i risultati</li>
+<li>Esecuzione di test dalla linea di comando<ul>
+<li>Inclusione dei test di un modulo, di una classe, o metodi di test specifici</li>
+<li>Implementata anche una semplice forma di <em>test discovery</em></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="cmd"><code>python -m unittest test_module1 test_module2
+python -m unittest test_module.TestClass
+python -m unittest test_module.TestClass.test_method
+python -m unittest discover
+</code></pre>
+<ul>
+<li>Annotazione <code>@unittest.skip("reason for skipping")</code><ul>
+<li>Indica al framework di ignorare un certo metodo di test</li>
+<li>Messaggio per documentare la decisione</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Test parametrizzati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Ripetere un test con diversi parametri<ul>
+<li>Un test case per ogni gruppo di parametri?</li>
+<li>In alcune applicazioni, enorme quantità di test!</li>
+</ul>
+</li>
+<li>Soluzione semplicistica: test contenente un ciclo<ul>
+<li>Ad ogni iterazione, preparato un gruppo di parametri diversi</li>
+<li>Eseguite le istruzioni da testare sui nuovi parametri</li>
+<li>Problema: il test si blocca al primo errore</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Test parametrizzato, semplicistico</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="Python"><code>class ParamBallTest(unittest.TestCase):
+
+    def test_move(self):
+        test_values = ( (40, 80, 45, 85),
+                        (40, 215, 45, 220),
+                        (40, 220, 45, 215),
+                        (295, 80, 300, 85),
+                        (300, 80, 295, 85) )
+        for param in test_values:
+            x0, y0, x1, y1 = param
+            b = Ball(x0, y0)
+            b.move()
+            self.assertTrue(b.position() == (x1, y1, 20, 20))
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sotto-test, Python 3.4</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Eseguiti tutti i sottotest, anche se uno fallisce</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>class ParamBallTest(unittest.TestCase):
+
+    def test_move(self):
+        test_values = ()  # same values...
+
+        for param in test_values:
+            with self.subTest(param=param):
+                x0, y0, x1, y1 = param
+                b = Ball(x0, y0)
+                b.move()
+                self.assertTrue(b.position() == (x1, y1, 20, 20))
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Controllare le eccezioni 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Mestiere del programmatore<ul>
+<li>Codice che completa correttamente l'esecuzione nei casi normali...</li>
+<li>Ma che anche in situazioni eccezionali mostra il comportamento atteso</li>
+</ul>
+</li>
+<li>Come verificare che una eccezione attesa sia effettivamente sollevata?<ul>
+<li>Usare il metodo <code>assertRaises</code> direttamente, passando una funzione ed i parametri</li>
+<li>Oppure creare un <em>contesto</em> con <code>with</code></li>
+</ul>
+</li>
+<li>Esempio: <code>Ball</code> solleva effettivamente una eccezione attesa?</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>def test_out_of_arena(self):
+    with self.assertRaises(ValueError):
+        b = Ball(-1, -1)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Fixture 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Due o più test operano su insiemi di oggetti uguali o simili<ul>
+<li>Questa configurazione iniziale comune si definisce <em>fixture</em></li>
+</ul>
+</li>
+<li>Se ci sono diversi test con una fixture comune...<ul>
+<li>Aggiungere dei campi per le varie parti della fixture</li>
+<li>Inizializzare questi campi, nel metodo <code>setUp</code></li>
+<li>Liberare evenutali risorse allocate, nel metodo <code>tearDown</code></li>
+</ul>
+</li>
+<li>Una volta creata la fixture, può essere usata da tutti i test case<ul>
+<li>Aggiungere metodi di test alla classe</li>
+<li><code>setUp</code> e <code>tearDown</code> eseguiti prima e dopo ogni test</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Esempio di fixture 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Numerosi metodi di test che operano su stessi dati iniziali<ul>
+<li>Esempio, una combinazione di palline in posizioni predefinite</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>class SimpleBallTest(unittest.TestCase):
+
+    def setUp(self):
+        self.b1 = Ball(80, 40)
+        self.b2 = Ball(40, 80)
+        self.b3 = Ball(120, 20)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Test suite 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Meccanismo per <em>raggruppare</em> logicamente dei test ed <em>eseguirli assieme</em></li>
+<li>La classe <code>TestSuite</code> rappresenta una test suite<ul>
+<li>Lista di classi di test aggiunte con il metodo <code>addTest</code></li>
+</ul>
+</li>
+<li>La classe <code>TestRunner</code> rappresenta un esecutore di test<ul>
+<li>Per la console, si usa <code>TextTestRunner</code>, già inclusa nel framework</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="Python"><code>suite = unittest.TestSuite()
+suite.addTest(unittest.makeSuite(SimpleBallTest))
+runner = unittest.TextTestRunner()
+runner.run(suit)
+</code></pre></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

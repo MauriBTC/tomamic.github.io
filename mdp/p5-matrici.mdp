@@ -1,0 +1,598 @@
+title: Dati e matrici
+subtitle: Introduzione alla programmazione
+figure: images/misc/tic-tac-toe.svg
+
+---
+
+title: Flussi di dati
+figure: images/fun/magnetic-tape.png
+
+- **Stream**: astrazione per flussi di informazione
+    - Lettura o scrittura di informazioni su *qualunque* dispositivo I/O (*file, ma non solo*)
+- **File di testo**
+    - Varie codifiche (*UTF-8* o altro)
+    - Conversioni automatiche, es. `"\n"` → `"\r\n"`
+- **File binari**
+    - I/O preciso byte a byte, senza nessuna conversione
+    - Qualsiasi file... anche di testo!
+
+---
+
+title: Scrittura su file
+
+- Funzione `open` per accedere ad un file (di testo)
+    - Modalità scrittura o lettura: `"w"`, o `"r"`
+- Scrittura su file: funzione `print`, o metodo `write`
+- Blocco `with`: chiude il file al termine delle operazioni (anche in caso di errore)
+
+code: py
+
+    with open("some_file.txt", "w") as f1:
+        f1.write("First line\n")   # explicit newline
+        f1.write("Second line\n")  # continue writing here...
+
+    with open("other_file.txt", "w") as f2:
+        for x in range(10):
+            print(x, x ** 2, file=f2)
+
+---
+
+title: Lettura da file
+
+code: py
+
+    with open("some_file.txt", "r") as f1:
+        first_line = f1.readline()
+        second_line = f1.readline()
+        # both strings contain '\n' at the end
+        # at end of file, an empty string is read
+
+    with open("other_file.txt", "r") as f2:
+        whole_text = f2.read()
+        # do stg with whole_text
+
+    with open("last_file.txt", "r") as f3:
+        for line in f3:
+            # line contains '\n' at the end
+            # strip() removes withespaces at both ends
+            print(line.strip(), ':', len(line))
+
+---
+
+title: I/O su stringhe e console 🤔
+
+- Stringhe come stream: `io.StringIO`
+- Console come stream: `sys.stdin`, `sys.stdout`, `sys.stderr`
+
+code: py
+
+    import io, sys
+
+    with io.StringIO() as output:
+        output.write("First line.\n")
+        print("Second line.", file=output)
+        # Retrieve stream contents, i.e. "First line.\nSecond line.\n"
+        contents = output.getvalue()
+        sys.stdout.write(contents)
+
+code: py
+
+    for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
+        print(len(line))    # notice '\n' at the end
+
+---
+
+title: Errori da file 🤔
+figure: images/fun/garbled-tape.png
+
+- **Eccezioni**: per gestire separatamente i casi inattesi
+    - Errore all'interno di `try`: esecuzione interrotta subito
+    - Eseguito il blocco `except` che gestisce il tipo di errore verificatosi (possibile avere diversi blocchi `except`)
+    - Il blocco `with` assicura la chiusura del file
+
+code: py
+
+    try:
+        with open("other_file.txt", "r") as f:
+            whole_text = f.read()
+            # do stg with whole_text
+    except IOError as err:
+        print("Oh, my!")
+
+---
+
+title: Matrici
+class: segue dark
+
+---
+
+title: Liste multidimensionali
+- Liste di liste di ...
+    - Accesso agli elementi: due o più indici (o *dimensioni*)
+    - Se bidimensionali, denominate *matrici*
+
+code: py
+
+    a = [['A', 'B', 'C', 'D'],
+         ['E', 'F', 'G', 'H'],
+         ['I', 'L', 'M', 'N']]          # 2D
+
+    b = ['A', 'B', 'C', 'D',
+         'E', 'F', 'G', 'H',
+         'I', 'L', 'M', 'N']            # 1D
+
+    i = y * cols + x                    # 2D -> 1D
+
+    y = i // cols
+    x = i % cols                        # 1D -> 2D
+
+---
+
+title: Somma colonne: matrice
+
+code: py
+
+    matrix = [[2, 4, 3, 8],
+              [9, 3, 2, 7],
+              [5, 6, 9, 1]]
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    for x in range(cols):
+        total = 0
+        for y in range(rows):
+            val = matrix[y][x]
+            total += val
+        print("Col #", x, "sums to", total)
+
+---
+
+title: Lista come pseudo-matrice
+
+code: py
+
+    matrix = [2, 4, 3, 8,
+              9, 3, 2, 7,
+              5, 6, 9, 1]
+    rows = 3  # Cannot be guessed from matrix alone
+    cols = len(matrix) // rows
+
+    for x in range(cols):
+        total = 0
+        for y in range(rows):
+            val = matrix[y * cols + x]   # 2D -> 1D
+            total += val
+        print("Col #", x, "sums to", total)
+
+---
+
+title: Matrici di dimensioni note
+
+code: py
+
+    matrix = [[' ' for x in range(cols)] for y in range(rows)]
+    # all elements are inited as ' ' -- your need may vary
+
+code: py
+
+    matrix = []
+    for y in range(rows):
+        new_row = []
+        for x in range(cols):
+            new_row.append(' ')
+        matrix.append(new_row)
+
+---
+
+title: Gioco astratto
+
+code: py
+
+    def abstract():
+        raise NotImplementedError("Abstract method")
+
+    class BoardGame:
+        def play_at(self, x: int, y: int): abstract()
+        def flag_at(self, x: int, y: int): abstract()
+        def get_val(self, x: int, y: int) -> str: abstract()
+        def cols(self) -> int: abstract()
+        def rows(self) -> int: abstract()
+        def finished(self) -> bool: abstract()
+        def message(self) -> str: abstract()
+
+>
+
+*BoardGame*: <http://www.ce.unipr.it/brython/?boardgame.py>
+
+---
+
+title: Ciclo di gioco
+
+code: py
+
+    def print_game(game: BoardGame):
+        for y in range(game.rows()):
+            for x in range(game.cols()):
+                print('{:3}'.format(game.get_val(x, y)), end='')
+            print()
+
+    def console_play(game: BoardGame):
+        print_game(game)
+        while not game.finished():
+            x, y = input().split()
+            game.play_at(int(x), int(y))
+            print_game(game)
+        print(game.message())
+
+>
+
+*Gui*: <http://www.ce.unipr.it/brython/?boardgame_g2d.py>
+
+---
+
+title: Fifteen - Costruttore
+figure: images/qt/fifteen-puzzle.jpg
+
+code: py
+
+    class Fifteen(BoardGame):
+        def __init__(self, w: int, h: int):
+            # start with sorted tiles, then...
+            b = list(range(1, w * h)) + [0]
+            # [1 2 3 ... 14 15 0]
+            self._board, self._solved = b, b[:]
+            self._w, self._h = w, h
+            self._x0, self._y0 = w - 1, h - 1  # blank
+            a1, a2 = w - 1, (h - 1) * w
+            # do a random walk of the blank tile...
+            # until all angle tiles change
+            while (b[0] == 1 or b[a1] == a1 + 1 or b[a2] == a2 + 1):
+                dx, dy = choice([(0, -1), (+1, 0), (0, +1), (-1, 0)])
+                self.play_at(self._x0 + dx, self._y0 + dy)
+        # ...
+
+---
+
+title: Fifteen - Mosse
+
+code: py
+
+    class Fifteen(BoardGame):
+        #...
+        def play_at(self, x: int, y: int):
+            x0, y0, w, h = self._x0, self._y0, self._w, self._h
+            distance = abs(x - x0) + abs(y - y0)
+            if 0 <= y < h and 0 <= x < w and distance == 1:
+                b, i0, i1 = self._board, y0 * w + x0, y * w + x
+                b[i0], b[i1] = b[i1], 0  # swap tile with blank
+                self._x0, self._y0 = x, y
+
+        def finished(self) -> bool:
+            return self._board == self._solved
+
+>
+
+*Fifteen*: <http://www.ce.unipr.it/brython/?p5_mat_fifteen.py>
+
+---
+
+title: Backtracking
+class: segue dark
+
+---
+
+title: Constraint Satisfaction Problem
+figure: images/fun/8-queens.svg
+
+- Problema di *soddisfacimento di vincoli* (CSP), caratterizzato da:
+    - **Insieme di variabili**, che possono assumere valori in un certo *dominio*
+    - **Insieme di vincoli**, che devono essere rispettati dai valori delle variabili
+- Esempio: *Problema delle 8 regine*
+    - Posizionare `8` regine su una scacchiera `8x8`
+    - In modo che nessuna di esse possa catturarne un'altra
+    - Nessuna regina deve avere una colonna, riga o diagonale in comune con un'altra regina
+
+---
+
+title: Generate & Test
+figure: images/fun/generate-and-test.png
+
+- Tecnica per risolvere problemi di soddisfacimento di vincoli
+- Si assegna un *valore* ad ogni variabile
+- Si verifica se tutti i *vincoli* sono soddisfatti
+    - Se i vincoli sono *soddisfatti* ⇒ trovata una *soluzione*
+    - Altrimenti, si prova con valori diversi
+- Il procedimento *continua*
+    - Finché non ci sono più assegnamenti nuovi da testare
+    - Tutte le soluzioni sono testate
+
+---
+
+title: 8 regine: G&T
+figure: images/fun/8-queens.svg
+
+- *Generate*
+    - Inserire `8` regine in tutte le possibili combinazioni in una scacchiera `8x8`
+    - `~ 4 miliardi`
+- *Test*
+    - Per ogni combinazione verificare se nessuna regina può catturarne un’altra
+    - Solo `92` soluzioni
+
+>
+
+Esempio del più generale problema delle `N` regine su una scacchiera `N×N`
+
+<https://en.wikipedia.org/wiki/Combination>
+
+---
+
+title: 8 regine: G&T ridotto
+figure: images/fun/queens-sol.svg
+
+- Dai vincoli si evince che *ogni riga*
+    - Può contenere al massimo 1 regina
+    - Deve contenere esattamente 1 regina
+- È possibile quindi rappresentare una *lista*
+    - I valori rappresentano la colonna in cui è posizionata la regina sulla riga
+    - `8` elementi con indici `0..7` e con valori `0..7`
+    - (`N` elementi con indici `0..N-1` e con valori `0..N-1`)
+- *Generate*
+    - Tutte le combinazioni di 8 valori: `8^^8^^ = ~ 16 milioni`
+- *Test*
+    - Per ogni combinazione, verificare i vincoli
+
+---
+
+title: Standard backtracking
+figure: images/fun/backtracking.png
+class: large-figure
+
+- Scarta subito gli assegnamenti che non soddisfano i vincoli
+- A seguito di *ogni assegnamento* si verificano i vincoli
+- Se non ci sono *vincoli già violati*, si continua con gli assegnamenti delle variabili rimanenti
+- Altrimenti si verifica se la variabile appena assegnata ha ancora valori da provare
+    - Se sì, si prova con un nuovo valore
+    - Altrimenti, si torna indietro e si modifica una variabile già assegnata
+
+---
+
+title: N regine, backtracking
+class: large-image
+
+![](images/fun/queens.svg)
+
+---
+
+title: N regine, verifica
+figure: images/fun/queens-sol.svg
+
+code: py
+
+    def print_board(board: list):
+        for y in range(len(board)):
+            for x in range(len(board)):
+                if x == board[y]: print('|♛', end='')
+                else: print('| ', end='')
+            print('|')
+
+    def under_attack(board: list, x: int, y: int) -> bool:
+        for d in range(1, y + 1):  # for all rows above y
+            # directions: ↖↑↗ (no queens below)
+            if board[y - d] in (x - d, x, x + d):
+                return True
+        return False
+
+>
+
+`board` è una lista di `int`: per ogni riga della scacchiera, memorizza la posizione `x` della regina
+
+---
+
+title: N regine, ricorsione
+
+code: py
+
+    def place_queens(board: list, y=0) -> bool:
+        if y == len(board):
+            return True  # all queens already placed
+        for x in range(len(board)):
+            if not under_attack(board, x, y):
+                board[y] = x  # (x, y) is safe: place a queen
+
+                # try and place queens in the following rows
+                if place_queens(board, y + 1):
+                    return True
+
+                board[y] = None  # no luck, backtrack
+        return False
+
+>
+
+<http://www.ce.unipr.it/brython/?p5_solve_queens.py>
+
+---
+
+title: Esercizi
+class: segue dark
+
+---
+
+title: Sequenza di valori
+figure: images/misc/data-sequence.png
+
+- Funzione che:
+    - Riceve come parametro il nome di un file
+    - Restituisce una tupla con il valore massimo e quello minimo trovati nel file
+    - (Ciascuna riga del file contiene un valore `float`)
+- Invocare la funzione con un nome di file inserito dall'utente
+- Visualizzare il risultato
+
+>
+
+<http://www.ce.unipr.it/brython/?p5_data_maxmin.py>
+
+---
+
+title: Fusione
+figure: images/misc/merge-sign.png
+
+- Due file di testo contengono sequenze di numeri
+    - Un valore per ogni riga
+    - In ciascun file, i valori sono già ordinati
+- Scrivere in output i valori di entrambi i file
+    - Sequenza di output tutta in ordine
+
+>
+
+Ciclicamente, confrontare la coppia dei primi valori (ciascuno proveniente da uno dei due stream) <br>
+Scrivere il minore dei due sul file di uscita <br>
+Non estrarre un nuovo valore da uno stream, se quello precedente non è ancora stato scritto in output
+
+<http://www.ce.unipr.it/brython/?p5_data_merge.py>
+
+---
+
+title: File CSV
+
+- Leggere una matrice di interi da un file testuale CSV
+    - *Comma Sep. Values*: valori riga per riga, separati da virgola
+
+code: File
+
+    5,7,2,11
+    1,3,12,9
+    4,6,10,8
+
+- Memorizzare i dati in una lista semplice (pseudo-matrice)
+- Inferire le dimensioni della matrice (`rows×cols`) in base a:
+    - Numero di righe del file
+    - Numero di valori in una riga
+- Da angolo in basso a destra, sommare sulla diagonale
+
+>
+
+Nell'esempio, sommare: `8 + 12 + 7` (celle dove `cols - x == rows - y`)
+
+<http://www.ce.unipr.it/brython/?p5_data_csv.py>
+
+---
+
+title: Incolonnamento dati
+
+- Visualizzare due tabelle con i caratteri ASCII
+    - 4 righe x 24 colonne, codici da 32 a 126
+- Tabella 1: mostrare in ordine i caratteri, colonna per colonna
+- Tabella 2: mostrare in ordine i caratteri, riga per riga
+
+code: Tabella 1
+
+     $(,048<@DHLPTX\`dhlptx|
+    !%)-159=AEIMQUY]aeimquy}
+    "&*.26:>BFJNRVZ^bfjnrvz~
+    #'+/37;?CGKOSW[_cgkosw{
+
+>
+
+Usare sempre due cicli `for` annidati: esterno su `y`, interno su `x` <br>
+In ogni posizione, calcolare il carattere da visualizzare: `x * ROWS + y`...
+
+<http://www.ce.unipr.it/brython/?p5_mat_ascii.py>
+
+---
+
+title: Scitala spartana
+figure: images/hist/scytale.png
+
+- Leggere un intero file di testo
+- Inserire in una matrice i primi W×H caratteri
+    - W colonne × H righe, valori prefissati
+    - Riempire una riga della matrice dopo l'altra
+    - Da destra a sinistra, una riga alla volta (→, ↓)
+- Scrivere il contenuto della matrice su console
+    - Scrivere una colonna della matrice dopo l'altra
+    - Prima riga su console = prima colonna della matrice...
+    - Dall'alto verso il basso, una colonna alla volta (↓, →)
+
+>
+
+Usare una lista di liste (con dimensioni predefinite)
+
+<http://www.ce.unipr.it/brython/?p5_mat_scytale.py>
+
+---
+
+title: Funzione di smooth
+figure: images/fun/neighborhood4.png
+
+- Scrivere una funzione `smooth`
+    - Parametro: matrice iniziale, di float
+    - Risultato: nuova matrice con *smooth*
+    - Matrici rappresentate come liste di liste
+- **Smooth**: per ogni cella in matrice iniziale
+    - Il risultato è la *media* dell'intorno
+    - 5 valori: cella stessa e 4 adiacenti
+- Attenzione alle celle esterne
+    - Sommare e contare solo i valori disponibili
+    - 4 valori ai bordi, 3 valori agli angoli
+- Verificare la funzione con alcune matrici di test
+
+>
+
+<http://www.ce.unipr.it/brython/?p5_mat_smooth.py>
+
+---
+
+title: Spirale
+figure: images/misc/spiral.png
+
+- Scrivere una funzione per riempire di numeri crescenti una matrice quadrata (o rettangolare)
+- Seguire il percorso a spirale suggerito nella figura a fianco
+- Dimensioni della matrice indicate dall'utente a runtime
+
+>
+
+Tenere traccia della direzione attuale (∆y, ∆x) <br>
+Avanzare fino al bordo o ad una cella già visitata, <br>
+poi cambiare la direzione in senso orario
+
+Coordinate raster, rotazione oraria di 90°: `(x', y') = (-y, x)` <br>
+In generale: `(x', y') = (x⋅cos(θ) - y⋅sin(θ), x⋅sin(θ) + y⋅cos(θ))` <br>
+
+>
+
+<http://www.ce.unipr.it/brython/?p5_mat_spiral.py>
+
+---
+
+title: Puzzle di Cindy
+figure: images/misc/cindy1.png images/misc/cindy2.png
+
+- Piano di gioco: `2n+1` celle allineate
+    - Si parte con `n` pedine rosse a sinistra, `n` pedine verdi a destra
+    - Le rosse si possono sempre spostare solo a destra, le verdi solo a sinistra
+- Ad ogni mossa, una qualsiasi pedina può:
+    - Avanzare di una posizione, se davanti ha una cella libera
+    - Oppure scavalcare esattamente una pedina dell'altro colore, se c'è una cella libera subito dopo
+- L'applicazione deve trovare *automaticamente* le mosse per invertire la posizione di tutte le pedine
+
+>
+
+<http://www.cis.upenn.edu/~matuszek/cit594-2012/Pages/backtracking.html>
+
+<http://www.ce.unipr.it/brython/?p5_solve_cindy.py>
+
+---
+
+title: Soluzioni delle 8 regine
+figure: images/fun/queens-sol.svg
+
+- Trovare tutte le soluzioni possibili, con il *backtracking*
+    - Modificare il codice proposto
+    - Visualizzare il numero di tentativi effettuati e il numero di soluzioni trovate
+- Trovare tutte le soluzioni, usando la metodologia *Generate & Test*
+    - Versione semplificata – una sola regina per riga
+    - Visualizzare il numero di tentativi effettuati e il numero di soluzioni trovate
+
+>
+
+<http://www.ce.unipr.it/brython/?p5_solve_queens.py>

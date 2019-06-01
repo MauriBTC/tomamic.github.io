@@ -1,0 +1,968 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Presentazione del corso</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/dev/theory-practice.png"></figure>
+  <hgroup>
+    <h2>Fondamenti di informatica + Lab</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>1. Introduzione all'informatica</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/sys/globe.jpg">
+        
+      </figure><ul>
+<li>Rappresentazione dei dati<ul>
+<li>Numeri</li>
+<li>Testi, immagini e suoni</li>
+</ul>
+</li>
+<li>Teoria della computazione<ul>
+<li>Linguaggi formali</li>
+<li>Automi e calcolatori</li>
+<li>Complessità computazionale</li>
+</ul>
+</li>
+<li>Sviluppo del software<ul>
+<li>Ciclo di vita; qualità e collaudo</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>2.  Introduzione alla programmazione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/problem-solving.jpg">
+        
+      </figure><ul>
+<li>Algoritmi in <em>Python 3</em></li>
+<li>Funzioni e oggetti</li>
+<li>Liste e composizione</li>
+<li>Ricorsione, file e matrici</li>
+<li>Linguaggio <em>C++11</em></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3. Esercitazioni in laboratorio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/geek-girl.jpg">
+        
+      </figure><ul>
+<li>Esercizi di base, in Python<ul>
+<li>A riga di comando e con grafica</li>
+</ul>
+</li>
+<li>Piccoli progetti a oggetti<ul>
+<li>Prima in Python e poi in C++</li>
+</ul>
+</li>
+<li><strong>Attenzione</strong>: non sono sufficienti le poche ore in laboratorio per imparare a programmare!<ul>
+<li>“Venite già studiati”</li>
+<li>Completate tutti gli esercizi, a casa</li>
+<li>Assiduità!</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>If you wish to learn swimming you have to go into the water and if you wish to become a problem solver you have to solve problems. <em>(George Polya)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Istruzioni per i laboratori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Verificare in anticipo il proprio account per l'accesso ai lab<ul>
+<li><a href="http://www.cedi.unipr.it/gestioneaccounts">http://www.cedi.unipr.it/gestioneaccounts</a></li>
+</ul>
+</li>
+<li>Esercitazioni ogni lunedì pomeriggio, <em>a scelta</em> su 2 turni<ul>
+<li>13:30-15:30 <em>primo turno</em>, 15:30-17:30 <em>secondo turno</em></li>
+</ul>
+</li>
+<li>Possibile sviluppare da soli o in coppia<ul>
+<li>Ma tassativamente <em>non più di due!</em></li>
+</ul>
+</li>
+<li>Verifica esercitazioni<ul>
+<li>Alla fine di ogni esercitazione, consegna dei programmi in una cartella denominata con la propria matricola</li>
+<li>Periodicamente, lavori consegnati sottoposti a <em>valutazioni intermedie</em>, non preannunciate</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Istruzioni per i laboratori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Verificare in anticipo il proprio account per l'accesso ai lab<ul>
+<li><a href="http://www.cedi.unipr.it/gestioneaccounts">http://www.cedi.unipr.it/gestioneaccounts</a></li>
+</ul>
+</li>
+<li>Esercitazioni ogni lunedì pomeriggio, su 2 turni distinti<ul>
+<li>13:30-15:30 matricole terminanti con <em>3-4-5-6-7-8-9</em></li>
+<li>15:30-17:30 matricole terminanti con <em>0-1-2</em></li>
+</ul>
+</li>
+<li>Possibile sviluppare da soli o in coppia<ul>
+<li>Ma tassativamente <em>non più di due!</em></li>
+<li>Se si sviluppa in coppia, turno determinato dalla <em>matricola minore</em></li>
+</ul>
+</li>
+<li>Verifica esercitazioni<ul>
+<li>Alla fine di ogni esercitazione, consegna dei programmi in una cartella denominata con la propria matricola</li>
+<li>Periodicamente, lavori consegnati sottoposti a <em>valutazioni intermedie</em>, non preannunciate</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tutor e assistenza</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Materiale di studio<ul>
+<li><em>Libri</em> di testo e slide del corso</li>
+<li><em>Esercizi risolti</em> degli anni precedenti</li>
+<li><a href="http://tomamic.github.io/fondinfo/">http://tomamic.github.io/fondinfo/</a></li>
+</ul>
+</li>
+<li>Durante le esercitazioni, assistenza di vari <em>tutor</em></li>
+<li>A lezione<ul>
+<li><em>Esempi</em> prima delle esercitazioni</li>
+<li><em>Soluzioni</em> di esercizi delle settimane precedenti</li>
+</ul>
+</li>
+<li>Ogni mercoledì, <em>ricevimento</em> aperto a tutti, 12:30-14:30<ul>
+<li>Palazzina A della sede scientifica (~ biblioteca)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Modalità d'esame</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dii/quiz.png">
+        
+      </figure><ul>
+<li><strong>(1)</strong> Prova sull'<em>Introduzione all'informatica</em> (quiz)<ul>
+<li>A fine corso, oppure...</li>
+<li>Appelli usuali</li>
+</ul>
+</li>
+<li><strong>(2)</strong> Prova sull'<em>Introduzione alla programmazione</em> (lab)<ul>
+<li>Svolgimento esercitazioni in laboratorio, oppure…</li>
+<li>Prova in appelli usuali (~3 ore)</li>
+</ul>
+</li>
+<li>Le due prove si possono svolgere in tempi diversi e ciascuna resta valida per l'intero anno (fino ad ottobre)</li>
+<li>Il voto finale è determinato:<ul>
+<li>per 1/4 dalla teoria</li>
+<li>per 3/4 dalla programmazione</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Testi di riferimento</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/books.png">
+        
+      </figure><ul>
+<li><em>Fondamenti di informatica e lab.</em> McGraw-Hill 2014. ISBN 978-13-082-4813-4 (~25€, 250pp., nelle <a href="http://www.informagiovanionline.it/emiliaromagna/parma/tempo-libero/godersi-larte-e-la-cultura/libri-in-rete/librerie-scolastiche-e-universitarie-parma">librerie universitarie</a> )</li>
+<li>A.B. Downey: <em>Think Python</em> 2e - <a href="https://github.com/AllenDowney/ThinkPythonItalian">https://github.com/AllenDowney/ThinkPythonItalian</a></li>
+<li>A.B. Downey: <em>How to Think Like a Computer Scientist C++ Version</em> - <a href="http://greenteapress.com/thinkcpp/">http://greenteapress.com/thinkcpp/</a></li>
+<li>M. Beri: <em>Python</em>, Apogeo Pocket 2010, 978-8850329151 (~8€)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Altri testi e video</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>C.S. Horstmann: <em>Fondamenti di C++</em>, McGraw-Hill 2003, 978-8838661051 (~43€, 768pp.)</li>
+<li>S.B. Lippman, J. Lajoie, B.E. Moo: <em>C++ Primer</em> 5e, Addison Wesley 2012, 978-0321714114 (~36€, 940pp.)</li>
+<li>M. Dawson: <em>Python Programming for the Absolute Beginner</em> 3e, Course Tech. 2010, 978-1435455009 (~25€, 450pp.)</li>
+<li>M. Dawson: <em>Beginning C++ Through Game Programming</em> 4e, Course Tech. 2014, 978-1305109919 (~28€, 390pp.)</li>
+<li>MIT: <em>Intro to CS and Programming in Python</em> - <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/index.htm">Video delle lezioni</a></li>
+<li>Documentazione<ul>
+<li><a href="https://docs.python.org/3/">python.org</a> - <a href="http://isocpp.org/">isocpp.org</a></li>
+<li><a href="http://cplusplus.com/reference/">cplusplus.com</a> - <a href="http://cppreference.com/">cppreference.com</a></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Strumenti software</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/python-logo-notext.svg"><img src="images/dev/cpp.png">
+        
+      </figure><ul>
+<li>Strumenti open source, multi-piattaforma<ul>
+<li><a href="https://www.microsoft.com/it-it/p/python-37/9nj46sx7x90p"><strong>Python.org</strong></a>, v3.7, <em>battery included</em></li>
+<li><a href="http://www.ce.unipr.it/brython/">Playground Python</a></li>
+<li><a href="https://nuwen.net/files/mingw/mingw-16.1-without-git.exe"><strong>MinGW</strong></a>, Compilatore C++, con <em>librerie</em></li>
+</ul>
+</li>
+<li>Installare <a href="https://lubuntu.me/downloads/">Ubuntu</a> in una <a href="https://download.virtualbox.org/virtualbox/6.0.8/VirtualBox-6.0.8-130520-Win.exe">VirtualBox</a><ul>
+<li><a href="https://www.wikihow.com/Install-Ubuntu-on-VirtualBox">WikiHow.com</a></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="Shell"><code>## Ubuntu, Debian etc.
+sudo apt install idle3 python3-pip geany build-essential libboost-dev
+pip3 install pygame cppyy
+</code></pre></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Problem solving</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/problem-solving-cycle.svg">
+        
+      </figure><ul>
+<li><a href="https://archive.org/details/HowToSolveIt">“How to solve it”</a><ul>
+<li>George Polya, 1945</li>
+<li>Soluzione di problemi matematici: processo raramente lineare <br>&nbsp;</li>
+</ul>
+</li>
+<li><strong>(1) See.</strong> Capire il problema<ul>
+<li>Quali dati? Quali incognite?</li>
+<li>Quali condizioni? Soddisfacibili, ridondanti, contraddittorie?</li>
+<li>Figure, notazione</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Make things as simple as possible, but not simpler. <em>(A. Einstein)</em></p>
+<p>For every complex problem there is an answer that is clear, simple, and wrong. <em>(H.L. Mencken)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Dal problema alla soluzione, e ritorno</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>(2) Plan.</strong> Elaborare un piano<ul>
+<li>Mettere in relazione dati e incognite</li>
+<li>Riduzione, analogia, divide et impera, composizione, astrazione... <em>Pensiero computazionale</em></li>
+<li>Cominciare a risolvere un problema <em>più semplice</em> (vincoli rilassati)</li>
+</ul>
+</li>
+<li><strong>(3) Do.</strong> Implementare il piano<ul>
+<li>Realizzare il sistema da sperimentare</li>
+</ul>
+</li>
+<li><strong>(4) Check.</strong> Controllare la soluzione<ul>
+<li>Corretta? Ottenibile in altro modo?</li>
+<li>Risultato, o metodo, utilizzabile per altri problemi?</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>If you can't solve a problem... <br> then there is an easier problem you can solve: find it. <em>(G. Polya)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elementi di un algoritmo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/recipe.png">
+        <figcaption>Una ricetta di cucina è un esempio di algoritmo</figcaption>
+      </figure><ul>
+<li><em>Algoritmo</em>: procedimento che risolve un determinato problema attraverso un numero finito di passi elementari (al-Khwarizmi, ~800)</li>
+<li><strong>Dati</strong>: iniziali (istanza problema), intermedi, finali (soluzione)</li>
+<li><strong>Passi</strong> elementari: azioni atomiche non scomponibili in azioni più semplici</li>
+<li><strong>Processo</strong>, o anche esecuzione: sequenza ordinata di passi</li>
+<li><em>Proprietà</em>: finitezza, non ambiguità, realizzabilità, efficienza...</li>
+</ul>
+<blockquote>
+<p>Computer science is no more about computers than astronomy is about telescopes. <em>(E. Dijkstra...)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Ricerca in uno schedario 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/comp/catalogue.png">
+        
+      </figure><ul>
+<li>Es. in biblioteca: cercare la scheda di un certo libro<ul>
+<li><strong>(1)</strong> <em>Finchè</em> restano delle schede da esaminare: si prende la prima scheda non ancora controllata</li>
+<li><strong>(2)</strong> <em>Se</em> autore e titolo sono quelli cercati: scheda trovata, ricerca conclusa!</li>
+<li><strong>(3)</strong> (Altrimenti...) <br> <em>Si ripete</em> il controllo (1), passando alla scheda successiva</li>
+<li><strong>(4)</strong> Esaurite le schede, il libro non è nella biblioteca!</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>Cercare più velocemente 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/comp/binary-search.png">
+        
+      </figure><ul>
+<li>Su schedario <em>ordinato</em> si può fare più in fretta<ul>
+<li><strong>(1)</strong> <em>Finchè</em> restano delle schede da esaminare: si prende tra loro la scheda centrale</li>
+<li><strong>(2)</strong> <em>Se</em> autore e titolo sono quelli cercati: scheda trovata, ricerca conclusa!</li>
+<li><strong>(3)</strong> <em>Altrimenti, se</em> autore e titolo vengono dopo quelli cercati: si scartano subito tutte le schede successive</li>
+<li><strong>(4)</strong> <em>Altrimenti, infine</em>: si scartano le schede precedenti</li>
+<li><strong>(5)</strong> <em>Si ripete</em> la ricerca sull'insieme dimezzato (1)</li>
+<li><strong>(6)</strong> Esaurite le schede, il libro non è nella biblioteca!</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Complessità e calcolabilità 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Complessità</strong>: classificare algoritmi (e problemi)<ul>
+<li><strong>Trattabili</strong>: costo accettabile, “polinomiale”</li>
+<li><strong>Non trattabili</strong>: costo “esponenziale”</li>
+</ul>
+</li>
+<li><strong>Calcolabilità</strong>: distinguere i problemi <strong>non risolvibili</strong><ul>
+<li>Es. Valore di verità di <code>P</code>: <em>Questa frase è falsa</em></li>
+<li>Incompletezza Gödel; indecidibilità <em>terminazione</em></li>
+<li>∀ formalizzazione della matematica che assiomatizza ℕ <br> → ∃ proposizione né dimostrabile né confutabile</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Diagramma di flusso</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/origami.png">
+        <figcaption>Anche un origami è un esempio di algoritmo</figcaption>
+      </figure><ul>
+<li><em>Flow-chart</em>: Rappresentazione grafica di algoritmi<ul>
+<li>Più efficace e meno ambigua di una descrizione a parole</li>
+</ul>
+</li>
+<li>Due tipi di entità:<ul>
+<li>Nodi</li>
+<li>Archi</li>
+</ul>
+</li>
+<li>È un <em>grafo orientato</em><ul>
+<li>Passi di un algoritmo e loro sequenza</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tipi di nodi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/spaghetti-flowchart.png">
+        
+      </figure><p><img alt="" src="images/algo/nodes.svg" /></p>
+<ul>
+<li>Istruzioni di I/O: es. leggere dati da tastiera o mostrarli a schermo</li>
+<li>Operazioni aritmetico-logiche</li>
+<li>Controllo del flusso di esecuzione</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmazione strutturata</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/spaghetti-code.png">
+        
+      </figure><ul>
+<li>Strutture di controllo:<ul>
+<li><strong>Sequenza</strong></li>
+<li><strong>Selezione</strong></li>
+<li><strong>Iterazione</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Qualunque algoritmo può essere implementato utilizzando queste tre sole strutture <em>(Teorema di Böhm-Jacopini, 1966)</em></p>
+<p>Goto statement considered harmful <em>(Dijkstra, 1968)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Strutture di controllo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/cucina.jpg">
+        
+      </figure><p><img alt="" src="images/algo/structures.svg" /></p>
+<ul>
+<li>Esempi quotidiani di <code>if</code> e <code>while</code>:<ul>
+<li>“<em>Se non c'è il lievito, usare due cucchiaini di bicarbonato</em>”</li>
+<li>“<em>Battere gli albumi finché non montano</em>”</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-image" >
+  
+    <hgroup>
+      <h2>Blockly</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/algo/blockly.png" /></p>
+<blockquote></blockquote>
+<p><a href="http://blockly-games.appspot.com/maze">http://blockly-games.appspot.com/maze</a></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esempi di progetti</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Super Mario</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/super-mario.jpg">
+        
+      </figure><ul>
+<li><em>Mario</em>: guidato dal giocatore<ul>
+<li>Si muove e salta sulle piattaforme</li>
+<li>Cade secondo gravità, fuori dalle piattaforme</li>
+<li>Ma non accelera oltre una velocità limite</li>
+<li>Muore se cade in fondo allo schermo</li>
+</ul>
+</li>
+<li><em>Muri e piattaforme</em><ul>
+<li>Mario ci atterra dall'alto</li>
+<li>Non si possono attraversare in nessuna direzione</li>
+</ul>
+</li>
+<li><em>Avversari</em><ul>
+<li>Si muovono sulle piattaforme come Mario, ma scelgono casualmente la direzione</li>
+<li>Uccidono Mario se lo urtano, ma muoiono se Mario ci salta sopra</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pac-Man</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/pac-man.png">
+        
+      </figure><ul>
+<li><em>Pac-Man</em><ul>
+<li>Guidato dal giocatore, con la tastiera</li>
+<li>Applica i comandi solo solo agli incroci</li>
+</ul>
+</li>
+<li><em>Fantasmi</em><ul>
+<li>Uccidono Pac-Man se lo toccano</li>
+<li>Agli incroci svoltano casualmente</li>
+<li>Ma non tornano mai indietro!</li>
+</ul>
+</li>
+<li><em>Biscotti</em><ul>
+<li>Pac-Man deve mangiarli tutti, per terminare il gioco</li>
+</ul>
+</li>
+<li><em>SuperBiscotti</em><ul>
+<li>Danno per breve tempo a Pac-Man il potere di mangiare i fantasmi</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Slitherlink</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/slitherlink-solved.png">
+        
+      </figure><ul>
+<li>Regole<ul>
+<li>Connect adjacent dots with vertical or horizontal lines to make a single loop</li>
+<li>The numbers indicate how many lines surround it, while empty cells may be surrounded by any number of lines</li>
+<li>The loop never crosses itself and never branches off</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.nikoli.com/en/puzzles/slitherlink/">http://www.nikoli.com/en/puzzles/slitherlink/</a></p>
+<p><a href="https://www.brainbashers.com/slitherlinkhelp.asp">https://www.brainbashers.com/slitherlinkhelp.asp</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Bubble Bobble</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bubble-bobble.png">
+        
+      </figure><ul>
+<li><em>Draghetto</em>: guidato dal giocatore<ul>
+<li>Si muove e salta sulle <em>piattaforme</em></li>
+<li>Muore se cade in fondo allo schermo</li>
+</ul>
+</li>
+<li><em>Avversari</em><ul>
+<li>Saltano come il draghetto sulle <em>piattaforme</em></li>
+<li>Ma scelgono casualmente la direzione</li>
+<li>Uccidono il draghetto se lo urtano</li>
+</ul>
+</li>
+<li><em>Bolle</em><ul>
+<li>Lanciate in orizzontale dal draghetto</li>
+<li>Dopo un po' deviano verso l'alto</li>
+<li>Catturano gli avversari che urtano</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hitori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/hitori.svg"><img src="images/misc/hitori-completed.svg">
+        
+      </figure><ul>
+<li>Regole<ul>
+<li>Color cells so no number appears more than once in a row or column</li>
+<li>The sides of black cells never touch</li>
+<li>White cells form a continuous network</li>
+</ul>
+</li>
+<li>Ad ogni mossa, permettere all'utente di annerire un numero, oppure cerchiarlo<ul>
+<li>Controllare la violazione delle regole</li>
+<li>Controllare il completamento del gioco (ogni numero: correttamente annerito o cerchiato)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.nikoli.com/en/puzzles/hitori">http://www.nikoli.com/en/puzzles/hitori</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Snake</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/snake.png">
+        
+      </figure><ul>
+<li><strong>Serpente</strong>: guidato dal giocatore<ul>
+<li>Avanza continuamente</li>
+<li>Non può tornare indietro</li>
+<li>Se tocca se stesso, muore</li>
+</ul>
+</li>
+<li><strong>Cibo</strong>: disposto casualmente<ul>
+<li>Il serpente si allunga dopo aver mangiato</li>
+</ul>
+</li>
+<li><strong>Muri</strong>: in posizione fissa<ul>
+<li>Il serpente muore se ci va a sbattere</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Campo minato</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/mines.png">
+        
+      </figure><ul>
+<li>N <b>mine nascoste</b> a caso in tabella rettangolare</li>
+<li>Ad ogni turno, l'utente scopre una casella:<ul>
+<li>Mina → <i>partita persa</i></li>
+<li>Solo N caselle coperte (con mine) → <i>partita vinta</i></li>
+<li>Altrimenti, <i>conteggio mine</i> nelle 8 caselle adiacenti</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Akari - Light up</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/akari.svg">
+        
+      </figure><ul>
+<li>Scopo: <b>illuminare</b> tutte le celle bianche<ul>
+<li>Una lampada illumina tutte le celle visibili sulla sua riga e la sua colonna</li>
+<li>Due lampade non possono illuminarsi a vicenda</li>
+<li>Vincolo numerico: # lampade nelle 4 celle adiacenti</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.nikoli.com/en/puzzles/bijutsukan/rule.html">http://www.nikoli.com/en/puzzles/bijutsukan/rule.html</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Othello</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/othello.png">
+        
+      </figure><ul>
+<li>In due, bianco e nero<ul>
+<li>All'inizio: 2 coppie di pedine al centro, incrociate</li>
+<li>A turno, ciascun giocatore aggiunge una pedina</li>
+<li>È obbligatorio catturare, se non ci sono mosse si passa il turno</li>
+</ul>
+</li>
+<li>Se viene <em>circondata una fila</em> di pedine avversarie, queste cambiano tutte colore</li>
+<li>Vince chi alla fine ha più pedine</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pong</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/pong.png">
+        
+      </figure><ul>
+<li>Campo rettangolare</li>
+<li><strong>Pallina</strong>: si muove a 45°, rimbalza su bordi lunghi e barrette</li>
+<li><strong>Barrette</strong>: si muovono solo verticalmente</li>
+<li><strong>Punti</strong>: segnati quando la pallina esce dal campo</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Frogger</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/frogger.png">
+        
+      </figure><ul>
+<li><strong>Rana</strong> guidata dall'utente, salta in 4 direzioni: ↕ ↔</li>
+<li>Deve attraversare la strada, senza essere investita dai <strong>camion</strong></li>
+<li>Deve attraversare il fiume, saltando sui <strong>tronchi</strong></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Space invaders</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/invaders.png">
+        
+      </figure><ul>
+<li><strong>Cannone</strong>: l'utente lo sposta in orizzontale; spara verso l'alto, contro gli alieni</li>
+<li><strong>Alieni</strong>: si muovono tutti nella stessa direzione; percorso a serpentina; sparano verso il basso, contro il cannone</li>
+<li><strong>Muri</strong>: si ditruggono lentamente dove colpiti</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tents puzzle</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/tents.png">
+        
+      </figure><ul>
+<li>Posizionare tende sulla griglia, in modo che ogni albero sia <em>assegnato</em> ad una tenda<ul>
+<li>Inizialmente, nessun albero è assegnato ad una tenda</li>
+<li>Tenda adiacente (in orizzontale o verticale) ad un solo albero non assegnato ⇒ albero <em>assegnato</em> a quella tenda</li>
+<li>Tante tende, quanti sono gli alberi</li>
+</ul>
+</li>
+<li>Le tende non possono toccarsi tra loro, nemmeno in diagonale</li>
+<li>Vincoli numerici fuori dalla griglia: numero di tende nella riga o colonna</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.brainbashers.com/tentshelp.asp">http://www.brainbashers.com/tentshelp.asp</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Donkey Kong</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/donkey-kong.png">
+        
+      </figure><ul>
+<li>Maro può camminare sulle piattaforme</li>
+<li>Può saltare, se è su una piattaforma</li>
+<li>Deve evitare i barili</li>
+<li>Cade quando esce dalla piattaforma</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sudoku Skyscrapers</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/skyscrapers.jpg">
+        
+      </figure><ul>
+<li>Celle tutte piene</li>
+<li>Nessun numero ripetuto in una riga o colonna</li>
+<li>Rispetto dei vincoli a margine<ul>
+<li>Numero di tetti visibili, da quella posizione</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://www.brainbashers.com/skyscrapers.asp">https://www.brainbashers.com/skyscrapers.asp</a></p></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

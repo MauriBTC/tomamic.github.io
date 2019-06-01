@@ -1,0 +1,709 @@
+title: Liste e composizione
+subtitle: Introduzione alla programmazione
+figure: images/oop/lego-blocks.png
+
+---
+
+title: Lista
+figure: images/fun/month-list.svg
+
+- *Sequenza mutabile* di elementi, *di solito* dello stesso **tipo**
+- Variabile, per dare un **nome** alla lista
+- **Lunghezza** attuale di una lista `x`: `len(x)`
+- I singoli elementi sono **numerati**
+    - Da `0` a `len(x)-1`
+
+code: py
+
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+code: py
+
+    num_days = [31, 28, 31, 30, 31, 30,
+                31, 31, 30, 31, 30, 31]
+
+code: py
+
+    results_by_month = [0] * 12  # List repetition
+
+---
+
+title: Elementi e slice
+figure: images/fun/wile-coyote.png
+
+- **Attenzione ad usare indici validi!**
+    - Ma indici *negativi* contano dalla fine
+
+code: py
+
+    n = len(months)            # 12
+    months[3]                  # "Apr"
+    months[-2]                 # "Nov", same as n - 2
+
+code: py
+
+    spring = months[2:5]       # ["Mar", "Apr", "May"]
+    quart1 = months[:3]        # ["Jan", "Feb", "Mar"]
+    quart4 = months[-3:]       # ["Oct", "Nov", "Dec"]
+    whole_year = months[:]     # Copy of the whole list
+
+---
+
+title: Inserimento e rimozione
+figure: images/fun/shopping-list.png
+
+code: py
+
+    grocery = ["spam", "egg", "beans"]
+
+    grocery[0] = "sausage"      # replace an element
+
+    grocery.append("bacon")     # add an element to the end
+    grocery.pop()               # remove (and return) last element
+
+    grocery.insert(1, "bacon")  # other elements shift
+    removed = grocery.pop(1)    # remove (and return) element at index
+
+    if "egg" in grocery:       # True, grocery contains "egg"
+        grocery.remove("egg")  # remove an element by value
+
+---
+
+title: Uguaglianza e identità
+
+code: py
+
+    a = ["spam", "egg", "beans"]
+    b = a[:]         # new list!
+    b == a           # True, they contain the same values
+    b is a           # False, they are two objects in memory
+                     # (try and modify one of them...)
+    c = a
+    c is a           # True, same object in memory
+                     # (try and modify one of them...)
+
+    d = ["sausage", "tomato"]
+    grocery = c + d  # list concatenation --> new list!
+
+---
+
+title: Stringhe e liste
+
+- **Stringa**: sequenza *immutabile* di caratteri
+- **`join`** e **`split`**: da lista a stringa e viceversa
+
+code: py
+
+    txt = "Monty Python's Flying Circus"
+    txt[3]    # 't'
+    txt[-2]   # 'u'
+    txt[6:12] # "Python"
+    txt[-6:]  # "Circus"
+
+    days = ["tue", "thu", "sat"]
+    txt = "|".join(days)  # "tue|thu|sat"
+
+    days = "mon|wed|fri".split("|")
+    # ["mon", "wed", "fri"]
+
+---
+
+title: Tupla
+
+- Sequenza **immutabile** di valori, anche di *tipo diverso*
+
+code: py
+
+    # Tuple packing
+    pt = 5, 6, "red"
+    pt[0]  # 5
+    pt[1]  # 6
+    pt[2]  # "red"
+
+    # multiple assignments, from a tuple
+    x, y, colour = pt  # sequence unpacking
+    a, b = 3, 4
+    a, b = b, a
+
+---
+
+title: Cicli su liste: for
+figure: images/fun/shopping-list.png
+
+code: py
+
+    grocery = ["spam", "egg", "bacon", "sausage"]
+
+    print("Your shopping list contains:")
+
+    for product in grocery:
+        print(product)
+
+- Ad ogni iterazione, a `product` è assegnato un elemento di `grocery`
+- Ciclo `for` per qualsiasi tipo di sequenza: lista, stringa, tupla, range...
+
+---
+
+title: Funzioni su liste
+
+code: py
+
+    def limit_values(values, max_val):
+        # procedure: process data, no direct result
+        for i in range(len(values)):
+            if values[i] > max_val:
+                values[i] = max_val
+
+        # the pythonic way: for i, val in enumerate(values): ...
+
+    def main ():
+        data = [5, 4, 2]
+        limit_values(data, 4)
+        print(data)
+
+    main()
+
+---
+
+title: Composizione
+class: segue dark
+
+---
+
+title: Lista di palline
+
+code: py
+
+    import g2d
+    from p3_oop_ball import Ball, ARENA_W, ARENA_H
+
+    def update():
+        g2d.fill_canvas((255, 255, 255))  # BG
+        for b in balls:
+            b.move()
+            g2d.draw_rect((127, 127, 127), b.position())  # FG
+
+    balls = [Ball((40, 80)), Ball((80, 40)), Ball((120, 120))]
+    g2d.init_canvas((ARENA_W, ARENA_H))
+    g2d.main_loop(update, 1000 // 30)  # Millis
+
+
+>
+
+<http://www.ce.unipr.it/brython/?p3_oop_balls.py>
+
+---
+
+title: Composizione
+figure: images/oop/ball-arena.svg
+
+- Associazione **has-a**, **part-of** tra oggetti
+    - Una *arena* può *contenere* diverse *palline*
+
+code: py
+
+    class BallArena:  # ...
+        def __init__(self):
+            self._balls = []
+        def add(self, b: Ball):
+            self._balls.append(b)
+        def move_all(self):
+            for b in self._balls:
+                b.move()
+
+    arena = BallArena()
+    arena.add( Ball((40, 80)) )
+    arena.add( Ball((80, 40)) ) # ...
+    arena.move_all()
+
+---
+
+title: Relazione is-a
+figure: images/oop/inheritance.png
+
+- **Classificazione**, es. in biologia
+    - *Vertebrati* sottoclasse di *animali*
+    - *Mammiferi* sottoclasse di *vertebrati*
+    - *Felini* sottoclasse di *mammiferi*
+    - *Gatti* sottoclasse di *felini*
+- Relazione **is-a** tra classi: ogni sottoclasse...
+    - Eredita le caratteristiche della classe base
+    - Ma introduce delle specializzazioni
+
+---
+
+title: Fattoria parlante
+figure: images/oop/animals.png
+
+- Noi definiremo una *classe base* come **interfaccia astratta**
+- Es. `Animal`:
+    - Tutti gli animali fanno un verso (*interfaccia*)
+    - Ogni animale fa un verso diverso (*polimorfismo*)
+
+code: py
+
+    class Animal:
+        def say(self):
+            raise NotImplementedError("Abstract method")
+
+>
+
+<http://www.ce.unipr.it/brython/?p3_oop_animals.py>
+
+---
+
+title: Classi concrete
+figure: images/oop/polymorphism.png
+
+code: py
+
+    class Dog(Animal):
+        def __init__(self, name):
+            self._name = name
+        def say(self):
+            print("I am", self._name, "Dog.",
+                  "I say: WOOF!")
+
+    class Cat(Animal):
+        def __init__(self, name):
+            self._name = name
+        def say(self):
+            print("I am", self._name, "Cat.",
+                  "I say: MEOW!")
+
+---
+
+title: Lista di oggetti
+figure: images/oop/peppa.png
+
+code: py
+
+    d = Dog("Danny")
+    c = Cat("Candy")
+    p1 = Pig("Peppa")
+    p2 = Pig("George")
+
+    # a list of Animal objects
+    animals = [d, c, p1, p2]
+    for a in animals:
+        a.say()
+
+code: output
+
+    I am Danny Dog. I say: WOOF!
+    I am Candy Cat. I say: MEOW!
+    I am Peppa Pig. I say: OINK!
+    I am George Pig. I say: OINK!
+
+---
+
+title: Interfaccia dei personaggi
+figure: images/oop/actor.svg
+
+- `Actor`: *interfaccia astratta*
+    - Dichiara un metodo `move`, senza implementarlo
+- Vari attori: *classi concrete*
+    - Realizzano i metodi di `Actor`, definendo i comportamenti specifici
+    - Possono definire ulteriori metodi
+
+code: py
+
+    class Actor:
+        def move(self):
+            raise NotImplementedError("Abstract method")
+
+>
+
+<http://www.ce.unipr.it/brython/?actor.py>
+
+---
+
+title: Generalizzazione e riuso
+
+code: py
+
+    class Arena:  # ...
+        def __init__(self, w, h):
+            self._w, self._h = w, h
+            self._actors = []
+        def add(self, a: Actor):
+            self._actors.append(a)
+        def move_all(self):
+            for a in self._actors:
+                a.move()
+        def size(self):
+            return self._w, self._h
+
+- Codice dipendente solo da *interfacce astratte*
+    - `Arena` riutilizzabile creando nuove *classi concrete*, che implementano `Actor`
+
+---
+
+title: Sostituzione
+figure: images/oop/actors.svg
+
+code: py
+
+    arena.add( Ball((40, 80)) )
+    arena.add( Ghost((120, 40)) ) # ...
+    arena.move_all()
+
+- Principio di **sostituzione** di Liskov
+    - Si può sempre usare un oggetto di una *classe derivata*, al posto di uno della *classe base*
+- Relazione *has-a* tra un oggetto `Arena` e gli oggetti `Actor` che contiene
+- Relazione *is-a* tra classi concrete (`Ball` e `Ghost`) e interfaccia (`Actor`)
+
+---
+
+title: Polimorfismo
+
+- **Metodo polimorfo**
+    - Dichiarato in una *interfaccia astratta*
+    - Implementato in forme diverse nelle *classi concrete*
+    - Attori diversi possono muoversi in modo diverso
+
+code: py
+
+    class Ghost(Actor):  # ...
+        def move(self):
+            dx = random.choice([-5, 0, 5])
+            dy = random.choice([-5, 0, 5])
+            self._x = (self._x + dx) % ARENA_W
+            self._y = (self._y + dy) % ARENA_H
+
+---
+
+title: Attori e arena
+
+code: py
+
+    class Ghost(Actor):
+
+        def __init__(self, arena, x, y):
+            self._x, self._y = x, y
+            self._arena = arena  # save a ref to the arena
+            arena.add(self)      # register yourself into the arena
+
+        def move(self):
+            dx = random.choice([-5, 0, 5])
+            dy = random.choice([-5, 0, 5])
+            arena_w, arena_h = self._arena.size()  # self._arena!
+            self._x = (self._x + dx) % arena_w
+            self._y = (self._y + dy) % arena_h
+
+>
+
+<http://www.ce.unipr.it/brython/?p3_oop_bounce.py>
+
+---
+
+title: Animazione dei personaggi
+class: segue dark
+
+---
+
+title:  Rimbalzi nel browser
+figure: images/oop/bounce.png
+
+code: py
+
+    import g2d
+    from p3_oop_bounce import Arena, Ball, Ghost, Turtle
+
+    def tick():
+        arena.move_all()  # Game logic
+        g2d.clear_canvas()  # Background
+        for a in arena.actors():
+            # Foreground; cut an area from a larger image
+            g2d.draw_image_clip(sprites, a.symbol(), a.position())
+
+    arena = Arena((480, 360))
+    Ball(arena, (40, 80)); Ball(arena, (80, 40)); Ghost(arena, (120, 80))
+    turtle = Turtle(arena, (80, 80))  # each actor knows the arena
+    g2d.init_canvas(arena.size())
+    sprites = g2d.load_image("sprites.png")
+    g2d.main_loop(tick)
+
+---
+
+title:  Controllo da tastiera
+figure: images/oop/bounce.png
+
+code: py
+
+    def tick():
+        if g2d.key_pressed("ArrowUp"):
+            turtle.go_up()
+        elif g2d.key_pressed("ArrowRight"):
+            turtle.go_right()
+        elif g2d.key_pressed("ArrowDown"):
+            turtle.go_down()
+        elif g2d.key_pressed("ArrowLeft"):
+            turtle.go_left()
+        elif (g2d.key_released("ArrowUp") or
+              g2d.key_released("ArrowRight") or
+              g2d.key_released("ArrowDown") or
+              g2d.key_released("ArrowLeft")):
+            turtle.stay()
+
+>
+
+<http://www.ce.unipr.it/brython/?p3_oop_bounce_anim.py>
+
+---
+
+title: Collisioni
+figure: images/oop/collision.svg images/oop/reflection.png
+
+- Molti algoritmi di *collision detection*
+    - Casi semplici: intersezione di rettangoli
+- In caso di collisione, `Arena`...
+    - Invoca il metodo `collide` di entrambi gli oggetti
+    - Collisione tra personaggio `self` e personaggio `other` (secondo parametro)
+- Possibili errori nel calcolo del rimbalzo
+    - Di solito accettabili
+    - Altrimenti, applicare correzioni
+
+---
+
+title: Urti delle palline
+
+code: py
+
+    class Ball(Actor):
+        # ...
+        def collide(self, other):
+            if not isinstance(other, Ghost):
+                x, y, w, h = other.position()
+                if x < self._x:
+                    self._dx = self.SPEED
+                else:
+                    self._dx = -self.SPEED
+                # ... same for y
+
+- `isinstance(obj, cls)`
+    - Controlla se l'oggetto `obj` è istanza della classe `cls`
+    - ... o di una sua sottoclasse
+    - Restituisce un `bool`
+
+---
+
+title: Esercizi
+class: segue dark
+
+---
+
+title: 3.1 Istogramma con barre orizzontali
+figure: images/misc/histogram-rot.png
+
+- Chiedere all'utente una lista di valori positivi
+    - La lista termina quando l'utente inserisce il valore `0`
+- Mostrare un istogramma
+    - Larghezza di ciascuna barra proporzionale al valore corrispondente
+    - La barra più lunga occupa tutto lo spazio disponibile
+
+---
+
+title: 3.2 Risultati casuali
+figure: images/misc/dice.png
+
+- Simulare `n` lanci di una coppia di dadi
+    - `n` scelto dall'utente
+- Contare quante volte si presenta ciascun risultato
+    - Risultati possibili: da 2 a 12
+    - Somma dei due dadi
+
+>
+
+Per conteggiare i vari risultati, usare una lista di (almeno) 11 valori
+
+---
+
+title: 3.3 Lista di veicoli
+figure: images/misc/frogger.png
+
+- Riusare la classe `Vehicle`
+    - [x2_oop_vehicle.py](http://www.ce.unipr.it/brython/?x2_oop_vehicle.py)
+- Creare inizialmente una lista di veicoli, con posizioni e direzioni iniziali diverse
+- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `move` di ciascuno di essi
+
+---
+
+title: 3.4 Veicoli nell'arena
+figure: images/misc/frogger.png
+
+- Partire dalla classe `Vehicle`
+    - [x2_oop_vehicle.py](http://www.ce.unipr.it/brython/?x2_oop_vehicle.py)
+- Renderla una implementazione concreta di `Actor`
+    - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
+- Aggiungere i veicoli all'arena
+    - Nel metodo `__init__` chiamare `arena.add`
+    - Poi, in `update` chiamare `arena.move_all`
+
+---
+
+title: 3.5 Rana in arena
+figure: images/misc/frogger.png
+
+- Partire dalla classe `Turtle`, per creare un personaggio `Frog`
+    - [p3_oop_bounce.py](http://www.ce.unipr.it/brython/?p3_oop_bounce.py)
+- Modificare per conteggiare i frame di un salto
+    - Es. spostare la rana di 4px, per 8 frame
+- Dopo un salto la rana si ferma
+- Mentre è in salto, la rana non accetta altri comandi
+
+---
+
+title: 3.6 Rana investita
+figure: images/misc/frogger.png
+
+- Scrivere il metodo `collide` della rana
+- Se si scontra con un veicolo, la rana muore
+    - La riportiamo alla posizione di partenza; oppure...
+    - La togliamo dall'arena e terminiamo il gioco
+
+---
+
+title: 3.7 Lista di alieni
+figure: images/misc/invaders-path.jpg
+
+- Riusare la classe `Alien`
+    - [p2_oop_alien.py](http://www.ce.unipr.it/brython/?p2_oop_alien.py)
+- Creare inizialmente una lista di alieni, con posizioni di partenza diverse
+- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `move` di ciascuno di essi
+
+---
+
+title: 3.8 Alieni nell'arena
+figure: images/misc/invaders-path.jpg
+
+- Partire dalla classe `Alien`
+    - [p2_oop_alien.py](http://www.ce.unipr.it/brython/?p2_oop_alien.py)
+- Renderla una implementazione concreta di `Actor`
+    - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
+- Aggiungere gli alieni all'arena
+    - Nel metodo `__init__` chiamare `arena.add`
+    - Poi, in `update` chiamare `arena.move_all`
+
+---
+
+title: 3.9 Pallottole
+figure: images/misc/invaders-path.jpg
+
+- Continuare l'es. precedente
+    - [p3_oop_alien.py](http://www.ce.unipr.it/brython/?p3_oop_alien.py)
+- Aggiungere un attore `Bullet`
+    - Parte dal fondo e si muove verso l'alto
+    - Se esce dallo schermo, si rimuove dal gioco
+    - Se si scontra con un alieno, entrambi si rimuovono dal gioco
+- Nella funzione `update`, generare casualmente dei `Bullet`
+
+---
+
+title: Conteggio cifre
+figure: images/misc/numbers.jpg
+class: break
+
+- Chiedere una riga di testo all'utente
+- Contare il numero complessivo di cifre presenti (da `'0'` a `'9'`)
+- Valutare anche la somma di tutte le singole cifre trovate
+
+>
+
+Usare un ciclo `for` sulla stringa (sequenza di caratteri)
+
+<http://www.ce.unipr.it/brython/?p2_for_digits.py>
+
+---
+
+title: Testo tra parentesi
+
+- Chiedere all'utente un testo
+- Riscrivere il testo in output, ma...
+- Escludere le parti racchiuse tra parentesi: `( )`
+
+>
+
+Segnare in un bool se si è letta una parentesi aperta, ma non ancora una parentesi chiusa
+
+<http://www.ce.unipr.it/brython/?p2_for_parens.py>
+
+---
+
+title: 3.1 Array, precalcolo
+figure: images/misc/sin-cos.png
+
+- Riempire una lista con i valori di `sin`
+    - 360 elementi, indice `x` tra 0 e 359
+- Poi, ciclicamente...
+    - Chiedere un angolo all'utente
+    - Visualizzare il corrispondente valore precalcolato del seno
+
+>
+
+`math.sin` opera su radianti
+
+Calcolare `math.sin(x * math.pi / 180)`, anzichè `math.sin(x)`
+
+<http://www.ce.unipr.it/brython/?p3_list_sin.py>
+
+---
+
+title: 3.4 Conteggio caratteri
+figure: images/misc/characters.png
+
+- Chiedere una riga di testo all'utente
+- Contare separatamente le occorrenze di ciascuna lettera maiuscola (da `'A'` a `'Z'`)
+
+>
+
+Creare una lista (array) di 26 elementi, inizialmente tutti posti a `0` <br>
+Ciascun elemento è il contatore per una certa lettera <br>
+L'indice del contatore corrispondente ad una lettera `val` può essere ottenuto come `ord(val) - ord('A')`
+
+<http://www.ce.unipr.it/brython/?p3_list_letters.py>
+
+---
+
+title: 3.5 Fattori primi
+
+- Funzione che trova tutti i fattori primi di un numero `n`
+    - Parametro: `n`
+    - Risultato: lista, contenente i fattori primi di `n`
+- Algoritmo: scorrere tutti i valori d'interesse, e cercare i divisori
+    - `x` è divisore di `n` sse `n % x == 0`
+    - Non considerare i fattori non primi
+- Provare la funzione con valori inseriti dall'utente
+
+>
+
+Quando si trova un divisore `x`, dividere ripetutamente `n` per `x`, finché resta divisibile <br>
+Valutare l'uso di un ciclo `while`, anzichè `for`
+
+<http://www.ce.unipr.it/brython/?p3_list_factors.py>
+
+---
+
+title: 3.6 Memory
+figure: images/misc/memory.png
+
+- L'utente sceglie `rows` e `cols`
+- Allocare una lista di dimensione `n=rows×cols` (pari)
+- Inserire in ordine le prime lettere dell'alfabeto, ciascuna ripetuta due volte
+- Mescolare le celle
+    - Per ciascuna cella, scegliere una posizione a caso e scambiare il contenuto delle celle
+- Mostrare la lista, andando a capo per ogni riga
+
+>
+
+Usare una lista semplice, ma nella visualizzazione introdurre dei ritorni a capo
+
+Cella a inizio riga: il suo indice `i` è multiplo di `cols`, ossia `i % cols == 0`
+<br>
+Cella a fine riga: `i % cols == cols - 1`
+
+Per cominciare, inserire nella lista valori numerici crescenti, anzichè lettere
+
+<http://www.ce.unipr.it/brython/?p3_list_couples.py>
+

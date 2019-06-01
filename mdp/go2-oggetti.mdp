@@ -1,0 +1,620 @@
+title: Funzioni e oggetti
+subtitle: Introduzione alla programmazione
+figure: images/oop/balls.png
+
+---
+
+title: Definizione di funzioni
+figure: images/fun/function.png
+
+- **Funzione**: operatore, applicato a operandi, per ottenere un risultato
+    - **`func`** per definire una funzione
+    - **`return`** per terminare la funzione e restituire un risultato
+
+code: go
+
+    func Hypotenuse(a, b float64) float64 {
+        c := math.Sqrt(a*a + b*b)
+        return c
+    }
+
+---
+
+title: Chiamata di funzioni
+
+- **`func`** definisce una funzione, ma non la esegue!
+- Bisogna *chiamarla*
+- Esecuzione di una f.: nuovo *spazio di nomi*
+    - Param. e var. hanno **ambito locale**
+    - Non visibili nel resto del programma
+    - Nomi uguali, definiti altrove, restano distinti
+
+code: go
+
+    func main() {
+        side1 := ToFloat(Prompt("1st leg?"))
+        side2 := ToFloat(Prompt("2st leg?"))
+        side3 := Hypotenuse(side1, side2)
+        Println("3rd side: ", side3)
+    }
+
+---
+
+title: Parametri di funzioni
+
+- **Parametri formali**: nomi usati nella *definizione*
+- **Parametri effettivi**: valori passati alla funz.
+- Parametri passati “*per copia*”
+    - Variabili e valori all'esterno: non vengono modificati
+    - (Slice e oggetti passati per puntatore: modifiche *permanenti*)
+- Si possono restituire più valori, come *tupla*
+    - `return 7, 5, "black"`
+
+---
+
+title: Passaggio per copia
+
+code: go
+
+    func Inc(a int) int {
+        a += 1
+        Println(a)  // just for debug
+    }
+
+    func main() {
+        x = 10
+        Inc(x)
+        Println(x)      // just for debug
+    }
+
+---
+
+title: Documentazione di funzioni
+
+- Solo le funzioni denominate con la maiuscola sono pubbliche
+- Altrimenti, usabili solo all'interno dello stesso modulo
+- *Docstring*: descrizione testuale di una funzione
+- *`go doc`*: comando per visualizzare la documentazione
+
+code: go
+
+    // Return the hypotenuse of a right triangle,
+    // given both its legs (catheti).
+    func Hypotenuse(leg1, leg2 float64) float64 {
+        return math.Sqrt(leg1*leg1 + leg2*leg2)
+    }
+
+---
+
+title: Cicli e annidamento
+figure: images/fun/multiplication-table.jpg
+
+code: go
+
+    max := 10
+    y := 3
+    for x := 1; x <= max; x++ {
+        Println(x * y)
+        // Printf("%4d", x * y)
+    }
+
+code: go
+
+    max := 10
+    for y := 1; y <= max; y++ {
+        for x := 1; x <= max; x++ {
+            Printf("%4d", x * y)  // width = 4, no newline
+        }
+        Println()
+    }
+
+---
+
+title: Scrittura con formattazione 🤔
+
+- **`g2d.Printf`**: *scrittura con formattazione*
+    - Primo parametro: *stringa di formato*
+    - Segnaposto (`%`) per incorporare i parametri successivi
+    - Usare `\n` per andare a capo
+
+code: go
+
+    Printf("%2d", 3)     // " 3", int, width 2
+    Printf("%6.2f", 7.3) // "  7.30", float, width 6, precision 2
+    Printf("%d", '🌐')   // "127760", code
+    Printf("%c", '🌐')   // "🌐", char
+    Printf("%s", "hi!")  // "hi!", string
+
+>
+
+<https://golang.org/pkg/fmt>
+
+---
+
+title: Procedura
+
+- Funzione senza `return`, solo I/O ed effetti collaterali
+    - *Astrazione*, per riuso e leggibilità
+    - Riduce i livelli di annidamento
+
+code: go
+
+    func printRow(y, size int) {
+        for x := 1; x <= size; x++ {
+            Printf("%4d", x * y)
+        }
+        Println()
+    }
+    func printTable(size int) {
+        for y := 1; y <= size; y++ {
+            printRow(y, size)
+        }
+    }
+
+---
+
+title: Animazione
+
+code: go
+
+    var image = LoadImage("ball.png")
+    var x, y, dx = 50, 50, 5
+    var arenaW, arenaH = 480, 360
+
+    func tick() {
+        //if KeyPressed("Enter") { dx = -dx }
+        ClearCanvas()                  // Draw background
+        DrawImage(image, Point{x, y})  // Draw foreground
+        x = (x + dx) //% arenaW        // Update ball's position
+    }
+
+    func main() {
+        InitCanvas(Size{arenaW, arenaH})
+        MainLoop(tick)  // Call tick 30 times/second
+    }
+
+<http://www.ce.unipr.it/gopherjs/?p2_anim.go>
+
+---
+
+title: Tick, tastiera e mouse
+
+- **`g2d.MainLoop`**: *ciclo di gestione degli eventi*
+    - Parametro opzionale: funzione che sarà chiamata periodicamente
+- **`g2d.KeyPressed`**: *controllo se un tasto è stato premuto*
+    - Risultato: `bool`
+    - Parametro: `string` nome del tasto
+    - Es.: `"q", "1", "ArrowLeft", "Enter", "Spacebar", "LeftButton"`
+- **`g2d.KeyReleased`**: *controllo se un tasto è stato rilasciato*
+    - Stessi parametri e risultato
+- **`g2d.MousePosition`**: *posizione del mouse*
+    - Risultato: `Point`
+
+>
+
+<https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values>
+
+---
+
+title: Funzione per rimbalzi
+figure: images/oop/anim-bounce.png
+
+- Le funzioni forniscono limitata astrazione
+    - Incapsulano il comportamento
+    - Ma espongono i dati
+
+code: go
+
+    func moveBall(x, y, dx, dy int) (int, int, int, int) {
+        if x + dx < 0 || x + dx + BALL_W > ARENA_W {
+            dx = -dx
+        }
+        if y + dy < 0 || y + dy + BALL_H > ARENA_H {
+            dy = -dy
+        }
+        return x + dx, y + dy, dx, dy
+    }
+
+<http://www.ce.unipr.it/brython/?go2_fun_ball.go>
+
+---
+
+title: Effetti collaterali 🤔
+
+- Operazioni di lettura/scrittura, modifica di variabili globali o oggetti passati per puntatore...
+- Annullano la **trasparenza referenziale**
+    - Impossibile semplificare, sostituendo una chiamata a funzione col suo valore di ritorno (es. presenti operazioni di I/O)
+- Rendono la funzione **non idempotente**
+    - Chiamata più volte, con gli stessi parametri, può restituire risultati diversi
+- → Difficile fare verifiche matematiche
+    - `z := f(Sqrt(2), Sqrt(2))`
+    - `s := Sqrt(2)` <br> `z := f(s, s)`
+
+---
+
+title: Funzioni non idempotenti 🤔
+
+- Esempio di semplificazione
+    - `p := rq(x) + rq(y) * (rq(x) – rq(x))`
+    - `p := rq(x) + rq(y) * (0)`
+    - `p := rq(x) + 0`
+    - `p := rq(x)`
+- Ma se `rq` ha effetti collaterali, non si può!
+
+code: go
+
+    var baseValue = 0  // global variable
+
+    func rq(x int) int {
+        baseValue++
+        return x + baseValue
+    }
+
+>
+
+Se `x, y = 3, 4`, ad esempio, i due risultati sono `-2` e `4`
+
+---
+
+title: Oggetti
+class: segue dark
+
+---
+
+title: Puntatori
+figure: images/oop/pointer.png
+
+- Ogni dato in memoria ha un indirizzo
+- Variabile puntatore per memorizzarlo
+- *Referenziazione*: `&` per indirizzo di un dato
+- *Dereferenziazione*: `*` per accesso a dato puntato
+
+code: go
+
+    var i int8 = 56  // one byte
+    var p *int8      // a ptr to some byte (uninitialized)
+    p = &i           // now p points to i
+    *p = *p + 1      // i++
+    Println(*p, i)
+    p = nil          // ptr to nothing
+
+>
+
+Come in *C*, ma *senza* “aritmetica”
+
+---
+
+title: Oggetto
+figure: images/oop/basic-object.svg
+
+- Rappresenta un *oggetto fisico* o un *concetto* del dominio
+- Memorizza il suo **stato** interno in *campi privati*
+    - *Incapsulamento (black box)*
+- Offre un insieme di **servizi**, come *metodi pubblici*
+    - Realizza un *tipo di dato astratto (ADT)*
+
+---
+
+title: Classi ed oggetti
+figure: images/oop/cookie-cutter.png
+
+- Ogni *oggetto* ha una **classe** di origine
+    - La classe dà la stessa forma iniziale (campi e metodi) a tutti i suoi oggetti
+- Ma ogni *oggetto* ha la sua **identità**
+    - Stato e locazione in memoria distinti da quelli di altri oggetti
+    - Sia instanze di classi diverse che della stessa classe
+
+---
+
+title: Definizione della classe
+figure: images/oop/ball-object.svg images/oop/ball-uml.svg
+figcaption: Class diagram UML
+
+- **Incapsulamento** dei dati
+    - Campi in minuscolo: visibilità limitata al modulo
+    - Funzione costruttore in maiuscolo: esportata
+
+code: go
+
+    type Ball struct {
+        x, y    int
+        w, h    int
+        dx, dy  int
+    }
+
+    func NewBall(x, y int) *Ball {
+        b := &Ball{x, y, 20, 20, 5, 5}
+        return b
+    }
+
+---
+
+title: Costruzione oggetti
+figure: images/oop/bob-builder.jpg
+
+- **`NewBall`**: funzione *costruttore*
+    - Invocata per creare un oggetto
+    - *Instantiation is initialization*
+    - Restituisce un puntatore all'oggetto
+
+code: go
+
+    ball := NewBall(40, 80)  // Allocation and initialization
+
+---
+
+title: Metodi
+
+- Espongono *servizi* ad altri oggetti
+- Bisogna indicare l'*oggetto ricevitore*, come puntatore
+
+code: go
+
+    var arenaW, arenaH = 480, 360
+
+    func (b *Ball) Move() {
+        if !(0 <= b.x+b.dx && b.x+b.dx <= arenaW-b.w) {
+            b.dx = -b.dx
+        }
+        if !(0 <= b.y+b.dy && b.y+b.dy <= arenaH-b.h) {
+            b.dy = -b.dy
+        }
+        b.x += b.dx
+        b.y += b.dy
+    }
+
+---
+
+title: Applicazione
+
+code: go
+
+    func (b *Ball) Position() Rect {
+        return Rect{b.x, b.y, b.w, b.h}
+    }
+
+    func main() {
+        b1 := NewBall(40, 80)  // Create two objects,
+        b2 := NewBall(80, 40)  // instances of the Ball class
+
+        for i := 0; i < 25; i++ {
+            b1.Move()
+            b2.Move()
+            Println("Ball 1 @", b1.Position())
+            Println("Ball 2 @", b2.Position())
+        }
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_ball.go>
+
+---
+
+title: Animazione di due palline
+
+code: go
+
+    var b1 = NewBall(40, 80)
+    var b2 = NewBall(80, 40)
+
+    func tick() {
+        b1.Move()
+        b2.Move()
+        ClearCanvas()                                  // BG
+        FillRect(Color{200, 100, 100}, b1.Position())  // FG
+        FillRect(Color{100, 100, 200}, b2.Position())  // FG
+    }
+
+    func main() {
+        InitCanvas(Size{arenaW, arenaH})
+        //SetFrameRate(30)  // default
+        MainLoop(tick)
+    }
+
+---
+
+title: Variabili locali, parametri, campi
+
+- *Campi*: memorizzano i dati caratteristici di una istanza
+    - Ogni pallina ha la sua posizione `(x, y)` e la sua direzione `(dx, dy)`
+- *Parametri*: passano altri valori ad un metodo
+    - Se alcuni dati necessari non sono nei campi
+- *Variabili locali*: memorizzano risultati parziali
+    - Generati durante l'elaborazione del metodo
+    - Nomi cancellati dopo l'uscita dal metodo
+- *Variabili globali*: definite fuori da tutte le funzioni
+    - Usare sono se strettamente necessario
+    - Meglio avere qualche parametro in più, per le funzioni
+
+---
+
+title: Esercizi
+class: segue dark
+
+---
+
+title: 2.1 Area di un'ellisse
+figure: images/misc/ellipse.svg
+
+- Definire una *funzione* `EllipseArea` che:
+    - Riceve come *parametri* i semiassi di una ellisse: `a`, `b`
+    - Restituisce come risultato l'area dell'ellisse: `π⋅a⋅b`
+- Definire una *funzione* `main` che:
+    - Chiede all'utente due valori
+    - Invoca la funzione `EllipseArea` con questi parametri
+    - Stampa il risultato ottenuto
+
+>
+
+<http://www.ce.unipr.it/brython/?x21_fun_ellipse.py>
+
+---
+
+title: 2.2 Griglia di colori
+figure: images/misc/color-grid.png images/oop/raster-tile.png
+
+- Chiedere all'utente dei valori per `rows` e `cols`
+- Mostrare una griglia di rettangoli di dimensione `rows×cols`
+- Partire da un rettangolo nero in alto a sinistra
+- In orizzontale, aumentare gradatamente la componente di blu
+- In verticale, aumentare gradatamente la componente di verde
+
+>
+
+Cominciare a creare una griglia di riquadri tutti neri, con due cicli annidati
+
+Lasciare tra i riquadri un piccolo margine
+
+---
+
+title: 2.3 Movimento orizzontale
+figure: images/misc/frogger.png
+
+- Mostrare una pallina che si muove in orizzontale
+    - Variabile `dx` indica lo spostamento da effettuare ad ogni ciclo
+- La pallina riappare dal bordo opposto, dopo un po' di tempo
+    - Permettere alla `x` della pallina di superare i bordi laterali
+    - Fissare dei margini esterni di *100px" (p.es.) rispetto ai bordi dell'arena
+    - Se però la `x` raggiunge uno dei margini esterni, viene riportata al margine opposto
+- Alla pressione del tasto `Enter`, la pallina inverte la direzione
+
+---
+
+title: 2.4 Movimento per 5 fotogrammi
+figure: images/misc/frogger.png
+
+- Riprendere l'esercizio 2.3
+- La pallina si muove solo dopo la pressione del tasto `Enter`
+- Esegue i suoi comportamenti già definiti, ma solo per 5 fotogrammi
+- Dopo 5 fotogrammi si ferma, in attesa di una nuova pressione del tasto
+
+>
+
+Incrementare (o decrementare) un contatore ad ogni chiamata a `tick`
+
+---
+
+title: 2.5 Classe per ellisse
+figure: images/misc/ellipse.svg
+
+- Classe che modella un'ellisse
+- Campi privati (parametri del costruttore)
+    - Semiassi: `a, b`
+- Metodi pubblici per ottenere...
+    - Area: `π⋅a⋅b`
+    - Distanza focale: `2⋅√|a^^2^^ - b^^2^^|`
+- Nel corpo principale del programma...
+    - Creare un oggetto con dati forniti dall'utente
+    - Visualizzare area e distanza focale dell'ellisse
+
+---
+
+title: 2.6 Animazione di un veicolo
+figure: images/misc/frogger.png
+
+- Partire dalla classe `Ball` vista a lezione
+- Eseguire l'animazione
+    - Per ogni frame, chiamare il metodo `move` della pallina
+    - Rappresentare un rettangolo nella posizione aggiornata della pallina
+- Modificare però il metodo `Move`
+    - La pallina si sposta sempre di pochi pixel, solo in orizzontale
+    - Se supera 100px oltre il bordo destro, ricompare a 100px prima del bordo sinistro e viceversa
+
+---
+
+title: 2.7 Pallina con conteggio
+figure: images/misc/frogger.png
+
+- Partire di nuovo dalla classe `Ball` vista a lezione
+- La pallina si muove solo dopo la pressione del tasto `Enter`
+- Esegue i suoi comportamenti già definiti, ma solo per 5 fotogrammi
+- Dopo 5 fotogrammi si ferma, in attesa di una nuova pressione del tasto
+
+---
+
+title: 2.8 Animazione di un alieno
+figure: images/misc/science-of-spaceships.jpg
+
+- Partire di nuovo dalla classe `Ball` vista a lezione
+- Il movimento di base però è solo orizzontale
+- Arrivato al bordo, il personaggio:
+    - Si sposta di qualche pixel verso il basso
+    - Poi cambia direzione orizzontale
+- Fare in modo che, in ogni frame, lo spostamento sia solo orizzontale, o solo verticale, ma *non* diagonale
+
+---
+
+title: 2.9 Spirale ad oggetti 🤔
+figure: images/misc/spiral-circles.png
+
+- Mostrare l'*animazione* di un cerchio lungo una spirale
+- Realizzare una classe per gestire dati e comportamento del cerchio
+- Implementare il movimento in un metodo `Move()`
+- Campi: `xc`, `yc`, `i`
+    - `i` conta i passi; se eccede il limite, torna a 0
+
+---
+
+title: Modulo main 🤔
+class: break
+
+- Nome del modulo in esecuzione: `__name__`
+    - É il nome del file, senza estensione
+- Il modulo di avvio dell'app ha nome speciale
+    - In *CPython*, nome `"__main__"`
+    - In *Brython* nome `"script..."`; il “trucco” non funziona
+
+code: py
+
+    # def hypotenuse ...
+    def main():
+        side1 = float(input("1st side? "))
+        side2 = float(input("2nd side? "))
+        print("3rd side:", hypotenuse(side1, side2))
+
+    # if this module is imported, main is not executed
+    if __name__ == "__main__":
+        main()
+
+---
+
+title: Ciclo di vita di un oggetto 🤔
+figure: images/dev/garbage-truck.jpg
+
+- Creazione di un oggetto: allocata memoria per tenere lo stato dell’oggetto
+- In Python: variabile = riferimento ad un oggetto
+    - *Oggetti*: *allocazione dinamica*, in memoria *heap*
+    - *Variabili*: *allocazione automatica*, in memoria *stack*
+- Oggetto non più associato a nessuna variabile: necessario liberare memoria
+- **Garbage collection**: gestione automatica della restituzione di memoria
+
+---
+
+title: Garbage collection 🤔
+
+- Vantaggi
+    - Non è possibile dimenticare di liberare la memoria (*memory leak*)
+    - Non è possibile liberare della memoria che dovrà essere utilizzata in seguito (*dangling pointer*)
+- Svantaggi
+    - Decide autonomamente quando liberare la memoria
+    - Liberare e compattare la memoria richiede del calcolo
+- Diversi algoritmi
+    - *Reference counting*: idea di base, ma cicli…
+    - *Mark & sweep*: parte da riferimenti locali/globali, marca oggetti raggiungibili
+    - *Generational garbage collection*: controlla spesso oggetti recenti
+
+---
+
+title: 2.6 Spirale
+figure: images/misc/spiral-circles.png
+
+- Mostrare l'*animazione* di un cerchio lungo una spirale
+- Ruotare attorno ad un centro fisso `(xc, yc)`
+- Amentare dist. `r` dal centro ad ogni passo
+- Cancellare lo sfondo ad ogni passo
+- Disegnare un cerchio sempre più grande
+- Dopo `n` passi, ricominciare daccapo
+
+
+

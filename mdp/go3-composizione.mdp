@@ -1,0 +1,538 @@
+title: Liste e composizione
+subtitle: Introduzione alla programmazione
+figure: images/oop/lego-blocks.png
+
+---
+
+title: Slice
+figure: images/fun/shopping-list.jpg
+
+- Sequenza di elementi, dello stesso **tipo**
+    - L'intera lista (*slice*) può essere assegnata ad una variabile, così diamo un **nome** alla lista
+- I singoli elementi sono **numerati**
+    - Gli indici partono da 0!
+
+code: go
+
+    toBuy := []string{"spam", "eggs", "beans"}
+
+code: go
+
+    rainfallData := []int{13, 24, 18, 15}
+
+code: go
+
+    resultsByMonth := make([]int, 12)  // 12 times 0
+
+---
+
+title: Accesso agli elementi
+figure: images/fun/wile-coyote.png
+
+- **Attenzione ad usare indici validi!**
+    - *Lunghezza* attuale di una lista `s`: `len(s)`
+    - Elementi *numerati* da `0` a `len(s)-1`
+
+code: go
+
+    toBuy := []string{"spam", "eggs", "beans", "bacon"}
+    n := len(toBuy)        // 4
+
+    Println(toBuy[0])      // "spam"
+    Println(toBuy[1])      // "eggs"
+    Println(toBuy[n-1])    // "bacon"
+
+    toBuy[1] = "ketchup"   // replace a value
+    Println(toBuy[1])      // "ketchup"
+
+---
+
+title: Porzioni di lista
+figure: images/fun/month-list.svg
+
+- Selezione degli elementi tra...
+    - il primo indice (*compreso*)...
+    - ed il secondo indice (*escluso*)
+
+code: go
+
+    months := []string{"Jan", "Feb", "Mar",
+                       "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep",
+                       "Oct", "Nov", "Dec"}
+
+    spring := months[2:5]       // [Mar Apr May]
+    quart1 := months[:3]        // [Jan Feb Mar]
+    quart4 := months[9:]        // [Oct Nov Dec]
+    wholeYear := months[:]      // The whole list
+
+---
+
+title: Concatenazione, rimozione
+
+code: go
+
+    toBuy := []string{"spam", "eggs", "beans"}
+    Println(toBuy)
+
+    toBuy = append(toBuy, "bacon")          // add to the end
+    Println(toBuy)
+
+    moreStuff := []string{"sausage", "mushrooms"}
+    toBuy = append(toBuy, moreStuff...)     // concatenation
+    Println(toBuy)
+
+    toBuy = append(toBuy[:2], toBuy[3:]...)  // remove val @ 2
+    Println(toBuy)
+
+>
+
+<https://github.com/golang/go/wiki/SliceTricks>
+
+---
+
+title: Stringhe e liste
+
+- **`Join`** e **`Split`**, da lista a stringa e viceversa
+    - Nel package *`strings`*
+
+code: go
+
+    someDays := []string{"tue", "thu", "sat"}
+    someTxt := strings.Join(someDays, "|")
+    // a single string: "tue|thu|sat"
+
+    otherTxt := "mon|wed|fri|sun"
+    otherDays := strings.Split(otherTxt, "|")
+    // a list of strings: {"mon", "wed", "fri", "sun"}
+
+---
+
+title: Cicli su liste: for
+
+code: go
+
+    shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
+
+    Println("Your shopping list contains:")
+
+    for _, value := range shoppingList {
+        fmt.Println(value)
+    }
+    // for index, value := range shoppingList {
+    //    fmt.Println(index, value)
+    // }
+
+- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `shoppingList`
+- `index` e/o `value` possono essere omessi (sostituiti con `_`)
+
+---
+
+title: Cicli su stringhe: for
+
+- Si può usare un ciclo `for` su qualsiasi sequenza
+- Anche su *stringa*: sequenza *immutabile* di caratteri (UTF-8)
+
+code: go
+
+    for index, value := range "Hello, 🌐!" {
+        fmt.Println(index, value)
+    }
+
+    for _, x := range "Hello, 🌐!" {
+        fmt.Printf("%c  ", x)  // in package fmt
+        fmt.Printf("%d\n", x)  // <https://golang.org/pkg/fmt/>
+    }
+
+---
+
+title: Composizione
+class: segue dark
+
+---
+
+title: Lista di palline
+
+code: go
+
+    var balls = []*Ball{NewBall(40, 80), NewBall(80, 40)}
+
+    func tick() {
+        FillCanvas(Color{255, 255, 255}) // BG
+        for _, b := range balls {
+            b.Move()
+            DrawRect(Color{100, 100, 100}, b.Position()) // FG
+        }
+    }
+    func main() {
+        InitCanvas(Size{ArenaW, ArenaH})
+        MainLoop(tick, 1000/30) // Millis
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_ball.go>
+
+---
+
+title: Composizione
+figure: images/oop/ball-arena.svg
+
+- Associazione **has-a**, **part-of** tra oggetti
+    - Una arena *contiene* diverse palline
+
+code: go
+
+    type BallArena struct { balls []*Ball }
+    func (a *BallArena) Add(b *Ball) {
+        a.balls = append(a.balls, b)
+    }
+    func (a *BallArena) MoveAll() {
+        for i, b := range a.balls {
+            b.Move(); Println("Ball", i, b.Position())
+        }
+    }
+    func main() {
+        var arena = &BallArena{}
+        arena.Add(NewBall(40, 80)); arena.Add(NewBall(80, 40))
+        arena.MoveAll() // ...
+    }
+
+---
+
+title: Interfacce
+class: segue dark
+
+---
+
+title: Livelli di astrazione
+figure: images/oop/inheritance.png
+
+- Relazione **is-a** tra classi
+    - Specializzazione, sotto-insieme
+- Es. classificazioni in biologia
+    - *Vertebrati* sottoclasse degli *animali*
+    - *Mammiferi* sottoclasse dei *vertebrati*
+    - *Felini* sottoclasse dei *mammiferi*
+    - *Gatti* sottoclasse dei *felini*
+- Ogni sottoclasse...
+    - Eredita le caratteristiche della classe base
+    - Ma introduce delle specializzazioni
+- In **Go** non c'è *ereditarietà*, ma **interfacce**
+
+---
+
+title: Fattoria parlante
+figure: images/oop/animals.png
+
+- Noi definiremo una **interfaccia** come astrazione di base
+- Es. `Animal`:
+    - Tutti gli animali fanno un verso (*interfaccia*)
+    - Ogni animale fa un verso diverso (*polimorfismo*)
+
+code: go
+
+    type Animal interface {
+        Say()
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_animals.go>
+
+---
+
+title: Classi concrete
+figure: images/oop/polymorphism.png
+
+code: go
+
+    type Dog struct { name string }
+    func NewDog(name string) *Dog { return &Dog{name} }
+    func (d *Dog) Say() {
+        Println("I'm " + d.name + " Dog. I say: WOOF!")
+    }
+
+    type Cat struct { name string }
+    func NewCat(name string) *Cat { return &Cat{name} }
+    func (c *Cat) Say() {
+        Println("I'm " + c.name + " Cat. I say: MEOW!")
+    }
+
+---
+
+title: Lista di oggetti
+figure: images/oop/peppa.png
+
+code: py
+
+    d := NewDog("Danny")
+    c := NewCat("Candy")
+    p1 := NewPig("Peppa")
+    p2 := NewPig("George")
+    animals := []Animal{d, c, p1, p2}
+
+    for _, a := range animals {
+        a.Say()
+    }
+
+code: output
+
+    I am Danny Dog. I say: WOOF!
+    I am Candy Cat. I say: MEOW!
+    I am Peppa Pig. I say: OINK!
+    I am George Pig. I say: OINK!
+
+---
+
+title: Interfacce
+figure: images/oop/actors.svg
+
+- `Actor`: *interfaccia*
+    - Dichiara un metodo `move` ecc.
+- Vari attori: *classi implementazione*
+    - Implementano caratteristiche di `Actor`
+    - Definiscono comportamenti specifici
+
+code: go
+
+    type Actor interface {
+        Move()
+    }
+
+---
+
+title: Generalizzazione e riuso
+
+code: go
+
+    type Arena struct { actors []Actor }
+    func (a *Arena) Add(c Actor) {
+        a.actors = append(a.actors, c)
+    }
+    func (a *Arena) MoveAll() {
+        for i, c := range a.actors {
+            c.Move()
+        }
+    }
+
+- Codice dipendente dalle classi più astratte, più in alto nella gerarchia
+    - `Arena` riutilizzabile creando nuove classi derivate di `Actor`
+
+---
+
+title: Sostituzione
+figure: images/oop/actor.svg
+
+code: go
+
+    arena.Add(NewBall(40, 80))
+    arena.Add(NewGhost(120, 40)) // ...
+    arena.MoveAll()
+
+- Principio di **sostituzione** di Liskov
+    - Si può sempre usare un oggetto di una *classe implementazione*, al posto di uno della *interfaccia*
+- Relazione *has-a* tra un oggetto `Arena` e gli oggetti `Actor` che contiene
+- Relazione *is-a* tra classi implementazione (`Ball` e `Ghost`) e interfaccia (`Actor`)
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?g2d.go>
+
+---
+
+title: Ereditarietà e polimorfismo
+
+- **Classe implementazione**
+    - Implementa le caratteristiche della interfaccia
+    - Può definire nuove caratteristiche specifiche
+- **Metodo polimorfo**
+    - Definito in modo diverso nelle classi implementazione
+    - Attori diversi possono muoversi in modo diverso
+
+code: go
+
+    type Ghost struct { x, y int }  // ...
+    func (g *Ghost) Move() {
+        dx := 5 * RandInt(-1, 1)
+        dy := 5 * RandInt(-1, 1)
+        g.x = (g.x + dx + ArenaW) % ArenaW
+        g.y = (g.y + dy + ArenaH) % ArenaH
+    }
+
+---
+
+title: Attori e arena
+
+code: go
+
+    type Ghost struct {
+        arena *Arena
+        x, y  int
+    }
+    func NewGhost(arena *Arena, x, y int) *Ghost {
+        g := &Ghost{arena, x, y}  // save a ref to the arena
+        arena.Add(g)              // register yourself into the arena
+        return g
+    }
+    func (g *Ghost) Move() {
+        dx, dy := 5 * RandInt(-1, 1), 5 * RandInt(-1, 1)
+        as := g.arena.Size()      // ref to arena
+        g.x = (g.x + dx + as.W) % as.W
+        g.y = (g.y + dy + as.H) % as.H
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_bounce.go>
+
+---
+
+title: Animazione dei personaggi
+class: segue dark
+
+---
+
+title:  Rimbalzi nel browser
+
+code: go
+
+    var sprites = LoadImage("sprites.png")
+    var arena = NewArena(320, 240)
+    var turtle = NewTurtle(arena, 80, 80)  // actor knows the arena
+    func tick() {
+        arena.MoveAll()  // Game logic
+        FillCanvas(Color{255, 255, 255})
+        for _, a in arena.Actors() {
+            // Cut an area from a larger image
+            DrawImageClip(sprites, a.Position(), a.Symbol())
+        }
+    }
+    func main() {
+        NewGhost(arena, 120, 80); NewBall(arena, 40, 80) // ...
+        InitCanvas(arena.Size())
+        MainLoop(tick, 1000 / 30)
+    }
+
+---
+
+title:  Controllo da tastiera
+figure: images/oop/bounce.png
+
+code: python
+
+    func keydown(code) {
+        if code == "ArrowUp" { turtle.GoUp() }
+        else if code == "ArrowDown" { turtle.GoDown() }
+        else if code == "ArrowLeft" { turtle.GoLeft() }
+        else if code == "ArrowRight" { turtle.GoRight() }
+    }
+    func keyup(code) {
+        turtle.Stay()
+    }
+    func main() {
+        // ...
+        HandleKeyboard(keydown, keyup)
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_bounce.go>
+
+---
+
+title: Collisioni
+figure: images/oop/collision.svg images/oop/reflection.png
+
+- Molti algoritmi di *collision detection*
+    - Casi semplici: intersezione di rettangoli
+- In caso di collisione, `Arena`...
+    - Invoca il metodo `collide` di entrambi gli oggetti
+    - Collisione tra personaggio `self` e personaggio `other` (secondo parametro)
+- Possibili errori nel calcolo del rimbalzo
+    - Di solito accettabili
+    - Altrimenti, applicare correzioni
+
+---
+
+title: Urti delle palline
+
+code: python
+
+    func (b *Ball) Collide(other Actor) {
+        _, ok := other.(*Ghost)
+        if !ok {
+            op := other.Position()
+            if op.X < b.x { b.dx = b.speed }
+            else { b.dx = -b.speed }
+            if op.Y < b.y { b.dy = b.speed }
+            else { b.dy = -b.speed }
+        }
+    }
+
+- *Downcast*: `other.(*Ghost)`
+    - Converte l'oggetto `other` come istanza di `Ghost`
+    - Restituisce un riferimento a `Ghost` ed un `bool`
+
+---
+
+title: Esercizi
+class: segue dark
+
+---
+
+title: 3.1 Ellisse
+figure: images/misc/ellipse.svg
+
+- Classe che modella un'ellisse
+- Campi privati (parametri del costruttore)
+    - Semiassi: `a, b`
+- Metodi pubblici per ottenere...
+    - Area: `π⋅a⋅b`
+    - Distanza focale: `2⋅√|a^^2^^ - b^^2^^|`
+- Nel corpo principale del programma...
+    - Creare un oggetto con dati forniti dall'utente
+    - Visualizzare area e distanza focale dell'ellisse
+
+---
+
+title: 3.2 Animazione di una pallina
+figure: images/misc/street-fighter.jpg
+
+- Partire dalla classe `Ball` vista a lezione
+- Eseguire l'animazione
+    - Per ogni frame, chiamare il metodo `Move` della pallina
+    - Rappresentare un rettangolo o un cerchio nella posizione aggiornata della pallina
+- Modificare però il metodo `Move`
+    - La pallina si sposta sempre di pochi pixel in orizzontale
+    - La pallina non si sposta verticalmente
+    - Se esce dal bordo destro, ricompare al bordo sinistro e viceversa
+
+---
+
+title: 3.3 Classe degli invasori spaziali
+figure: images/misc/invaders-path.jpg
+
+- Creare una classe `Invader`, che contenga i dati ed il comportamento dell'alieno
+    - Campi privati: `x`, `y`, `dx`
+    - Metodo `Move` per avanzare
+    - Metodo `Position` per ottenere la posizione attuale
+- Istanziare un oggetto `Invader` e farlo muovere sullo schermo
+    - Chiamare il metodo `Move` ad ogni ciclo
+    - Visualizzare un rettangolo nella posizione corrispondente
+
+>
+
+Definire nella classe delle opportune costanti
+
+---
+
+title: 3.4 Lista di invasori
+figure: images/misc/invaders-path.jpg
+
+- Riusare la classe `Invader` (es. 3.3)
+- Creare inizialmente una lista di alieni, con posizioni di partenza diverse
+    - Memorizzare la posizione di partenza di ciascun alieno in opportuni campi privati
+    - Lasciare a ciascun alieno uno spazio orizzontale di movimento di 150 pixel, a destra della posizione di partenza
+- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `Move` di ciascuno di essi
+
