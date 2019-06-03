@@ -70,7 +70,7 @@ code: py
 
 ---
 
-title: Uguaglianza e identità
+title: Uguaglianza e identità 🤔
 
 code: py
 
@@ -88,7 +88,7 @@ code: py
 
 ---
 
-title: Stringhe e liste
+title: Stringhe e liste 🤔
 
 - **Stringa**: sequenza *immutabile* di caratteri
 - **`join`** e **`split`**: da lista a stringa e viceversa
@@ -145,7 +145,7 @@ code: py
 
 ---
 
-title: Funzioni su liste
+title: Funzioni su liste 🤔
 
 code: py
 
@@ -520,17 +520,7 @@ Per conteggiare i vari risultati, usare una lista di (almeno) 11 valori
 
 ---
 
-title: 3.3 Lista di veicoli
-figure: images/misc/frogger.png
-
-- Riusare la classe `Vehicle`
-    - [x2_oop_vehicle.py](http://www.ce.unipr.it/brython/?x2_oop_vehicle.py)
-- Creare inizialmente una lista di veicoli, con posizioni e direzioni iniziali diverse
-- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `move` di ciascuno di essi
-
----
-
-title: 3.4 Veicoli nell'arena
+title: 3.3 Veicoli nell'arena
 figure: images/misc/frogger.png
 
 - Partire dalla classe `Vehicle`
@@ -539,11 +529,11 @@ figure: images/misc/frogger.png
     - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
 - Aggiungere i veicoli all'arena
     - Nel metodo `__init__` chiamare `arena.add`
-    - Poi, in `update` chiamare `arena.move_all`
+    - Poi, in `tick` chiamare `arena.move_all`
 
 ---
 
-title: 3.5 Rana in arena
+title: 3.4 Rana in arena
 figure: images/misc/frogger.png
 
 - Partire dalla classe `Turtle`, per creare un personaggio `Frog`
@@ -555,7 +545,7 @@ figure: images/misc/frogger.png
 
 ---
 
-title: 3.6 Rana investita
+title: 3.5 Rana investita
 figure: images/misc/frogger.png
 
 - Scrivere il metodo `collide` della rana
@@ -565,17 +555,7 @@ figure: images/misc/frogger.png
 
 ---
 
-title: 3.7 Lista di alieni
-figure: images/misc/invaders-path.jpg
-
-- Riusare la classe `Alien`
-    - [p2_oop_alien.py](http://www.ce.unipr.it/brython/?p2_oop_alien.py)
-- Creare inizialmente una lista di alieni, con posizioni di partenza diverse
-- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `move` di ciascuno di essi
-
----
-
-title: 3.8 Alieni nell'arena
+title: 3.6 Alieni nell'arena
 figure: images/misc/invaders-path.jpg
 
 - Partire dalla classe `Alien`
@@ -588,7 +568,7 @@ figure: images/misc/invaders-path.jpg
 
 ---
 
-title: 3.9 Pallottole
+title: 3.7 Pallottole
 figure: images/misc/invaders-path.jpg
 
 - Continuare l'es. precedente
@@ -598,6 +578,25 @@ figure: images/misc/invaders-path.jpg
     - Se esce dallo schermo, si rimuove dal gioco
     - Se si scontra con un alieno, entrambi si rimuovono dal gioco
 - Nella funzione `update`, generare casualmente dei `Bullet`
+
+---
+
+title: 3.8 Mario 🤔
+
+- Modificare l'esempio `Turtle`
+- Cosiderare l'accelerazione *costante* `g` di gravità (es. `0.5`)
+- Ad ogni mossa, aggiurere `g` a `dy`
+- Permettere a `Mario` di saltare solo quando è sul fondo
+
+---
+
+title: 3.9 Piattaforme 🤔
+
+- Aggiungere all'esercizio 3.8 un classe `Wall`
+    - Rettangolo immobile
+- Quando Mario collide con una piattaforma...
+    - Si sposta al bordo della piattaforma più vicino
+    - Se atterra sul bordo superiore, da lì può saltare
 
 ---
 

@@ -481,58 +481,111 @@ class: segue dark
 
 ---
 
-title: 3.1 Ellisse
-figure: images/misc/ellipse.svg
-
-- Classe che modella un'ellisse
-- Campi privati (parametri del costruttore)
-    - Semiassi: `a, b`
-- Metodi pubblici per ottenere...
-    - Area: `π⋅a⋅b`
-    - Distanza focale: `2⋅√|a^^2^^ - b^^2^^|`
-- Nel corpo principale del programma...
-    - Creare un oggetto con dati forniti dall'utente
-    - Visualizzare area e distanza focale dell'ellisse
+title: Esercizi
+class: segue dark
 
 ---
 
-title: 3.2 Animazione di una pallina
-figure: images/misc/street-fighter.jpg
+title: 3.1 Istogramma con barre orizzontali
+figure: images/misc/histogram-rot.png
 
-- Partire dalla classe `Ball` vista a lezione
-- Eseguire l'animazione
-    - Per ogni frame, chiamare il metodo `Move` della pallina
-    - Rappresentare un rettangolo o un cerchio nella posizione aggiornata della pallina
-- Modificare però il metodo `Move`
-    - La pallina si sposta sempre di pochi pixel in orizzontale
-    - La pallina non si sposta verticalmente
-    - Se esce dal bordo destro, ricompare al bordo sinistro e viceversa
+- Chiedere all'utente una lista di valori positivi
+    - La lista termina quando l'utente inserisce il valore `0`
+- Mostrare un istogramma
+    - Larghezza di ciascuna barra proporzionale al valore corrispondente
+    - La barra più lunga occupa tutto lo spazio disponibile
 
 ---
 
-title: 3.3 Classe degli invasori spaziali
-figure: images/misc/invaders-path.jpg
+title: 3.2 Risultati casuali
+figure: images/misc/dice.png
 
-- Creare una classe `Invader`, che contenga i dati ed il comportamento dell'alieno
-    - Campi privati: `x`, `y`, `dx`
-    - Metodo `Move` per avanzare
-    - Metodo `Position` per ottenere la posizione attuale
-- Istanziare un oggetto `Invader` e farlo muovere sullo schermo
-    - Chiamare il metodo `Move` ad ogni ciclo
-    - Visualizzare un rettangolo nella posizione corrispondente
+- Simulare `n` lanci di una coppia di dadi
+    - `n` scelto dall'utente
+- Contare quante volte si presenta ciascun risultato
+    - Risultati possibili: da 2 a 12
+    - Somma dei due dadi
 
 >
 
-Definire nella classe delle opportune costanti
+Per conteggiare i vari risultati, usare una lista di (almeno) 11 valori
 
 ---
 
-title: 3.4 Lista di invasori
+title: 3.3 Veicoli nell'arena
+figure: images/misc/frogger.png
+
+- Partire dalla classe `Vehicle`
+    - [x2_oop_vehicle.py](http://www.ce.unipr.it/brython/?x2_oop_vehicle.py)
+- Renderla una implementazione concreta di `Actor`
+    - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
+- Aggiungere i veicoli all'arena
+    - Nel metodo `__init__` chiamare `arena.add`
+    - Poi, in `tick` chiamare `arena.move_all`
+
+---
+
+title: 3.4 Rana in arena
+figure: images/misc/frogger.png
+
+- Partire dalla classe `Turtle`, per creare un personaggio `Frog`
+    - [p3_oop_bounce.py](http://www.ce.unipr.it/brython/?p3_oop_bounce.py)
+- Modificare per conteggiare i frame di un salto
+    - Es. spostare la rana di 4px, per 8 frame
+- Dopo un salto la rana si ferma
+- Mentre è in salto, la rana non accetta altri comandi
+
+---
+
+title: 3.5 Rana investita
+figure: images/misc/frogger.png
+
+- Scrivere il metodo `collide` della rana
+- Se si scontra con un veicolo, la rana muore
+    - La riportiamo alla posizione di partenza; oppure...
+    - La togliamo dall'arena e terminiamo il gioco
+
+---
+
+title: 3.6 Alieni nell'arena
 figure: images/misc/invaders-path.jpg
 
-- Riusare la classe `Invader` (es. 3.3)
-- Creare inizialmente una lista di alieni, con posizioni di partenza diverse
-    - Memorizzare la posizione di partenza di ciascun alieno in opportuni campi privati
-    - Lasciare a ciascun alieno uno spazio orizzontale di movimento di 150 pixel, a destra della posizione di partenza
-- Farli avanzare tutti ad ogni ciclo, chiamando il metodo `Move` di ciascuno di essi
+- Partire dalla classe `Alien`
+    - [p2_oop_alien.py](http://www.ce.unipr.it/brython/?p2_oop_alien.py)
+- Renderla una implementazione concreta di `Actor`
+    - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
+- Aggiungere gli alieni all'arena
+    - Nel metodo `__init__` chiamare `arena.add`
+    - Poi, in `update` chiamare `arena.move_all`
 
+---
+
+title: 3.7 Pallottole
+figure: images/misc/invaders-path.jpg
+
+- Continuare l'es. precedente
+    - [p3_oop_alien.py](http://www.ce.unipr.it/brython/?p3_oop_alien.py)
+- Aggiungere un attore `Bullet`
+    - Parte dal fondo e si muove verso l'alto
+    - Se esce dallo schermo, si rimuove dal gioco
+    - Se si scontra con un alieno, entrambi si rimuovono dal gioco
+- Nella funzione `update`, generare casualmente dei `Bullet`
+
+---
+
+title: 3.8 Mario 🤔
+
+- Modificare l'esempio `Turtle`
+- Cosiderare l'accelerazione *costante* `g` di gravità (es. `0.5`)
+- Ad ogni mossa, aggiurere `g` a `dy`
+- Permettere a `Mario` di saltare solo quando è sul fondo
+
+---
+
+title: 3.9 Piattaforme 🤔
+
+- Aggiungere all'esercizio 3.8 un classe `Wall`
+    - Rettangolo immobile
+- Quando Mario collide con una piattaforma...
+    - Si sposta al bordo della piattaforma più vicino
+    - Se atterra sul bordo superiore, da lì può saltare

@@ -141,7 +141,7 @@ code: go
 
 ---
 
-title: Tabella ASCII
+title: Tabella ASCII ⏩
 class: large-image
 
 ![](images/repr/ascii.png)
@@ -252,43 +252,46 @@ class: segue dark
 ---
 
 title: Selezione: if
+figure: images/algo/if.svg
 
 - Corpo di `if` o `else` tra graffe
     - *Indentazione* per migliore leggibilità
+    - Può contenere qualsiasi istruzione
+    - Anche altri blocchi `if` o `for` annidati!
+
+code: go
+
+    radius := ToInt(Prompt("Radius? [50-99]"))
+
+    if 50 <= radius && radius <= 99 {
+        SetColor(Color{0, 0, 255})
+        FillCircle(Point{200, 200}, radius)
+    }
+
+    SetColor(Color{255, 255, 0})
+    FillCircle(Point{200, 200}, 25)
+
+---
+
+title: Selezione: else
+figure: images/algo/if-else.svg
+
 - Clausola `else`: opzionale
     - Eseguita sse la condizione non è verificata
 
 code: go
 
-    InitCanvas(Size{400, 400})
+    radius := ToInt(Prompt("Radius? [50-99]"))
 
-    radius := ToInt(Prompt("Radius? [50-100]"))
-
-    if 50 <= radius && radius <= 100 {
+    if 50 <= radius && radius <= 99 {
+        SetColor(Color{0, 0, 255})
         FillCircle(Point{200, 200}, radius)
-    }
-
----
-
-title: Valore assoluto
-figure: images/algo/abs.svg
-
-code: go
-
-    x := ToFloat(Prompt("Insert a value"))
-    y := 0.0
-
-    if x >= 0 {
-        y = x
-        Alert(x, " is positive")
     } else {
-        y = -x
-        Alert(x, " is negative")
+        Alert("Out of range!")
     }
-    Alert("abs = ", y)
 
-- Corpo di `if` o `else`: qualsiasi istruzione
-- Anche altri blocchi `if` o `for` annidati!
+    SetColor(Color{255, 255, 0})
+    FillCircle(Point{200, 200}, 25)
 
 ---
 
@@ -359,7 +362,7 @@ code: go
 
 ---
 
-title: Cicli su N valori
+title: Ciclo  su N valori
 figure: images/algo/average.svg
 
 code: go
@@ -383,7 +386,7 @@ code: go
 
 ---
 
-title: Cicli con sentinella
+title: Ciclo con sentinella
 figure: images/algo/sentinel.svg
 
 code: go
@@ -477,38 +480,18 @@ code: go
 
 ---
 
-title: Valori casuali
-figure: images/misc/dice.png
-
-- **`g2d.RandInt`**: *generazione di numero casuale*
-    - Risultato compreso tra i due valori specificati
-
-code: go
-
-    package main
-
-    import . "g2d"
-
-    func main() {
-        die1 := RandInt(1, 6)  // like rolling a die
-        die2 := RandInt(1, 6)  // like rolling a die
-        Alert(die1, die2)
-    }
-
----
-
 title: Moduli
 
 code: go
 
     package main
 
-    import "fmt"   // Console I/O functions
-    import "math"  // Math functions
+    import "math"   // Math functions, use prefix
+    import . "g2d"  // Import everything, skip prefix
 
     func main() {
         y := math.Sin(math.Pi / 4.0)
-        fmt.Println(y)
+        Println(y)
     }
 
 code: shell
@@ -520,6 +503,26 @@ code: shell
 Sono esportati dai moduli solo i nomi con la prima lettera **maiuscola** <br>
 
 <https://golang.org/pkg/fmt> - <https://golang.org/pkg/math>
+
+---
+
+title: Valori casuali
+figure: images/misc/dice.png
+
+- **`g2d.RandInt`**: *generazione di numeri casuali*
+    - Risultato compreso tra i due valori specificati
+
+code: go
+
+    package main
+
+    import . "g2d"
+
+    func main() {
+        die1 := RandInt(1, 6)  // like rolling a die
+        die2 := RandInt(1, 6)  // like rolling a die
+        Println(die1, die2)
+    }
 
 ---
 
@@ -587,20 +590,19 @@ Cominciare a disegnare un solo quadrato grigio, in posizione casuale
 
 ---
 
-title: 1.5 Fila di quadrati
-figure: images/misc/red-squares.png
+title: 1.5 Cerchi concentrici
+figure: images/misc/red-circles.png
 
-- Chiedere all'utente un numero `n`
-- Disegnare `n` quadrati
-    - Tutti con lato di 100 pixel
-    - Tutti sulla diagonale, distanziati uniformemente
-    - Ciascuno colorato con una sfumatura di rosso via via più accesa
+- Chiedere all'utente il numero di cerchi da disegnare
+- Disegnare i cerchi con raggio gradualmente decrescente, ma tutti con lo stesso centro
+- Far variare il colore dei cerchi
+      - Dal rosso del livello più esterno
+      - Fino al nero del livello più interno
+- Prima del ciclo, determinare di quanto cambiare raggio e colore ad ogni passo
 
 >
 
-Soluzione bozza: ad ogni passo aggiungere `10` (p.es.) alla posizione e al livello di rosso
-
-Soluzione finale: determinare automaticamente, prima del ciclo, le variazioni migliori per posizione e colore
+Per iniziare, inserire l'operazione di disegno un ciclo, togliendo ad ogni passo `10` (p.es.) al raggio e al livello di rosso
 
 ---
 

@@ -93,7 +93,7 @@ if __name__ == '__main__':
         for filename in os.listdir('mdp'):
             inpath = 'mdp/' + filename
             outpath = filename[:-4] + '.html'
-            if True or (not os.path.isfile(outpath) or
+            if (not os.path.isfile(outpath) or
                 os.path.getmtime(outpath) < os.path.getmtime(inpath)):
                 process_slides(inpath, outpath)
         period = 5

@@ -475,7 +475,7 @@ figure: images/misc/frogger.png
     - Variabile `dx` indica lo spostamento da effettuare ad ogni ciclo
 - La pallina riappare dal bordo opposto, dopo un po' di tempo
     - Permettere alla `x` della pallina di superare i bordi laterali
-    - Fissare dei margini esterni di *100px" (p.es.) rispetto ai bordi dell'arena
+    - Fissare dei margini esterni di `100px` (p.es.) rispetto ai bordi dell'arena
     - Se però la `x` raggiunge uno dei margini esterni, viene riportata al margine opposto
 - Alla pressione del tasto `Enter`, la pallina inverte la direzione
 

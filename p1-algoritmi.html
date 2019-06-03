@@ -63,7 +63,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>Tipi di dati</h2>
+      <h2>Tipi di dato</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -195,17 +195,6 @@ True
  
 </slide>
 
-<slide class="large-image" >
-  
-    <hgroup>
-      <h2>Tabella ASCII</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p><img alt="" src="images/repr/ascii.png" /></p></article>
- 
-</slide>
-
 <slide  >
   
     <hgroup>
@@ -228,6 +217,17 @@ True
 &gt;&gt;&gt; ord('Z')
 90
 </code></pre></article>
+ 
+</slide>
+
+<slide class="large-image" >
+  
+    <hgroup>
+      <h2>Tabella ASCII ⏩</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/repr/ascii.png" /></p></article>
  
 </slide>
 
@@ -281,30 +281,31 @@ print("The sum is", total)
  
 </slide>
 
-<slide  >
+<slide class="large-figure" >
   
     <hgroup>
-      <h2>Moduli</h2>
+      <h2>Disegno su canvas</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li><em>Python Standard Library</em>: <a href="http://docs.python.org/3/library/">http://docs.python.org/3/library/</a></li>
+      <figure>
+        <img src="images/oop/raster-coord.png">
+        
+      </figure><ul>
+<li>Useremo un modulo <em>ad-hoc</em>: <code>g2d</code><ul>
+<li>Definisce funzioni di disegno</li>
+<li>Coordinate <em>raster</em>: origine in alto a sinistra</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>import math
-y = math.sin(math.pi / 4)
-print(y)  # √2 / 2
-</code></pre>
-<pre class="prettyprint" data-lang="py"><code>from math import sin, pi
-print(sin(pi / 4))
-</code></pre>
-<pre class="prettyprint" data-lang="py"><code>from random import randint
-die1 = randint(1, 6)  # like rolling a die
-die2 = randint(1, 6)  # like rolling a die
-print(die1, die2)
-</code></pre>
+</li>
+<li>Nel <em>playground</em>, versione integrata con Brython<ul>
+<li><a href="http://www.ce.unipr.it/brython">http://www.ce.unipr.it/brython</a></li>
+<li><a href="http://brython.info/">http://brython.info/</a></li>
+</ul>
+</li>
+</ul>
 <blockquote></blockquote>
-<p>Tutti gli <code>import</code> all'inizio dello script, per evidenziare le dipendenze</p></article>
+<p>Per l'esecuzione locale, copiare nella cartella di lavoro il file <code>g2d.py</code>, da <code>examples</code></p>
+<p><a href="https://github.com/tomamic/fondinfo/archive/master.zip">https://github.com/tomamic/fondinfo/archive/master.zip</a></p></article>
  
 </slide>
 
@@ -315,7 +316,10 @@ print(die1, die2)
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
+      <figure>
+        <img src="images/repr/additive-color.svg">
+        
+      </figure><ul>
 <li>Sequenza <strong>immutabile</strong> di valori, anche di <em>tipo diverso</em></li>
 <li>Spesso tra parentesi, per separarla da altri valori</li>
 <li>Utili anche per grafica:<ul>
@@ -334,34 +338,6 @@ some_rectangle = (150, 100, 200, 200)  # square
  
 </slide>
 
-<slide class="large-figure" >
-  
-    <hgroup>
-      <h2>Disegno su canvas</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/oop/raster-coord.png">
-        
-      </figure><ul>
-<li>Useremo un modulo <em>ad-hoc</em>: <code>g2d</code><ul>
-<li>Definisce funzioni di disegno</li>
-<li>Coordinate <em>raster</em>: origine in alto a sinistra</li>
-</ul>
-</li>
-<li>Esiste anche una versione per il browser<ul>
-<li>Genera html e lancia web-server locale</li>
-<li>Sfrutta il sistema Brython: <a href="http://brython.info/">http://brython.info/</a></li>
-</ul>
-</li>
-</ul>
-<blockquote></blockquote>
-<p>Per l'esecuzione locale, copiare nella carella di lavoro il file <code>g2d.py</code>, da <code>examples</code></p>
-<p><a href="https://github.com/tomamic/fondinfo/archive/master.zip">https://github.com/tomamic/fondinfo/archive/master.zip</a></p></article>
- 
-</slide>
-
 <slide  >
   
     <hgroup>
@@ -369,7 +345,10 @@ some_rectangle = (150, 100, 200, 200)  # square
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>import g2d
+      <figure>
+        <img src="images/oop/raster-coord.png">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
 
 g2d.init_canvas((600, 400))  # width, height
 
@@ -392,7 +371,10 @@ g2d.main_loop()  # manage the window/canvas
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>import g2d
+      <figure>
+        <img src="images/oop/raster-coord.png">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
 
 g2d.init_canvas((600, 400))
 
@@ -426,9 +408,14 @@ g2d.main_loop()
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li><strong>Indentazione</strong> del corpo di <code>if</code> o <code>else</code><ul>
-<li>Richiesta per sintassi, non opzionale!</li>
+      <figure>
+        <img src="images/algo/if.svg">
+        
+      </figure><ul>
+<li>Corpo di <code>if</code> o <code>else</code>: <strong>indentazione</strong><ul>
+<li>Richiesta per <em>sintassi</em>, non opzionale</li>
+<li>Può contenere qualsiasi istruzione</li>
+<li>Anche altri blocchi <code>if</code> o <code>while</code> annidati!</li>
 </ul>
 </li>
 </ul>
@@ -444,27 +431,27 @@ if ans == "y":
 
 g2d.fill_circle((300, 200), 150)
 g2d.main_loop()
-</code></pre>
-<ul>
-<li>Clausola <code>else</code>: opzionale<ul>
-<li>Eseguita sse la condizione non è verificata</li>
-</ul>
-</li>
-</ul></article>
+</code></pre></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>If-else</h2>
+      <h2>Selezione: else</h2>
       <h3></h3>
     </hgroup>
     <article >
       <figure>
-        <img src="images/algo/abs.svg">
+        <img src="images/algo/if-else.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+      </figure><ul>
+<li>Clausola <code>else</code>: opzionale<ul>
+<li>Eseguita sse la condizione non è verificata</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>import g2d
 g2d.init_canvas((600, 400))
 ans = g2d.prompt("Do you like red (y/n)? ")  ## same as input
 
@@ -476,11 +463,7 @@ else:
     g2d.fill_rect((100, 100, 400, 200))
 
 g2d.main_loop()
-</code></pre>
-<ul>
-<li>Corpo di <code>if</code> o <code>else</code>: qualsiasi istruzione</li>
-<li>Anche altri blocchi <code>if</code> o <code>while</code> annidati!</li>
-</ul></article>
+</code></pre></article>
  
 </slide>
 
@@ -517,7 +500,7 @@ else:
 <slide  >
   
     <hgroup>
-      <h2>Operazioni aritmetiche</h2>
+      <h2>Operazioni aritmetiche ⏩</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -634,8 +617,7 @@ if count != 0:
         
       </figure><ul>
 <li><strong><code>range</code></strong>: intervallo di valori aperto a destra<ul>
-<li>Estremo inferiore <em>incluso</em></li>
-<li>Estremo superiore <em>escluso</em></li>
+<li>Estremi: inferiore <em>incluso</em>, superiore <em>escluso</em></li>
 <li>Iterabile con un ciclo <code>for</code></li>
 </ul>
 </li>
@@ -646,9 +628,11 @@ total = 0
 for i in range(1, 11):
     total += i
 
-# total = 0;  i = 1
+# total = 0
+# i = 1
 # while i &lt; 11:
-#     total += i;  i += 1
+#     total = total + i
+#     i = i + 1
 </code></pre></article>
  
 </slide>
@@ -677,6 +661,33 @@ g2d.main_loop()
 </code></pre>
 <blockquote></blockquote>
 <p><a href="http://www.ce.unipr.it/brython/?p1_red_squares.py">http://www.ce.unipr.it/brython/?p1_red_squares.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Moduli</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><em>Python Standard Library</em>: <a href="http://docs.python.org/3/library/">http://docs.python.org/3/library/</a></li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>import math
+y = math.sin(math.pi / 4)
+print(y)  # √2 / 2
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>from math import sin, pi
+print(sin(pi / 4))
+</code></pre>
+<pre class="prettyprint" data-lang="py"><code>from random import randint
+die1 = randint(1, 6)  # like rolling a die
+die2 = randint(1, 6)  # like rolling a die
+print(die1, die2)
+</code></pre>
+<blockquote></blockquote>
+<p>Tutti gli <code>import</code> all'inizio dello script, per evidenziare le dipendenze</p></article>
  
 </slide>
 
@@ -791,25 +802,25 @@ Altrimenti ...</p></article>
 <slide  >
   
     <hgroup>
-      <h2>1.5 Fila di quadrati</h2>
+      <h2>1.5 Cerchi concentrici</h2>
       <h3></h3>
     </hgroup>
     <article >
       <figure>
-        <img src="images/misc/red-squares.png">
+        <img src="images/misc/red-circles.png">
         
       </figure><ul>
-<li>Chiedere all'utente un numero <code>n</code></li>
-<li>Disegnare <code>n</code> quadrati<ul>
-<li>Tutti con lato di 100 pixel</li>
-<li>Tutti sulla diagonale, distanziati uniformemente</li>
-<li>Ciascuno colorato con una sfumatura di rosso via via più accesa</li>
+<li>Chiedere all'utente il numero di cerchi da disegnare</li>
+<li>Disegnare i cerchi con raggio gradualmente decrescente, ma tutti con lo stesso centro</li>
+<li>Far variare il colore dei cerchi<ul>
+<li>Dal rosso del livello più esterno</li>
+<li>Fino al nero del livello più interno</li>
 </ul>
 </li>
+<li>Prima del ciclo, determinare di quanto cambiare raggio e colore ad ogni passo</li>
 </ul>
 <blockquote></blockquote>
-<p>Soluzione bozza: ad ogni passo aggiungere <code>10</code> (p.es.) alla posizione e al livello di rosso</p>
-<p>Soluzione finale: determinare automaticamente, prima del ciclo, le variazioni migliori per posizione e colore</p></article>
+<p>Per iniziare, inserire l'operazione di disegno un ciclo, togliendo ad ogni passo <code>10</code> (p.es.) al raggio e al livello di rosso</p></article>
  
 </slide>
 

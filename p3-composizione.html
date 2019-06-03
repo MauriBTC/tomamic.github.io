@@ -122,7 +122,7 @@ if "egg" in grocery:       # True, grocery contains "egg"
 <slide  >
   
     <hgroup>
-      <h2>Uguaglianza e identità</h2>
+      <h2>Uguaglianza e identità 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -144,7 +144,7 @@ grocery = c + d  # list concatenation --&gt; new list!
 <slide  >
   
     <hgroup>
-      <h2>Stringhe e liste</h2>
+      <h2>Stringhe e liste 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -218,7 +218,7 @@ for product in grocery:
 <slide  >
   
     <hgroup>
-      <h2>Funzioni su liste</h2>
+      <h2>Funzioni su liste 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -742,28 +742,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.3 Lista di veicoli</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/misc/frogger.png">
-        
-      </figure><ul>
-<li>Riusare la classe <code>Vehicle</code><ul>
-<li><a href="http://www.ce.unipr.it/brython/?x2_oop_vehicle.py">x2_oop_vehicle.py</a></li>
-</ul>
-</li>
-<li>Creare inizialmente una lista di veicoli, con posizioni e direzioni iniziali diverse</li>
-<li>Farli avanzare tutti ad ogni ciclo, chiamando il metodo <code>move</code> di ciascuno di essi</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>3.4 Veicoli nell'arena</h2>
+      <h2>3.3 Veicoli nell'arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -781,7 +760,7 @@ g2d.main_loop(tick)
 </li>
 <li>Aggiungere i veicoli all'arena<ul>
 <li>Nel metodo <code>__init__</code> chiamare <code>arena.add</code></li>
-<li>Poi, in <code>update</code> chiamare <code>arena.move_all</code></li>
+<li>Poi, in <code>tick</code> chiamare <code>arena.move_all</code></li>
 </ul>
 </li>
 </ul></article>
@@ -791,7 +770,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.5 Rana in arena</h2>
+      <h2>3.4 Rana in arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -816,7 +795,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.6 Rana investita</h2>
+      <h2>3.5 Rana investita</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -837,28 +816,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.7 Lista di alieni</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/misc/invaders-path.jpg">
-        
-      </figure><ul>
-<li>Riusare la classe <code>Alien</code><ul>
-<li><a href="http://www.ce.unipr.it/brython/?p2_oop_alien.py">p2_oop_alien.py</a></li>
-</ul>
-</li>
-<li>Creare inizialmente una lista di alieni, con posizioni di partenza diverse</li>
-<li>Farli avanzare tutti ad ogni ciclo, chiamando il metodo <code>move</code> di ciascuno di essi</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>3.8 Alieni nell'arena</h2>
+      <h2>3.6 Alieni nell'arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -886,7 +844,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.9 Pallottole</h2>
+      <h2>3.7 Pallottole</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -905,6 +863,43 @@ g2d.main_loop(tick)
 </ul>
 </li>
 <li>Nella funzione <code>update</code>, generare casualmente dei <code>Bullet</code></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.8 Mario 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Modificare l'esempio <code>Turtle</code></li>
+<li>Cosiderare l'accelerazione <em>costante</em> <code>g</code> di gravità (es. <code>0.5</code>)</li>
+<li>Ad ogni mossa, aggiurere <code>g</code> a <code>dy</code></li>
+<li>Permettere a <code>Mario</code> di saltare solo quando è sul fondo</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.9 Piattaforme 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Aggiungere all'esercizio 3.8 un classe <code>Wall</code><ul>
+<li>Rettangolo immobile</li>
+</ul>
+</li>
+<li>Quando Mario collide con una piattaforma...<ul>
+<li>Si sposta al bordo della piattaforma più vicino</li>
+<li>Se atterra sul bordo superiore, da lì può saltare</li>
+</ul>
+</li>
 </ul></article>
  
 </slide>

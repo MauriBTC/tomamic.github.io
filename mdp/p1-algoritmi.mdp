@@ -18,7 +18,7 @@ title: Applicazioni in Python
 
 ---
 
-title: Tipi di dati
+title: Tipi di dato
 
 - Un **tipo di dato** specifica un insieme di *valori* e le *operazioni* ammesse
     - `int, float, bool, str`
@@ -113,13 +113,6 @@ code: py
 
 ---
 
-title: Tabella ASCII
-class: large-image
-
-![](images/repr/ascii.png)
-
----
-
 title: Confronto tra stringhe
 
 - Confronto tra stringhe, in ordine *lessicografico*
@@ -135,6 +128,13 @@ code: py
     'Z'
     >>> ord('Z')
     90
+
+---
+
+title: Tabella ASCII ⏩
+class: large-image
+
+![](images/repr/ascii.png)
 
 ---
 
@@ -171,35 +171,27 @@ code: py
 
 ---
 
-title: Moduli
+title: Disegno su canvas
+figure: images/oop/raster-coord.png
+class: large-figure
 
-- *Python Standard Library*: <http://docs.python.org/3/library/>
-
-code: py
-
-    import math
-    y = math.sin(math.pi / 4)
-    print(y)  # √2 / 2
-
-code: py
-
-    from math import sin, pi
-    print(sin(pi / 4))
-
-code: py
-
-    from random import randint
-    die1 = randint(1, 6)  # like rolling a die
-    die2 = randint(1, 6)  # like rolling a die
-    print(die1, die2)
+- Useremo un modulo *ad-hoc*: `g2d`
+    - Definisce funzioni di disegno
+    - Coordinate *raster*: origine in alto a sinistra
+- Nel *playground*, versione integrata con Brython
+    - <http://www.ce.unipr.it/brython>
+    - <http://brython.info/>
 
 >
 
-Tutti gli `import` all'inizio dello script, per evidenziare le dipendenze
+Per l'esecuzione locale, copiare nella cartella di lavoro il file `g2d.py`, da `examples`
+
+<https://github.com/tomamic/fondinfo/archive/master.zip>
 
 ---
 
 title: Tupla
+figure: images/repr/additive-color.svg
 
 - Sequenza **immutabile** di valori, anche di *tipo diverso*
 - Spesso tra parentesi, per separarla da altri valori
@@ -218,26 +210,8 @@ code: py
 
 ---
 
-title: Disegno su canvas
-figure: images/oop/raster-coord.png
-class: large-figure
-
-- Useremo un modulo *ad-hoc*: `g2d`
-    - Definisce funzioni di disegno
-    - Coordinate *raster*: origine in alto a sinistra
-- Esiste anche una versione per il browser
-    - Genera html e lancia web-server locale
-    - Sfrutta il sistema Brython: <http://brython.info/>
-
->
-
-Per l'esecuzione locale, copiare nella carella di lavoro il file `g2d.py`, da `examples`
-
-<https://github.com/tomamic/fondinfo/archive/master.zip>
-
----
-
 title: Rettangoli e cerchi
+figure: images/oop/raster-coord.png
 
 code: py
 
@@ -257,6 +231,7 @@ code: py
 ---
 
 title: Linee e testi
+figure: images/oop/raster-coord.png
 
 code: py
 
@@ -284,9 +259,12 @@ class: segue dark
 ---
 
 title: Selezione: if
+figure: images/algo/if.svg
 
-- **Indentazione** del corpo di `if` o `else`
-    - Richiesta per sintassi, non opzionale!
+- Corpo di `if` o `else`: **indentazione**
+    - Richiesta per *sintassi*, non opzionale
+    - Può contenere qualsiasi istruzione
+    - Anche altri blocchi `if` o `while` annidati!
 
 > Readability counts *(The Zen of Python)*
 
@@ -302,13 +280,13 @@ code: py
     g2d.fill_circle((300, 200), 150)
     g2d.main_loop()
 
-- Clausola `else`: opzionale
-    - Eseguita sse la condizione non è verificata
-
 ---
 
-title: If-else
-figure: images/algo/abs.svg
+title: Selezione: else
+figure: images/algo/if-else.svg
+
+- Clausola `else`: opzionale
+    - Eseguita sse la condizione non è verificata
 
 code: py
 
@@ -324,10 +302,6 @@ code: py
         g2d.fill_rect((100, 100, 400, 200))
 
     g2d.main_loop()
-
-
-- Corpo di `if` o `else`: qualsiasi istruzione
-- Anche altri blocchi `if` o `while` annidati!
 
 ---
 
@@ -353,7 +327,7 @@ code: py
 
 ---
 
-title: Operazioni aritmetiche
+title: Operazioni aritmetiche ⏩
 figure: images/algo/calc.svg
 
 code: py
@@ -442,8 +416,7 @@ title: Intervalli di valori: range
 figure: images/algo/sum10.svg
 
 - **`range`**: intervallo di valori aperto a destra
-    - Estremo inferiore *incluso*
-    - Estremo superiore *escluso*
+    - Estremi: inferiore *incluso*, superiore *escluso*
     - Iterabile con un ciclo `for`
 
 code: py
@@ -454,9 +427,11 @@ code: py
     for i in range(1, 11):
         total += i
 
-    # total = 0;  i = 1
+    # total = 0
+    # i = 1
     # while i < 11:
-    #     total += i;  i += 1
+    #     total = total + i
+    #     i = i + 1
 
 ---
 
@@ -480,6 +455,34 @@ code: py
 >
 
 <http://www.ce.unipr.it/brython/?p1_red_squares.py>
+
+---
+
+title: Moduli
+
+- *Python Standard Library*: <http://docs.python.org/3/library/>
+
+code: py
+
+    import math
+    y = math.sin(math.pi / 4)
+    print(y)  # √2 / 2
+
+code: py
+
+    from math import sin, pi
+    print(sin(pi / 4))
+
+code: py
+
+    from random import randint
+    die1 = randint(1, 6)  # like rolling a die
+    die2 = randint(1, 6)  # like rolling a die
+    print(die1, die2)
+
+>
+
+Tutti gli `import` all'inizio dello script, per evidenziare le dipendenze
 
 ---
 
@@ -547,20 +550,19 @@ Cominciare a disegnare un solo quadrato grigio, in posizione casuale
 
 ---
 
-title: 1.5 Fila di quadrati
-figure: images/misc/red-squares.png
+title: 1.5 Cerchi concentrici
+figure: images/misc/red-circles.png
 
-- Chiedere all'utente un numero `n`
-- Disegnare `n` quadrati
-    - Tutti con lato di 100 pixel
-    - Tutti sulla diagonale, distanziati uniformemente
-    - Ciascuno colorato con una sfumatura di rosso via via più accesa
+- Chiedere all'utente il numero di cerchi da disegnare
+- Disegnare i cerchi con raggio gradualmente decrescente, ma tutti con lo stesso centro
+- Far variare il colore dei cerchi
+      - Dal rosso del livello più esterno
+      - Fino al nero del livello più interno
+- Prima del ciclo, determinare di quanto cambiare raggio e colore ad ogni passo
 
 >
 
-Soluzione bozza: ad ogni passo aggiungere `10` (p.es.) alla posizione e al livello di rosso
-
-Soluzione finale: determinare automaticamente, prima del ciclo, le variazioni migliori per posizione e colore
+Per iniziare, inserire l'operazione di disegno un ciclo, togliendo ad ogni passo `10` (p.es.) al raggio e al livello di rosso
 
 ---
 

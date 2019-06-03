@@ -53,14 +53,13 @@ figure: images/misc/red-circles.png
 - Chiedere all'utente il numero di cerchi da disegnare
 - Disegnare i cerchi con raggio gradualmente decrescente, ma tutti con lo stesso centro
 - Far variare il colore dei cerchi
-	  - Dal rosso del livello più esterno
-	  - Fino al nero del livello più interno
+      - Dal rosso del livello più esterno
+      - Fino al nero del livello più interno
 - Prima del ciclo, determinare di quanto cambiare raggio e colore ad ogni passo
 
 >
 
 Per iniziare, inserire l'operazione di disegno un ciclo, togliendo ad ogni passo `10` (p.es.) al raggio e al livello di rosso
-
 
 ---
 
@@ -523,15 +522,15 @@ title: 5.1 Trascrizione da file
 
 code: Input
 
-	Python is a <multi-paradigm> <programming language>.
-	It is intended to be a highly readable language.
-	Its philosophy is summarized by <The Zen of Python>.
+    Python is a <multi-paradigm> <programming language>.
+    It is intended to be a highly readable language.
+    Its philosophy is summarized by <The Zen of Python>.
 
 code: Ouput
 
-	multi-paradigm|programming language
+    multi-paradigm|programming language
 
-	The Zen of Python
+    The Zen of Python
 
 ---
 
@@ -557,7 +556,7 @@ title: 5.3 Comma Separated Values
 - Leggere una matrice di float da un file testuale *CSV*
     - Valori riportati riga per riga e separati da una virgola
 - Memorizzare i dati in una matrice
-	- Una riga della matrice per ogni riga del file
+    - Una riga della matrice per ogni riga del file
 - Riscrivere in un altro file *CSV* il risultato di `smooth` (es. 5.2) sulla matrice
 
 code: Input
@@ -592,11 +591,11 @@ figure: images/misc/skyscrapers.jpg
 
 - Leggere matrice di numeri da file CSV
 - Per ogni riga, contare quante volte cambia il massimo
-	- Da sinistra verso destra
-	- Da destra verso sinistra
+    - Da sinistra verso destra
+    - Da destra verso sinistra
 - Per ogni colonna, contare quante volte cambia il massimo
-	- Dall'alto verso il basso
-	- Dal basso verso l'alto
+    - Dall'alto verso il basso
+    - Dal basso verso l'alto
 - Mostrare all'utente i risultati
 
 ---
@@ -652,8 +651,8 @@ title: 6.2 Rappresentazione in binario
 figure: images/repr/4bits.png
 
 - Funzione per rappresentare un numero positivo `n` con una stringa binaria (senza zeri iniziali)
-	- Parametro `n`: `int`
-	- Risultato: `str`
+    - Parametro `n`: `int`
+    - Risultato: `str`
 - Se `n == 0`: finito
 - Altrimenti
     - Se `n` dispari, *`last`* (l'ultima cifra) è `'1'`, altrimenti `'0'`
@@ -670,8 +669,8 @@ title: 6.3 Smooth 3x3
 figure: images/fun/neighborhood8.png
 
 - Scrivere una diversa funzione `smooth`
-	- Parametri: matrice (come semplice lista) e dimensioni
-	- Risultato: nuova matrice (come semplice lista)
+    - Parametri: matrice (come semplice lista) e dimensioni
+    - Risultato: nuova matrice (come semplice lista)
 - In questo caso, l'intorno comprende anche le celle adiacenti in diagonale
     - Calcolare la media tra 9 valori, attorno alla cella considerata
     - Attenzione però alle celle sui bordi: sommare e contare solo i valori disponibili
@@ -708,11 +707,11 @@ figure: images/misc/skyscrapers.jpg
 
 code: matrix
 
-	0 0 0 0 0
-	0 1 2 3 1
-	0 3 1 2 0
-	2 2 3 1 0
-	0 0 0 3 0
+    0 0 0 0 0
+    0 1 2 3 1
+    0 3 1 2 0
+    2 2 3 1 0
+    0 0 0 3 0
 
 >
 
@@ -737,8 +736,8 @@ figure: images/misc/donkey-kong.png
 
 - Quando i barili arrivano in basso, possono infuocarsi, o uscire dal gioco
 - *Barili infuocati*
-	- Si muovono in orizzontale, casualmente
-	- Se incontrano una scala, casualmente possono decidere di salire
+    - Si muovono in orizzontale, casualmente
+    - Se incontrano una scala, casualmente possono decidere di salire
 - *Scale interrotte*
     - Mario non può passare
     - Barili possono scendere

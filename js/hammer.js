@@ -13,9 +13,9 @@ function Hammer(element, options, undefined)
         prevent_default    : false,
         css_hacks          : true,
 
-        drag               : true,
-        drag_vertical      : true,
-        drag_horizontal    : true,
+        drag               : false,
+        drag_vertical      : false,
+        drag_horizontal    : false,
         // minimum distance before the drag event starts
         drag_min_distance  : 20, // pixels
 

@@ -231,7 +231,7 @@ Println('🌐' == 127760)      // true
 <slide class="large-image" >
   
     <hgroup>
-      <h2>Tabella ASCII</h2>
+      <h2>Tabella ASCII ⏩</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -383,23 +383,26 @@ DrawText("Hello", Point{150, 100}, 40)
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
+      <figure>
+        <img src="images/algo/if.svg">
+        
+      </figure><ul>
 <li>Corpo di <code>if</code> o <code>else</code> tra graffe<ul>
 <li><em>Indentazione</em> per migliore leggibilità</li>
+<li>Può contenere qualsiasi istruzione</li>
+<li>Anche altri blocchi <code>if</code> o <code>for</code> annidati!</li>
 </ul>
 </li>
-<li>Clausola <code>else</code>: opzionale<ul>
-<li>Eseguita sse la condizione non è verificata</li>
 </ul>
-</li>
-</ul>
-<pre class="prettyprint" data-lang="go"><code>InitCanvas(Size{400, 400})
+<pre class="prettyprint" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
 
-radius := ToInt(Prompt("Radius? [50-100]"))
-
-if 50 &lt;= radius &amp;&amp; radius &lt;= 100 {
+if 50 &lt;= radius &amp;&amp; radius &lt;= 99 {
+    SetColor(Color{0, 0, 255})
     FillCircle(Point{200, 200}, radius)
 }
+
+SetColor(Color{255, 255, 0})
+FillCircle(Point{200, 200}, 25)
 </code></pre></article>
  
 </slide>
@@ -407,29 +410,31 @@ if 50 &lt;= radius &amp;&amp; radius &lt;= 100 {
 <slide  >
   
     <hgroup>
-      <h2>Valore assoluto</h2>
+      <h2>Selezione: else</h2>
       <h3></h3>
     </hgroup>
     <article >
       <figure>
-        <img src="images/algo/abs.svg">
+        <img src="images/algo/if-else.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>x := ToFloat(Prompt("Insert a value"))
-y := 0.0
+      </figure><ul>
+<li>Clausola <code>else</code>: opzionale<ul>
+<li>Eseguita sse la condizione non è verificata</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
 
-if x &gt;= 0 {
-    y = x
-    Alert(x, " is positive")
+if 50 &lt;= radius &amp;&amp; radius &lt;= 99 {
+    SetColor(Color{0, 0, 255})
+    FillCircle(Point{200, 200}, radius)
 } else {
-    y = -x
-    Alert(x, " is negative")
+    Alert("Out of range!")
 }
-Alert("abs = ", y)
-</code></pre>
-<ul>
-<li>Corpo di <code>if</code> o <code>else</code>: qualsiasi istruzione</li>
-<li>Anche altri blocchi <code>if</code> o <code>for</code> annidati!</li>
-</ul></article>
+
+SetColor(Color{255, 255, 0})
+FillCircle(Point{200, 200}, 25)
+</code></pre></article>
  
 </slide>
 
@@ -520,7 +525,7 @@ Alert("The sum is ", total)
 <slide  >
   
     <hgroup>
-      <h2>Cicli su N valori</h2>
+      <h2>Ciclo  su N valori</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -551,7 +556,7 @@ if count != 0 {
 <slide  >
   
     <hgroup>
-      <h2>Cicli con sentinella</h2>
+      <h2>Ciclo con sentinella</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -663,6 +668,31 @@ for i := 0; i &lt; 5; i++ {
 <slide  >
   
     <hgroup>
+      <h2>Moduli</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="go"><code>package main
+
+import "math"   // Math functions, use prefix
+import . "g2d"  // Import everything, skip prefix
+
+func main() {
+    y := math.Sin(math.Pi / 4.0)
+    Println(y)
+}
+</code></pre>
+<pre class="prettyprint" data-lang="shell"><code>go run hello.go
+</code></pre>
+<blockquote></blockquote>
+<p>Sono esportati dai moduli solo i nomi con la prima lettera <strong>maiuscola</strong> <br></p>
+<p><a href="https://golang.org/pkg/fmt">https://golang.org/pkg/fmt</a> - <a href="https://golang.org/pkg/math">https://golang.org/pkg/math</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Valori casuali</h2>
       <h3></h3>
     </hgroup>
@@ -671,7 +701,7 @@ for i := 0; i &lt; 5; i++ {
         <img src="images/misc/dice.png">
         
       </figure><ul>
-<li><strong><code>g2d.RandInt</code></strong>: <em>generazione di numero casuale</em><ul>
+<li><strong><code>g2d.RandInt</code></strong>: <em>generazione di numeri casuali</em><ul>
 <li>Risultato compreso tra i due valori specificati</li>
 </ul>
 </li>
@@ -683,34 +713,9 @@ import . "g2d"
 func main() {
     die1 := RandInt(1, 6)  // like rolling a die
     die2 := RandInt(1, 6)  // like rolling a die
-    Alert(die1, die2)
+    Println(die1, die2)
 }
 </code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Moduli</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint" data-lang="go"><code>package main
-
-import "fmt"   // Console I/O functions
-import "math"  // Math functions
-
-func main() {
-    y := math.Sin(math.Pi / 4.0)
-    fmt.Println(y)
-}
-</code></pre>
-<pre class="prettyprint" data-lang="shell"><code>go run hello.go
-</code></pre>
-<blockquote></blockquote>
-<p>Sono esportati dai moduli solo i nomi con la prima lettera <strong>maiuscola</strong> <br></p>
-<p><a href="https://golang.org/pkg/fmt">https://golang.org/pkg/fmt</a> - <a href="https://golang.org/pkg/math">https://golang.org/pkg/math</a></p></article>
  
 </slide>
 
@@ -825,25 +830,25 @@ Altrimenti ...</p></article>
 <slide  >
   
     <hgroup>
-      <h2>1.5 Fila di quadrati</h2>
+      <h2>1.5 Cerchi concentrici</h2>
       <h3></h3>
     </hgroup>
     <article >
       <figure>
-        <img src="images/misc/red-squares.png">
+        <img src="images/misc/red-circles.png">
         
       </figure><ul>
-<li>Chiedere all'utente un numero <code>n</code></li>
-<li>Disegnare <code>n</code> quadrati<ul>
-<li>Tutti con lato di 100 pixel</li>
-<li>Tutti sulla diagonale, distanziati uniformemente</li>
-<li>Ciascuno colorato con una sfumatura di rosso via via più accesa</li>
+<li>Chiedere all'utente il numero di cerchi da disegnare</li>
+<li>Disegnare i cerchi con raggio gradualmente decrescente, ma tutti con lo stesso centro</li>
+<li>Far variare il colore dei cerchi<ul>
+<li>Dal rosso del livello più esterno</li>
+<li>Fino al nero del livello più interno</li>
 </ul>
 </li>
+<li>Prima del ciclo, determinare di quanto cambiare raggio e colore ad ogni passo</li>
 </ul>
 <blockquote></blockquote>
-<p>Soluzione bozza: ad ogni passo aggiungere <code>10</code> (p.es.) alla posizione e al livello di rosso</p>
-<p>Soluzione finale: determinare automaticamente, prima del ciclo, le variazioni migliori per posizione e colore</p></article>
+<p>Per iniziare, inserire l'operazione di disegno un ciclo, togliendo ad ogni passo <code>10</code> (p.es.) al raggio e al livello di rosso</p></article>
  
 </slide>
 
