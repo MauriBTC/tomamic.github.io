@@ -412,6 +412,24 @@ code: py
 
 ---
 
+title: Quadrato perfetto 🤔
+figure: images/algo/perfect-square.svg
+
+code: py
+
+    n = int(input("n? "))
+
+    i = 1
+    while i * i < n:
+        i += 1
+
+    if i * i == n:
+        print(i)
+    else:
+        print("No")
+
+---
+
 title: Intervalli di valori: range
 figure: images/algo/sum10.svg
 

@@ -324,7 +324,7 @@ func main() {
     return x + dx, y + dy, dx, dy
 }
 </code></pre>
-<p><a href="http://www.ce.unipr.it/brython/?go2_fun_ball.go">http://www.ce.unipr.it/brython/?go2_fun_ball.go</a></p></article>
+<p><a href="http://www.ce.unipr.it/gopherjs/?p2_fun_ball.go">http://www.ce.unipr.it/gopherjs/?p2_fun_ball.go</a></p></article>
  
 </slide>
 
@@ -492,8 +492,8 @@ p = nil          // ptr to nothing
     dx, dy  int
 }
 
-func NewBall(x, y int) *Ball {
-    b := &amp;Ball{x, y, 20, 20, 5, 5}
+func NewBall(pos Point) *Ball {
+    b := &amp;Ball{pos.X, pos.Y, 20, 20, 5, 5}
     return b
 }
 </code></pre></article>
@@ -518,7 +518,7 @@ func NewBall(x, y int) *Ball {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>ball := NewBall(40, 80)  // Allocation and initialization
+<pre class="prettyprint" data-lang="go"><code>ball := NewBall(Point{40, 80})  // Allocation and initialization
 </code></pre></article>
  
 </slide>
@@ -562,8 +562,8 @@ func (b *Ball) Move() {
 }
 
 func main() {
-    b1 := NewBall(40, 80)  // Create two objects,
-    b2 := NewBall(80, 40)  // instances of the Ball class
+    b1 := NewBall(Point{40, 80})  // Create two objects,
+    b2 := NewBall(Point{80, 40})  // instances of the Ball class
 
     for i := 0; i &lt; 25; i++ {
         b1.Move()
@@ -585,15 +585,15 @@ func main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>var b1 = NewBall(40, 80)
-var b2 = NewBall(80, 40)
+      <pre class="prettyprint" data-lang="go"><code>var b1 = NewBall(Point{40, 80})
+var b2 = NewBall(Point{80, 40})
 
 func tick() {
+    ClearCanvas()            // BG
     b1.Move()
     b2.Move()
-    ClearCanvas()                                  // BG
-    FillRect(Color{200, 100, 100}, b1.Position())  // FG
-    FillRect(Color{100, 100, 200}, b2.Position())  // FG
+    FillRect(b1.Position())  // FG
+    FillRect(b2.Position())  // FG
 }
 
 func main() {
@@ -667,9 +667,7 @@ func main() {
 <li>Stampa il risultato ottenuto</li>
 </ul>
 </li>
-</ul>
-<blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/brython/?x21_fun_ellipse.py">http://www.ce.unipr.it/brython/?x21_fun_ellipse.py</a></p></article>
+</ul></article>
  
 </slide>
 

@@ -220,7 +220,7 @@ code: go
         return x + dx, y + dy, dx, dy
     }
 
-<http://www.ce.unipr.it/brython/?go2_fun_ball.go>
+<http://www.ce.unipr.it/gopherjs/?p2_fun_ball.go>
 
 ---
 
@@ -327,8 +327,8 @@ code: go
         dx, dy  int
     }
 
-    func NewBall(x, y int) *Ball {
-        b := &Ball{x, y, 20, 20, 5, 5}
+    func NewBall(pos Point) *Ball {
+        b := &Ball{pos.X, pos.Y, 20, 20, 5, 5}
         return b
     }
 
@@ -344,7 +344,7 @@ figure: images/oop/bob-builder.jpg
 
 code: go
 
-    ball := NewBall(40, 80)  // Allocation and initialization
+    ball := NewBall(Point{40, 80})  // Allocation and initialization
 
 ---
 
@@ -379,8 +379,8 @@ code: go
     }
 
     func main() {
-        b1 := NewBall(40, 80)  // Create two objects,
-        b2 := NewBall(80, 40)  // instances of the Ball class
+        b1 := NewBall(Point{40, 80})  // Create two objects,
+        b2 := NewBall(Point{80, 40})  // instances of the Ball class
 
         for i := 0; i < 25; i++ {
             b1.Move()
@@ -400,15 +400,15 @@ title: Animazione di due palline
 
 code: go
 
-    var b1 = NewBall(40, 80)
-    var b2 = NewBall(80, 40)
+    var b1 = NewBall(Point{40, 80})
+    var b2 = NewBall(Point{80, 40})
 
     func tick() {
+        ClearCanvas()            // BG
         b1.Move()
         b2.Move()
-        ClearCanvas()                                  // BG
-        FillRect(Color{200, 100, 100}, b1.Position())  // FG
-        FillRect(Color{100, 100, 200}, b2.Position())  // FG
+        FillRect(b1.Position())  // FG
+        FillRect(b2.Position())  // FG
     }
 
     func main() {
@@ -449,10 +449,6 @@ figure: images/misc/ellipse.svg
     - Chiede all'utente due valori
     - Invoca la funzione `EllipseArea` con questi parametri
     - Stampa il risultato ottenuto
-
->
-
-<http://www.ce.unipr.it/brython/?x21_fun_ellipse.py>
 
 ---
 
@@ -558,68 +554,3 @@ figure: images/misc/spiral-circles.png
 - Implementare il movimento in un metodo `Move()`
 - Campi: `xc`, `yc`, `i`
     - `i` conta i passi; se eccede il limite, torna a 0
-
----
-
-title: Modulo main 🤔
-class: break
-
-- Nome del modulo in esecuzione: `__name__`
-    - É il nome del file, senza estensione
-- Il modulo di avvio dell'app ha nome speciale
-    - In *CPython*, nome `"__main__"`
-    - In *Brython* nome `"script..."`; il “trucco” non funziona
-
-code: py
-
-    # def hypotenuse ...
-    def main():
-        side1 = float(input("1st side? "))
-        side2 = float(input("2nd side? "))
-        print("3rd side:", hypotenuse(side1, side2))
-
-    # if this module is imported, main is not executed
-    if __name__ == "__main__":
-        main()
-
----
-
-title: Ciclo di vita di un oggetto 🤔
-figure: images/dev/garbage-truck.jpg
-
-- Creazione di un oggetto: allocata memoria per tenere lo stato dell’oggetto
-- In Python: variabile = riferimento ad un oggetto
-    - *Oggetti*: *allocazione dinamica*, in memoria *heap*
-    - *Variabili*: *allocazione automatica*, in memoria *stack*
-- Oggetto non più associato a nessuna variabile: necessario liberare memoria
-- **Garbage collection**: gestione automatica della restituzione di memoria
-
----
-
-title: Garbage collection 🤔
-
-- Vantaggi
-    - Non è possibile dimenticare di liberare la memoria (*memory leak*)
-    - Non è possibile liberare della memoria che dovrà essere utilizzata in seguito (*dangling pointer*)
-- Svantaggi
-    - Decide autonomamente quando liberare la memoria
-    - Liberare e compattare la memoria richiede del calcolo
-- Diversi algoritmi
-    - *Reference counting*: idea di base, ma cicli…
-    - *Mark & sweep*: parte da riferimenti locali/globali, marca oggetti raggiungibili
-    - *Generational garbage collection*: controlla spesso oggetti recenti
-
----
-
-title: 2.6 Spirale
-figure: images/misc/spiral-circles.png
-
-- Mostrare l'*animazione* di un cerchio lungo una spirale
-- Ruotare attorno ad un centro fisso `(xc, yc)`
-- Amentare dist. `r` dal centro ad ogni passo
-- Cancellare lo sfondo ad ogni passo
-- Disegnare un cerchio sempre più grande
-- Dopo `n` passi, ricominciare daccapo
-
-
-
