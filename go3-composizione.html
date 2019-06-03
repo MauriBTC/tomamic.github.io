@@ -43,7 +43,7 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <figure>
-        <img src="images/fun/shopping-list.jpg">
+        <img src="images/fun/shopping-list.png">
         
       </figure><ul>
 <li>Sequenza di elementi, dello stesso <strong>tipo</strong><ul>
@@ -55,7 +55,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>toBuy := []string{"spam", "eggs", "beans"}
+<pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
 </code></pre>
 <pre class="prettyprint" data-lang="go"><code>rainfallData := []int{13, 24, 18, 15}
 </code></pre>
@@ -81,15 +81,18 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>toBuy := []string{"spam", "eggs", "beans", "bacon"}
-n := len(toBuy)        // 4
+<pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans", "bacon"}
+n := len(grocery)       // 4
 
-Println(toBuy[0])      // "spam"
-Println(toBuy[1])      // "eggs"
-Println(toBuy[n-1])    // "bacon"
+Println(grocery[0])     // "spam"
+Println(grocery[1])     // "eggs"
+Println(grocery[n-1])   // "bacon"
 
-toBuy[1] = "ketchup"   // replace a value
-Println(toBuy[1])      // "ketchup"
+grocery[1] = "ketchup"  // replace a value, len is still 4
+Println(grocery)
+
+grocery = append(grocery, "sausage")  // add to the end, len is 5
+Println(grocery)                      // guess!
 </code></pre></article>
  
 </slide>
@@ -97,7 +100,58 @@ Println(toBuy[1])      // "ketchup"
 <slide  >
   
     <hgroup>
-      <h2>Porzioni di lista</h2>
+      <h2>Cicli su liste: for</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/shopping-list.jpg">
+        
+      </figure><pre class="prettyprint" data-lang="go"><code>shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
+
+Println("Your shopping list contains:")
+
+for _, value := range shoppingList {
+    fmt.Println(value)
+}
+// for index, value := range shoppingList {
+//    fmt.Println(index, value)
+// }
+</code></pre>
+<ul>
+<li>Ad ogni iterazione, a <code>value</code> è assegnato un diverso elemento della lista <code>shoppingList</code></li>
+<li><code>index</code> e/o <code>value</code> possono essere omessi (sostituiti con <code>_</code>)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli su stringhe: for 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Si può usare un ciclo <code>for</code> su qualsiasi sequenza</li>
+<li>Anche su <em>stringa</em>: sequenza <em>immutabile</em> di caratteri (UTF-8)</li>
+</ul>
+<pre class="prettyprint" data-lang="go"><code>for index, value := range "Hello, 🌐!" {
+    fmt.Println(index, value)
+}
+
+for _, x := range "Hello, 🌐!" {
+    fmt.Printf("%c  ", x)  // in package fmt
+    fmt.Printf("%d\n", x)  // &lt;https://golang.org/pkg/fmt/&gt;
+}
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Porzioni di lista 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -127,22 +181,22 @@ wholeYear := months[:]      // The whole list
 <slide  >
   
     <hgroup>
-      <h2>Concatenazione, rimozione</h2>
+      <h2>Concatenazione, rimozione 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>toBuy := []string{"spam", "eggs", "beans"}
-Println(toBuy)
+      <pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
+Println(grocery)
 
-toBuy = append(toBuy, "bacon")          // add to the end
-Println(toBuy)
+grocery = append(grocery, "bacon")          // add to the end
+Println(grocery)
 
 moreStuff := []string{"sausage", "mushrooms"}
-toBuy = append(toBuy, moreStuff...)     // concatenation
-Println(toBuy)
+grocery = append(grocery, moreStuff...)     // concatenation
+Println(grocery)
 
-toBuy = append(toBuy[:2], toBuy[3:]...)  // remove val @ 2
-Println(toBuy)
+grocery = append(grocery[:2], grocery[3:]...)  // remove val @ 2
+Println(grocery)
 </code></pre>
 <blockquote></blockquote>
 <p><a href="https://github.com/golang/go/wiki/SliceTricks">https://github.com/golang/go/wiki/SliceTricks</a></p></article>
@@ -152,7 +206,7 @@ Println(toBuy)
 <slide  >
   
     <hgroup>
-      <h2>Stringhe e liste</h2>
+      <h2>Stringhe e liste 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -169,54 +223,6 @@ someTxt := strings.Join(someDays, "|")
 otherTxt := "mon|wed|fri|sun"
 otherDays := strings.Split(otherTxt, "|")
 // a list of strings: {"mon", "wed", "fri", "sun"}
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Cicli su liste: for</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint" data-lang="go"><code>shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
-
-Println("Your shopping list contains:")
-
-for _, value := range shoppingList {
-    fmt.Println(value)
-}
-// for index, value := range shoppingList {
-//    fmt.Println(index, value)
-// }
-</code></pre>
-<ul>
-<li>Ad ogni iterazione, a <code>value</code> è assegnato un diverso elemento della lista <code>shoppingList</code></li>
-<li><code>index</code> e/o <code>value</code> possono essere omessi (sostituiti con <code>_</code>)</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Cicli su stringhe: for</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Si può usare un ciclo <code>for</code> su qualsiasi sequenza</li>
-<li>Anche su <em>stringa</em>: sequenza <em>immutabile</em> di caratteri (UTF-8)</li>
-</ul>
-<pre class="prettyprint" data-lang="go"><code>for index, value := range "Hello, 🌐!" {
-    fmt.Println(index, value)
-}
-
-for _, x := range "Hello, 🌐!" {
-    fmt.Printf("%c  ", x)  // in package fmt
-    fmt.Printf("%d\n", x)  // &lt;https://golang.org/pkg/fmt/&gt;
-}
 </code></pre></article>
  
 </slide>

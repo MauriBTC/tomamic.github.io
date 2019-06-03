@@ -43,24 +43,20 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <figure>
-        <img src="images/fun/month-list.svg">
+        <img src="images/fun/shopping-list.png">
         
       </figure><ul>
 <li><em>Sequenza mutabile</em> di elementi, <em>di solito</em> dello stesso <strong>tipo</strong></li>
-<li>Variabile, per dare un <strong>nome</strong> alla lista</li>
-<li><strong>Lunghezza</strong> attuale di una lista <code>x</code>: <code>len(x)</code></li>
-<li>I singoli elementi sono <strong>numerati</strong><ul>
-<li>Da <code>0</code> a <code>len(x)-1</code></li>
+<li>L'intera lista può essere assegnata ad una variabile<ul>
+<li>Così diamo un <strong>nome</strong> alla lista</li>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+<pre class="prettyprint" data-lang="py"><code>grocery = ["spam", "eggs", "beans"]
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>num_days = [31, 28, 31, 30, 31, 30,
-            31, 31, 30, 31, 30, 31]
+<pre class="prettyprint" data-lang="py"><code>rainfall_data = [13, 24, 18, 15]
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>results_by_month = [0] * 12  # List repetition
+<pre class="prettyprint" data-lang="py"><code>results_by_month = [0] * 12  # 12 times 0 (list repetition)
 </code></pre></article>
  
 </slide>
@@ -68,7 +64,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>Elementi e slice</h2>
+      <h2>Accesso agli elementi</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -77,11 +73,93 @@ URL: https://code.google.com/p/io-2012-slides
         
       </figure><ul>
 <li><strong>Attenzione ad usare indici validi!</strong><ul>
-<li>Ma indici <em>negativi</em> contano dalla fine</li>
+<li><em>Lunghezza</em> attuale di una lista <code>s</code>: <code>len(s)</code></li>
+<li>Elementi <em>numerati</em> da <code>0</code> a <code>len(s)-1</code></li>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>n = len(months)            # 12
+<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; grocery = ["spam", "eggs", "beans", "bacon"]
+&gt;&gt;&gt; n = len(grocery)           # 4
+&gt;&gt;&gt; grocery[0]
+"spam"
+&gt;&gt;&gt; grocery[1]
+"eggs"
+&gt;&gt;&gt; grocery[n-1]
+"bacon"
+&gt;&gt;&gt; grocery[1] = "ketchup"     # replace a value, len is still 4
+&gt;&gt;&gt; grocery.append("sausage")  # add to the end, len is 5
+&gt;&gt;&gt; grocery                    # guess!
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli su liste: for</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/shopping-list.jpg">
+        
+      </figure><pre class="prettyprint" data-lang="py"><code>grocery = ["spam", "egg", "bacon", "sausage"]
+
+print("Your shopping list contains:")
+
+for product in grocery:
+    print(product)
+</code></pre>
+<ul>
+<li>Ad ogni iterazione, a <code>product</code> è assegnato un elemento di <code>grocery</code></li>
+<li>Ciclo <code>for</code> per qualsiasi tipo di sequenza: lista, stringa, tupla, range...</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli su stringhe 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
+<li>Una stringa è una sequenza di caratteri</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>text = input("text? ")
+min_char = input("Min char to uppercase? ")
+max_char = input("Max char to uppercase? ")
+
+for c in text:
+    if min_char &lt;= c &lt;= max_char:
+        print(c.upper(), end="")
+    else:
+        print(c, end="")
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elementi e slice 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/month-list.svg">
+        
+      </figure><ul>
+<li>Indici <em>negativi</em> contano dalla fine<ul>
+<li>Da <code>-1</code> (ultimo) a <code>-len(s)</code> (primo)</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+n = len(months)            # 12
 months[3]                  # "Apr"
 months[-2]                 # "Nov", same as n - 2
 </code></pre>
@@ -96,14 +174,11 @@ whole_year = months[:]     # Copy of the whole list
 <slide  >
   
     <hgroup>
-      <h2>Inserimento e rimozione</h2>
+      <h2>Inserimento e rimozione 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <figure>
-        <img src="images/fun/shopping-list.png">
-        
-      </figure><pre class="prettyprint" data-lang="py"><code>grocery = ["spam", "egg", "beans"]
+      <pre class="prettyprint" data-lang="py"><code>grocery = ["spam", "egg", "beans"]
 
 grocery[0] = "sausage"      # replace an element
 
@@ -170,54 +245,6 @@ days = "mon|wed|fri".split("|")
 <slide  >
   
     <hgroup>
-      <h2>Tupla</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Sequenza <strong>immutabile</strong> di valori, anche di <em>tipo diverso</em></li>
-</ul>
-<pre class="prettyprint" data-lang="py"><code># Tuple packing
-pt = 5, 6, "red"
-pt[0]  # 5
-pt[1]  # 6
-pt[2]  # "red"
-
-# multiple assignments, from a tuple
-x, y, colour = pt  # sequence unpacking
-a, b = 3, 4
-a, b = b, a
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Cicli su liste: for</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/fun/shopping-list.png">
-        
-      </figure><pre class="prettyprint" data-lang="py"><code>grocery = ["spam", "egg", "bacon", "sausage"]
-
-print("Your shopping list contains:")
-
-for product in grocery:
-    print(product)
-</code></pre>
-<ul>
-<li>Ad ogni iterazione, a <code>product</code> è assegnato un elemento di <code>grocery</code></li>
-<li>Ciclo <code>for</code> per qualsiasi tipo di sequenza: lista, stringa, tupla, range...</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Funzioni su liste 🤔</h2>
       <h3></h3>
     </hgroup>
@@ -236,6 +263,30 @@ def main ():
     print(data)
 
 main()
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tupla</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Sequenza <strong>immutabile</strong> di valori, anche di <em>tipo diverso</em></li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code># Tuple packing
+pt = 5, 6, "red"
+pt[0]  # 5
+pt[1]  # 6
+pt[2]  # "red"
+
+# multiple assignments, from a tuple
+x, y, colour = pt  # sequence unpacking
+a, b = 3, 4
+a, b = b, a
 </code></pre></article>
  
 </slide>

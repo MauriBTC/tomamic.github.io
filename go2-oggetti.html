@@ -134,7 +134,7 @@ func main() {
 <slide  >
   
     <hgroup>
-      <h2>Documentazione di funzioni</h2>
+      <h2>Documentazione di funzioni ⏩</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -177,7 +177,9 @@ for y := 1; y &lt;= max; y++ {
     }
     Println()
 }
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/gopherjs/?p2_for_tables.go">http://www.ce.unipr.it/gopherjs/?p2_for_tables.go</a></p></article>
  
 </slide>
 
@@ -248,18 +250,18 @@ var x, y, dx = 50, 50, 5
 var arenaW, arenaH = 480, 360
 
 func tick() {
-    //if KeyPressed("Enter") { dx = -dx }
+    //if KeyPressed("Enter") { ... }
+    //if x + dx &gt; arenaW: { ... }
     ClearCanvas()                  // Draw background
     DrawImage(image, Point{x, y})  // Draw foreground
-    x = (x + dx) //% arenaW        // Update ball's position
+    x += dx                        // Update ball's position
 }
-
 func main() {
     InitCanvas(Size{arenaW, arenaH})
     MainLoop(tick)  // Call tick 30 times/second
 }
 </code></pre>
-<p><a href="http://www.ce.unipr.it/gopherjs/?p2_anim.go">http://www.ce.unipr.it/gopherjs/?p2_anim.go</a></p></article>
+<p><a href="http://www.ce.unipr.it/gopherjs/?p2_fun_anim.go">http://www.ce.unipr.it/gopherjs/?p2_fun_anim.go</a></p></article>
  
 </slide>
 
@@ -572,7 +574,7 @@ func main() {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/gopherjs/?p3_ball.go">http://www.ce.unipr.it/gopherjs/?p3_ball.go</a></p></article>
+<p><a href="http://www.ce.unipr.it/gopherjs/?p2_oop_ball.go">http://www.ce.unipr.it/gopherjs/?p2_oop_ball.go</a></p></article>
  
 </slide>
 

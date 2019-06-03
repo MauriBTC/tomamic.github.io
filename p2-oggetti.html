@@ -76,10 +76,10 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>side1 = float(input('1st side? '))
-side2 = float(input('2nd side? '))
+<pre class="prettyprint" data-lang="py"><code>side1 = float(input("1st side? "))
+side2 = float(input("2nd side? "))
 side3 = hypotenuse(side1, side2)
-print('3rd side:', side3)
+print("3rd side:", side3)
 </code></pre></article>
  
 </slide>
@@ -130,7 +130,7 @@ main()  ## remove, if importing the module elsewhere
 </ul>
 </li>
 <li>Si possono restituire più valori, come <em>tupla</em><ul>
-<li><code>return 7, 5, 'black'</code></li>
+<li><code>return 7, 5, "black"</code></li>
 </ul>
 </li>
 </ul>
@@ -147,7 +147,7 @@ print(x)      # just for debug
 <slide  >
   
     <hgroup>
-      <h2>Documentazione di funzioni</h2>
+      <h2>Documentazione di funzioni ⏩</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -165,30 +165,6 @@ print(x)      # just for debug
 </code></pre>
 <blockquote></blockquote>
 <p><a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html">https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html</a></p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Cicli su stringhe</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
-<li>Una stringa è una sequenza di caratteri</li>
-</ul>
-<pre class="prettyprint" data-lang="py"><code>text = input("text? ")
-min_char = input("Min char to uppercase? ")
-max_char = input("Max char to uppercase? ")
-
-for c in text:
-    if min_char &lt;= c &lt;= max_char:
-        print(c.upper(), end="")
-    else:
-        print(c, end="")
-</code></pre></article>
  
 </slide>
 
@@ -261,20 +237,21 @@ def main():
       <figure>
         <img src="images/oop/anim-right.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
-
-x, y, dx = 50, 50, 5
-ARENA_W, ARENA_H = 320, 240
+      </figure><pre class="prettyprint" data-lang="py"><code>x, y, dx = 50, 50, 5
+ARENA_W, ARENA_H = 480, 360
 image = g2d.load_image("ball.png")
 
-def update():
+def tick():
     global x
-    g2d.fill_canvas((255, 255, 255))  # Draw background
-    g2d.draw_image(image, (x, y))     # Draw foreground
-    x = (x + dx) ##% ARENA_W          # Update ball's position
+    ##if g2d.key_pressed("Enter"): ...
+    ##if x + dx &gt; ARENA_W: ...
+    g2d.clear_canvas()             # Draw background
+    g2d.draw_image(image, (x, y))  # Draw foreground
+    x += dx                        # Update ball's position
 
-g2d.init_canvas((ARENA_W, ARENA_H))
-g2d.main_loop(update, 1000 // 30)     # &lt;-- Call update 30 times/second
+def main():
+    g2d.init_canvas((ARENA_W, ARENA_H))
+    g2d.main_loop(tick)  # call tick 30 times/second
 </code></pre>
 <blockquote></blockquote>
 <p><a href="http://www.ce.unipr.it/brython/?p2_fun_anim.py">http://www.ce.unipr.it/brython/?p2_fun_anim.py</a></p></article>
@@ -284,25 +261,32 @@ g2d.main_loop(update, 1000 // 30)     # &lt;-- Call update 30 times/second
 <slide  >
   
     <hgroup>
-      <h2>Eventi della tastiera</h2>
+      <h2>Tick, tastiera e mouse</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>import g2d
-
-def keydown(code: str):
-    print("Key pressed: ", code)
-
-def keyup(code: str):
-    print("Key released: ", code)
-
-g2d.init_canvas((320, 240))
-g2d.handle_keyboard(keydown, keyup)  # &lt;-- Keyb events
-g2d.main_loop()
-</code></pre>
+      <ul>
+<li><strong><code>g2d.main_loop</code></strong>: <em>ciclo di gestione degli eventi</em><ul>
+<li>Parametro opzionale: funzione che sarà chiamata periodicamente</li>
+</ul>
+</li>
+<li><strong><code>g2d.key_pressed</code></strong>: <em>controllo se un tasto è stato premuto</em><ul>
+<li>Risultato: <code>bool</code></li>
+<li>Parametro: <code>str</code> nome del tasto</li>
+<li>Es.: <code>"q", "1", "ArrowLeft", "Enter", "Spacebar", "LeftButton"</code></li>
+</ul>
+</li>
+<li><strong><code>g2d.key_released</code></strong>: <em>controllo se un tasto è stato rilasciato</em><ul>
+<li>Stessi parametri e risultato</li>
+</ul>
+</li>
+<li><strong><code>g2d.mouse_position</code></strong>: <em>posizione del mouse</em><ul>
+<li>Risultato: <code>(int, int)</code></li>
+</ul>
+</li>
+</ul>
 <blockquote></blockquote>
-<p><a href="https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/code">https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/code</a></p>
-<p><a href="http://www.ce.unipr.it/brython/?p2_fun_keyb.py">http://www.ce.unipr.it/brython/?p2_fun_keyb.py</a></p></article>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values</a></p></article>
  
 </slide>
 

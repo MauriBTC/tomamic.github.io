@@ -5,38 +5,95 @@ figure: images/oop/lego-blocks.png
 ---
 
 title: Lista
-figure: images/fun/month-list.svg
+figure: images/fun/shopping-list.png
 
 - *Sequenza mutabile* di elementi, *di solito* dello stesso **tipo**
-- Variabile, per dare un **nome** alla lista
-- **Lunghezza** attuale di una lista `x`: `len(x)`
-- I singoli elementi sono **numerati**
-    - Da `0` a `len(x)-1`
+- L'intera lista può essere assegnata ad una variabile
+    - Così diamo un **nome** alla lista
+
+code: py
+
+    grocery = ["spam", "eggs", "beans"]
+
+code: py
+
+    rainfall_data = [13, 24, 18, 15]
+
+code: py
+
+    results_by_month = [0] * 12  # 12 times 0 (list repetition)
+
+---
+
+title: Accesso agli elementi
+figure: images/fun/wile-coyote.png
+
+- **Attenzione ad usare indici validi!**
+    - *Lunghezza* attuale di una lista `s`: `len(s)`
+    - Elementi *numerati* da `0` a `len(s)-1`
+
+code: py
+
+    >>> grocery = ["spam", "eggs", "beans", "bacon"]
+    >>> n = len(grocery)           # 4
+    >>> grocery[0]
+    "spam"
+    >>> grocery[1]
+    "eggs"
+    >>> grocery[n-1]
+    "bacon"
+    >>> grocery[1] = "ketchup"     # replace a value, len is still 4
+    >>> grocery.append("sausage")  # add to the end, len is 5
+    >>> grocery                    # guess!
+
+---
+
+title: Cicli su liste: for
+figure: images/fun/shopping-list.jpg
+
+code: py
+
+    grocery = ["spam", "egg", "bacon", "sausage"]
+
+    print("Your shopping list contains:")
+
+    for product in grocery:
+        print(product)
+
+- Ad ogni iterazione, a `product` è assegnato un elemento di `grocery`
+- Ciclo `for` per qualsiasi tipo di sequenza: lista, stringa, tupla, range...
+
+---
+
+title: Cicli su stringhe 🤔
+
+- Il ciclo `for` scorre i valori qualsiasi sequenza
+- Una stringa è una sequenza di caratteri
+
+code: py
+
+    text = input("text? ")
+    min_char = input("Min char to uppercase? ")
+    max_char = input("Max char to uppercase? ")
+
+    for c in text:
+        if min_char <= c <= max_char:
+            print(c.upper(), end="")
+        else:
+            print(c, end="")
+
+---
+
+title: Elementi e slice 🤔
+figure: images/fun/month-list.svg
+
+- Indici *negativi* contano dalla fine
+    - Da `-1` (ultimo) a `-len(s)` (primo)
 
 code: py
 
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-code: py
-
-    num_days = [31, 28, 31, 30, 31, 30,
-                31, 31, 30, 31, 30, 31]
-
-code: py
-
-    results_by_month = [0] * 12  # List repetition
-
----
-
-title: Elementi e slice
-figure: images/fun/wile-coyote.png
-
-- **Attenzione ad usare indici validi!**
-    - Ma indici *negativi* contano dalla fine
-
-code: py
-
     n = len(months)            # 12
     months[3]                  # "Apr"
     months[-2]                 # "Nov", same as n - 2
@@ -50,8 +107,7 @@ code: py
 
 ---
 
-title: Inserimento e rimozione
-figure: images/fun/shopping-list.png
+title: Inserimento e rimozione 🤔
 
 code: py
 
@@ -109,42 +165,6 @@ code: py
 
 ---
 
-title: Tupla
-
-- Sequenza **immutabile** di valori, anche di *tipo diverso*
-
-code: py
-
-    # Tuple packing
-    pt = 5, 6, "red"
-    pt[0]  # 5
-    pt[1]  # 6
-    pt[2]  # "red"
-
-    # multiple assignments, from a tuple
-    x, y, colour = pt  # sequence unpacking
-    a, b = 3, 4
-    a, b = b, a
-
----
-
-title: Cicli su liste: for
-figure: images/fun/shopping-list.png
-
-code: py
-
-    grocery = ["spam", "egg", "bacon", "sausage"]
-
-    print("Your shopping list contains:")
-
-    for product in grocery:
-        print(product)
-
-- Ad ogni iterazione, a `product` è assegnato un elemento di `grocery`
-- Ciclo `for` per qualsiasi tipo di sequenza: lista, stringa, tupla, range...
-
----
-
 title: Funzioni su liste 🤔
 
 code: py
@@ -163,6 +183,25 @@ code: py
         print(data)
 
     main()
+
+---
+
+title: Tupla
+
+- Sequenza **immutabile** di valori, anche di *tipo diverso*
+
+code: py
+
+    # Tuple packing
+    pt = 5, 6, "red"
+    pt[0]  # 5
+    pt[1]  # 6
+    pt[2]  # "red"
+
+    # multiple assignments, from a tuple
+    x, y, colour = pt  # sequence unpacking
+    a, b = 3, 4
+    a, b = b, a
 
 ---
 

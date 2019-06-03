@@ -5,7 +5,7 @@ figure: images/oop/lego-blocks.png
 ---
 
 title: Slice
-figure: images/fun/shopping-list.jpg
+figure: images/fun/shopping-list.png
 
 - Sequenza di elementi, dello stesso **tipo**
     - L'intera lista (*slice*) può essere assegnata ad una variabile, così diamo un **nome** alla lista
@@ -14,7 +14,7 @@ figure: images/fun/shopping-list.jpg
 
 code: go
 
-    toBuy := []string{"spam", "eggs", "beans"}
+    grocery := []string{"spam", "eggs", "beans"}
 
 code: go
 
@@ -35,19 +35,61 @@ figure: images/fun/wile-coyote.png
 
 code: go
 
-    toBuy := []string{"spam", "eggs", "beans", "bacon"}
-    n := len(toBuy)        // 4
+    grocery := []string{"spam", "eggs", "beans", "bacon"}
+    n := len(grocery)       // 4
 
-    Println(toBuy[0])      // "spam"
-    Println(toBuy[1])      // "eggs"
-    Println(toBuy[n-1])    // "bacon"
+    Println(grocery[0])     // "spam"
+    Println(grocery[1])     // "eggs"
+    Println(grocery[n-1])   // "bacon"
 
-    toBuy[1] = "ketchup"   // replace a value
-    Println(toBuy[1])      // "ketchup"
+    grocery[1] = "ketchup"  // replace a value, len is still 4
+    Println(grocery)
+
+    grocery = append(grocery, "sausage")  // add to the end, len is 5
+    Println(grocery)                      // guess!
 
 ---
 
-title: Porzioni di lista
+title: Cicli su liste: for
+figure: images/fun/shopping-list.jpg
+
+code: go
+
+    shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
+
+    Println("Your shopping list contains:")
+
+    for _, value := range shoppingList {
+        fmt.Println(value)
+    }
+    // for index, value := range shoppingList {
+    //    fmt.Println(index, value)
+    // }
+
+- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `shoppingList`
+- `index` e/o `value` possono essere omessi (sostituiti con `_`)
+
+---
+
+title: Cicli su stringhe: for 🤔
+
+- Si può usare un ciclo `for` su qualsiasi sequenza
+- Anche su *stringa*: sequenza *immutabile* di caratteri (UTF-8)
+
+code: go
+
+    for index, value := range "Hello, 🌐!" {
+        fmt.Println(index, value)
+    }
+
+    for _, x := range "Hello, 🌐!" {
+        fmt.Printf("%c  ", x)  // in package fmt
+        fmt.Printf("%d\n", x)  // <https://golang.org/pkg/fmt/>
+    }
+
+---
+
+title: Porzioni di lista 🤔
 figure: images/fun/month-list.svg
 
 - Selezione degli elementi tra...
@@ -68,22 +110,22 @@ code: go
 
 ---
 
-title: Concatenazione, rimozione
+title: Concatenazione, rimozione 🤔
 
 code: go
 
-    toBuy := []string{"spam", "eggs", "beans"}
-    Println(toBuy)
+    grocery := []string{"spam", "eggs", "beans"}
+    Println(grocery)
 
-    toBuy = append(toBuy, "bacon")          // add to the end
-    Println(toBuy)
+    grocery = append(grocery, "bacon")          // add to the end
+    Println(grocery)
 
     moreStuff := []string{"sausage", "mushrooms"}
-    toBuy = append(toBuy, moreStuff...)     // concatenation
-    Println(toBuy)
+    grocery = append(grocery, moreStuff...)     // concatenation
+    Println(grocery)
 
-    toBuy = append(toBuy[:2], toBuy[3:]...)  // remove val @ 2
-    Println(toBuy)
+    grocery = append(grocery[:2], grocery[3:]...)  // remove val @ 2
+    Println(grocery)
 
 >
 
@@ -91,7 +133,7 @@ code: go
 
 ---
 
-title: Stringhe e liste
+title: Stringhe e liste 🤔
 
 - **`Join`** e **`Split`**, da lista a stringa e viceversa
     - Nel package *`strings`*
@@ -105,44 +147,6 @@ code: go
     otherTxt := "mon|wed|fri|sun"
     otherDays := strings.Split(otherTxt, "|")
     // a list of strings: {"mon", "wed", "fri", "sun"}
-
----
-
-title: Cicli su liste: for
-
-code: go
-
-    shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
-
-    Println("Your shopping list contains:")
-
-    for _, value := range shoppingList {
-        fmt.Println(value)
-    }
-    // for index, value := range shoppingList {
-    //    fmt.Println(index, value)
-    // }
-
-- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `shoppingList`
-- `index` e/o `value` possono essere omessi (sostituiti con `_`)
-
----
-
-title: Cicli su stringhe: for
-
-- Si può usare un ciclo `for` su qualsiasi sequenza
-- Anche su *stringa*: sequenza *immutabile* di caratteri (UTF-8)
-
-code: go
-
-    for index, value := range "Hello, 🌐!" {
-        fmt.Println(index, value)
-    }
-
-    for _, x := range "Hello, 🌐!" {
-        fmt.Printf("%c  ", x)  // in package fmt
-        fmt.Printf("%d\n", x)  // <https://golang.org/pkg/fmt/>
-    }
 
 ---
 

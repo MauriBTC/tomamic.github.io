@@ -30,10 +30,10 @@ title: Chiamata di funzioni
 
 code: py
 
-    side1 = float(input('1st side? '))
-    side2 = float(input('2nd side? '))
+    side1 = float(input("1st side? "))
+    side2 = float(input("2nd side? "))
     side3 = hypotenuse(side1, side2)
-    print('3rd side:', side3)
+    print("3rd side:", side3)
 
 ---
 
@@ -70,7 +70,7 @@ title: Parametri di funzioni
     - Variabili all'esterno: non vengono modificate
     - Liste e oggetti passati ad una funz.: modifiche *permanenti*
 - Si possono restituire più valori, come *tupla*
-    - `return 7, 5, 'black'`
+    - `return 7, 5, "black"`
 
 code: py
 
@@ -83,7 +83,7 @@ code: py
 
 ---
 
-title: Documentazione di funzioni
+title: Documentazione di funzioni ⏩
 
 - **Annotazioni**: utili per documentare il tipo di param. e valore di ritorno (ma non c'è verifica!)
 - **Docstring**: descrizione testuale di una funzione
@@ -101,25 +101,6 @@ code: py
 >
 
 <https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html>
-
----
-
-title: Cicli su stringhe
-
-- Il ciclo `for` scorre i valori qualsiasi sequenza
-- Una stringa è una sequenza di caratteri
-
-code: py
-
-    text = input("text? ")
-    min_char = input("Min char to uppercase? ")
-    max_char = input("Max char to uppercase? ")
-
-    for c in text:
-        if min_char <= c <= max_char:
-            print(c.upper(), end="")
-        else:
-            print(c, end="")
 
 ---
 
@@ -177,20 +158,21 @@ figure: images/oop/anim-right.png
 
 code: py
 
-    import g2d
-
     x, y, dx = 50, 50, 5
-    ARENA_W, ARENA_H = 320, 240
+    ARENA_W, ARENA_H = 480, 360
     image = g2d.load_image("ball.png")
 
-    def update():
+    def tick():
         global x
-        g2d.fill_canvas((255, 255, 255))  # Draw background
-        g2d.draw_image(image, (x, y))     # Draw foreground
-        x = (x + dx) ##% ARENA_W          # Update ball's position
+        ##if g2d.key_pressed("Enter"): ...
+        ##if x + dx > ARENA_W: ...
+        g2d.clear_canvas()             # Draw background
+        g2d.draw_image(image, (x, y))  # Draw foreground
+        x += dx                        # Update ball's position
 
-    g2d.init_canvas((ARENA_W, ARENA_H))
-    g2d.main_loop(update, 1000 // 30)     # <-- Call update 30 times/second
+    def main():
+        g2d.init_canvas((ARENA_W, ARENA_H))
+        g2d.main_loop(tick)  # call tick 30 times/second
 
 >
 
@@ -198,27 +180,22 @@ code: py
 
 ---
 
-title: Eventi della tastiera
+title: Tick, tastiera e mouse
 
-code: py
-
-    import g2d
-
-    def keydown(code: str):
-        print("Key pressed: ", code)
-
-    def keyup(code: str):
-        print("Key released: ", code)
-
-    g2d.init_canvas((320, 240))
-    g2d.handle_keyboard(keydown, keyup)  # <-- Keyb events
-    g2d.main_loop()
+- **`g2d.main_loop`**: *ciclo di gestione degli eventi*
+    - Parametro opzionale: funzione che sarà chiamata periodicamente
+- **`g2d.key_pressed`**: *controllo se un tasto è stato premuto*
+    - Risultato: `bool`
+    - Parametro: `str` nome del tasto
+    - Es.: `"q", "1", "ArrowLeft", "Enter", "Spacebar", "LeftButton"`
+- **`g2d.key_released`**: *controllo se un tasto è stato rilasciato*
+    - Stessi parametri e risultato
+- **`g2d.mouse_position`**: *posizione del mouse*
+    - Risultato: `(int, int)`
 
 >
 
-<https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/code>
-
-<http://www.ce.unipr.it/brython/?p2_fun_keyb.py>
+<https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values>
 
 ---
 
