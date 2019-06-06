@@ -293,6 +293,10 @@ code: go
     SetColor(Color{255, 255, 0})
     FillCircle(Point{200, 200}, 25)
 
+>
+
+<http://www.ce.unipr.it/gopherjs/?p1_if_else.go>
+
 ---
 
 title: Confronto tra parole
