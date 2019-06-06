@@ -300,6 +300,10 @@ code: py
     g2d.set_color((255, 255, 0))
     g2d.fill_circle((200, 200), 25)
 
+>
+
+<http://www.ce.unipr.it/brython/?p1_if_else.py>
+
 ---
 
 title: Confronto tra parole
