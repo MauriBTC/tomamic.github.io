@@ -388,7 +388,7 @@ code: py
 
 ---
 
-title: Media di N valori dell'utente
+title: Media di N campioni
 figure: images/algo/average.svg
 
 code: py
