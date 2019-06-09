@@ -351,17 +351,35 @@ code: py
 ---
 
 title: Iterazione: while
+figure: images/algo/count.svg
+
+- Condizione di *permanenza* nel ciclo
+- Controllo *preliminare*: possibile che il corpo non sia mai eseguito
+- *Problem solving*: sommare tutti i numeri da 1 ad `n`
+    - Devo almeno saper contare fino ad `n`
+
+code: py
+
+    n = int(input("n?"))
+    count = 1
+
+    while count <= n:
+        print(count)
+        count = count + 1
+
+---
+
+title: Somma di numeri consecutivi
 figure: images/algo/sum1n.svg
 
-- Condizione booleana di *permanenza* nel ciclo
-- Controllo *preliminare*, possibile che il corpo non sia mai eseguito
+- Occorre tenere traccia del *totale parziale*
 
 code: py
 
     # Sum of the numbers from 1 to n
+    n = int(input("n? "))
     total = 0
     count = 1
-    n = int(input("n? "))
 
     while count <= n:
         total = total + count
@@ -381,8 +399,8 @@ figure: images/algo/average.svg
 code: py
 
     n = int(input("How many values? "))
-    count = 0
     total = 0
+    count = 0
 
     while count < n:
         val = int(input("Val? "))
@@ -399,8 +417,8 @@ figure: images/algo/sentinel.svg
 
 code: py
 
-    count = 0
     total = 0
+    count = 0
     val = int(input("Val? (0 to finish) "))
 
     while val != 0:

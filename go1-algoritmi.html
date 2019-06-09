@@ -501,17 +501,44 @@ if op == "+" {
     </hgroup>
     <article >
       <figure>
-        <img src="images/algo/sum1n.svg">
+        <img src="images/algo/count.svg">
         
       </figure><ul>
 <li>Condizione di <em>permanenza</em> nel ciclo</li>
-<li>Controllo <em>preliminare</em></li>
-<li>Possibile che il corpo non sia mai eseguito</li>
+<li>Controllo <em>preliminare</em>: possibile che il corpo non sia mai eseguito</li>
+<li><em>Problem solving</em>: sommare tutti i numeri da 1 ad <code>n</code><ul>
+<li>Devo almeno saper contare fino ad <code>n</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="go"><code>n := ToInt(Prompt("n?"))
+count := 1
+
+for count &lt;= n {
+    Alert(count)
+    count = count + 1
+}
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Somma di numeri consecutivi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/algo/sum1n.svg">
+        
+      </figure><ul>
+<li>Occorre tenere traccia del <em>totale parziale</em></li>
 </ul>
 <pre class="prettyprint" data-lang="go"><code>// Sum of the numbers from 1 to n
+n := ToInt(Prompt("n?"))
 total := 0
 count := 1
-n := ToInt(Prompt("n? "))
 
 for count &lt;= n {
     total = total + count
@@ -527,7 +554,7 @@ Alert("The sum is ", total)
 <slide  >
   
     <hgroup>
-      <h2>Ciclo  su N valori</h2>
+      <h2>Media di N campioni</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -535,8 +562,8 @@ Alert("The sum is ", total)
         <img src="images/algo/average.svg">
         
       </figure><pre class="prettyprint" data-lang="go"><code>n := ToInt(Prompt("How many values?"))
-count := 0
 total := 0
+count := 0
 
 for count &lt; n {
     val := ToInt(Prompt("Val?"))

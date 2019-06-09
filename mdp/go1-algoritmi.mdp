@@ -341,18 +341,36 @@ code: go
 ---
 
 title: Iterazione: for
-figure: images/algo/sum1n.svg
+figure: images/algo/count.svg
 
 - Condizione di *permanenza* nel ciclo
-- Controllo *preliminare*
-- Possibile che il corpo non sia mai eseguito
+- Controllo *preliminare*: possibile che il corpo non sia mai eseguito
+- *Problem solving*: sommare tutti i numeri da 1 ad `n`
+    - Devo almeno saper contare fino ad `n`
+
+code: go
+
+    n := ToInt(Prompt("n?"))
+    count := 1
+
+    for count <= n {
+        Alert(count)
+        count = count + 1
+    }
+
+---
+
+title: Somma di numeri consecutivi
+figure: images/algo/sum1n.svg
+
+- Occorre tenere traccia del *totale parziale*
 
 code: go
 
     // Sum of the numbers from 1 to n
+    n := ToInt(Prompt("n?"))
     total := 0
     count := 1
-    n := ToInt(Prompt("n? "))
 
     for count <= n {
         total = total + count
@@ -366,14 +384,14 @@ code: go
 
 ---
 
-title: Ciclo  su N valori
+title: Media di N campioni
 figure: images/algo/average.svg
 
 code: go
 
     n := ToInt(Prompt("How many values?"))
-    count := 0
     total := 0
+    count := 0
 
     for count < n {
         val := ToInt(Prompt("Val?"))

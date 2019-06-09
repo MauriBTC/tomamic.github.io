@@ -532,16 +532,43 @@ else:
     </hgroup>
     <article >
       <figure>
+        <img src="images/algo/count.svg">
+        
+      </figure><ul>
+<li>Condizione di <em>permanenza</em> nel ciclo</li>
+<li>Controllo <em>preliminare</em>: possibile che il corpo non sia mai eseguito</li>
+<li><em>Problem solving</em>: sommare tutti i numeri da 1 ad <code>n</code><ul>
+<li>Devo almeno saper contare fino ad <code>n</code></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>n = int(input("n?"))
+count = 1
+
+while count &lt;= n:
+    print(count)
+    count = count + 1
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Somma di numeri consecutivi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
         <img src="images/algo/sum1n.svg">
         
       </figure><ul>
-<li>Condizione booleana di <em>permanenza</em> nel ciclo</li>
-<li>Controllo <em>preliminare</em>, possibile che il corpo non sia mai eseguito</li>
+<li>Occorre tenere traccia del <em>totale parziale</em></li>
 </ul>
 <pre class="prettyprint" data-lang="py"><code># Sum of the numbers from 1 to n
+n = int(input("n? "))
 total = 0
 count = 1
-n = int(input("n? "))
 
 while count &lt;= n:
     total = total + count
@@ -565,8 +592,8 @@ print("The sum is", total)
         <img src="images/algo/average.svg">
         
       </figure><pre class="prettyprint" data-lang="py"><code>n = int(input("How many values? "))
-count = 0
 total = 0
+count = 0
 
 while count &lt; n:
     val = int(input("Val? "))
@@ -589,8 +616,8 @@ if count != 0:
       <figure>
         <img src="images/algo/sentinel.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>count = 0
-total = 0
+      </figure><pre class="prettyprint" data-lang="py"><code>total = 0
+count = 0
 val = int(input("Val? (0 to finish) "))
 
 while val != 0:
