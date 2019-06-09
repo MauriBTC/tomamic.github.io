@@ -5,16 +5,11 @@ figure: images/algo/rubik-cube.png
 ---
 
 title: Python!
+figure: images/algo/python-cases.jpg
+figcaption: Web, data science, machine learning, scripting, teaching, games, hardware, multiplatform...
+class: large-figure
 
 ![](images/algo/antigravity.png)
-
----
-
-title: Applicazioni in Python
-
-![](images/algo/python-cases.jpg)
-
-- Web, data analysis, scripting, teaching, games, hardware, multiplatform...
 
 ---
 
