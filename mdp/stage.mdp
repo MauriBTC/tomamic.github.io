@@ -10,8 +10,12 @@ figure: images/dev/young-programmer.png
 - A **tutti** gli studenti delle scuole superiori
 - Senza particolari prerequisiti
 - **Corso introduttivo alla programmazione**: ognuno imparerà qualcosa
-- … Ma utili eventuali precedenti esperienze, con qualsiasi linguaggio <br />
-- Agli studenti senza precedente esperienza di programmazione, si consiglia di seguire le esercitazioni pomeridiane, che si svolgeranno tutti i giorni dello stage (h.14:00-18:00)
+- … Ma utili eventuali precedenti esperienze, con qualsiasi linguaggio
+- Per tutti, ma soprattutto per gli studenti senza esperienza di programmazione
+    - Consigliate (*!*) le esercitazioni pomeridiane
+    - Tutti i giorni dello stage - h.14:00-18:00
+- Ai più esperti è invece richiesto di svolgere a turno il ruolo di *tutor aggiunto*
+    - Risulta sull'attestato finale
 
 ---
 
@@ -36,7 +40,8 @@ Ven | Completamento del gioco
 
 title: A cosa servirà?
 
-- Realizzazione in *autonomia* di una versione funzionante e *personale* del gioco proposto (ad esempio, *Space Invaders*), eseguibile su piattaforme diverse
+- Realizzazione in *autonomia* di una versione funzionante e *personale* del gioco proposto, eseguibile su piattaforme diverse
+    - Ad esempio, *Space Invaders*, *Frogger* ...
 - Introduzione alla programmazione e al *problem solving*: concetti base, orientamento a modularità e riuso
 - Panoramica sulle attività di laboratorio dei corsi di base di *Ingegneria Informatica*
 - Sperimentazione diretta con *strumenti* di sviluppo gratuiti, liberi e multi-piattaforma
@@ -47,9 +52,9 @@ title: A cosa servirà?
 
 title: Come iscriversi?
 
-- Lo stage è **gratuito**, ma limitato ad un numero massimo di 90 studenti
+- Lo stage è **gratuito**, ma limitato ad un numero massimo di un centinaio di studenti
 - Per iscriversi, entro il **30 aprile**, inviare richiesta a: <stage@ce.unipr.it> (tel. 0521-905708)
-    - Da ciascuna scuola saranno inizialmente ammessi al massimo 5 studenti
+    - Da ciascuna scuola saranno inizialmente ammessi al massimo 6 studenti
     - Gli studenti in sovrannumero saranno tenuti in attesa e ammessi solo nel caso di posti disponibili
     - Gli studenti infine ammessi dovranno inviare conferma della presenza, entro il 31 maggio
 - Gli alunni interessati sono invitati a rivolgersi alla segreteria del proprio istituto, per l'inoltro della richiesta
@@ -63,8 +68,10 @@ figure: images/dev/python.png images/dev/devices.png images/dev/raspberry-pi.png
 - Linguaggio **Python 3**, *battery included*
     - <http://python.org/>
     - [Windows store](https://www.microsoft.com/it-it/p/python-37/9nj46sx7x90p)
+    - [Playground](http://www.ce.unipr.it/brython)
 - Linguaggio **Go**
     - <http://golang.org/>
+    - [Playground](http://www.ce.unipr.it/gopherjs)
 - Sviluppo **open-source** e **multi-piattaforma**
     - PC, cellulari e tablet
 - Anche su Raspberry Pi
@@ -81,5 +88,5 @@ figure: images/misc/books.png
 - Go: *Documentazione e tour* - <https://golang.org/doc/>
 - A.A. Donovan e B.W. Kernighan: *The Go Programming Language*, Addison-Wesley, 2015, 978-0134190440
 
-[**Continua**](intro.html#11)
+[**Continua**](intro.html#12)
 

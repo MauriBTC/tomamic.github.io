@@ -157,9 +157,8 @@ class: large-figure
     - George Polya, 1945
     - Soluzione di problemi matematici: processo raramente lineare <br>&nbsp;
 - **(1) See.** Capire il problema
-    - Quali dati? Quali incognite?
-    - Quali condizioni? Soddisfacibili, ridondanti, contraddittorie?
-    - Figure, notazione
+    - Quali dati, incognite, condizioni?
+    - Figure, notazione... *modello*
 
 > Make things as simple as possible, but not simpler. *(A. Einstein)*
 
@@ -172,7 +171,7 @@ title: Dal problema alla soluzione, e ritorno
 - **(2) Plan.** Elaborare un piano
     - Mettere in relazione dati e incognite
     - Riduzione, analogia, divide et impera, composizione, astrazione... *Pensiero computazionale*
-    - Cominciare a risolvere un problema *più semplice* (vincoli rilassati)
+    - Cominciare a risolvere un problema *più semplice*
 - **(3) Do.** Implementare il piano
     - Realizzare il sistema da sperimentare
 - **(4) Check.** Controllare la soluzione
@@ -185,8 +184,8 @@ title: Dal problema alla soluzione, e ritorno
 ---
 
 title: Elementi di un algoritmo
-figure: images/algo/recipe.png
-figcaption: Una ricetta di cucina è un esempio di algoritmo
+figure: images/algo/origami.png
+figcaption: Un origami è un esempio di algoritmo
 
 - *Algoritmo*: procedimento che risolve un determinato problema attraverso un numero finito di passi elementari (al-Khwarizmi, ~800)
 - **Dati**: iniziali (istanza problema), intermedi, finali (soluzione)
@@ -194,32 +193,92 @@ figcaption: Una ricetta di cucina è un esempio di algoritmo
 - **Processo**, o anche esecuzione: sequenza ordinata di passi
 - *Proprietà*: finitezza, non ambiguità, realizzabilità, efficienza...
 
-> Computer science is no more about computers than astronomy is about telescopes. *(E. Dijkstra...)*
+---
+
+title: Diagramma di flusso
+figure: images/algo/spaghetti-flowchart.png
+
+- **Flow-chart**: *grafo orientato*, con nodi ed archi
+    - Passi di un algoritmo e loro sequenza
+- Rappresentazione grafica: più efficace e meno ambigua che una verbale
+- Tre tipi di nodi
+    - I/O: lettura e scrittura dati
+    - Operazioni aritmetico-logiche
+    - Controllo del flusso di esecuzione
+
+![](images/algo/nodes.svg)
 
 ---
 
-title: Ricerca in uno schedario 🤔
-figure: images/comp/catalogue.png
+title: Programmazione strutturata
+figure: images/algo/recipe.png
+figcaption: Una ricetta di cucina è un esempio di algoritmo
 
-- Es. in biblioteca: cercare la scheda di un certo libro
-    - **(1)** *Finchè* restano delle schede da esaminare: si prende la prima scheda non ancora controllata
-    - **(2)** *Se* autore e titolo sono quelli cercati: scheda trovata, ricerca conclusa!
-    - **(3)** (Altrimenti...) <br> *Si ripete* il controllo (1), passando alla scheda successiva
-    - **(4)** Esaurite le schede, il libro non è nella biblioteca!
+![](images/algo/structures.svg)
+
+> Qualunque algoritmo può essere implementato utilizzando queste tre sole strutture *(Teorema di Böhm-Jacopini, 1966)*
+
+> Goto statement considered harmful *(Dijkstra, 1968)*
+
+- Esempi quotidiani di `if` e `while`:
+    - “*Se non c'è il lievito, usare due cucchiaini di bicarbonato*”
+    - “*Battere gli albumi finché non montano*”
 
 ---
 
-title: Cercare più velocemente 🤔
+title: Programmazione a blocchi
+class: large-image
+
+![](images/algo/blockly.png)
+
+>
+
+<http://blockly-games.appspot.com/maze>
+
+---
+
+title: Indovina la parola 🤔
+figure: images/comp/haystack.png
+
+- L'utente sceglie una parola segreta dal dizionario
+- Il programma deve indovinarla
+
+code: pseudo
+
+    Prendi la prima parola nel dizionario
+    Finchè non sei alla fine del dizionario:
+        Chiedi all'utente: “È questa la tua parola segreta?”
+        Se “Sì!”: finito!
+        Altrimenti: prendi la parola successiva
+
+>
+
+In un dizionario di 100k parole, alla peggio si provano tutte
+
+---
+
+title: Ricerca binaria 🤔
 figure: images/comp/binary-search.png
 class: large-figure
 
-- Su schedario *ordinato* si può fare più in fretta
-    - **(1)** *Finchè* restano delle schede da esaminare: si prende tra loro la scheda centrale
-    - **(2)** *Se* autore e titolo sono quelli cercati: scheda trovata, ricerca conclusa!
-    - **(3)** *Altrimenti, se* autore e titolo vengono dopo quelli cercati: si scartano subito tutte le schede successive
-    - **(4)** *Altrimenti, infine*: si scartano le schede precedenti
-    - **(5)** *Si ripete* la ricerca sull'insieme dimezzato (1)
-    - **(6)** Esaurite le schede, il libro non è nella biblioteca!
+- Approccio più intelligente, sapendo che nel dizionario le parole sono ordinate
+- Ad ogni passo si dimezza lo spazio di ricerca
+
+code: pseudo
+
+    SpazioDiRicerca = Intero dizionario
+    Finchè non hai indovinato:
+        Prendi la parola a metà dello SpazioDiRicerca
+        Chiedi all'utente: “È questa la tua parola segreta?”
+        Se “Sì!”: finito!
+        Altrimenti:
+            Chiedi all'utente: “Viene prima o dopo della parola segreta?”
+            Se “Dopo”: Scarta la 2a metà dall'attuale SpazioDiRicerca
+            Altrimenti: Scarta la 1a metà dall'attuale SpazioDiRicerca
+
+>
+
+In un dizionario di 100k parole, bastano 17 tentativi
 
 ---
 
@@ -232,67 +291,6 @@ title: Complessità e calcolabilità 🤔
     - Es. Valore di verità di `P`: *Questa frase è falsa*
     - Incompletezza Gödel; indecidibilità *terminazione*
     - ∀ formalizzazione della matematica che assiomatizza ℕ <br> → ∃ proposizione né dimostrabile né confutabile
-
----
-
-title: Diagramma di flusso
-figure: images/algo/origami.png
-figcaption:Anche un origami è un esempio di algoritmo
-
-- *Flow-chart*: Rappresentazione grafica di algoritmi
-    - Più efficace e meno ambigua di una descrizione a parole
-- Due tipi di entità:
-    - Nodi
-    - Archi
-- È un *grafo orientato*
-    - Passi di un algoritmo e loro sequenza
-
----
-
-title: Tipi di nodi
-figure: images/algo/spaghetti-flowchart.png
-
-![](images/algo/nodes.svg)
-
-- Istruzioni di I/O: es. leggere dati da tastiera o mostrarli a schermo
-- Operazioni aritmetico-logiche
-- Controllo del flusso di esecuzione
-
----
-
-title: Programmazione strutturata
-figure: images/algo/spaghetti-code.png
-
-- Strutture di controllo:
-    - **Sequenza**
-    - **Selezione**
-    - **Iterazione**
-
-> Qualunque algoritmo può essere implementato utilizzando queste tre sole strutture *(Teorema di Böhm-Jacopini, 1966)*
-
-> Goto statement considered harmful *(Dijkstra, 1968)*
-
----
-
-title: Strutture di controllo
-figure: images/algo/cucina.jpg
-
-![](images/algo/structures.svg)
-
-- Esempi quotidiani di `if` e `while`:
-    - “*Se non c'è il lievito, usare due cucchiaini di bicarbonato*”
-    - “*Battere gli albumi finché non montano*”
-
----
-
-title: Blockly
-class: large-image
-
-![](images/algo/blockly.png)
-
->
-
-<http://blockly-games.appspot.com/maze>
 
 ---
 
