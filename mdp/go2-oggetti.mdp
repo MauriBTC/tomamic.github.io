@@ -164,17 +164,17 @@ code: go
 
     var image = LoadImage("ball.png")
     var x, y, dx = 50, 50, 5
-    var arenaW, arenaH = 480, 360
+    var screen = Size{480, 360}
 
     func tick() {
         //if KeyPressed("Enter") { ... }
-        //if x + dx > arenaW: { ... }
+        //if x + dx > screen.W { ... }
         ClearCanvas()                  // Draw background
         DrawImage(image, Point{x, y})  // Draw foreground
         x += dx                        // Update ball's position
     }
     func main() {
-        InitCanvas(Size{arenaW, arenaH})
+        InitCanvas(screen)
         MainLoop(tick)  // Call tick 30 times/second
     }
 
@@ -211,10 +211,10 @@ figure: images/oop/anim-bounce.png
 code: go
 
     func moveBall(x, y, dx, dy int) (int, int, int, int) {
-        if x + dx < 0 || x + dx + BALL_W > ARENA_W {
+        if x + dx < 0 || x + dx + size.W > screen.W {
             dx = -dx
         }
-        if y + dy < 0 || y + dy + BALL_H > ARENA_H {
+        if y + dy < 0 || y + dy + size.H > screen.H {
             dy = -dy
         }
         return x + dx, y + dy, dx, dy
