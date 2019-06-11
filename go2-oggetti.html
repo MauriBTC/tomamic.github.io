@@ -117,13 +117,13 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>func Inc(a int) int {
+      <pre class="prettyprint" data-lang="go"><code>func Inc(a int) {
     a += 1
     Println(a)  // just for debug
 }
 
 func main() {
-    x = 10
+    x := 10
     Inc(x)
     Println(x)      // just for debug
 }
@@ -534,7 +534,7 @@ func NewBall(pos Point) *Ball {
 <li>Espongono <em>servizi</em> ad altri oggetti</li>
 <li>Bisogna indicare l'<em>oggetto ricevitore</em>, come puntatore</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>var arenaW, arenaH = 480, 360
+<pre class="prettyprint" data-lang="go"><code>var screen = Size{480, 360}
 
 func (b *Ball) Move() {
     if !(0 &lt;= b.x+b.dx &amp;&amp; b.x+b.dx &lt;= arenaW-b.w) {
