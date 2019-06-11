@@ -35,17 +35,16 @@ figure: images/fun/wile-coyote.png
 
 code: go
 
-    grocery := []string{"spam", "eggs", "beans", "bacon"}
-    n := len(grocery)       // 4
+    grocery := []string{"spam", "eggs", "beans"}
+    n := len(grocery)      // 3
+    grocery[1] = "bacon"   // replace a value, len is still 3
 
-    Println(grocery[0])     // "spam"
-    Println(grocery[1])     // "eggs"
-    Println(grocery[n-1])   // "bacon"
+    Println(grocery[0])    // "spam"
+    Println(grocery[1])    // "bacon"
+    Println(grocery[n-1])  // "beans"
 
-    grocery[1] = "ketchup"  // replace a value, len is still 4
-    Println(grocery)
 
-    grocery = append(grocery, "sausage")  // add to the end, len is 5
+    grocery = append(grocery, "sausage")  // add to the end, len is 4
     Println(grocery)                      // guess!
 
 ---
@@ -55,18 +54,18 @@ figure: images/fun/shopping-list.jpg
 
 code: go
 
-    shoppingList := []string{"spam", "eggs", "bacon", "ketchup"}
+    grocery := []string{"spam", "eggs", "beans"}
 
-    Println("Your shopping list contains:")
+    Println("Your grocery list contains:")
 
-    for _, value := range shoppingList {
-        fmt.Println(value)
+    for _, value := range grocery {
+        Println(value)
     }
-    // for index, value := range shoppingList {
-    //    fmt.Println(index, value)
+    // for index, value := range grocery {
+    //    Println(index, value)
     // }
 
-- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `shoppingList`
+- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `grocery`
 - `index` e/o `value` possono essere omessi (sostituiti con `_`)
 
 ---
@@ -79,12 +78,12 @@ title: Cicli su stringhe: for 🤔
 code: go
 
     for index, value := range "Hello, 🌐!" {
-        fmt.Println(index, value)
+        Println(index, value)
     }
 
     for _, x := range "Hello, 🌐!" {
-        fmt.Printf("%c  ", x)  // in package fmt
-        fmt.Printf("%d\n", x)  // <https://golang.org/pkg/fmt/>
+        Printf("%c  ", x)
+        Printf("%d\n", x)
     }
 
 ---
@@ -159,23 +158,24 @@ title: Lista di palline
 
 code: go
 
-    var balls = []*Ball{NewBall(40, 80), NewBall(80, 40)}
+    var balls = []*Ball{NewBall(Point{40, 80}),
+                        NewBall(Point{80, 40})}
 
     func tick() {
-        FillCanvas(Color{255, 255, 255}) // BG
+        ClearCanvas() // BG
         for _, b := range balls {
             b.Move()
-            DrawRect(Color{100, 100, 100}, b.Position()) // FG
+            FillRect(b.Position()) // FG
         }
     }
     func main() {
-        InitCanvas(Size{ArenaW, ArenaH})
-        MainLoop(tick, 1000/30) // Millis
+        InitCanvas(screen)
+        MainLoop(tick)
     }
 
 >
 
-<http://www.ce.unipr.it/gopherjs/?p3_ball.go>
+<http://www.ce.unipr.it/gopherjs/?p3_oop_balls.go>
 
 ---
 
@@ -192,13 +192,11 @@ code: go
         a.balls = append(a.balls, b)
     }
     func (a *BallArena) MoveAll() {
-        for i, b := range a.balls {
-            b.Move(); Println("Ball", i, b.Position())
-        }
+        for i, b := range a.balls { b.Move() }
     }
     func main() {
-        var arena = &BallArena{}
-        arena.Add(NewBall(40, 80)); arena.Add(NewBall(80, 40))
+        arena := &BallArena{}
+        arena.Add(NewBall(Point{40, 80})) // ...
         arena.MoveAll() // ...
     }
 
@@ -242,7 +240,7 @@ code: go
 
 >
 
-<http://www.ce.unipr.it/gopherjs/?p3_animals.go>
+<http://www.ce.unipr.it/gopherjs/?p3_oop_animals.go>
 
 ---
 
@@ -330,8 +328,8 @@ figure: images/oop/actor.svg
 
 code: go
 
-    arena.Add(NewBall(40, 80))
-    arena.Add(NewGhost(120, 40)) // ...
+    arena.Add(NewBall(Point{40, 80}))
+    arena.Add(NewGhost(Point{120, 40})) // ...
     arena.MoveAll()
 
 - Principio di **sostituzione** di Liskov
@@ -360,8 +358,8 @@ code: go
     func (g *Ghost) Move() {
         dx := 5 * RandInt(-1, 1)
         dy := 5 * RandInt(-1, 1)
-        g.x = (g.x + dx + ArenaW) % ArenaW
-        g.y = (g.y + dy + ArenaH) % ArenaH
+        g.x = (g.x + dx + screen.W) % screen.W
+        g.y = (g.y + dy + screen.H) % screen.H
     }
 
 ---
@@ -402,20 +400,21 @@ title:  Rimbalzi nel browser
 code: go
 
     var sprites = LoadImage("sprites.png")
-    var arena = NewArena(320, 240)
-    var turtle = NewTurtle(arena, 80, 80)  // actor knows the arena
+    var arena = NewArena(Size{320, 240})
+    var hero = NewTurtle(arena, Point{80, 80})  // actor knows the arena
     func tick() {
+        // ...
         arena.MoveAll()  // Game logic
-        FillCanvas(Color{255, 255, 255})
+        ClearCanvas()
         for _, a in arena.Actors() {
             // Cut an area from a larger image
-            DrawImageClip(sprites, a.Position(), a.Symbol())
+            DrawImageClip(sprites, a.Symbol(), a.Position())
         }
     }
     func main() {
-        NewGhost(arena, 120, 80); NewBall(arena, 40, 80) // ...
+        NewGhost(arena, Point{120, 80}); NewBall(arena, Point{40, 80}) // ...
         InitCanvas(arena.Size())
-        MainLoop(tick, 1000 / 30)
+        MainLoop(tick)
     }
 
 ---
@@ -425,23 +424,25 @@ figure: images/oop/bounce.png
 
 code: python
 
-    func keydown(code) {
-        if code == "ArrowUp" { turtle.GoUp() }
-        else if code == "ArrowDown" { turtle.GoDown() }
-        else if code == "ArrowLeft" { turtle.GoLeft() }
-        else if code == "ArrowRight" { turtle.GoRight() }
-    }
-    func keyup(code) {
-        turtle.Stay()
-    }
-    func main() {
+    func tick() {
+        if KeyPressed("ArrowUp") {
+            hero.GoUp()
+        } else if KeyPressed("ArrowRight") {
+            hero.GoRight()
+        } else if KeyPressed("ArrowDown") {
+            hero.GoDown()
+        } else if KeyPressed("ArrowLeft") {
+            hero.GoLeft()
+        } else if KeyReleased("ArrowUp") || KeyReleased("ArrowRight") ||
+                KeyReleased("ArrowDown") || KeyReleased("ArrowLeft") {
+            hero.Stay()
+        }
         // ...
-        HandleKeyboard(keydown, keyup)
     }
 
 >
 
-<http://www.ce.unipr.it/gopherjs/?p3_bounce.go>
+<http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go>
 
 ---
 
@@ -477,11 +478,6 @@ code: python
 - *Downcast*: `other.(*Ghost)`
     - Converte l'oggetto `other` come istanza di `Ghost`
     - Restituisce un riferimento a `Ghost` ed un `bool`
-
----
-
-title: Esercizi
-class: segue dark
 
 ---
 

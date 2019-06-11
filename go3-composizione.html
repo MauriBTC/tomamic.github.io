@@ -521,8 +521,8 @@ arena.MoveAll()
 func (g *Ghost) Move() {
     dx := 5 * RandInt(-1, 1)
     dy := 5 * RandInt(-1, 1)
-    g.x = (g.x + dx + ArenaW) % ArenaW
-    g.y = (g.y + dy + ArenaH) % ArenaH
+    g.x = (g.x + dx + screen.W) % screen.W
+    g.y = (g.y + dy + screen.H) % screen.H
 }
 </code></pre></article>
  
@@ -621,7 +621,7 @@ func main() {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/gopherjs/?p3_bounce.go">http://www.ce.unipr.it/gopherjs/?p3_bounce.go</a></p></article>
+<p><a href="http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go">http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go</a></p></article>
  
 </slide>
 
@@ -680,16 +680,6 @@ func main() {
 </li>
 </ul></article>
  
-</slide>
-
-<slide class="segue dark" >
-  
-    <aside class="gdbar"><img src="theme/logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Esercizi</h2>
-      <h3></h3>
-    </hgroup>
-  
 </slide>
 
 <slide class="segue dark" >
