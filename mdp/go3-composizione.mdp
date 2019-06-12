@@ -516,7 +516,7 @@ title: 3.3 Veicoli nell'arena
 figure: images/misc/frogger.png
 
 - Partire dalla classe `Vehicle`
-    - [x2_oop_vehicle.py](http://www.ce.unipr.it/brython/?x2_oop_vehicle.py)
+    - [x2_oop_vehicle.go](http://www.ce.unipr.it/gopherjs/?x2_oop_vehicle.go)
 - Renderla una implementazione concreta di `Actor`
     - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
 - Aggiungere i veicoli all'arena
