@@ -598,7 +598,7 @@ title: 3.6 Alieni nell'arena
 figure: images/misc/invaders-path.jpg
 
 - Partire dalla classe `Alien`
-    - [p2_oop_alien.py](http://www.ce.unipr.it/brython/?p2_oop_alien.py)
+    - [x2_oop_alien.py](http://www.ce.unipr.it/brython/?x2_oop_alien.py)
 - Renderla una implementazione concreta di `Actor`
     - Aggiungere i metodi `symbol` e `collide`, anche solo vuoti
 - Aggiungere gli alieni all'arena
@@ -611,7 +611,7 @@ title: 3.7 Pallottole
 figure: images/misc/invaders-path.jpg
 
 - Continuare l'es. precedente
-    - [p3_oop_alien.py](http://www.ce.unipr.it/brython/?p3_oop_alien.py)
+    - [x3_oop_alien.py](http://www.ce.unipr.it/brython/?x3_oop_alien.py)
 - Aggiungere un attore `Bullet`
     - Parte dal fondo e si muove verso l'alto
     - Se esce dallo schermo, si rimuove dal gioco
