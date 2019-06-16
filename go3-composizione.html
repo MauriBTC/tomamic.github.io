@@ -580,7 +580,7 @@ func tick() {
     // ...
     arena.MoveAll()  // Game logic
     ClearCanvas()
-    for _, a in arena.Actors() {
+    for _, a := range arena.Actors() {
         // Cut an area from a larger image
         DrawImageClip(sprites, a.Symbol(), a.Position())
     }
