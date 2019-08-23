@@ -6,6 +6,7 @@ figure: images/dev/cpp.png
 
 title: Hello, C++
 
+- File sorgente: `hello.cpp`
 - `cout`: output su console, op. di inserimento `<<`
     - Possibile concatenare più operazioni di scrittura
 
@@ -17,6 +18,14 @@ code: c++
     int main() {
         cout << "Hello, C++!" << endl;
     }
+
+code: term
+
+    g++ hello.cpp -o hello.exe
+
+>
+
+Compilatore: <https://tomamic.github.io/intro.html#11>
 
 ---
 
@@ -115,7 +124,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/fondinfo/p1-algoritmi.html#16>
+<http://tomamic.github.io/p1-algoritmi.html#16>
 
 ---
 
@@ -139,7 +148,118 @@ code: c++
 
 >
 
-<http://tomamic.github.io/fondinfo/p1-algoritmi.html#20>
+<http://tomamic.github.io/p1-algoritmi.html#20>
+
+---
+
+title: Funzioni
+
+code: c++
+
+    #include <cmath>
+    #include <iostream>
+    using namespace std;
+
+    double hypotenuse(double a, double b) {
+        auto c = sqrt(a * a + b * b);
+        return c;
+    }
+
+    int main() {
+        auto side1 = 3.0, side2 = 4.0;
+        auto side3 = hypotenuse(side1, side2);
+        cout << "3rd side: " << side3 << endl;
+    }
+
+>
+
+<http://tomamic.github.io/p2-oggetti.html#4>
+
+---
+
+title: Parametri per riferimento 🤔
+
+- Parametri passati per riferimento sono *alias*
+    - Le modifiche riguardano anche le variabili esterne
+    - Limitarne l'uso!
+
+code: c++
+
+    // pass by reference: external vars can be modified
+    void swap(int& m, int& n) {
+        int tmp = m;
+        m = n; n = tmp;
+    }
+
+    int main() {
+        int a = 5, b = 7;
+        swap(a, b);
+        cout << a << " " << b << endl;
+    }
+
+---
+
+title: Strutture in g2d
+
+- Composizione di tipi elementari in strutture composte
+    - Possibile alternativa alle tuple di Python
+- Le seguenti `struct` sono definite in `g2d/actor.hpp`
+
+code: c++
+
+    struct Point { int x, y; };
+    struct Size { int w, h; };
+    struct Rect { int x, y, w, h; };
+    struct Color { int r, g, b; };
+
+---
+
+title: Grafica con g2d
+
+code: c++
+
+    #include "g2d/canvas.hpp"  // use your path!
+    auto x = 50, y = 50, dx = 5, dy = 0;
+    auto image = g2d::load_image("ball.png");
+
+    void tick() {
+        if (g2d::key_pressed("LeftButton")) { dx = -dx; }
+        g2d::clear_canvas();
+        g2d::draw_image(image, {x, y});
+        x += dx;
+    }
+    int main() {
+        g2d::init_canvas({480, 360});
+        g2d::main_loop(tick);
+    }
+
+code: term
+
+    g++ *.cpp -pthread
+
+---
+
+title: Numeri casuali
+
+code: C++
+
+    #include <iostream>
+    #include <cstdlib>
+    #include <ctime>
+    using namespace std;
+
+    int main() {
+        srand(time(nullptr));           // just once! (initial seed
+                                        // for random numbers)
+        for (int i = 0; i < 10; ++i) {
+            int r = 1 + rand() % 90;    // random value: 1 <= r <= 90
+            cout << r << endl;
+        }
+    }
+
+>
+
+In alternativa (con estremi inclusi): `g2d::randint(1, 90)`
 
 ---
 
@@ -149,7 +269,8 @@ figure: images/fun/shopping-list.jpg
 code: c++
 
     #include <vector>
-    // ...
+
+code: c++
 
     vector<string> grocery = {"spam", "egg", "beans"};  // init list
     cout << grocery[1] << endl;  // egg
@@ -159,12 +280,9 @@ code: c++
     grocery.push_back("bacon");  // add elem to the end
     grocery.pop_back();  // remove last elem
 
-    grocery.insert(begin(grocery) + 1, "bacon");  // other elems shift
-    grocery.erase(begin(grocery) + 1);  // remove elem at index
-
 >
 
-<http://tomamic.github.io/fondinfo/p3-composizione.html#4>
+<http://tomamic.github.io/p3-composizione.html#4>
 
 ---
 
@@ -192,7 +310,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/fondinfo/p3-composizione.html#8>
+<http://tomamic.github.io/p3-composizione.html#8>
 
 ---
 
@@ -215,23 +333,45 @@ code: c++
 
 >
 
-<http://tomamic.github.io/fondinfo/p5-matrici.html#9>
+<http://tomamic.github.io/p5-matrici.html#9>
 
 ---
 
-title: Appartenenza e allocazione
+title: Iteratori ed algoritmi
+figure: images/fun/iterator.png
+class: large-figure
 
 code: c++
 
-    #include <algorithm>  // find, etc.
+    #include <algorithm>
+    // count, find, sort etc.
 
 code: c++
 
-    auto pos = find(begin(grocery), end(grocery), "egg");
-    if (pos != end(grocery)) {
+    // insert at index 1, other elems shift
+    grocery.insert(grocery.begin() + 1, "bacon");
+    // remove elem at index 1, other elems shift back
+    grocery.erase(grocery.begin() + 1);
+
+code: c++
+
+    auto pos = find(grocery.begin(), grocery.end(), "egg");
+    if (pos != grocery.end()) {
         // true, grocery contains "egg"
         grocery.erase(pos);
     }
+
+>
+
+<http://tomamic.github.io/p3-composizione.html#4>
+
+---
+
+title: Allocazione di vector
+
+- Metodo `assign` per allocare una lista o una matrice
+    - *Dimensione* nota
+    - *Valore iniziale* uguale per tutti gli elementi
 
 code: c++
 
@@ -243,291 +383,46 @@ code: c++
     vector<vector<char>> some_matrix;
     some_matrix.assign(rows, vector<char>(cols, '-'));
 
->
-
-<http://tomamic.github.io/fondinfo/p3-composizione.html#4>
-
----
-
-title: Funzioni
-
-code: c++
-
-    #include <cmath>
-    #include <iostream>
-    using namespace std;
-
-    double hypotenuse(double a, double b) {
-        auto c = sqrt(a * a + b * b);
-        return c;
-    }
-
-    int main() {
-        auto side1 = 3.0, side2 = 4.0;
-        auto side3 = hypotenuse(side1, side2);
-        cout << "3rd side: " << side3 << endl;
-    }
-
->
-
-<http://tomamic.github.io/fondinfo/p2-oggetti.html#4>
-
----
-
-title: Output su file
-
-code: c++
-
-    #include <fstream>
-
-code: c++
-
-    int n; float r; string w;
-    cin >> n >> r >> w;
-
-    ofstream file2{"output.txt"};  // file output stream
-    if (file2) {                   // is stream available?
-        file2 << "Values: " << n << " " << r << " " << w << endl;
-    }
-    file2.close();
-
----
-
-title: Lettura di righe
-
-code: c++
-
-    ifstream file1{"input.txt"};  // when finished, close file1!
-
-code: c++
-
-    string first_line, second_line;
-    getline(file1, first_line);   // no newline at end
-    getline(file1, second_line);  // no newline at end
-
-code: c++
-
-    string whole_text;
-    getline(file1, whole_text, '\0');  // read whole file
-
-code: c++
-
-    // for each line in file1...
-    for (string line; getline(file1, line);) {
-        cout << line << endl;
-    }
-
->
-
-<http://tomamic.github.io/fondinfo/p5-matrici.html#4>
-
----
-
-title: Flussi e stringhe
-
-- Si può gestire una stringa come uno stream
-    - `istringstream`, `ostringstream` in libreria `<sstream>`
-    - Per estrarre valori ed inserire valori, rispettivamente
-
-code: c++
-
-    /* Split a text into a sequence of strings */
-    string text = "one:two::three";
-    istringstream sstr{text};  // a stream view on a string
-    for (string item; getline(sstr, item, ':');) {
-        cout << "- " << item << endl;
-    }
-
-code: output
-
-    - one
-    - two
-    -
-    - three
-
----
-
-title: Numeri casuali
-
-code: C++
-
-    #include <iostream>
-    #include <cstdlib>
-    #include <ctime>
-    using namespace std;
-
-    int main() {
-        srand(time(nullptr));           // just once! (initial seed
-                                        // for random numbers)
-        for (int i = 0; i < 10; ++i) {
-            int r = rand() % 90;        // random value: 0 <= r < 90
-            cout << r << endl;
-        }
-    }
-
->
-
-C++11 ha anche una libreria `random`, più avanzata <br>
-<http://www.stroustrup.com/C++11FAQ.html#std-random>
-
----
-
-title: Lettura di dati 🤔
-
-code: c++
-
-    ifstream file1{"input.txt"};
-
-code: c++
-
-    if (file1) {                         // is stream available?
-        int n; float r; string w;
-        file1 >> n >> r >> w;
-    }
-
-code: c++
-
-    for (int val; file1 >> val;) {       // or float, string ...
-        cout << setw(4) << val << endl;  // val occupies 4 chars
-    }                                    // setw in <iomanip>
-
-code: c++
-
-    file1 >> noskipws;                   // scan also whitespaces
-    for (char val; file1 >> val;) {      // for each char in file1
-        cout << val << endl;
-    }
-
----
-
-title: Do-while 🤔
-
-code: c++
-
-    int val, tot = 0, count = 0;
-    do {
-        cout << "Val (0 to end)? ";
-        cin >> val;
-        if (val != 0) {
-            tot += val;
-            ++count;
-        }
-    } while (val != 0);  // the check is at the end
-    if (count > 0) {
-        cout << "Avg: " << tot / float(count);
-    }
-
----
-
-title: Switch 🤔
-
-code: c++
-
-    int choice; cin >> choice;
-    switch (choice) {
-        case 1: cout << "First option"; break;
-        case 2: cout << "Second option"; break;
-        default: cout << "Error";
-    }
-
----
-
-title: Parametri per riferimento 🤔
-
-- Parametri passati per riferimento sono *alias*
-    - Le modifiche riguardano anche le variabili esterne
-    - Limitarne l'uso!
-
-code: c++
-
-    // pass by reference: external vars can be modified
-    void swap(int& m, int& n) {
-        int tmp = m;
-        m = n; n = tmp;
-    }
-
-    int main() {
-        int a = 5, b = 7;
-        swap(a, b);
-        cout << a << " " << b << endl;
-    }
-
 ---
 
 title: Oggetti
 class: segue dark
 
----
 
-title: Oggetti
-
-- C++: definizione della classe separata dalla implementazione dei metodi
-    - Definizione fornita agli utenti
-    - Implementazione compilata in libreria
-- Sorgenti organizzati in 3 file:
-    - `ball.h` – definizione della classe
-    - `ball.cpp` – implementazione dei metodi
-    - `main.cpp` – applicazione che usa la classe
-    - Dall'ambiente di sviluppo: *Add new → C++ Class*
-
----
-
-title: Definizione: ball.h
+title: Definizione di una classe
 figure: images/oop/ball-object.svg images/oop/ball-uml.svg
 figcaption: Class diagram UML
 
 code: c++
 
-    class Ball {
-    public:
-        Ball(int x0, int y0);
-        void move();
-        int get_x();
-        int get_y();
+    const int ARENA_W = 320, ARENA_H = 240;
 
-        static const int ARENA_W = 320, ARENA_H = 240;
+    class Ball {
+        int x_, y_;
+        int dx_ = 5, dy_ = 5;
+
+    public:
         static const int W = 20, H = 20;
 
-    private:
-        int x_;
-        int y_;
-        int dx_ = 5;
-        int dy_ = 5;
+        Ball(int x0, int y0) {  // contructor
+            x_ = x0; y_ = y0;
+        }
+        void Ball::move() {
+            if (x_ + dx_ < 0 || x_ + dx_ + W > ARENA_W) dx_ = -dx_;
+            if (y_ + dy_ < 0 || y_ + dy_ + H > ARENA_H) dy_ = -dy_;
+            x_ += dx_; y_ += dy_;
+        }
+        int Ball::get_x() { return x_; }
+        int Ball::get_y() { return y_; }
     };
 
 ---
 
-title: Implementazione: ball.cpp
-figure: images/oop/anim-bounce.png
-
-code: c++
-
-    #include "ball.h"
-
-    Ball::Ball(int x0, int y0) {
-        x_ = x0; y_ = y0;
-    }
-    void Ball::move() {
-        if (x_ + dx_ < 0 || x_ + dx_ + W > ARENA_W) dx_ = -dx_;
-        if (y_ + dy_ < 0 || y_ + dy_ + H > ARENA_H) dy_ = -dy_;
-        x_ += dx_; y_ += dy_;
-    }
-    int Ball::get_x() {
-        return x_;
-    }
-    int Ball::get_y() {
-        return y_;
-    }
-
----
-
-title: Applicazione: main.cpp
+title: Creazione ed uso degli oggetti
 figure: images/oop/balls.png
 
 code: c++
 
-    #include "ball.h"
-    // ...
     int main() {
         Ball b1{40, 80};
         Ball b2{80, 40};
@@ -563,35 +458,9 @@ code: c++
 
 ---
 
-title: Swig: C++ per moduli Python
-
-code: file: ball.i
-
-    %module ball
-    %include "std_string.i"
-    %{
-    #include "ball.h"  /* Include the header in the wrapper code */
-    %}
-    %include "ball.h"  /* Parse the header to generate wrappers */
-
-code: shell
-
-    swig -python -c++ ball.i
-    g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
-
-code: py
-
-    from ball import Ball
-    b = Ball(150, 200)
-    for i in range(10):
-        b.move()
-        print(b.get_x(), b.get_y())
-
----
-
 title: Cppyy: Chiamare C++ da Python
 
-code: shell
+code: term
 
     pip3 install cppyy
 
@@ -763,6 +632,249 @@ code: C++
             print_game(game);
         }
         cout << game->message() << endl;
+    }
+
+---
+
+title: Compilazione separata 🤔
+
+- C++: definizione della classe separata dalla implementazione dei metodi
+    - Definizione fornita agli utenti
+    - Implementazione compilata in libreria
+- Sorgenti organizzati in 3 file:
+    - `ball.h` – definizione della classe
+    - `ball.cpp` – implementazione dei metodi
+    - `main.cpp` – applicazione che usa la classe
+    - Dall'ambiente di sviluppo: *Add new → C++ Class*
+
+---
+
+title: Definizione: ball.h 🤔
+figure: images/oop/ball-object.svg images/oop/ball-uml.svg
+figcaption: Class diagram UML
+
+code: c++
+
+    class Ball {
+    public:
+        Ball(int x0, int y0);
+        void move();
+        int get_x();
+        int get_y();
+
+        static const int ARENA_W = 320, ARENA_H = 240;
+        static const int W = 20, H = 20;
+
+    private:
+        int x_;
+        int y_;
+        int dx_ = 5;
+        int dy_ = 5;
+    };
+
+---
+
+title: Implementazione: ball.cpp 🤔
+figure: images/oop/anim-bounce.png
+
+code: c++
+
+    #include "ball.h"
+
+    Ball::Ball(int x0, int y0) {
+        x_ = x0; y_ = y0;
+    }
+    void Ball::move() {
+        if (x_ + dx_ < 0 || x_ + dx_ + W > ARENA_W) dx_ = -dx_;
+        if (y_ + dy_ < 0 || y_ + dy_ + H > ARENA_H) dy_ = -dy_;
+        x_ += dx_; y_ += dy_;
+    }
+    int Ball::get_x() {
+        return x_;
+    }
+    int Ball::get_y() {
+        return y_;
+    }
+
+---
+
+title: Applicazione: main.cpp 🤔
+figure: images/oop/balls.png
+
+code: c++
+
+    #include "ball.h"
+    // ...
+    int main() {
+        Ball b1{40, 80};
+        Ball b2{80, 40};
+
+        for (auto i = 0; i < 25; ++i) {
+            b1.move();
+            b2.move();
+            cout << b1.get_x() << ", " << b1.get_y() << endl;
+            cout << b2.get_x() << ", " << b2.get_y() << endl << endl;
+        }
+    }
+
+---
+
+title: Swig: C++ per moduli Python 🤔
+
+code: file: ball.i
+
+    %module ball
+    %include "std_string.i"
+    %{
+    #include "ball.h"  /* Include the header in the wrapper code */
+    %}
+    %include "ball.h"  /* Parse the header to generate wrappers */
+
+code: term
+
+    swig -python -c++ ball.i
+    g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
+
+code: py
+
+    from ball import Ball
+    b = Ball(150, 200)
+    for i in range(10):
+        b.move()
+        print(b.get_x(), b.get_y())
+
+---
+
+title: Output su file 🤔
+
+code: c++
+
+    #include <fstream>
+
+code: c++
+
+    int n; float r; string w;
+    cin >> n >> r >> w;
+
+    ofstream file2{"output.txt"};  // file output stream
+    if (file2) {                   // is stream available?
+        file2 << "Values: " << n << " " << r << " " << w << endl;
+    }
+    file2.close();
+
+---
+
+title: Lettura di righe 🤔
+
+code: c++
+
+    ifstream file1{"input.txt"};  // when finished, close file1!
+
+code: c++
+
+    string first_line, second_line;
+    getline(file1, first_line);   // no newline at end
+    getline(file1, second_line);  // no newline at end
+
+code: c++
+
+    string whole_text;
+    getline(file1, whole_text, '\0');  // read whole file
+
+code: c++
+
+    // for each line in file1...
+    for (string line; getline(file1, line);) {
+        cout << line << endl;
+    }
+
+>
+
+<http://tomamic.github.io/p5-matrici.html#4>
+
+---
+
+title: Flussi e stringhe 🤔
+
+- Si può gestire una stringa come uno stream
+    - `istringstream`, `ostringstream` in libreria `<sstream>`
+    - Per estrarre valori ed inserire valori, rispettivamente
+
+code: c++
+
+    /* Split a text into a sequence of strings */
+    string text = "one:two::three";
+    istringstream sstr{text};  // a stream view on a string
+    for (string item; getline(sstr, item, ':');) {
+        cout << "- " << item << endl;
+    }
+
+code: output
+
+    - one
+    - two
+    -
+    - three
+
+---
+
+title: Lettura di dati 🤔
+
+code: c++
+
+    ifstream file1{"input.txt"};
+
+code: c++
+
+    if (file1) {                         // is stream available?
+        int n; float r; string w;
+        file1 >> n >> r >> w;
+    }
+
+code: c++
+
+    for (int val; file1 >> val;) {       // or float, string ...
+        cout << setw(4) << val << endl;  // val occupies 4 chars
+    }                                    // setw in <iomanip>
+
+code: c++
+
+    file1 >> noskipws;                   // scan also whitespaces
+    for (char val; file1 >> val;) {      // for each char in file1
+        cout << val << endl;
+    }
+
+---
+
+title: Do-while 🤔
+class: break
+
+code: c++
+
+    int val, tot = 0, count = 0;
+    do {
+        cout << "Val (0 to end)? ";
+        cin >> val;
+        if (val != 0) {
+            tot += val;
+            ++count;
+        }
+    } while (val != 0);  // the check is at the end
+    if (count > 0) {
+        cout << "Avg: " << tot / float(count);
+    }
+
+---
+
+title: Switch 🤔
+
+code: c++
+
+    int choice; cin >> choice;
+    switch (choice) {
+        case 1: cout << "First option"; break;
+        case 2: cout << "Second option"; break;
+        default: cout << "Error";
     }
 
 ---
@@ -1027,5 +1139,4 @@ code: C++
 
     double x = max<double>(5.0, 3.5);  # <double>, <int>: optional
     int i = max<int>(4, 6);            # inferred from parameters
-
 

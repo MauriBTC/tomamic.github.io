@@ -38,10 +38,10 @@ Stage formativo per studenti delle scuole superiori, 10-14 giugno 2019
 
 - [Sistema binario](http://tomamic.github.io/fondinfo/i1-numeri.html)
 - [Dati multimediali](http://tomamic.github.io/fondinfo/i2-multimedia.html)
-- [Linguaggi formali](http://tomamic.github.io/fondinfo/i3-linguaggi.html)
-- [Automi e calcolo](http://tomamic.github.io/fondinfo/i4-automi.html)
-- [Complessità computazionale](http://tomamic.github.io/fondinfo/i5-complessita.html)
-- [Qualità del software](http://tomamic.github.io/fondinfo/i6-qualita.html)
+- [Sviluppo del software](http://tomamic.github.io/fondinfo/i3-software.html)
+- [Linguaggi formali](http://tomamic.github.io/fondinfo/i4-linguaggi.html)
+- [Automi e calcolo](http://tomamic.github.io/fondinfo/i5-automi.html)
+- [Complessità computazionale](http://tomamic.github.io/fondinfo/i6-complessita.html)
 - [Slide in PDF (2x2, non aggiornate)](https://www.dropbox.com/s/qlyzeet068hjw05/informatica-2x2.pdf?dl=1)
 
 ----
