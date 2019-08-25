@@ -429,6 +429,29 @@ for (auto x = 0; x &lt; cols; ++x) {
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>Allocazione di vector</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Metodo <code>assign</code> per allocare una lista o una matrice<ul>
+<li><em>Dimensione</em> nota</li>
+<li><em>Valore iniziale</em> uguale per tutti gli elementi</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="c++"><code>vector&lt;string&gt; some_list;
+some_list.assign(10, ""); // 10 strings
+</code></pre>
+<pre class="prettyprint" data-lang="c++"><code>vector&lt;vector&lt;char&gt;&gt; some_matrix;
+some_matrix.assign(rows, vector&lt;char&gt;(cols, '-'));
+</code></pre></article>
+ 
+</slide>
+
 <slide class="large-figure" >
   
     <hgroup>
@@ -461,22 +484,25 @@ if (pos != grocery.end()) {
 <slide  >
   
     <hgroup>
-      <h2>Allocazione di vector</h2>
+      <h2>Puntatori</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li>Metodo <code>assign</code> per allocare una lista o una matrice<ul>
-<li><em>Dimensione</em> nota</li>
-<li><em>Valore iniziale</em> uguale per tutti gli elementi</li>
+      <figure>
+        <img src="images/oop/pointer.png">
+        
+      </figure><ul>
+<li>Ogni dato presente in memoria ha un indirizzo: variabile puntatore per memorizzarlo<ul>
+<li>Operatore <code>&amp;</code> per indirizzo di un dato</li>
+<li>Op. <code>*</code> per accesso a dato puntato (<em>dereferenziazione</em>)</li>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>vector&lt;string&gt; some_list;
-some_list.assign(10, ""); // 10 strings
-</code></pre>
-<pre class="prettyprint" data-lang="c++"><code>vector&lt;vector&lt;char&gt;&gt; some_matrix;
-some_matrix.assign(rows, vector&lt;char&gt;(cols, '-'));
+<pre class="prettyprint" data-lang="c++"><code>char i = 56;  // a byte
+char* p;      // a ptr to some byte (uninitialized)
+p = &amp;i;       // now p points to i
+*p = *p + 1;  // ++i
+p = nullptr;  // ptr to nothing
 </code></pre></article>
  
 </slide>
@@ -489,6 +515,35 @@ some_matrix.assign(rows, vector&lt;char&gt;(cols, '-'));
       <h3></h3>
     </hgroup>
   
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Definizione di una classe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
+        <figcaption>Class diagram UML</figcaption>
+      </figure><pre class="prettyprint" data-lang="c++"><code>class Ball {
+    int x_, y_;             // private stuff
+    int dx_ = 5, dy_ = 5;
+public:
+    Ball(int x0, int y0) {  // contructor
+        x_ = x0; y_ = y0;
+    }
+    void Ball::move() {
+        if (x_+dx_ &lt; 0 || x_+dx_ &gt; 480) dx_ = -dx_;
+        if (y_+dy_ &lt; 0 || y_+dy_ &gt; 360) dy_ = -dy_;
+        x_ += dx_; y_ += dy_;
+    }
+    int Ball::get_x() { return x_; }
+    int Ball::get_y() { return y_; }
+};
+</code></pre></article>
+ 
 </slide>
 
 <slide  >
@@ -563,32 +618,6 @@ for i in range(10):
  
 </slide>
 
-<slide  >
-  
-    <hgroup>
-      <h2>Puntatori</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/oop/pointer.png">
-        
-      </figure><ul>
-<li>Ogni dato presente in memoria ha un indirizzo: variabile puntatore per memorizzarlo<ul>
-<li>Operatore <code>&amp;</code> per indirizzo di un dato</li>
-<li>Op. <code>*</code> per accesso a dato puntato (<em>dereferenziazione</em>)</li>
-</ul>
-</li>
-</ul>
-<pre class="prettyprint" data-lang="c++"><code>char i = 56;  // a byte
-char* p;      // a ptr to some byte (uninitialized)
-p = &amp;i;       // now p points to i
-*p = *p + 1;  // ++i
-p = nullptr;  // ptr to nothing
-</code></pre></article>
- 
-</slide>
-
 <slide class="segue dark" >
   
     <aside class="gdbar"><img src="theme/logo.png"></aside>
@@ -622,7 +651,11 @@ public:
     virtual void say() = 0;
 };
 </code></pre>
-<blockquote></blockquote>
+<ul>
+<li>Un metodo <code>virtual</code> <em>può</em> essere (ri)definito dalle sottoclassi</li>
+<li>Un metodo <code>=0</code> <em>deve</em> essere definito dalle sottoclassi<blockquote></blockquote>
+</li>
+</ul>
 <p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp">https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp</a></p></article>
  
 </slide>

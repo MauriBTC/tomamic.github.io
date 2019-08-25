@@ -293,6 +293,7 @@ code: c++
     for (auto product : grocery) {  // for each product in grocery
         cout << product << endl;
     }
+    // it works also on a string!
 
 code: c++
 
@@ -337,6 +338,24 @@ code: c++
 
 ---
 
+title: Allocazione di vector
+
+- Metodo `assign` per allocare una lista o una matrice
+    - *Dimensione* nota
+    - *Valore iniziale* uguale per tutti gli elementi
+
+code: c++
+
+    vector<string> some_list;
+    some_list.assign(10, ""); // 10 strings
+
+code: c++
+
+    vector<vector<char>> some_matrix;
+    some_matrix.assign(rows, vector<char>(cols, '-'));
+
+---
+
 title: Iteratori ed algoritmi
 figure: images/fun/iterator.png
 class: large-figure
@@ -367,27 +386,27 @@ code: c++
 
 ---
 
-title: Allocazione di vector
+title: Puntatori
+figure: images/oop/pointer.png
 
-- Metodo `assign` per allocare una lista o una matrice
-    - *Dimensione* nota
-    - *Valore iniziale* uguale per tutti gli elementi
-
-code: c++
-
-    vector<string> some_list;
-    some_list.assign(10, ""); // 10 strings
+- Ogni dato presente in memoria ha un indirizzo: variabile puntatore per memorizzarlo
+    - Operatore `&` per indirizzo di un dato
+    - Op. `*` per accesso a dato puntato (*dereferenziazione*)
 
 code: c++
 
-    vector<vector<char>> some_matrix;
-    some_matrix.assign(rows, vector<char>(cols, '-'));
+    char i = 56;  // a byte
+    char* p;      // a ptr to some byte (uninitialized)
+    p = &i;       // now p points to i
+    *p = *p + 1;  // ++i
+    p = nullptr;  // ptr to nothing
 
 ---
 
 title: Oggetti
 class: segue dark
 
+---
 
 title: Definizione di una classe
 figure: images/oop/ball-object.svg images/oop/ball-uml.svg
@@ -395,21 +414,16 @@ figcaption: Class diagram UML
 
 code: c++
 
-    const int ARENA_W = 320, ARENA_H = 240;
-
     class Ball {
-        int x_, y_;
+        int x_, y_;             // private stuff
         int dx_ = 5, dy_ = 5;
-
     public:
-        static const int W = 20, H = 20;
-
         Ball(int x0, int y0) {  // contructor
             x_ = x0; y_ = y0;
         }
         void Ball::move() {
-            if (x_ + dx_ < 0 || x_ + dx_ + W > ARENA_W) dx_ = -dx_;
-            if (y_ + dy_ < 0 || y_ + dy_ + H > ARENA_H) dy_ = -dy_;
+            if (x_+dx_ < 0 || x_+dx_ > 480) dx_ = -dx_;
+            if (y_+dy_ < 0 || y_+dy_ > 360) dy_ = -dy_;
             x_ += dx_; y_ += dy_;
         }
         int Ball::get_x() { return x_; }
@@ -477,23 +491,6 @@ code: py
 
 ---
 
-title: Puntatori
-figure: images/oop/pointer.png
-
-- Ogni dato presente in memoria ha un indirizzo: variabile puntatore per memorizzarlo
-    - Operatore `&` per indirizzo di un dato
-    - Op. `*` per accesso a dato puntato (*dereferenziazione*)
-
-code: c++
-
-    char i = 56;  // a byte
-    char* p;      // a ptr to some byte (uninitialized)
-    p = &i;       // now p points to i
-    *p = *p + 1;  // ++i
-    p = nullptr;  // ptr to nothing
-
----
-
 title: Livelli di astrazione
 class: segue dark
 
@@ -514,6 +511,8 @@ code: c++
         virtual void say() = 0;
     };
 
+- Un metodo `virtual` *può* essere (ri)definito dalle sottoclassi
+- Un metodo `=0` *deve* essere definito dalle sottoclassi
 >
 
 <https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp>

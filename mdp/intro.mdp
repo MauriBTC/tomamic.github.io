@@ -111,7 +111,7 @@ figure: images/dii/quiz.png
 title: Testi di riferimento
 figure: images/dev/books.png
 
-- *Fondamenti di informatica e lab.* McGraw-Hill 2014. ISBN 978-13-082-4813-4 (~25€, 250pp., nelle [librerie universitarie](http://www.informagiovanionline.it/emiliaromagna/parma/tempo-libero/godersi-larte-e-la-cultura/libri-in-rete/librerie-scolastiche-e-universitarie-parma) )
+- *Fondamenti di informatica e lab.* McGraw-Hill 2019. ISBN 978-13-074-5700-1 (~27€, ~300pp., nelle [librerie universitarie](http://www.informagiovanionline.it/emiliaromagna/parma/tempo-libero/godersi-larte-e-la-cultura/libri-in-rete/librerie-scolastiche-e-universitarie-parma) )
 - A.B. Downey: *Think Python* 2e - <https://github.com/AllenDowney/ThinkPythonItalian>
 - A.B. Downey: *How to Think Like a Computer Scientist C++ Version* - <http://greenteapress.com/thinkcpp/>
 - M. Beri: *Python*, Apogeo Pocket 2010, 978-8850329151 (~8€)
@@ -145,8 +145,7 @@ code: Shell
 
     ## Ubuntu, Debian etc.
     sudo apt install idle3 python3-pip geany
-    sudo apt install build-essential cmake libboost-dev
-    sudo apt purge fcitx-module-dbus
+    sudo apt install build-essential libboost-dev
     pip3 install pygame cppyy thonny
 
 ---
