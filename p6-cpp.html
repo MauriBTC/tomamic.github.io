@@ -78,12 +78,10 @@ int main() {
 using namespace std;
 
 int main() {
-    string name;
-    int age;
-    cout &lt;&lt; "Name and age?" &lt;&lt; endl;
-    cin &gt;&gt; name &gt;&gt; age;  // two chained extractions
-    cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "." &lt;&lt; endl;
-    cout &lt;&lt; "You're " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; endl;
+    float weight, height;
+    cout &lt;&lt; "Weight (kg) and height (m)?" &lt;&lt; endl;
+    cin &gt;&gt; weight &gt;&gt; height;  // two chained extractions
+    cout &lt;&lt; "Your BMI is " &lt;&lt; weight / (height*height) &lt;&lt; endl;
 }
 </code></pre></article>
  
@@ -187,11 +185,9 @@ if (a &lt; b) {
     cout &lt;&lt; "The words are equal" &lt;&lt; endl;
 }
 </code></pre>
-<ul>
-<li>Scelte multiple con <code>switch ... case</code></li>
-</ul>
 <blockquote></blockquote>
-<p><a href="p1-algoritmi.html#17">Selezioni in Python</a></p></article>
+<p><a href="p1-algoritmi.html#17">Selezioni in Python</a></p>
+<p><a href="https://cppguide.readthedocs.io/en/latest/cpp/control.html">Strutture di controllo in C++</a></p></article>
  
 </slide>
 
@@ -218,11 +214,9 @@ if (count &gt; 0) {
     cout &lt;&lt; "Avg: " &lt;&lt; total / float(count) &lt;&lt; endl;
 }
 </code></pre>
-<ul>
-<li>Controllo a fine ciclo con <code>do ... while</code></li>
-</ul>
 <blockquote></blockquote>
-<p><a href="p1-algoritmi.html#21">Iterazioni in Python</a></p></article>
+<p><a href="p1-algoritmi.html#21">Iterazioni in Python</a></p>
+<p><a href="https://cppguide.readthedocs.io/en/latest/cpp/control.html">Strutture di controllo in C++</a></p></article>
  
 </slide>
 
@@ -241,7 +235,7 @@ if (count &gt; 0) {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>int i = 0;  // for each i : 0 &lt;= i &lt; 5
+<pre class="prettyprint" data-lang="c++"><code>int i = 0;                     // for each i : 0 &lt;= i &lt; 5
 while (i &lt; 5) {
     cout &lt;&lt; i * i &lt;&lt; endl;
     ++i;
@@ -289,7 +283,7 @@ int main() {
     </hgroup>
     <article >
       <ul>
-<li>Parametri passati per riferimento sono <em>alias</em><ul>
+<li>Parametri per riferimento (<code>&amp;</code>) sono <em>alias</em><ul>
 <li>Le modifiche riguardano anche le variabili esterne</li>
 <li>Limitarne l'uso!</li>
 </ul>
@@ -413,7 +407,7 @@ grocery.push_back("bacon");  // add elem to the end
 grocery.pop_back();  // remove last elem
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p3-composizione.html#4">http://tomamic.github.io/p3-composizione.html#4</a></p></article>
+<p><a href="p3-composizione.html#3">Liste in Python</a></p></article>
  
 </slide>
 
@@ -435,7 +429,7 @@ for (auto c : text)  {  // for each char in text
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p3-composizione.html#4">http://tomamic.github.io/p3-composizione.html#4</a></p></article>
+<p><a href="p3-composizione.html#4">Cicli su liste in Python</a></p></article>
  
 </slide>
 
@@ -460,7 +454,7 @@ for (auto x = 0; x &lt; cols; ++x) {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p5-matrici.html#10">http://tomamic.github.io/p5-matrici.html#10</a></p></article>
+<p><a href="p5-matrici.html#10">Pseudo-matrice in Python</a></p></article>
  
 </slide>
 
@@ -484,7 +478,7 @@ some_list.assign(10, ""); // some_list contains 10 strings
 <ul>
 <li>Si possono usare anche <code>vector</code> di <code>vector</code>... 🤔</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>auto rows = 3, cols = 4, y = 2, x = 3;
+<pre class="prettyprint" data-lang="c++"><code>auto rows = 3, cols = 4, y = 1, x = 2;
 vector&lt;vector&lt;char&gt;&gt; some_matrix;
 some_matrix.assign(rows, vector&lt;char&gt;(cols, '-'));
 cout &lt;&lt; some_matrix[y][x] &lt;&lt; endl;
@@ -517,7 +511,7 @@ if (pos != grocery.end()) {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p3-composizione.html#4">http://tomamic.github.io/p3-composizione.html#4</a></p></article>
+<p><a href="p3-composizione.html#6">Liste in Python</a></p></article>
  
 </slide>
 
@@ -579,8 +573,8 @@ public:
         if (y_+dy_&lt;0 || y_+dy_&gt;ARENA_H) dy_ = -dy_;
         x_ += dx_; y_ += dy_;
     }
-    int Ball::get_x() { return x_; }
-    int Ball::get_y() { return y_; }
+    int Ball::pos_x() { return x_; }
+    int Ball::pos_y() { return y_; }
 };
 </code></pre></article>
  
@@ -603,11 +597,13 @@ public:
     for (auto i = 0; i &lt; 25; ++i) {
         b1.move();
         b2.move();
-        cout &lt;&lt; b1.get_x() &lt;&lt; ", " &lt;&lt; b1.get_y() &lt;&lt; endl;
-        cout &lt;&lt; b2.get_x() &lt;&lt; ", " &lt;&lt; b2.get_y() &lt;&lt; endl &lt;&lt; endl;
+        cout &lt;&lt; b1.pos_x() &lt;&lt; ", " &lt;&lt; b1.pos_y() &lt;&lt; endl;
+        cout &lt;&lt; b2.pos_x() &lt;&lt; ", " &lt;&lt; b2.pos_y() &lt;&lt; endl &lt;&lt; endl;
     }
 }
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp">https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp</a></p></article>
  
 </slide>
 
@@ -626,8 +622,8 @@ Ball* b2 = new Ball{80, 40};
 for (auto i = 0; i &lt; 25; ++i) {
     b1.move();
     b2-&gt;move();
-    cout &lt;&lt; b1.get_x() &lt;&lt; ", " &lt;&lt; b1.get_y() &lt;&lt; endl;
-    cout &lt;&lt; b2-&gt;get_x() &lt;&lt; ", " &lt;&lt; b2-&gt;get_y() &lt;&lt; endl &lt;&lt; endl;
+    cout &lt;&lt; b1.pos_x() &lt;&lt; ", " &lt;&lt; b1.pos_y() &lt;&lt; endl;
+    cout &lt;&lt; b2-&gt;pos_x() &lt;&lt; ", " &lt;&lt; b2-&gt;pos_y() &lt;&lt; endl &lt;&lt; endl;
 }
 delete b2;
 </code></pre>
@@ -653,8 +649,10 @@ from cppyy.gbl import Ball
 b = Ball(150, 200)
 for i in range(10):
     b.move()
-    print(b.get_x(), b.get_y())
-</code></pre></article>
+    print(b.pos_x(), b.pos_y())
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py">https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py</a></p></article>
  
 </slide>
 
@@ -693,10 +691,10 @@ public:
 </code></pre>
 <ul>
 <li>Un metodo <code>virtual</code> <em>può</em> essere (ri)definito dalle sottoclassi</li>
-<li>Un metodo <code>=0</code> <em>deve</em> essere definito dalle sottoclassi<blockquote></blockquote>
-</li>
+<li>Un metodo <code>=0</code> <em>deve</em> essere definito dalle sottoclassi</li>
 </ul>
-<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp">https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp</a></p></article>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/animals.cpp">https://github.com/tomamic/fondinfo/blob/master/cpp/animals.cpp</a></p></article>
  
 </slide>
 
@@ -802,7 +800,7 @@ public:
     virtual void flag_at(int x, int y) = 0;
     virtual int cols() = 0;
     virtual int rows() = 0;
-    virtual string get_val(int x, int y) = 0;
+    virtual string value_at(int x, int y) = 0;
     virtual bool finished() = 0;
     virtual string message() = 0;
 
@@ -824,7 +822,7 @@ public:
       <pre class="prettyprint" data-lang="C++"><code>void print_game(BoardGame* game) {
     for (auto y = 0; y &lt; game-&gt;rows(); ++y) {
         for (auto x = 0; x &lt; game-&gt;cols(); ++x) {
-            cout &lt;&lt; setw(3) &lt;&lt; game-&gt;get_val(x, y);
+            cout &lt;&lt; setw(3) &lt;&lt; game-&gt;value_at(x, y);
         }
         cout &lt;&lt; endl;
     }
@@ -885,8 +883,8 @@ class Ball {
 public:
     Ball(int x0, int y0);  // just declarations
     void move();
-    int get_x();
-    int get_y();
+    int pos_x();
+    int pos_y();
 };
 
 #endif // BALL_H
@@ -916,8 +914,8 @@ void Ball::move() {
     if (y_ + dy_ &lt; 0 || y_ + dy_ &gt; ARENA_H) dy_ = -dy_;
     x_ += dx_; y_ += dy_;
 }
-int Ball::get_x() { return x_; }
-int Ball::get_y() { return y_; }
+int Ball::pos_x() { return x_; }
+int Ball::pos_y() { return y_; }
 </code></pre></article>
  
 </slide>
@@ -935,16 +933,18 @@ int Ball::get_y() { return y_; }
       </figure><pre class="prettyprint" data-lang="c++"><code>#include "ball.h"
 // ...
 int main() {
-    Ball b1{40, 80};
-    Ball b2{80, 40};
+    Ball b1{40, 80}, b2{80, 40};
 
     for (auto i = 0; i &lt; 25; ++i) {
-        b1.move();
-        b2.move();
-        cout &lt;&lt; b1.get_x() &lt;&lt; ", " &lt;&lt; b1.get_y() &lt;&lt; endl;
-        cout &lt;&lt; b2.get_x() &lt;&lt; ", " &lt;&lt; b2.get_y() &lt;&lt; endl &lt;&lt; endl;
+        b1.move(); b2.move();
+        cout &lt;&lt; b1.pos_x() &lt;&lt; ", " &lt;&lt; b1.pos_y() &lt;&lt; endl;
+        cout &lt;&lt; b2.pos_x() &lt;&lt; ", " &lt;&lt; b2.pos_y() &lt;&lt; endl &lt;&lt; endl;
     }
 }
+</code></pre>
+<pre class="prettyprint" data-lang="shell"><code>g++ -c ball.cpp
+g++ -c main.cpp
+g++ -o ball ball.o main.o
 </code></pre></article>
  
 </slide>
@@ -964,13 +964,13 @@ int main() {
 %include "ball.h"  /* Parse the header to generate wrappers */
 </code></pre>
 <pre class="prettyprint" data-lang="shell"><code>swig -python -c++ ball.i
-g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
+g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.7m -o _$module.so
 </code></pre>
 <pre class="prettyprint" data-lang="py"><code>from ball import Ball
 b = Ball(150, 200)
 for i in range(10):
     b.move()
-    print(b.get_x(), b.get_y())
+    print(b.pos_x(), b.pos_y())
 </code></pre></article>
  
 </slide>
@@ -1072,46 +1072,6 @@ for (string item; getline(sstr, item, ':');) {
 <pre class="prettyprint" data-lang="c++"><code>file1 &gt;&gt; noskipws;                   // scan also whitespaces
 for (char val; file1 &gt;&gt; val;) {      // for each char in file1
     cout &lt;&lt; val &lt;&lt; endl;
-}
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Do-while 🤔</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint" data-lang="c++"><code>int val, tot = 0, count = 0;
-do {
-    cout &lt;&lt; "Val (0 to end)? ";
-    cin &gt;&gt; val;
-    if (val != 0) {
-        tot += val;
-        ++count;
-    }
-} while (val != 0);  // the check is at the end
-if (count &gt; 0) {
-    cout &lt;&lt; "Avg: " &lt;&lt; tot / float(count);
-}
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Switch 🤔</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint" data-lang="c++"><code>int choice; cin &gt;&gt; choice;
-switch (choice) {
-    case 1: cout &lt;&lt; "First option"; break;
-    case 2: cout &lt;&lt; "Second option"; break;
-    default: cout &lt;&lt; "Error";
 }
 </code></pre></article>
  

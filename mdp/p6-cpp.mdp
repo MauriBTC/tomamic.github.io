@@ -40,12 +40,10 @@ code: c++
     using namespace std;
 
     int main() {
-        string name;
-        int age;
-        cout << "Name and age?" << endl;
-        cin >> name >> age;  // two chained extractions
-        cout << "Hello, " << name << "." << endl;
-        cout << "You're " << age << " years old." << endl;
+        float weight, height;
+        cout << "Weight (kg) and height (m)?" << endl;
+        cin >> weight >> height;  // two chained extractions
+        cout << "Your BMI is " << weight / (height*height) << endl;
     }
 
 ---
@@ -122,11 +120,11 @@ code: c++
         cout << "The words are equal" << endl;
     }
 
-- Scelte multiple con `switch ... case`
-
 >
 
 [Selezioni in Python](p1-algoritmi.html#17)
+
+[Strutture di controllo in C++](https://cppguide.readthedocs.io/en/latest/cpp/control.html)
 
 ---
 
@@ -148,11 +146,11 @@ code: c++
         cout << "Avg: " << total / float(count) << endl;
     }
 
-- Controllo a fine ciclo con `do ... while`
-
 >
 
 [Iterazioni in Python](p1-algoritmi.html#21)
+
+[Strutture di controllo in C++](https://cppguide.readthedocs.io/en/latest/cpp/control.html)
 
 ---
 
@@ -165,7 +163,7 @@ title: Cicli while e for
 
 code: c++
 
-    int i = 0;  // for each i : 0 <= i < 5
+    int i = 0;                     // for each i : 0 <= i < 5
     while (i < 5) {
         cout << i * i << endl;
         ++i;
@@ -206,7 +204,7 @@ code: c++
 
 title: Parametri per riferimento 🤔
 
-- Parametri passati per riferimento sono *alias*
+- Parametri per riferimento (`&`) sono *alias*
     - Le modifiche riguardano anche le variabili esterne
     - Limitarne l'uso!
 
@@ -314,7 +312,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/p3-composizione.html#4>
+[Liste in Python](p3-composizione.html#3)
 
 ---
 
@@ -336,7 +334,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/p3-composizione.html#4>
+[Cicli su liste in Python](p3-composizione.html#4)
 
 ---
 
@@ -359,7 +357,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/p5-matrici.html#10>
+[Pseudo-matrice in Python](p5-matrici.html#10)
 
 ---
 
@@ -378,7 +376,7 @@ code: c++
 
 code: c++
 
-    auto rows = 3, cols = 4, y = 2, x = 3;
+    auto rows = 3, cols = 4, y = 1, x = 2;
     vector<vector<char>> some_matrix;
     some_matrix.assign(rows, vector<char>(cols, '-'));
     cout << some_matrix[y][x] << endl;
@@ -411,7 +409,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/p3-composizione.html#4>
+[Liste in Python](p3-composizione.html#6)
 
 ---
 
@@ -455,8 +453,8 @@ code: c++
             if (y_+dy_<0 || y_+dy_>ARENA_H) dy_ = -dy_;
             x_ += dx_; y_ += dy_;
         }
-        int Ball::get_x() { return x_; }
-        int Ball::get_y() { return y_; }
+        int Ball::pos_x() { return x_; }
+        int Ball::pos_y() { return y_; }
     };
 
 ---
@@ -473,10 +471,14 @@ code: c++
         for (auto i = 0; i < 25; ++i) {
             b1.move();
             b2.move();
-            cout << b1.get_x() << ", " << b1.get_y() << endl;
-            cout << b2.get_x() << ", " << b2.get_y() << endl << endl;
+            cout << b1.pos_x() << ", " << b1.pos_y() << endl;
+            cout << b2.pos_x() << ", " << b2.pos_y() << endl << endl;
         }
     }
+
+>
+
+<https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp>
 
 ---
 
@@ -492,8 +494,8 @@ code: c++
     for (auto i = 0; i < 25; ++i) {
         b1.move();
         b2->move();
-        cout << b1.get_x() << ", " << b1.get_y() << endl;
-        cout << b2->get_x() << ", " << b2->get_y() << endl << endl;
+        cout << b1.pos_x() << ", " << b1.pos_y() << endl;
+        cout << b2->pos_x() << ", " << b2->pos_y() << endl << endl;
     }
     delete b2;
 
@@ -516,7 +518,11 @@ code: py
     b = Ball(150, 200)
     for i in range(10):
         b.move()
-        print(b.get_x(), b.get_y())
+        print(b.pos_x(), b.pos_y())
+
+>
+
+<https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py>
 
 ---
 
@@ -542,9 +548,10 @@ code: c++
 
 - Un metodo `virtual` *può* essere (ri)definito dalle sottoclassi
 - Un metodo `=0` *deve* essere definito dalle sottoclassi
+
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/animals/main.cpp>
+<https://github.com/tomamic/fondinfo/blob/master/cpp/animals.cpp>
 
 ---
 
@@ -629,7 +636,7 @@ code: C++
         virtual void flag_at(int x, int y) = 0;
         virtual int cols() = 0;
         virtual int rows() = 0;
-        virtual string get_val(int x, int y) = 0;
+        virtual string value_at(int x, int y) = 0;
         virtual bool finished() = 0;
         virtual string message() = 0;
 
@@ -649,7 +656,7 @@ code: C++
     void print_game(BoardGame* game) {
         for (auto y = 0; y < game->rows(); ++y) {
             for (auto x = 0; x < game->cols(); ++x) {
-                cout << setw(3) << game->get_val(x, y);
+                cout << setw(3) << game->value_at(x, y);
             }
             cout << endl;
         }
@@ -694,8 +701,8 @@ code: c++
     public:
         Ball(int x0, int y0);  // just declarations
         void move();
-        int get_x();
-        int get_y();
+        int pos_x();
+        int pos_y();
     };
 
     #endif // BALL_H
@@ -719,8 +726,8 @@ code: c++
         if (y_ + dy_ < 0 || y_ + dy_ > ARENA_H) dy_ = -dy_;
         x_ += dx_; y_ += dy_;
     }
-    int Ball::get_x() { return x_; }
-    int Ball::get_y() { return y_; }
+    int Ball::pos_x() { return x_; }
+    int Ball::pos_y() { return y_; }
 
 ---
 
@@ -732,16 +739,20 @@ code: c++
     #include "ball.h"
     // ...
     int main() {
-        Ball b1{40, 80};
-        Ball b2{80, 40};
+        Ball b1{40, 80}, b2{80, 40};
 
         for (auto i = 0; i < 25; ++i) {
-            b1.move();
-            b2.move();
-            cout << b1.get_x() << ", " << b1.get_y() << endl;
-            cout << b2.get_x() << ", " << b2.get_y() << endl << endl;
+            b1.move(); b2.move();
+            cout << b1.pos_x() << ", " << b1.pos_y() << endl;
+            cout << b2.pos_x() << ", " << b2.pos_y() << endl << endl;
         }
     }
+
+code: shell
+
+    g++ -c ball.cpp
+    g++ -c main.cpp
+    g++ -o ball ball.o main.o
 
 ---
 
@@ -759,7 +770,7 @@ code: file: ball.i
 code: shell
 
     swig -python -c++ ball.i
-    g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
+    g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.7m -o _$module.so
 
 code: py
 
@@ -767,7 +778,7 @@ code: py
     b = Ball(150, 200)
     for i in range(10):
         b.move()
-        print(b.get_x(), b.get_y())
+        print(b.pos_x(), b.pos_y())
 
 ---
 
@@ -873,6 +884,7 @@ code: c++
 ---
 
 title: Do-while 🤔
+class: break
 
 code: c++
 
