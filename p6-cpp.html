@@ -44,22 +44,19 @@ URL: https://code.google.com/p/io-2012-slides
     <article >
       <ul>
 <li>File sorgente: <code>hello.cpp</code></li>
-<li><code>cout</code>: output su console, op. di inserimento <code>&lt;&lt;</code><ul>
-<li>Possibile concatenare più operazioni di scrittura</li>
-</ul>
-</li>
+<li><code>cout</code>: output su console, op. di <em>inserimento</em> <code>&lt;&lt;</code></li>
 </ul>
 <pre class="prettyprint" data-lang="c++"><code>#include &lt;iostream&gt;
 using namespace std;
 
 int main() {
-    cout &lt;&lt; "Hello, C++!" &lt;&lt; endl;
+    cout &lt;&lt; "Hello, C++!" &lt;&lt; endl;  // two chained insertions
 }
 </code></pre>
-<pre class="prettyprint" data-lang="term"><code>g++ hello.cpp -o hello.exe
+<pre class="prettyprint" data-lang="shell"><code>g++ hello.cpp -o hello.exe
 </code></pre>
 <blockquote></blockquote>
-<p>Compilatore: <a href="https://tomamic.github.io/intro.html#11">https://tomamic.github.io/intro.html#11</a></p></article>
+<p><a href="intro.html#11">Strumenti software</a></p></article>
  
 </slide>
 
@@ -71,11 +68,11 @@ int main() {
     </hgroup>
     <article >
       <ul>
-<li><code>cin</code>: input da console, op. di estrazione <code>&gt;&gt;</code><ul>
-<li>Possibile concatenare più operazioni di lettura</li>
-<li><code>getline(cin, line)</code>: lettura intera riga</li>
+<li><code>cin</code>: input da console, op. di <em>estrazione</em> <code>&gt;&gt;</code><ul>
+<li>Lettura fino al primo <em>whitespace</em> (spazio o altro)</li>
 </ul>
 </li>
+<li><code>getline(cin, line)</code>: lettura intera riga</li>
 </ul>
 <pre class="prettyprint" data-lang="c++"><code>#include &lt;iostream&gt;
 using namespace std;
@@ -84,7 +81,7 @@ int main() {
     string name;
     int age;
     cout &lt;&lt; "Name and age?" &lt;&lt; endl;
-    cin &gt;&gt; name &gt;&gt; age;
+    cin &gt;&gt; name &gt;&gt; age;  // two chained extractions
     cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "." &lt;&lt; endl;
     cout &lt;&lt; "You're " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; endl;
 }
@@ -160,7 +157,8 @@ cout &lt;&lt; (3 &lt; 5 &amp;&amp; 5 &lt; 4) &lt;&lt; endl;  // 0
 </ul>
 <pre class="prettyprint" data-lang="c++"><code>string sentence = "Lorem ipsum";
 sentence[6] = 'I';
-cout &lt;&lt; sentence[6];  // 'I'
+char c = sentence[6];  // 'I'
+cout &lt;&lt; c &lt;&lt; " " &lt;&lt; int(c) &lt;&lt; endl;  // I 73
 
 int n = 5;
 string txt = to_string(n);
@@ -172,7 +170,7 @@ int val = stoi(txt);  // see also `stod`, `stof`...
 <slide  >
   
     <hgroup>
-      <h2>Decisioni</h2>
+      <h2>Selezione</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -189,8 +187,11 @@ if (a &lt; b) {
     cout &lt;&lt; "The words are equal" &lt;&lt; endl;
 }
 </code></pre>
+<ul>
+<li>Scelte multiple con <code>switch ... case</code></li>
+</ul>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p1-algoritmi.html#16">http://tomamic.github.io/p1-algoritmi.html#16</a></p></article>
+<p><a href="p1-algoritmi.html#17">Selezioni in Python</a></p></article>
  
 </slide>
 
@@ -217,8 +218,39 @@ if (count &gt; 0) {
     cout &lt;&lt; "Avg: " &lt;&lt; total / float(count) &lt;&lt; endl;
 }
 </code></pre>
+<ul>
+<li>Controllo a fine ciclo con <code>do ... while</code></li>
+</ul>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p1-algoritmi.html#20">http://tomamic.github.io/p1-algoritmi.html#20</a></p></article>
+<p><a href="p1-algoritmi.html#21">Iterazioni in Python</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli while e for</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Cicli tipici:<ul>
+<li>Inizializzazione della variabile di ciclo</li>
+<li>Test sulla variabile di ciclo</li>
+<li>Aggiornamento della variabile di ciclo</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint" data-lang="c++"><code>int i = 0;  // for each i : 0 &lt;= i &lt; 5
+while (i &lt; 5) {
+    cout &lt;&lt; i * i &lt;&lt; endl;
+    ++i;
+}
+</code></pre>
+<pre class="prettyprint" data-lang="c++"><code>for (int i = 0; i &lt; 5; ++i) {  // for each i : 0 &lt;= i &lt; 5
+    cout &lt;&lt; i * i &lt;&lt; endl;
+}
+</code></pre></article>
  
 </slide>
 
@@ -245,7 +277,7 @@ int main() {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p2-oggetti.html#4">http://tomamic.github.io/p2-oggetti.html#4</a></p></article>
+<p><a href="p2-oggetti.html#2">Funzioni in Python</a></p></article>
  
 </slide>
 
@@ -296,7 +328,14 @@ int main() {
 struct Size { int w, h; };
 struct Rect { int x, y, w, h; };
 struct Color { int r, g, b; };
-</code></pre></article>
+</code></pre>
+<ul>
+<li>Compilare un programma <code>g2d</code><ul>
+<li><em>Linux</em>: <code>g++ -pthread ...</code></li>
+<li><em>Windows</em>: <code>g++ -lws2_32 -lwsock32 ...</code></li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 
@@ -322,8 +361,8 @@ int main() {
     g2d::main_loop(tick);
 }
 </code></pre>
-<pre class="prettyprint" data-lang="term"><code>g++ *.cpp -pthread
-</code></pre></article>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/README.md">Compilare un programma g2d</a></p></article>
  
 </slide>
 
@@ -334,7 +373,7 @@ int main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="prettyprint" data-lang="c++"><code>#include &lt;iostream&gt;
 #include &lt;cstdlib&gt;
 #include &lt;ctime&gt;
 using namespace std;
@@ -381,52 +420,47 @@ grocery.pop_back();  // remove last elem
 <slide  >
   
     <hgroup>
-      <h2>Cicli for</h2>
+      <h2>For su sequenze dati</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="c++"><code>for (auto product : grocery) {  // for each product in grocery
+      <pre class="prettyprint" data-lang="c++"><code>vector&lt;string&gt; grocery = {"spam", "egg", "beans"};
+for (auto product : grocery) {  // for each product in grocery
     cout &lt;&lt; product &lt;&lt; endl;
 }
-// it works also on a string!
 </code></pre>
-<pre class="prettyprint" data-lang="c++"><code>for (int i = 0; i &lt; 5; ++i) {  // for each i : 0 &lt;= i &lt; 5
-    cout &lt;&lt; i * i &lt;&lt; endl;
-}
-</code></pre>
-<pre class="prettyprint" data-lang="c++"><code>int i = 0;
-while (i &lt; 5) {  // equivalent while
-    cout &lt;&lt; i * i &lt;&lt; endl;
-    ++i;
+<pre class="prettyprint" data-lang="c++"><code>string text = "eureka!";
+for (auto c : text)  {  // for each char in text
+    cout &lt;&lt; c &lt;&lt; ' ' &lt;&lt; int(c) &lt;&lt; endl;
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p3-composizione.html#8">http://tomamic.github.io/p3-composizione.html#8</a></p></article>
+<p><a href="http://tomamic.github.io/p3-composizione.html#4">http://tomamic.github.io/p3-composizione.html#4</a></p></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>Somma colonne: matrice</h2>
+      <h2>Vector come pseudo-matrice</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="c++"><code>vector&lt;vector&lt;int&gt;&gt; matrix = { {2, 4, 3, 8},
-                               {9, 3, 2, 7},
-                               {5, 6, 9, 1} };
-auto rows = matrix.size();
-auto cols = matrix[0].size();
+      <pre class="prettyprint" data-lang="c++"><code>vector&lt;int&gt; matrix = { 2, 4, 3, 8,
+                       9, 3, 2, 7,
+                       5, 6, 9, 1 };
+auto cols = 4, rows = 3;  // rows = matrix.size() / cols;
+
 for (auto x = 0; x &lt; cols; ++x) {
     auto total = 0;
     for (auto y = 0; y &lt; rows; ++y) {
-        total += matrix[y][x];
+        total += matrix[y * cols + x];
     }
     cout &lt;&lt; "Col #" &lt;&lt; x &lt;&lt; " sums to " &lt;&lt; total &lt;&lt; endl;
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://tomamic.github.io/p5-matrici.html#9">http://tomamic.github.io/p5-matrici.html#9</a></p></article>
+<p><a href="http://tomamic.github.io/p5-matrici.html#10">http://tomamic.github.io/p5-matrici.html#10</a></p></article>
  
 </slide>
 
@@ -438,17 +472,22 @@ for (auto x = 0; x &lt; cols; ++x) {
     </hgroup>
     <article >
       <ul>
-<li>Metodo <code>assign</code> per allocare una lista o una matrice<ul>
+<li>Metodo <code>assign</code> per allocare un <code>vector</code><ul>
 <li><em>Dimensione</em> nota</li>
 <li><em>Valore iniziale</em> uguale per tutti gli elementi</li>
 </ul>
 </li>
 </ul>
 <pre class="prettyprint" data-lang="c++"><code>vector&lt;string&gt; some_list;
-some_list.assign(10, ""); // 10 strings
+some_list.assign(10, ""); // some_list contains 10 strings
 </code></pre>
-<pre class="prettyprint" data-lang="c++"><code>vector&lt;vector&lt;char&gt;&gt; some_matrix;
+<ul>
+<li>Si possono usare anche <code>vector</code> di <code>vector</code>... 🤔</li>
+</ul>
+<pre class="prettyprint" data-lang="c++"><code>auto rows = 3, cols = 4, y = 2, x = 3;
+vector&lt;vector&lt;char&gt;&gt; some_matrix;
 some_matrix.assign(rows, vector&lt;char&gt;(cols, '-'));
+cout &lt;&lt; some_matrix[y][x] &lt;&lt; endl;
 </code></pre></article>
  
 </slide>
@@ -536,8 +575,8 @@ public:
         x_ = x0; y_ = y0;
     }
     void Ball::move() {
-        if (x_+dx_ &lt; 0 || x_+dx_ &gt; 480) dx_ = -dx_;
-        if (y_+dy_ &lt; 0 || y_+dy_ &gt; 360) dy_ = -dy_;
+        if (x_+dx_&lt;0 || x_+dx_&gt;ARENA_W) dx_ = -dx_;
+        if (y_+dy_&lt;0 || y_+dy_&gt;ARENA_H) dy_ = -dy_;
         x_ += dx_; y_ += dy_;
     }
     int Ball::get_x() { return x_; }
@@ -605,7 +644,7 @@ delete b2;
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="term"><code>pip3 install cppyy
+      <pre class="prettyprint" data-lang="shell"><code>pip3 install cppyy
 </code></pre>
 <pre class="prettyprint" data-lang="py"><code>import cppyy
 cppyy.include("ball.cpp")
@@ -742,7 +781,8 @@ I am George Pig. I say: OINK!
 };
 </code></pre>
 <blockquote></blockquote>
-<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/bounce/actor.h">https://github.com/tomamic/fondinfo/blob/master/cpp/bounce/actor.h</a></p></article>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/actor.hpp">https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/actor.hpp</a></p>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.hpp">https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.hpp</a></p></article>
  
 </slide>
 
@@ -836,22 +876,20 @@ void play_game(BoardGame* game) {
       <figure>
         <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
         <figcaption>Class diagram UML</figcaption>
-      </figure><pre class="prettyprint" data-lang="c++"><code>class Ball {
+      </figure><pre class="prettyprint" data-lang="c++"><code>#ifndef BALL_H  // to avoid multiple definitions
+#define BALL_H
+
+class Ball {
+    int x_, y_;  // private stuff
+    int dx_ = 5, dy_ = 5;
 public:
-    Ball(int x0, int y0);
+    Ball(int x0, int y0);  // just declarations
     void move();
     int get_x();
     int get_y();
-
-    static const int ARENA_W = 320, ARENA_H = 240;
-    static const int W = 20, H = 20;
-
-private:
-    int x_;
-    int y_;
-    int dx_ = 5;
-    int dy_ = 5;
 };
+
+#endif // BALL_H
 </code></pre></article>
  
 </slide>
@@ -868,20 +906,18 @@ private:
         
       </figure><pre class="prettyprint" data-lang="c++"><code>#include "ball.h"
 
+const int ARENA_W = 480, ARENA_H = 360;
+
 Ball::Ball(int x0, int y0) {
     x_ = x0; y_ = y0;
 }
 void Ball::move() {
-    if (x_ + dx_ &lt; 0 || x_ + dx_ + W &gt; ARENA_W) dx_ = -dx_;
-    if (y_ + dy_ &lt; 0 || y_ + dy_ + H &gt; ARENA_H) dy_ = -dy_;
+    if (x_ + dx_ &lt; 0 || x_ + dx_ &gt; ARENA_W) dx_ = -dx_;
+    if (y_ + dy_ &lt; 0 || y_ + dy_ &gt; ARENA_H) dy_ = -dy_;
     x_ += dx_; y_ += dy_;
 }
-int Ball::get_x() {
-    return x_;
-}
-int Ball::get_y() {
-    return y_;
-}
+int Ball::get_x() { return x_; }
+int Ball::get_y() { return y_; }
 </code></pre></article>
  
 </slide>
@@ -927,7 +963,7 @@ int main() {
 %}
 %include "ball.h"  /* Parse the header to generate wrappers */
 </code></pre>
-<pre class="prettyprint" data-lang="term"><code>swig -python -c++ ball.i
+<pre class="prettyprint" data-lang="shell"><code>swig -python -c++ ball.i
 g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
 </code></pre>
 <pre class="prettyprint" data-lang="py"><code>from ball import Ball
@@ -1036,6 +1072,46 @@ for (string item; getline(sstr, item, ':');) {
 <pre class="prettyprint" data-lang="c++"><code>file1 &gt;&gt; noskipws;                   // scan also whitespaces
 for (char val; file1 &gt;&gt; val;) {      // for each char in file1
     cout &lt;&lt; val &lt;&lt; endl;
+}
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Do-while 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="c++"><code>int val, tot = 0, count = 0;
+do {
+    cout &lt;&lt; "Val (0 to end)? ";
+    cin &gt;&gt; val;
+    if (val != 0) {
+        tot += val;
+        ++count;
+    }
+} while (val != 0);  // the check is at the end
+if (count &gt; 0) {
+    cout &lt;&lt; "Avg: " &lt;&lt; tot / float(count);
+}
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Switch 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint" data-lang="c++"><code>int choice; cin &gt;&gt; choice;
+switch (choice) {
+    case 1: cout &lt;&lt; "First option"; break;
+    case 2: cout &lt;&lt; "Second option"; break;
+    default: cout &lt;&lt; "Error";
 }
 </code></pre></article>
  

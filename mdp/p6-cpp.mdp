@@ -7,8 +7,7 @@ figure: images/dev/cpp.png
 title: Hello, C++
 
 - File sorgente: `hello.cpp`
-- `cout`: output su console, op. di inserimento `<<`
-    - Possibile concatenare più operazioni di scrittura
+- `cout`: output su console, op. di *inserimento* `<<`
 
 code: c++
 
@@ -16,24 +15,24 @@ code: c++
     using namespace std;
 
     int main() {
-        cout << "Hello, C++!" << endl;
+        cout << "Hello, C++!" << endl;  // two chained insertions
     }
 
-code: term
+code: shell
 
     g++ hello.cpp -o hello.exe
 
 >
 
-Compilatore: <https://tomamic.github.io/intro.html#11>
+[Strumenti software](intro.html#11)
 
 ---
 
 title: Leggere e scrivere
 
-- `cin`: input da console, op. di estrazione `>>`
-    - Possibile concatenare più operazioni di lettura
-    - `getline(cin, line)`: lettura intera riga
+- `cin`: input da console, op. di *estrazione* `>>`
+    - Lettura fino al primo *whitespace* (spazio o altro)
+- `getline(cin, line)`: lettura intera riga
 
 code: c++
 
@@ -44,7 +43,7 @@ code: c++
         string name;
         int age;
         cout << "Name and age?" << endl;
-        cin >> name >> age;
+        cin >> name >> age;  // two chained extractions
         cout << "Hello, " << name << "." << endl;
         cout << "You're " << age << " years old." << endl;
     }
@@ -99,7 +98,8 @@ code: c++
 
     string sentence = "Lorem ipsum";
     sentence[6] = 'I';
-    cout << sentence[6];  // 'I'
+    char c = sentence[6];  // 'I'
+    cout << c << " " << int(c) << endl;  // I 73
 
     int n = 5;
     string txt = to_string(n);
@@ -107,7 +107,7 @@ code: c++
 
 ---
 
-title: Decisioni
+title: Selezione
 figure: images/algo/words.svg
 
 code: c++
@@ -122,9 +122,11 @@ code: c++
         cout << "The words are equal" << endl;
     }
 
+- Scelte multiple con `switch ... case`
+
 >
 
-<http://tomamic.github.io/p1-algoritmi.html#16>
+[Selezioni in Python](p1-algoritmi.html#17)
 
 ---
 
@@ -146,9 +148,34 @@ code: c++
         cout << "Avg: " << total / float(count) << endl;
     }
 
+- Controllo a fine ciclo con `do ... while`
+
 >
 
-<http://tomamic.github.io/p1-algoritmi.html#20>
+[Iterazioni in Python](p1-algoritmi.html#21)
+
+---
+
+title: Cicli while e for
+
+- Cicli tipici:
+    - Inizializzazione della variabile di ciclo
+    - Test sulla variabile di ciclo
+    - Aggiornamento della variabile di ciclo
+
+code: c++
+
+    int i = 0;  // for each i : 0 <= i < 5
+    while (i < 5) {
+        cout << i * i << endl;
+        ++i;
+    }
+
+code: c++
+
+    for (int i = 0; i < 5; ++i) {  // for each i : 0 <= i < 5
+        cout << i * i << endl;
+    }
 
 ---
 
@@ -173,7 +200,7 @@ code: c++
 
 >
 
-<http://tomamic.github.io/p2-oggetti.html#4>
+[Funzioni in Python](p2-oggetti.html#2)
 
 ---
 
@@ -212,6 +239,10 @@ code: c++
     struct Rect { int x, y, w, h; };
     struct Color { int r, g, b; };
 
+- Compilare un programma `g2d`
+    - *Linux*: `g++ -pthread ...`
+    - *Windows*: `g++ -lws2_32 -lwsock32 ...`
+
 ---
 
 title: Grafica con g2d
@@ -233,15 +264,16 @@ code: c++
         g2d::main_loop(tick);
     }
 
-code: term
 
-    g++ *.cpp -pthread
+>
+
+[Compilare un programma g2d](https://github.com/tomamic/fondinfo/blob/master/cpp/README.md)
 
 ---
 
 title: Numeri casuali
 
-code: C++
+code: c++
 
     #include <iostream>
     #include <cstdlib>
@@ -286,73 +318,70 @@ code: c++
 
 ---
 
-title: Cicli for
+title: For su sequenze dati
 
 code: c++
 
+    vector<string> grocery = {"spam", "egg", "beans"};
     for (auto product : grocery) {  // for each product in grocery
         cout << product << endl;
     }
-    // it works also on a string!
 
 code: c++
 
-    for (int i = 0; i < 5; ++i) {  // for each i : 0 <= i < 5
-        cout << i * i << endl;
-    }
-
-code: c++
-
-    int i = 0;
-    while (i < 5) {  // equivalent while
-        cout << i * i << endl;
-        ++i;
+    string text = "eureka!";
+    for (auto c : text)  {  // for each char in text
+        cout << c << ' ' << int(c) << endl;
     }
 
 >
 
-<http://tomamic.github.io/p3-composizione.html#8>
+<http://tomamic.github.io/p3-composizione.html#4>
 
 ---
 
-title: Somma colonne: matrice
+title: Vector come pseudo-matrice
 
 code: c++
 
-    vector<vector<int>> matrix = { {2, 4, 3, 8},
-                                   {9, 3, 2, 7},
-                                   {5, 6, 9, 1} };
-    auto rows = matrix.size();
-    auto cols = matrix[0].size();
+    vector<int> matrix = { 2, 4, 3, 8,
+                           9, 3, 2, 7,
+                           5, 6, 9, 1 };
+    auto cols = 4, rows = 3;  // rows = matrix.size() / cols;
+
     for (auto x = 0; x < cols; ++x) {
         auto total = 0;
         for (auto y = 0; y < rows; ++y) {
-            total += matrix[y][x];
+            total += matrix[y * cols + x];
         }
         cout << "Col #" << x << " sums to " << total << endl;
     }
 
 >
 
-<http://tomamic.github.io/p5-matrici.html#9>
+<http://tomamic.github.io/p5-matrici.html#10>
 
 ---
 
 title: Allocazione di vector
 
-- Metodo `assign` per allocare una lista o una matrice
+- Metodo `assign` per allocare un `vector`
     - *Dimensione* nota
     - *Valore iniziale* uguale per tutti gli elementi
 
 code: c++
 
     vector<string> some_list;
-    some_list.assign(10, ""); // 10 strings
+    some_list.assign(10, ""); // some_list contains 10 strings
+
+- Si possono usare anche `vector` di `vector`... 🤔
 
 code: c++
 
+    auto rows = 3, cols = 4, y = 2, x = 3;
     vector<vector<char>> some_matrix;
     some_matrix.assign(rows, vector<char>(cols, '-'));
+    cout << some_matrix[y][x] << endl;
 
 ---
 
@@ -422,8 +451,8 @@ code: c++
             x_ = x0; y_ = y0;
         }
         void Ball::move() {
-            if (x_+dx_ < 0 || x_+dx_ > 480) dx_ = -dx_;
-            if (y_+dy_ < 0 || y_+dy_ > 360) dy_ = -dy_;
+            if (x_+dx_<0 || x_+dx_>ARENA_W) dx_ = -dx_;
+            if (y_+dy_<0 || y_+dy_>ARENA_H) dy_ = -dy_;
             x_ += dx_; y_ += dy_;
         }
         int Ball::get_x() { return x_; }
@@ -474,7 +503,7 @@ code: c++
 
 title: Cppyy: Chiamare C++ da Python
 
-code: term
+code: shell
 
     pip3 install cppyy
 
@@ -583,7 +612,9 @@ code: c++
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/bounce/actor.h>
+<https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/actor.hpp>
+
+<https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.hpp>
 
 ---
 
@@ -654,22 +685,20 @@ figcaption: Class diagram UML
 
 code: c++
 
+    #ifndef BALL_H  // to avoid multiple definitions
+    #define BALL_H
+
     class Ball {
+        int x_, y_;  // private stuff
+        int dx_ = 5, dy_ = 5;
     public:
-        Ball(int x0, int y0);
+        Ball(int x0, int y0);  // just declarations
         void move();
         int get_x();
         int get_y();
-
-        static const int ARENA_W = 320, ARENA_H = 240;
-        static const int W = 20, H = 20;
-
-    private:
-        int x_;
-        int y_;
-        int dx_ = 5;
-        int dy_ = 5;
     };
+
+    #endif // BALL_H
 
 ---
 
@@ -680,20 +709,18 @@ code: c++
 
     #include "ball.h"
 
+    const int ARENA_W = 480, ARENA_H = 360;
+
     Ball::Ball(int x0, int y0) {
         x_ = x0; y_ = y0;
     }
     void Ball::move() {
-        if (x_ + dx_ < 0 || x_ + dx_ + W > ARENA_W) dx_ = -dx_;
-        if (y_ + dy_ < 0 || y_ + dy_ + H > ARENA_H) dy_ = -dy_;
+        if (x_ + dx_ < 0 || x_ + dx_ > ARENA_W) dx_ = -dx_;
+        if (y_ + dy_ < 0 || y_ + dy_ > ARENA_H) dy_ = -dy_;
         x_ += dx_; y_ += dy_;
     }
-    int Ball::get_x() {
-        return x_;
-    }
-    int Ball::get_y() {
-        return y_;
-    }
+    int Ball::get_x() { return x_; }
+    int Ball::get_y() { return y_; }
 
 ---
 
@@ -729,7 +756,7 @@ code: file: ball.i
     %}
     %include "ball.h"  /* Parse the header to generate wrappers */
 
-code: term
+code: shell
 
     swig -python -c++ ball.i
     g++ -fPIC -shared *.cpp *.cxx -I/usr/include/python3.6m -o _$module.so
@@ -846,7 +873,6 @@ code: c++
 ---
 
 title: Do-while 🤔
-class: break
 
 code: c++
 

@@ -236,8 +236,7 @@ for x in range(cols):
       <pre class="prettyprint" data-lang="py"><code>matrix = [2, 4, 3, 8,
           9, 3, 2, 7,
           5, 6, 9, 1]
-rows = 3  # Cannot be guessed from matrix alone
-cols = len(matrix) // rows
+cols, rows = 4, 3  # rows = len(matrix) // cols
 
 for x in range(cols):
     total = 0
@@ -245,7 +244,13 @@ for x in range(cols):
         val = matrix[y * cols + x]   # 2D -&gt; 1D
         total += val
     print("Col #", x, "sums to", total)
-</code></pre></article>
+</code></pre>
+<ul>
+<li>Data la sola lista, <em>non note</em> le dimensioni<ul>
+<li>Bisogna conoscere <code>cols</code> o <code>rows</code></li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 

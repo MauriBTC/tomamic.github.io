@@ -154,8 +154,7 @@ code: py
     matrix = [2, 4, 3, 8,
               9, 3, 2, 7,
               5, 6, 9, 1]
-    rows = 3  # Cannot be guessed from matrix alone
-    cols = len(matrix) // rows
+    cols, rows = 4, 3  # rows = len(matrix) // cols
 
     for x in range(cols):
         total = 0
@@ -163,6 +162,9 @@ code: py
             val = matrix[y * cols + x]   # 2D -> 1D
             total += val
         print("Col #", x, "sums to", total)
+
+- Data la sola lista, *non note* le dimensioni
+    - Bisogna conoscere `cols` o `rows`
 
 ---
 

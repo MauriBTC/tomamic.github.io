@@ -120,30 +120,6 @@ for product in grocery:
 <slide  >
   
     <hgroup>
-      <h2>Cicli su stringhe 🤔</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
-<li>Una stringa è una sequenza di caratteri</li>
-</ul>
-<pre class="prettyprint" data-lang="py"><code>text = input("text? ")
-min_char = input("Min char to uppercase? ")
-max_char = input("Max char to uppercase? ")
-
-for c in text:
-    if min_char &lt;= c &lt;= max_char:
-        print(c.upper(), end="")
-    else:
-        print(c, end="")
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Elementi e slice 🤔</h2>
       <h3></h3>
     </hgroup>
@@ -212,6 +188,28 @@ c is a           # True, same object in memory
 
 d = ["sausage", "tomato"]
 grocery = c + d  # list concatenation --&gt; new list!
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cicli su stringhe 🤔</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
+<li>Una stringa è una sequenza di caratteri</li>
+</ul>
+<pre class="prettyprint" data-lang="py"><code>text = input("text? ")
+
+for c in text:
+    if c in "aeiou":
+        print(c.upper(), end="")
+    else:
+        print(c, end="")
 </code></pre></article>
  
 </slide>
