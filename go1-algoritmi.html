@@ -77,7 +77,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Modulo speciale <strong><code>g2d</code></strong> per disegno ecc.</li>
 <li><strong><code>g2d.Alert</code></strong>: <em>messaggio in finestra di dialogo</em></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>package main
+<pre class="prettyprint lang-go" data-lang="go"><code>package main
 
 import . "g2d"
 
@@ -128,7 +128,7 @@ func main() {
       <ul>
 <li><strong><code>g2d.Println</code></strong>: <em>scrittura dei risultati parziali</em></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>package main
+<pre class="prettyprint lang-go" data-lang="go"><code>package main
 
 import . "g2d"
 
@@ -164,7 +164,7 @@ func main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>var i, j int = 1, 2  // no type inference
+<pre class="prettyprint lang-go" data-lang="go"><code>var i, j int = 1, 2  // no type inference
 
 k := 3.2
 ans, txt := true, "no!"
@@ -192,7 +192,7 @@ Println(i, j, k, ans, txt)
 </li>
 <li><em>Non confondere</em> con confronto di uguaglianza <code>==</code></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>pi := 3.14       // definition and initialization
+<pre class="prettyprint lang-go" data-lang="go"><code>pi := 3.14       // definition and initialization
 radius := 2.2
 area := pi * (radius * radius)
 Println(area)    // 15.1976
@@ -216,7 +216,7 @@ Println(area)    // ... and area!
 <li>Primi 128 codici <em>Unicode</em> == <em>ASCII</em></li>
 <li>Confronto, in ordine <em>lessicografico</em></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>str1 := "Hello,"
+<pre class="prettyprint lang-go" data-lang="go"><code>str1 := "Hello,"
 str2 := " 🌐"
 result := str1 + str2
 Println(result)              // "Hello, 🌐"
@@ -257,7 +257,7 @@ Println('🌐' == 127760)      // true
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>user := Prompt("What's your name?")
+<pre class="prettyprint lang-go" data-lang="go"><code>user := Prompt("What's your name?")
 Alert("Hello, ", user)
 </code></pre></article>
  
@@ -277,7 +277,7 @@ Alert("Hello, ", user)
 <li><strong><code>g2d.ToInt</code></strong>: conversione da <code>string</code> a <code>int</code></li>
 <li><strong><code>g2d.ToFloat</code></strong>: conversione da <code>string</code> a <code>float64</code></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>a := ToFloat(Prompt("Insert 1st val"))
+<pre class="prettyprint lang-go" data-lang="go"><code>a := ToFloat(Prompt("Insert 1st val"))
 b := ToFloat(Prompt("Insert 2nd val"))
 c := ToFloat(Prompt("Insert 3rd val"))
 
@@ -302,12 +302,12 @@ Alert("The sum is ", total)
       </figure><ul>
 <li>Strutture e funzioni definite nel modulo <code>g2d</code></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type Point struct{ X, Y int }
+<pre class="prettyprint lang-go" data-lang="go"><code>type Point struct{ X, Y int }
 type Size struct{ W, H int }
 type Rect struct{ X, Y, W, H int }
 type Color struct{ R, G, B int }
 </code></pre>
-<pre class="prettyprint" data-lang="go"><code>center := Point{150, 100}
+<pre class="prettyprint lang-go" data-lang="go"><code>center := Point{150, 100}
 myBlue := Color{10, 10, 200}  // each component in 0..255
 windowSize := Size{640, 480}
 rectangle := Rect{150, 100, 200, 200}  // square
@@ -325,7 +325,7 @@ rectangle := Rect{150, 100, 200, 200}  // square
       <figure>
         <img src="images/oop/raster-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>// width, height
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>// width, height
 InitCanvas(Size{640, 480})
 
 // red + green = yellow
@@ -353,7 +353,7 @@ MainLoop()
       <figure>
         <img src="images/oop/raster-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>SetColor(Color{0, 255, 0})
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>SetColor(Color{0, 255, 0})
 // from, to
 DrawLine(Point{150, 100}, Point{400, 300})
 
@@ -394,7 +394,7 @@ DrawText("Hello", Point{150, 100}, 40)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
+<pre class="prettyprint lang-go" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
 
 if 50 &lt;= radius &amp;&amp; radius &lt;= 99 {
     SetColor(Color{0, 0, 255})
@@ -423,7 +423,7 @@ FillCircle(Point{200, 200}, 25)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
+<pre class="prettyprint lang-go" data-lang="go"><code>radius := ToInt(Prompt("Radius? [50-99]"))
 
 if 50 &lt;= radius &amp;&amp; radius &lt;= 99 {
     SetColor(Color{0, 0, 255})
@@ -450,7 +450,7 @@ FillCircle(Point{200, 200}, 25)
       <figure>
         <img src="images/algo/words.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>a := Prompt("First word?")
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>a := Prompt("First word?")
 b := Prompt("Second word?")
 
 if a &lt; b {
@@ -474,7 +474,7 @@ if a &lt; b {
       <figure>
         <img src="images/algo/calc.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>a := ToFloat(Prompt("a?"))
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>a := ToFloat(Prompt("a?"))
 b := ToFloat(Prompt("b?"))
 op := Prompt("op?")
 
@@ -511,7 +511,7 @@ if op == "+" {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>n := ToInt(Prompt("n?"))
+<pre class="prettyprint lang-go" data-lang="go"><code>n := ToInt(Prompt("n?"))
 count := 1
 
 for count &lt;= n {
@@ -535,7 +535,7 @@ for count &lt;= n {
       </figure><ul>
 <li>Occorre tenere traccia del <em>totale parziale</em></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>// Sum of the numbers from 1 to n
+<pre class="prettyprint lang-go" data-lang="go"><code>// Sum of the numbers from 1 to n
 n := ToInt(Prompt("n?"))
 total := 0
 count := 1
@@ -561,7 +561,7 @@ Alert("The sum is ", total)
       <figure>
         <img src="images/algo/average.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>n := ToInt(Prompt("How many values?"))
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>n := ToInt(Prompt("How many values?"))
 total := 0
 count := 0
 
@@ -592,7 +592,7 @@ if count != 0 {
       <figure>
         <img src="images/algo/sentinel.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>count := 0
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>count := 0
 total := 0
 val := ToInt(Prompt("Val? (0 to finish)"))
 
@@ -622,7 +622,7 @@ if count != 0 {
       <figure>
         <img src="images/algo/perfect-square.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>n := ToInt(Prompt("n?"))
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>n := ToInt(Prompt("n?"))
 
 i := 1
 for i*i &lt; n {
@@ -652,7 +652,7 @@ if i*i == n {
       </figure><ul>
 <li>Incremento e decremento: <code>++</code>, <code>--</code></li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>// Add up numbers from 1 to 10
+<pre class="prettyprint lang-go" data-lang="go"><code>// Add up numbers from 1 to 10
 
 total := 0
 for i := 1; i &lt; 11; i++ {
@@ -679,7 +679,7 @@ for i := 1; i &lt; 11; i++ {
       <figure>
         <img src="images/misc/red-squares.png">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>InitCanvas(Size{300, 300})
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>InitCanvas(Size{300, 300})
 
 for i := 0; i &lt; 5; i++ {
     x := i * 40
@@ -701,7 +701,7 @@ for i := 0; i &lt; 5; i++ {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>package main
+      <pre class="prettyprint lang-go" data-lang="go"><code>package main
 
 import "math"   // Math functions, use prefix
 import . "g2d"  // Import everything, skip prefix
@@ -711,7 +711,7 @@ func main() {
     Println(y)
 }
 </code></pre>
-<pre class="prettyprint" data-lang="shell"><code>go run hello.go
+<pre class="" data-lang="shell"><code>go run hello.go
 </code></pre>
 <blockquote></blockquote>
 <p>Sono esportati dai moduli solo i nomi con la prima lettera <strong>maiuscola</strong> <br></p>
@@ -735,7 +735,7 @@ func main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>package main
+<pre class="prettyprint lang-go" data-lang="go"><code>package main
 
 import . "g2d"
 

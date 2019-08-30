@@ -138,7 +138,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 int main()
 {
     int integer1, integer2, sum; // declaration
@@ -161,7 +161,7 @@ int main()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout; // program uses cout
 using std::cin; // program uses cin
 using std::endl; // program uses endl
@@ -241,7 +241,7 @@ int main()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout;
 using std::endl;
 int cube(int y); // prototipo
@@ -330,7 +330,7 @@ int cube( int y )
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout;
 using std::endl;
 
@@ -436,7 +436,7 @@ int main()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout; using std::endl;
 
 // sPtr cannot modify the character it points to
@@ -542,7 +542,7 @@ int main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout;
 using std::endl;
 int square( int x ) { return x * x; }
@@ -897,7 +897,7 @@ int main()
 </li>
 <li>Tipi principali: <code>int</code>, <code>float</code> e <code>double</code>, <code>bool</code>, <code>string</code> e <code>char</code></li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>int x = 10;
+<pre class="prettyprint lang-c++" data-lang="c++"><code>int x = 10;
 double h = 3.7;
 string s = "hello";
 
@@ -919,7 +919,7 @@ auto t = "hola"s;  // compiler settings: -std=c++14
 <li><code>std::string</code>: sequenza <em>mutevole</em> di byte (tipo <code>char</code>)</li>
 <li>Operazioni di confronto; concatenazione: <code>+</code></li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>#include &lt;string&gt;
+<pre class="prettyprint lang-c++" data-lang="c++"><code>#include &lt;string&gt;
 using std::string, std::to_string, std::stoi;
 // ...
 
@@ -944,7 +944,7 @@ int val = stoi(txt);  // see also `stod`, `stof`...
       <figure>
         <img src="images/fun/shopping-list.jpg">
         
-      </figure><pre class="prettyprint" data-lang="c++"><code>#include &lt;vector&gt;
+      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>#include &lt;vector&gt;
 using std::vector;
 // ...
 
@@ -972,12 +972,12 @@ grocery.erase(begin(grocery) + 1);  // remove elem at index
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="c++"><code>for (auto product : grocery) {
+      <pre class="prettyprint lang-c++" data-lang="c++"><code>for (auto product : grocery) {
     // for each product in grocery
     cout &lt;&lt; product &lt;&lt; endl;
 }
 </code></pre>
-<pre class="prettyprint" data-lang="c++"><code>for (int i = 0; i &lt; 5; ++i) {
+<pre class="prettyprint lang-c++" data-lang="c++"><code>for (int i = 0; i &lt; 5; ++i) {
     // for each i : 0 &lt;= i &lt; 5
     cout &lt;&lt; i * i &lt;&lt; endl;
 }

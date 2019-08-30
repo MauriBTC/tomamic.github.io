@@ -63,7 +63,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; 3 + 4
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; 3 + 4
 7
 &gt;&gt;&gt; 3 / 4
 0.75
@@ -95,7 +95,7 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; -2 // 3    # floored integer division
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; -2 // 3    # floored integer division
 -1
 &gt;&gt;&gt; -2 % 3     # reminder is always positive
 1
@@ -124,7 +124,7 @@ True
 </li>
 <li><em>Non confondere</em> con confronto di uguaglianza <code>==</code></li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; pi = 3.14  # Assignment
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; pi = 3.14  # Assignment
 &gt;&gt;&gt; radius = 2.2
 &gt;&gt;&gt; area = pi * (radius ** 2)
 &gt;&gt;&gt; area
@@ -152,7 +152,7 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; x = 100
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; x = 100
 &gt;&gt;&gt; DELTA = 5          # Constants: UPPER_CASE
 &gt;&gt;&gt; x = x + DELTA      # Variables: lower_case
 &gt;&gt;&gt; next_position = x  # Use explicative names!
@@ -175,7 +175,7 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; str1 = "Monty Python's "
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; str1 = "Monty Python's "
 &gt;&gt;&gt; str2 = 'Flying Circus'
 &gt;&gt;&gt; result = str1 + str2
 &gt;&gt;&gt; result
@@ -197,7 +197,7 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>&gt;&gt;&gt; 'first' &lt; 'second'
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; 'first' &lt; 'second'
 True
 &gt;&gt;&gt; 'Second' &lt;  'first'
 True
@@ -240,7 +240,7 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>user = input("What's your name? ")
+<pre class="prettyprint lang-py" data-lang="py"><code>user = input("What's your name? ")
 
 print("Hello,", user)
 </code></pre></article>
@@ -257,7 +257,7 @@ print("Hello,", user)
       <figure>
         <img src="images/algo/sum3.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code># File sum3.py - to run: python3 sum3.py
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code># File sum3.py - to run: python3 sum3.py
 
 a = float(input("Insert 1st val: "))
 b = float(input("Insert 2nd val: "))
@@ -319,7 +319,7 @@ print("The sum is", total)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>center_pt = (150, 100)
+<pre class="prettyprint lang-py" data-lang="py"><code>center_pt = (150, 100)
 bluette_color = (47, 102, 207)  # ~ blue
 window_size = (640, 480)
 some_rectangle = (150, 100, 200, 200)  # square
@@ -337,7 +337,7 @@ some_rectangle = (150, 100, 200, 200)  # square
       <figure>
         <img src="images/oop/raster-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>import g2d
 
 g2d.init_canvas((600, 400))  # width, height
 
@@ -363,7 +363,7 @@ g2d.main_loop()  # manage the window/canvas
       <figure>
         <img src="images/oop/raster-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>import g2d
 
 g2d.init_canvas((600, 400))
 
@@ -411,7 +411,7 @@ g2d.main_loop()
 <blockquote>
 <p>Readability counts <em>(The Zen of Python)</em></p>
 </blockquote>
-<pre class="prettyprint" data-lang="py"><code>radius = int(g2d.prompt("Radius? [50-99]"))
+<pre class="prettyprint lang-py" data-lang="py"><code>radius = int(g2d.prompt("Radius? [50-99]"))
 
 if 50 &lt;= radius and radius &lt;= 99 {
     g2d.set_color((0, 0, 255))
@@ -439,7 +439,7 @@ g2d.fill_circle((200, 200), 25)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>radius = int(g2d.prompt("Radius? [50-99]"))
+<pre class="prettyprint lang-py" data-lang="py"><code>radius = int(g2d.prompt("Radius? [50-99]"))
 
 if 50 &lt;= radius and radius &lt;= 99:
     g2d.set_color((0, 0, 255))
@@ -465,7 +465,7 @@ g2d.fill_circle((200, 200), 25)
       <figure>
         <img src="images/algo/words.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>a = input("First word? ")
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>a = input("First word? ")
 b = input("Second word? ")
 
 if a &lt; b:
@@ -495,7 +495,7 @@ else:
       <figure>
         <img src="images/algo/calc.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>a = float(input())
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>a = float(input())
 b = float(input())
 op = input()
 
@@ -531,7 +531,7 @@ else:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>n = int(input("n?"))
+<pre class="prettyprint lang-py" data-lang="py"><code>n = int(input("n?"))
 count = 1
 
 while count &lt;= n:
@@ -554,7 +554,7 @@ while count &lt;= n:
       </figure><ul>
 <li>Occorre tenere traccia del <em>totale parziale</em></li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code># Sum of the numbers from 1 to n
+<pre class="prettyprint lang-py" data-lang="py"><code># Sum of the numbers from 1 to n
 n = int(input("n? "))
 total = 0
 count = 1
@@ -580,7 +580,7 @@ print("The sum is", total)
       <figure>
         <img src="images/algo/average.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>n = int(input("How many values? "))
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>n = int(input("How many values? "))
 total = 0
 count = 0
 
@@ -605,7 +605,7 @@ if count != 0:
       <figure>
         <img src="images/algo/sentinel.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>total = 0
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>total = 0
 count = 0
 val = int(input("Val? (0 to finish) "))
 
@@ -630,7 +630,7 @@ if count != 0:
       <figure>
         <img src="images/algo/perfect-square.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>n = int(input("n? "))
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>n = int(input("n? "))
 
 i = 1
 while i * i &lt; n:
@@ -661,7 +661,7 @@ else:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code># Add up numbers from 1 to 10
+<pre class="prettyprint lang-py" data-lang="py"><code># Add up numbers from 1 to 10
 
 total = 0
 for i in range(1, 11):
@@ -686,7 +686,7 @@ for i in range(1, 11):
       <figure>
         <img src="images/misc/red-squares.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>import g2d
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>import g2d
 
 g2d.init_canvas((300, 300))
 
@@ -713,14 +713,14 @@ g2d.main_loop()
       <ul>
 <li><em>Python Standard Library</em>: <a href="http://docs.python.org/3/library/">http://docs.python.org/3/library/</a></li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>import math
+<pre class="prettyprint lang-py" data-lang="py"><code>import math
 y = math.sin(math.pi / 4)
 print(y)  # √2 / 2
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>from math import sin, pi
+<pre class="prettyprint lang-py" data-lang="py"><code>from math import sin, pi
 print(sin(pi / 4))
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>from random import randint
+<pre class="prettyprint lang-py" data-lang="py"><code>from random import randint
 die1 = randint(1, 6)  # like rolling a die
 die2 = randint(1, 6)  # like rolling a die
 print(die1, die2)

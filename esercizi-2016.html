@@ -208,7 +208,7 @@ All'inizio del programma: <code>from math import sqrt</code></p></article>
 </li>
 <li>Al termine comunicare le coordinate finali e la distanza raggiunta dall'origine, calcolata come <code>abs(x) + abs(y)</code></li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from random import randrange
+<pre class="" data-lang="python"><code>from random import randrange
 # ...
 r = randrange(4)  # something between 0 and 3
 </code></pre></article>
@@ -379,7 +379,7 @@ Con <code>s = (a + b + c) / 2</code>, semiperimetro</p>
 <li>Per ciascun valore <code>y</code> tra 1 ed <code>n</code>...</li>
 <li>Stampare una riga con le cifre da 1 ad <code>y</code></li>
 </ul>
-<pre class="prettyprint" data-lang="Output"><code>1
+<pre class="" data-lang="Output"><code>1
 12
 123
 1234
@@ -792,7 +792,7 @@ Poi racchiudere tutto in un ciclo for esterno</p></article>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>class SimpleActor:
+<pre class="" data-lang="python"><code>class SimpleActor:
     def move(self): pass
     def rect(self) -&gt; (int, int, int, int): pass
 </code></pre></article>
@@ -822,7 +822,7 @@ Poi racchiudere tutto in un ciclo for esterno</p></article>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from actor import Actor, Arena
+<pre class="" data-lang="python"><code>from actor import Actor, Arena
 class FallingBall(Actor):
     # ...
 </code></pre></article>
@@ -945,7 +945,7 @@ class FallingBall(Actor):
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="File"><code>5,7,2,11
+<pre class="" data-lang="File"><code>5,7,2,11
 1,3,12,9
 4,6,10,8
 </code></pre>
@@ -1002,7 +1002,7 @@ class FallingBall(Actor):
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from actor import Actor, Arena
+<pre class="" data-lang="python"><code>from actor import Actor, Arena
 class Turtle(Actor):
     # ...
 </code></pre></article>
@@ -1032,7 +1032,7 @@ class Turtle(Actor):
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>class Ball(Actor):  # ...
+<pre class="" data-lang="python"><code>class Ball(Actor):  # ...
     def collide(self, other):
         if isinstance(other, Wall):
             x, y, w, h = other.rect()
@@ -1057,7 +1057,7 @@ class Turtle(Actor):
 </li>
 <li>Mostrare in ordine i caratteri, riga per riga</li>
 </ul>
-<pre class="prettyprint" data-lang="Tabella 1"><code> !"#$%&amp;'()*+
+<pre class="" data-lang="Tabella 1"><code> !"#$%&amp;'()*+
 ,-./01234567
 89:;&lt;=&gt;?@ABC
 DEFGHIJKLMNO
@@ -1086,7 +1086,7 @@ In ogni posizione, calcolare il codice da visualizzare: <code>y * COLS + x + ...
 </li>
 <li>Mostrare in ordine i caratteri, colonna per colonna</li>
 </ul>
-<pre class="prettyprint" data-lang="Tabella 2"><code> (08@HPX`hpx
+<pre class="" data-lang="Tabella 2"><code> (08@HPX`hpx
 !)19AIQYaiqy
 "*2:BJRZbjrz
 #+3;CKS[cks{
@@ -1197,7 +1197,7 @@ Non estrarre un nuovo valore da uno stream, se quello precedente non è ancora s
 </li>
 <li>Risultato da espressione es. 5.7: <code>"* 5 + 4 * 3 2"</code></li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>                                          #   *  (prod2)
+<pre class="" data-lang="python"><code>                                          #   *  (prod2)
 prod1 = Product(Literal(3), Literal(2))   #  / \
 sum1 = Sum(Literal(4), prod1)             # 5   +  (sum1)
 prod2 = Product(Literal(5), sum1)         #    / \
@@ -1587,7 +1587,7 @@ print(prod2.prefix())                     #      / \
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class Akari
+      <pre class="" data-lang="C++"><code>class Akari
 {
 public:
     Akari();  // default board
@@ -1612,7 +1612,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>private:  // ...
+      <pre class="" data-lang="C++"><code>private:  // ...
     int cols_ = 7; int rows_ = 7;
     vector&lt; vector&lt;char&gt; &gt; board_ = {
         {' ', ' ', ' ', '5', '5', '1', ' '},
@@ -1764,7 +1764,7 @@ private:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = '@'; copy1.autocomplete();
+<pre class="" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = '@'; copy1.autocomplete();
 auto copy2 = *this; copy2.board_[y][x] = 'x'; copy2.autocomplete();
 </code></pre>
 <blockquote></blockquote>
@@ -1779,7 +1779,7 @@ auto copy2 = *this; copy2.board_[y][x] = 'x'; copy2.autocomplete();
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>bool Akari::solve_recursive() {
+      <pre class="" data-lang="C++"><code>bool Akari::solve_recursive() {
     // solve_simple();
     auto pos = find_first_playable();  // vector of 2 ints
     auto x = pos[0], y = pos[1];

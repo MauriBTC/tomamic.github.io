@@ -225,7 +225,7 @@ Un numero <code>x</code> è multiplo di 3 se <code>x % 3 == 0</code></p>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from random import randrange
+<pre class="" data-lang="python"><code>from random import randrange
 # ...
 monster_x = randrange(5)  # something between 0 and 4
 monster_y = randrange(5)  # something between 0 and 4
@@ -815,7 +815,7 @@ Bastano due cicli for annidati, senza liste</p></article>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="File"><code>5,7,2,11
+<pre class="" data-lang="File"><code>5,7,2,11
 1,3,12,9
 4,6,10,8
 </code></pre>
@@ -1289,7 +1289,7 @@ Bastano due cicli for annidati, senza liste</p></article>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class Slitherlink {
+      <pre class="" data-lang="C++"><code>class Slitherlink {
 public:
     Slitherlink();                  // default board
     void play_at(int x, int y);
@@ -1313,7 +1313,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>private:  // ...
+      <pre class="" data-lang="C++"><code>private:  // ...
   int cols_ = 11; int rows_ = 11;
   vector&lt; vector&lt;'char'&gt; &gt; board_ = {
     {'+', ' ', '+', ' ', '+', ' ', '+', ' ', '+', ' ', '+'},
@@ -1448,7 +1448,7 @@ private:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = '-'; copy1.autocomplete();
+<pre class="" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = '-'; copy1.autocomplete();
 auto copy2 = *this; copy2.board_[y][x] = 'x'; copy2.autocomplete();
 </code></pre>
 <blockquote></blockquote>
@@ -1463,7 +1463,7 @@ auto copy2 = *this; copy2.board_[y][x] = 'x'; copy2.autocomplete();
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>bool Slitherlink::solve_recursive() {
+      <pre class="" data-lang="C++"><code>bool Slitherlink::solve_recursive() {
     // solve_simple();
     complex&lt;int&gt; pos = find_first_playable();  // Cartesian coord
     if (pos.real() &gt;= 0 &amp;&amp; pos.imag() &gt;= 0 &amp;&amp; !wrong()) {

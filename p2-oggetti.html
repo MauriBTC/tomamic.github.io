@@ -52,7 +52,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def hypotenuse(a, b):
+<pre class="prettyprint lang-py" data-lang="py"><code>def hypotenuse(a, b):
     c = (a ** 2 + b ** 2) ** 0.5
     return c
 </code></pre></article>
@@ -76,7 +76,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>side1 = float(input("1st side? "))
+<pre class="prettyprint lang-py" data-lang="py"><code>side1 = float(input("1st side? "))
 side2 = float(input("2nd side? "))
 side3 = hypotenuse(side1, side2)
 print("3rd side:", side3)
@@ -97,7 +97,7 @@ print("3rd side:", side3)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def hypotenuse(a, b):
+<pre class="prettyprint lang-py" data-lang="py"><code>def hypotenuse(a, b):
     c = (a ** 2 + b ** 2) ** 0.5
     return c
 
@@ -134,7 +134,7 @@ main()  ## remove, if importing the module elsewhere
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def inc(a):
+<pre class="prettyprint lang-py" data-lang="py"><code>def inc(a):
     a += 1
     print(a)  # just for debug
 x = 10
@@ -156,7 +156,7 @@ print(x)      # just for debug
 <li><strong>Docstring</strong>: descrizione testuale di una funzione</li>
 <li><strong><code>help</code></strong>: funzione per visualizzare la documentazione</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def hypotenuse(leg1: float, leg2: float) -&gt; float:
+<pre class="prettyprint lang-py" data-lang="py"><code>def hypotenuse(leg1: float, leg2: float) -&gt; float:
     '''
     Return the hypotenuse of a right triangle,
     given both its legs (catheti).
@@ -178,13 +178,13 @@ print(x)      # just for debug
       <figure>
         <img src="images/fun/multiplication-table.jpg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>size = 10
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>size = 10
 y = int(input("Insert a value: "))
 for x in range(1, size + 1):
     print(x * y, end=" ")  # ends with blank
                            # no newline
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>size = 10
+<pre class="prettyprint lang-py" data-lang="py"><code>size = 10
 for y in range(1, size + 1):
     for x in range(1, size + 1):
         val = x * y
@@ -211,7 +211,7 @@ for y in range(1, size + 1):
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def print_row(y: int, size: int):
+<pre class="prettyprint lang-py" data-lang="py"><code>def print_row(y: int, size: int):
     for x in range(1, size + 1):
         val = x * y
         print(f"{val:3}", end=" ")
@@ -237,7 +237,7 @@ def main():
       <figure>
         <img src="images/oop/anim-right.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>x, y, dx = 50, 50, 5
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>x, y, dx = 50, 50, 5
 ARENA_W, ARENA_H = 480, 360
 image = g2d.load_image("ball.png")
 
@@ -307,7 +307,7 @@ def main():
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>def move_ball(x: int, y: int,
+<pre class="prettyprint lang-py" data-lang="py"><code>def move_ball(x: int, y: int,
               dx: int, dy: int) -&gt; (int, int, int, int):
     if x + dx &lt; 0 or x + dx + BALL_W &gt; ARENA_W:
         dx = -dx
@@ -364,7 +364,7 @@ def main():
 </li>
 <li>Ma se <code>rq</code> ha effetti collaterali, non si può!</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>base_value = 0  # global variable
+<pre class="prettyprint lang-py" data-lang="py"><code>base_value = 0  # global variable
 
 def rq(x: int) -&gt; int:
     global base_value
@@ -453,7 +453,7 @@ def rq(x: int) -&gt; int:
 <blockquote>
 <p>We're all consenting adults here. <em>(GvR)</em></p>
 </blockquote>
-<pre class="prettyprint" data-lang="py"><code>class Ball:
+<pre class="prettyprint lang-py" data-lang="py"><code>class Ball:
 
     def __init__(self, pos: (int, int)):
         self._x = pos[0]
@@ -488,7 +488,7 @@ def rq(x: int) -&gt; int:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>ball = Ball((40, 80))  # Allocation and initialization
+<pre class="prettyprint lang-py" data-lang="py"><code>ball = Ball((40, 80))  # Allocation and initialization
 </code></pre></article>
  
 </slide>
@@ -506,7 +506,7 @@ def rq(x: int) -&gt; int:
       </figure><ul>
 <li>Espongono <em>servizi</em> ad altri oggetti</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>ARENA_W, ARENA_H = 320, 240
+<pre class="prettyprint lang-py" data-lang="py"><code>ARENA_W, ARENA_H = 320, 240
 BALL_W, BALL_H = 20, 20
 
 class Ball:
@@ -535,7 +535,7 @@ class Ball:
       <figure>
         <img src="images/oop/balls.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code># Create two objects, instances of the Ball class
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code># Create two objects, instances of the Ball class
 b1 = Ball((140, 180))
 b2 = Ball((180, 140))
 
@@ -562,10 +562,10 @@ for i in range(25):
 <li>L'oggetto, di cui viene invocato il metodo, viene assegnato come valore di <code>self</code></li>
 <li>In Python, una chiamata a metodo è interpretata così:</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>b1 = Ball((40, 80))
+<pre class="prettyprint lang-py" data-lang="py"><code>b1 = Ball((40, 80))
 b1.move()
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code># Python internals, DON'T do this!
+<pre class="prettyprint lang-py" data-lang="py"><code># Python internals, DON'T do this!
 b1 = object.__new__(Ball)
 Ball.__init__(b1, (40, 80))
 Ball.move(b1)
@@ -580,7 +580,7 @@ Ball.move(b1)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>b1 = Ball((40, 80))
+      <pre class="prettyprint lang-py" data-lang="py"><code>b1 = Ball((40, 80))
 b2 = Ball((80, 40))
 
 def tick():
@@ -639,7 +639,7 @@ def main():
       <ul>
 <li>Permettono un accesso controllato allo stato</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>class Ball:
+<pre class="prettyprint lang-py" data-lang="py"><code>class Ball:
 
     @property  # a getter for the pos property
     def pos(self) -&gt; (int, int):
@@ -649,7 +649,7 @@ def main():
     # def pos(self, val: (int, int)):
     #     self._x, self._y = val
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>ball = Ball((40, 80))
+<pre class="prettyprint lang-py" data-lang="py"><code>ball = Ball((40, 80))
 print('ball @', ball.pos)
 # ball.pos = (60, 20)   # with the setter, you could change the pos
 </code></pre></article>

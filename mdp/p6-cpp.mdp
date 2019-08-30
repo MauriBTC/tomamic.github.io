@@ -24,7 +24,7 @@ code: shell
 
 >
 
-[Strumenti software](intro.html#11)
+[Strumenti software](intro.html#10)
 
 ---
 
@@ -60,11 +60,13 @@ code: c++
 
     int x = 10;
     double h = 3.7;
-    string s = "hello";
+    string txt = "hello";
 
-    auto y = 5;        // type inference
-    auto k = 2.2;
-    auto t = "hola"s;  // compiler settings: -std=c++14
+code: c++
+
+    auto x = 10;          // type inference
+    auto h = 3.7;
+    auto txt = "hello"s;  // compiler settings: -std=c++14
 
 ---
 
@@ -478,7 +480,7 @@ code: c++
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp>
+[ball.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp)
 
 ---
 
@@ -522,7 +524,7 @@ code: py
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py>
+[ball.py](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py)
 
 ---
 
@@ -548,10 +550,6 @@ code: c++
 
 - Un metodo `virtual` *può* essere (ri)definito dalle sottoclassi
 - Un metodo `=0` *deve* essere definito dalle sottoclassi
-
->
-
-<https://github.com/tomamic/fondinfo/blob/master/cpp/animals.cpp>
 
 ---
 
@@ -584,13 +582,12 @@ figure: images/oop/peppa.png
 
 code: c++
 
-    auto d = new Dog("Danny");
-    auto c = new Cat("Candy");
-    auto p1 = new Pig("Peppa");
-    auto p2 = new Pig("George");
-    // Polimorphism requires pointers to objects.
-    // Elements can be added with push_back, too.
-    vector<Animal*> animals = {d, c, p1, p2};
+    auto d = Dog("Danny");
+    auto c = Cat("Candy");
+    auto p1 = Pig("Peppa");
+    auto p2 = Pig("George");
+    // polimorphism requires pointers to objects
+    vector<Animal*> animals = {&d, &c, &p1, &p2};
     for (auto a : animals) { a->say(); }
 
 code: output
@@ -599,6 +596,10 @@ code: output
     I am Candy Cat. I say: MEOW!
     I am Peppa Pig. I say: OINK!
     I am George Pig. I say: OINK!
+
+>
+
+[animals.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/animals.cpp)
 
 ---
 
@@ -619,9 +620,9 @@ code: c++
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/actor.hpp>
-
-<https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.hpp>
+[actor.hpp](https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/actor.hpp) -
+[bounce.hpp](https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.hpp) -
+[bounce.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/bounce.cpp)
 
 ---
 
@@ -645,31 +646,9 @@ code: C++
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/boardgame.hpp>
-
----
-
-title: Gioco a console
-
-code: C++
-
-    void print_game(BoardGame* game) {
-        for (auto y = 0; y < game->rows(); ++y) {
-            for (auto x = 0; x < game->cols(); ++x) {
-                cout << setw(3) << game->value_at(x, y);
-            }
-            cout << endl;
-        }
-    }
-    void play_game(BoardGame* game) {
-        print_game(game);
-        while (! game->finished()) {
-            int x, y; cin >> x >> y;
-            game->play_at(x, y);
-            print_game(game);
-        }
-        cout << game->message() << endl;
-    }
+[boardgame.hpp](https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/boardgame.hpp) -
+[fifteen.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/fifteen.cpp) -
+[lightsout.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/lightsout.cpp)
 
 ---
 
@@ -782,107 +761,6 @@ code: py
 
 ---
 
-title: Output su file 🤔
-
-code: c++
-
-    #include <fstream>
-
-code: c++
-
-    int n; float r; string w;
-    cin >> n >> r >> w;
-
-    ofstream file2{"output.txt"};  // file output stream
-    if (file2) {                   // is stream available?
-        file2 << "Values: " << n << " " << r << " " << w << endl;
-    }
-    file2.close();
-
----
-
-title: Lettura di righe 🤔
-
-code: c++
-
-    ifstream file1{"input.txt"};  // when finished, close file1!
-
-code: c++
-
-    string first_line, second_line;
-    getline(file1, first_line);   // no newline at end
-    getline(file1, second_line);  // no newline at end
-
-code: c++
-
-    string whole_text;
-    getline(file1, whole_text, '\0');  // read whole file
-
-code: c++
-
-    // for each line in file1...
-    for (string line; getline(file1, line);) {
-        cout << line << endl;
-    }
-
->
-
-<http://tomamic.github.io/p5-matrici.html#4>
-
----
-
-title: Flussi e stringhe 🤔
-
-- Si può gestire una stringa come uno stream
-    - `istringstream`, `ostringstream` in libreria `<sstream>`
-    - Per estrarre valori ed inserire valori, rispettivamente
-
-code: c++
-
-    /* Split a text into a sequence of strings */
-    string text = "one:two::three";
-    istringstream sstr{text};  // a stream view on a string
-    for (string item; getline(sstr, item, ':');) {
-        cout << "- " << item << endl;
-    }
-
-code: output
-
-    - one
-    - two
-    -
-    - three
-
----
-
-title: Lettura di dati 🤔
-
-code: c++
-
-    ifstream file1{"input.txt"};
-
-code: c++
-
-    if (file1) {                         // is stream available?
-        int n; float r; string w;
-        file1 >> n >> r >> w;
-    }
-
-code: c++
-
-    for (int val; file1 >> val;) {       // or float, string ...
-        cout << setw(4) << val << endl;  // val occupies 4 chars
-    }                                    // setw in <iomanip>
-
-code: c++
-
-    file1 >> noskipws;                   // scan also whitespaces
-    for (char val; file1 >> val;) {      // for each char in file1
-        cout << val << endl;
-    }
-
----
-
 title: Do-while 🤔
 class: break
 
@@ -913,267 +791,3 @@ code: c++
         case 2: cout << "Second option"; break;
         default: cout << "Error";
     }
-
----
-
-title: Composizione
-figure: images/oop/actors.svg
-class: break
-
-code: c++
-
-    class Arena {  // ...
-    public:
-        void add(Actor* a);
-        void move_all();
-    private:
-        vector<Actor*> actors;
-    };
-
-code: c++
-
-    void Arena::add(Actor* c) {
-        actors.push_back(a);
-    }
-    void Arena::move_all() {
-        for (auto a : actors) a->move();
-    }
-
----
-
-title: Ereditarietà e polimorfismo
-
-code: c++
-
-    arena->add(new Ball(4, 8));
-    arena->add(new Ghost(12,4));
-    arena->move_all();
-
-code: c++
-
-    class Ghost: public Actor {
-        // ...
-        void move() {
-            vector<int> vals = {-5, 0, 5};
-            int dx = vals[rand() % 3];  // one of {-5, 0, +5}
-            int dy = vals[rand() % 3];
-            x = (x + dx + arena->width()) % arena->width();
-            y = (y + dy + arena->height()) % arena->height();
-        }
-    };
-
----
-
-title: Qt
-class: segue dark break
-
----
-
-title:  Rettangoli e cerchi con Qt
-figure: images/qt/slogan.png images/oop/raster-coord.png
-
-code: C++
-
-    #include <QtWidgets>
-
-code: C++
-
-    QPixmap screen{600, 400}; QPainter painter{&screen};
-
-    painter.setBrush(QColor{255, 255, 0});
-    painter.drawRect(50, 75, 90, 50);
-
-    painter.setBrush(QColor{0, 0, 255});
-    painter.drawEllipse(QPoint{300, 50}, 20, 20);
-
-    QLabel label; label.setPixmap(screen); label.show();
-
-code: Project
-
-    QT += widgets
-    CONFIG += console c++11
-
->
-
-Progetto: *Application* → *Qt Widgets Application*
-
----
-
-title: Ciclo di animazione in Qt
-
-code: C++
-
-    // fields: int x = 0; QPixmap image{"ball.png"};
-
-    Widget::Widget() {
-        startTimer(1000 / 60);  // 60 fps
-    }
-    void Widget::timerEvent(QTimerEvent* event) {
-        x = (x + 5) % 600;  // or width()
-        update();           // async: this widget should be redrawn
-    }
-    void Widget::paintEvent(QPaintEvent* event) {
-        QPainter painter{this};
-        painter.drawPixmap(x, 10, image);
-    }
-
->
-
-Progetto: *Application* → *Qt Widgets Application*
-
----
-
-title: Fifteen – Gui generica
-figure: images/qt/puzzle.png
-
-code: C++
-
-    class BoardGameGui : public QWidget {
-        Q_OBJECT
-    public:
-        BoardGameGui(BoardGame* game);
-        void handle_click(int x, int y);
-        void update_button(int x, int y);
-        void update_all_buttons();
-    private:
-        BoardGame* game_;
-        int cols_, rows_;
-    };
-
----
-
-title: Strutture dati lineari
-class: segue dark
-
----
-
-title: Vector, array dinamici
-figure: images/fun/dynamic-array.svg
-class: large-figure
-
-- **Array**: area di memoria che contiene in *celle contigue* elementi tutti dello *stesso tipo*
-- Usato internamente dai `vector` del C++
-    - Riallocazione dinamica e trasparente per inserimenti e rimozioni
-- `Vector` come **array dinamici**
-    - Accesso casuale: `O(1)`
-    - Aggiunta o rimozione in fondo all'array: `O(1)`, ma a volte riallocazione
-    - Inserimento o rimozione: `O(n)`
-
----
-
-title: Vector di float
-
-code: C++
-
-    class FloatVector {  // ...
-        int capacity_;
-        int size_;
-        float* data_;
-    public:
-        FloatVector(int size, float val);
-        float get(int pos);
-        void set(int pos, float val);
-        void insert(int pos, float val);
-        float remove(int pos);
-        int size();
-    };
-
-Implementazione nel repository di esempi
-
----
-
-title: Inserimento in vector
-
-code: C++
-
-    void FloatVector::insert(int pos, float val) {
-        if (pos < 0 || pos > size_) throw out_of_range("wrong pos");
-        if (size_ == capacity_) expand_capacity();
-        for (int i = size_; i > pos; --i) data_[i] = data_[i - 1];
-        data_[pos] = val;
-        ++size_;
-    }
-    void FloatVector::expand_capacity() {
-        capacity_ *= 2;
-        float* bigger = new float[capacity_];
-        for (int i = 0; i < size_; i++) bigger[i] = data_[i];
-        delete[] data_;
-        data_ = bigger;
-    }
-
----
-
-title: Liste concatenate
-
-![](images/fun/linked-list.svg)
-
-- Ciascun **nodo** contiene un *valore* della lista ed un *puntatore* al nodo successivo
-    - Accesso casuale: `O(n)`
-    - Aggiunta o rimozione in testa all'array: `O(1)`
-    - Aggiunta o rimozione in fondo all'array: `O(n)`, oppure `O(1)` se noto ultimo nodo
-    - Inserimento o rimozione: `O(1) + O(n)` per ricerca
-
----
-
-title: Lista di float
-
-code: C++
-
-    struct Node {
-        float val;
-        Node* next;
-    };
-    class FloatList {  // ...
-        Node* head_; int size_;
-    public:
-        FloatList(int size, float val);
-        float get(int pos);
-        void set(int pos, float val);
-        void insert(int pos, float val);
-        float remove(int pos);
-        int size();
-    };
-
-Implementazione nel repository di esempi
-
----
-
-title: Inserimento in lista
-
-code: C++
-
-    void FloatList::insert(int pos, float val) {
-        if (pos < 0 || pos > size_) throw out_of_range("wrong pos");
-        if (pos == 0) {
-            head_ = new Node{val, head_};
-        } else {
-            Node* n = head_;
-            for (int i = 0; i < pos - 1; ++i) n = n->next;
-            n->next = new Node{val, n->next};
-        }
-        ++size_;
-    }
-
----
-
-title: Template C++
-
-- **Programmazione generica**: codice che opera su *tipi parametrizzati*
-    - Es. liste di `int`, `string` ecc.: cambia solo il tipo di dato!
-- **Template**: meccanismo di programmazione generica in C++
-    - Generaz. trasparente di codice specializzato per un tipo
-    - Es. `vector<float>` genera una classe ≈ `FloatVector`
-
-code: C++
-
-    template <class T>
-    T max(T a, T b) {
-        if (a >= b) return a;
-        return b;
-    }
-
-code: C++
-
-    double x = max<double>(5.0, 3.5);  # <double>, <int>: optional
-    int i = max<int>(4, 6);            # inferred from parameters
-

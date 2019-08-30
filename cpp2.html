@@ -128,7 +128,7 @@ URL: https://code.google.com/p/io-2012-slides
       <ul>
 <li>Una volta definita, la classe può essere usata per dichiarare oggetti, array, puntatori e riferimenti</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>Time sunset;
+<pre class="" data-lang="C++"><code>Time sunset;
 Time arrayOfTimes[5];
 Time *pointerToTime;
 Time &amp;dinnerTime = sunset;
@@ -220,7 +220,7 @@ Time &amp;dinnerTime = sunset;
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>// prevent multiple inclusions of header file
+      <pre class="" data-lang="C++"><code>// prevent multiple inclusions of header file
 #ifndef TIME1_H
 #define TIME1_H
 // Time abstract data type definition
@@ -247,7 +247,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include "time1.h"
+      <pre class="" data-lang="C++"><code>#include "time1.h"
 Time::Time() { hour = minute = second = 0; }
 void Time::setTime( int h, int m, int s ) {
     hour = (h &gt;= 0 &amp;&amp; h &lt; 24) ? h : 0;
@@ -275,7 +275,7 @@ void Time::printStandard() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include "time1.h"
+      <pre class="" data-lang="C++"><code>#include "time1.h"
 int main() {
     Time t1;
     t1.setTime(17, 15, 0);
@@ -382,7 +382,7 @@ int main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class Increment {
+      <pre class="" data-lang="C++"><code>class Increment {
 public:
     Increment(int c = 0, int d = 1);
     void addDelta() { count += delta; }
@@ -506,7 +506,7 @@ Increment::Increment(int c, int d)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#ifndef TIME4_H
+      <pre class="" data-lang="C++"><code>#ifndef TIME4_H
 #define TIME4_H
 class Time {
 public:
@@ -768,7 +768,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;iostream&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;iostream&gt;
 using std::cout;
 using std::endl;
 class Count {
@@ -902,7 +902,7 @@ void setX( Count &amp;c, int val ) {
 <li>Se si fornisce un operatore <code>=</code>...</li>
 <li>Evitare auto-assegnamenti, o rischio <em>memory-leak</em></li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>// Overloaded = operator; avoids self assignment
+<pre class="" data-lang="C++"><code>// Overloaded = operator; avoids self assignment
 const String &amp;String::operator=(const String &amp;right) {
     cout &lt;&lt; "operator= called\n";
     if ( &amp;right != this ) { // avoid self assignment
@@ -969,7 +969,7 @@ const String &amp;String::operator=(const String &amp;right) {
 <li>Risultato per <em>riferimento</em> nella forma <em>prefissa</em></li>
 <li>Risultato per <em>valore</em> nella forma <em>postfissa</em></li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>// Preincrement operator overloaded as a member function.
+<pre class="" data-lang="C++"><code>// Preincrement operator overloaded as a member function.
 Date &amp;Date::operator++() {
     helpIncrement(); // The increment is in this utility function
     return *this; // reference return to create an lvalue
@@ -1140,7 +1140,7 @@ Date Date::operator++(int) {
 <li>Quando si ridefinisce l’operatore <code>=</code> per una classe si restituisce l’oggetto chiamante per reference (usando il puntatore <code>this</code>)</li>
 <li>Fare attenzione al caso dell’<em>auto-assegnamento</em></li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>class A {
+<pre class="prettyprint lang-c++" data-lang="c++"><code>class A {
 public:
     A&amp; operator=(const A&amp; other) {
         if (this != &amp;other) {  // ... deallocate; copy data from other
@@ -1356,7 +1356,7 @@ public:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="make"><code>timedemo: timedemo.o dtime.o
+      <pre class="" data-lang="make"><code>timedemo: timedemo.o dtime.o
 g++ timedemo.o dtime.o -o timedemo
 timedemo.o: timedemo.cpp dtime.h
 g++ -c -W -Wall -pedantic timedemo.cpp
@@ -1395,7 +1395,7 @@ g++ -c -W -Wall -pedantic dtime.cpp
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>// classA.h
+      <pre class="" data-lang="C++"><code>// classA.h
 class A {
 public:
     // ...
@@ -1436,10 +1436,10 @@ implB.cpp
 <li>Un header file può includere altri header file</li>
 <li>Per evitare che il contenuto di un header file venga incluso più volte è necessario racchiudere il codice tra queste due sezioni:</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>#ifndef NOMEHEADER_H
+<pre class="" data-lang="C++"><code>#ifndef NOMEHEADER_H
 #define NOMEHEADER_H
 </code></pre>
-<pre class="prettyprint" data-lang="C++"><code>#endif
+<pre class="" data-lang="C++"><code>#endif
 </code></pre>
 <ul>
 <li>Come identificatore si usa il nome del file in maiuscolo e con l’underscore al posto del punto</li>
@@ -1458,7 +1458,7 @@ implB.cpp
       <ul>
 <li>classA.h</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>#ifndef CLASSA_H
+<pre class="" data-lang="C++"><code>#ifndef CLASSA_H
 #define CLASSA_H
 
 class A
@@ -1470,7 +1470,7 @@ class A
 <ul>
 <li>classB.h</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>#ifndef CLASSB_H
+<pre class="" data-lang="C++"><code>#ifndef CLASSB_H
 #define CLASSB_H
 #include “classA.h”
 class B
@@ -1497,7 +1497,7 @@ class B
 <li>Un namespace è un insieme di definizioni di nomi (classi, funzioni, …)</li>
 <li>Per creare un namespace</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>namespace Name_Space_Name
+<pre class="" data-lang="C++"><code>namespace Name_Space_Name
 { /* Some code */ }
 </code></pre>
 <ul>
@@ -1505,7 +1505,7 @@ class B
 <li>Lo scope della direttiva using va dal punto di occorrenza alla fine del file o del blocco</li>
 <li>Se il codice non è messo esplicitamente in un namespace è nel namespace globale (accessibile ovunque)</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>using namespace Name_Space_Name;
+<pre class="" data-lang="C++"><code>using namespace Name_Space_Name;
 </code></pre></article>
  
 </slide>

@@ -78,7 +78,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/oop/pygame-logo.png"><img src="images/oop/raster-coord.png">
         <figcaption>→ pygame.org/docs</figcaption>
-      </figure><pre class="prettyprint" data-lang="python"><code>import pygame
+      </figure><pre class="" data-lang="python"><code>import pygame
 pygame.init()                     # Prepare pygame
 screen = pygame.display.set_mode((640, 480)) # (w, h)
 screen.fill((255, 255, 255))      # BG (Red, Green Blue)
@@ -104,7 +104,7 @@ pygame.quit()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>import pygame
+      <pre class="" data-lang="python"><code>import pygame
 pygame.init()                     # Prepare pygame
 screen = pygame.display.set_mode((320, 240))
 clock = pygame.time.Clock()       # To set game speed
@@ -131,7 +131,7 @@ pygame.quit()                     # Close the window
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>import pygame
+      <pre class="" data-lang="python"><code>import pygame
 pygame.init()                     # Prepare pygame
 screen = pygame.display.set_mode((320, 240))
 clock = pygame.time.Clock()       # To set game speed
@@ -161,7 +161,7 @@ pygame.quit()                     # Close the window
       <figure>
         <img src="images/oop/bounce.png">
         
-      </figure><pre class="prettyprint" data-lang="python"><code>arena = Arena(320, 240)
+      </figure><pre class="" data-lang="python"><code>arena = Arena(320, 240)
 Ball(arena, 40, 80); Ball(arena, 80, 40);
 Ghost(arena, 120, 80) # ...
 # a map from an actor type to an image
@@ -189,7 +189,7 @@ while playing:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>from pygame.locals import (KEYDOWN, KEYUP, K_RIGHT, K_d,
+      <pre class="" data-lang="python"><code>from pygame.locals import (KEYDOWN, KEYUP, K_RIGHT, K_d,
     MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION)
 # ...
 for e in pygame.event.get():
@@ -215,7 +215,7 @@ for e in pygame.event.get():
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code># Red (anti-aliased) text, centered, rotated 30° ccw
+      <pre class="" data-lang="python"><code># Red (anti-aliased) text, centered, rotated 30° ccw
 font = pygame.font.SysFont('arial', 48)
 surface = font.render('Game over!', True, (255, 0, 0))
 surface = pygame.transform.rotate(surface, 30)
@@ -223,7 +223,7 @@ x = (screen.get_width() - surface.get_width()) // 2
 y = (screen.get_height() - surface.get_height()) // 2
 screen.blit(surface, (x, y))  # surface ~ image
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code># Some sound
+<pre class="" data-lang="python"><code># Some sound
 pick_up_sound = pygame.mixer.Sound('pickup.wav')
 pick_up_sound.play()  # play(-1) to loop, then stop()
 </code></pre></article>
@@ -261,7 +261,7 @@ pick_up_sound.play()  # play(-1) to loop, then stop()
       <figure>
         <img src="images/oop/tk-notepad-1.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>from tkinter import Tk, Text
+      </figure><pre class="" data-lang="Python"><code>from tkinter import Tk, Text
 
 window = Tk()
 text_edit = Text(window)
@@ -283,7 +283,7 @@ window.mainloop()
       <figure>
         <img src="images/oop/tk-notepad-2.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>from tkinter import Tk, Text, Button
+      </figure><pre class="" data-lang="Python"><code>from tkinter import Tk, Text, Button
 
 window = Tk()
 text_edit = Text(window)
@@ -309,7 +309,7 @@ window.mainloop()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>from tkinter import Tk, Text, Button, messagebox
+      <pre class="" data-lang="Python"><code>from tkinter import Tk, Text, Button, messagebox
 
 class Notepad(Tk):
     def __init__(self):
@@ -336,7 +336,7 @@ win.mainloop()
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>from tkinter import (Tk, Text, Menu,
+      <pre class="" data-lang="Python"><code>from tkinter import (Tk, Text, Menu,
                      messagebox, filedialog, END)
 class Notepad(Tk):
     def __init__(self):
@@ -363,7 +363,7 @@ class Notepad(Tk):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>class Notepad(Tk):
+      <pre class="" data-lang="Python"><code>class Notepad(Tk):
     # ...
     def open(self):
         fn = filedialog.askopenfilename()
@@ -397,7 +397,7 @@ class Notepad(Tk):
 <li>Ci sono tre sistemi di disposizione pricipali</li>
 <li>È possibile comporre più <code>Frame</code> (riquadri), per realizzare gerarchie di contenimento tra widget</li>
 </ul>
-<pre class="prettyprint" data-lang="Pyhton"><code># vertical layout, default side='top'
+<pre class="" data-lang="Pyhton"><code># vertical layout, default side='top'
 widget.pack()
 # horizontal layout
 widget.pack(side='left')
@@ -414,7 +414,7 @@ widget.grid(column=x, row=y)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>from tkinter import Tk, Text, Frame, Button
+      <pre class="" data-lang="Python"><code>from tkinter import Tk, Text, Frame, Button
 
 class Notepad(Tk):
     def __init__(self):
@@ -462,7 +462,7 @@ class Notepad(Tk):
       <figure>
         <img src="images/qt/puzzle.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class BoardGameGui(Tk):
+      </figure><pre class="" data-lang="Python"><code>class BoardGameGui(Tk):
     def __init__(self, g: BoardGame):
         Tk.__init__(self)
         self._game = g
@@ -490,7 +490,7 @@ class Notepad(Tk):
       <figure>
         <img src="images/qt/puzzle-solved.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class BoardGameGui(Tk):
+      </figure><pre class="" data-lang="Python"><code>class BoardGameGui(Tk):
     # ...
 
     def update_buttons(self):

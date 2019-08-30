@@ -69,7 +69,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/catalogue.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def linear_search(v: list, value) -&gt; int:
+      </figure><pre class="" data-lang="Python"><code>def linear_search(v: list, value) -&gt; int:
     '''v: not necessarily sorted'''
 
     for i in range(len(v)):
@@ -91,7 +91,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/binary-search.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def binary_search(v: list, value) -&gt; int:
+      </figure><pre class="" data-lang="Python"><code>def binary_search(v: list, value) -&gt; int:
     '''v: sorted list'''
 
     first, last = 0, len(v) - 1
@@ -289,7 +289,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/bubble-sort.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def swap(v: list, i: int, j: int):
+      </figure><pre class="" data-lang="Python"><code>def swap(v: list, i: int, j: int):
     v[i], v[j] = v[j], v[i]
 
 
@@ -338,7 +338,7 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/selection-sort.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def selection_sort(v: list):
+      </figure><pre class="" data-lang="Python"><code>def selection_sort(v: list):
     for i in range(len(v) - 1):
         min_pos = i
 
@@ -384,7 +384,7 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/insertion-sort.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def insertion_sort(v: list):
+      </figure><pre class="" data-lang="Python"><code>def insertion_sort(v: list):
     for i in range(1, n):
         value = v[i]
 
@@ -436,7 +436,7 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/quick-sort.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>def quick_sort(v: list, first=0, last=len(v)-1):
+      </figure><pre class="" data-lang="Python"><code>def quick_sort(v: list, first=0, last=len(v)-1):
     '''In v, sort elements between first and last'''
     if last - first &gt; 0:
         pivot = v[last]
@@ -485,7 +485,7 @@ def bubble_sort(v: list):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
+      <pre class="" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
     '''In v, sort elements between first and last'''
     if last - first &gt; 0:
         middle = (first + last) // 2
@@ -504,7 +504,7 @@ def bubble_sort(v: list):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>def merge(v, first, middle, last):
+      <pre class="" data-lang="Python"><code>def merge(v, first, middle, last):
     '''Merge two sorted portions of a single list'''
     i1, i2, n = first, middle, 1 + last - first
     result = []

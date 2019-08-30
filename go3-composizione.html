@@ -55,11 +55,11 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
+<pre class="prettyprint lang-go" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
 </code></pre>
-<pre class="prettyprint" data-lang="go"><code>rainfallData := []int{13, 24, 18, 15}
+<pre class="prettyprint lang-go" data-lang="go"><code>rainfallData := []int{13, 24, 18, 15}
 </code></pre>
-<pre class="prettyprint" data-lang="go"><code>resultsByMonth := make([]int, 12)  // 12 times 0
+<pre class="prettyprint lang-go" data-lang="go"><code>resultsByMonth := make([]int, 12)  // 12 times 0
 </code></pre></article>
  
 </slide>
@@ -81,7 +81,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
+<pre class="prettyprint lang-go" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
 n := len(grocery)      // 3
 grocery[1] = "bacon"   // replace a value, len is still 3
 
@@ -106,7 +106,7 @@ Println(grocery)                      // guess!
       <figure>
         <img src="images/fun/shopping-list.jpg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
 
 Println("Your grocery list contains:")
 
@@ -135,7 +135,7 @@ for _, value := range grocery {
 <li>Si può usare un ciclo <code>for</code> su qualsiasi sequenza</li>
 <li>Anche su <em>stringa</em>: sequenza <em>immutabile</em> di caratteri (UTF-8)</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>for index, value := range "Hello, 🌐!" {
+<pre class="prettyprint lang-go" data-lang="go"><code>for index, value := range "Hello, 🌐!" {
     Println(index, value)
 }
 
@@ -164,7 +164,7 @@ for _, x := range "Hello, 🌐!" {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>months := []string{"Jan", "Feb", "Mar",
+<pre class="prettyprint lang-go" data-lang="go"><code>months := []string{"Jan", "Feb", "Mar",
                    "Apr", "May", "Jun",
                    "Jul", "Aug", "Sep",
                    "Oct", "Nov", "Dec"}
@@ -184,7 +184,7 @@ wholeYear := months[:]      // The whole list
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
+      <pre class="prettyprint lang-go" data-lang="go"><code>grocery := []string{"spam", "eggs", "beans"}
 Println(grocery)
 
 grocery = append(grocery, "bacon")          // add to the end
@@ -215,7 +215,7 @@ Println(grocery)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>someDays := []string{"tue", "thu", "sat"}
+<pre class="prettyprint lang-go" data-lang="go"><code>someDays := []string{"tue", "thu", "sat"}
 someTxt := strings.Join(someDays, "|")
 // a single string: "tue|thu|sat"
 
@@ -243,7 +243,7 @@ otherDays := strings.Split(otherTxt, "|")
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>var balls = []*Ball{NewBall(Point{40, 80}),
+      <pre class="prettyprint lang-go" data-lang="go"><code>var balls = []*Ball{NewBall(Point{40, 80}),
                     NewBall(Point{80, 40})}
 
 func tick() {
@@ -279,7 +279,7 @@ func main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type BallArena struct { balls []*Ball }
+<pre class="prettyprint lang-go" data-lang="go"><code>type BallArena struct { balls []*Ball }
 func (a *BallArena) Add(b *Ball) {
     a.balls = append(a.balls, b)
 }
@@ -355,7 +355,7 @@ func main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type Animal interface {
+<pre class="prettyprint lang-go" data-lang="go"><code>type Animal interface {
     Say()
 }
 </code></pre>
@@ -374,7 +374,7 @@ func main() {
       <figure>
         <img src="images/oop/polymorphism.png">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>type Dog struct { name string }
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>type Dog struct { name string }
 func NewDog(name string) *Dog { return &amp;Dog{name} }
 func (d *Dog) Say() {
     Println("I'm " + d.name + " Dog. I say: WOOF!")
@@ -399,7 +399,7 @@ func (c *Cat) Say() {
       <figure>
         <img src="images/oop/peppa.png">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>d := NewDog("Danny")
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>d := NewDog("Danny")
 c := NewCat("Candy")
 p1 := NewPig("Peppa")
 p2 := NewPig("George")
@@ -409,7 +409,7 @@ for _, a := range animals {
     a.Say()
 }
 </code></pre>
-<pre class="prettyprint" data-lang="output"><code>I am Danny Dog. I say: WOOF!
+<pre class="" data-lang="output"><code>I am Danny Dog. I say: WOOF!
 I am Candy Cat. I say: MEOW!
 I am Peppa Pig. I say: OINK!
 I am George Pig. I say: OINK!
@@ -438,7 +438,7 @@ I am George Pig. I say: OINK!
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type Actor interface {
+<pre class="prettyprint lang-go" data-lang="go"><code>type Actor interface {
     Move()
 }
 </code></pre></article>
@@ -452,7 +452,7 @@ I am George Pig. I say: OINK!
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>type Arena struct { actors []Actor }
+      <pre class="prettyprint lang-go" data-lang="go"><code>type Arena struct { actors []Actor }
 func (a *Arena) Add(c Actor) {
     a.actors = append(a.actors, c)
 }
@@ -481,7 +481,7 @@ func (a *Arena) MoveAll() {
       <figure>
         <img src="images/oop/actor.svg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>arena.Add(NewBall(Point{40, 80}))
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>arena.Add(NewBall(Point{40, 80}))
 arena.Add(NewGhost(Point{120, 40})) // ...
 arena.MoveAll()
 </code></pre>
@@ -517,7 +517,7 @@ arena.MoveAll()
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type Ghost struct { x, y int }  // ...
+<pre class="prettyprint lang-go" data-lang="go"><code>type Ghost struct { x, y int }  // ...
 func (g *Ghost) Move() {
     dx := 5 * RandInt(-1, 1)
     dy := 5 * RandInt(-1, 1)
@@ -535,7 +535,7 @@ func (g *Ghost) Move() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>type Ghost struct {
+      <pre class="prettyprint lang-go" data-lang="go"><code>type Ghost struct {
     arena *Arena
     x, y  int
 }
@@ -573,7 +573,7 @@ func (g *Ghost) Move() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>var sprites = LoadImage("sprites.png")
+      <pre class="prettyprint lang-go" data-lang="go"><code>var sprites = LoadImage("sprites.png")
 var arena = NewArena(Size{320, 240})
 var hero = NewTurtle(arena, Point{80, 80})  // actor knows the arena
 func tick() {
@@ -604,7 +604,7 @@ func main() {
       <figure>
         <img src="images/oop/bounce.png">
         
-      </figure><pre class="prettyprint" data-lang="python"><code>func tick() {
+      </figure><pre class="" data-lang="python"><code>func tick() {
     if KeyPressed("ArrowUp") {
         hero.GoUp()
     } else if KeyPressed("ArrowRight") {
@@ -661,7 +661,7 @@ func main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>func (b *Ball) Collide(other Actor) {
+      <pre class="" data-lang="python"><code>func (b *Ball) Collide(other Actor) {
     _, ok := other.(*Ghost)
     if !ok {
         op := other.Position()

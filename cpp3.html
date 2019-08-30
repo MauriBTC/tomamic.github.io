@@ -65,7 +65,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Un oggetto di una classe derivata può essere usato ovunque può essere usato uno della classe base (<em>Liskov</em>)</li>
 <li>Un oggetto di una classe derivata ha più di un tipo</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>class HourlyEmployee : public Employee {
+<pre class="" data-lang="C++"><code>class HourlyEmployee : public Employee {
 public:
     HourlyEmployee(string name, string code,
                    double wageRate, double hours);
@@ -193,7 +193,7 @@ private:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>HourlyEmployee::HourlyEmployee(string name, string number,
+<pre class="" data-lang="C++"><code>HourlyEmployee::HourlyEmployee(string name, string number,
                                double wageRate, double hours)
         : Employee(name, number), wageRate(wageRate), hours(hours)
 {
@@ -252,7 +252,7 @@ private:
       <ul>
 <li>Una classe derivata quando sovraccarica l’operatore di assegnamento può fare uso dell’operatore di assegnamento della classe base</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>Derived&amp; Derived::operator=(const Derived&amp; rtside)
+<pre class="" data-lang="C++"><code>Derived&amp; Derived::operator=(const Derived&amp; rtside)
 {
     Base::operator=(rtSide);
     //…
@@ -271,7 +271,7 @@ private:
       <ul>
 <li>Una classe derivata quando sovraccarica il costruttore di copia può fare uso del costruttore di copia della classe base</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>Derived::Derived(const Derived&amp; obj) : Base(obj), …
+<pre class="" data-lang="C++"><code>Derived::Derived(const Derived&amp; obj) : Base(obj), …
 {
     // …
 }
@@ -367,7 +367,7 @@ private:
 <li>Una classe derivata può avere più di una classe base</li>
 <li>Possono esserci situazioni ambigue</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>class A  { /* ... */ };
+<pre class="prettyprint lang-c++" data-lang="c++"><code>class A  { /* ... */ };
 class B  { /* ... */ };
 
 class C: public B, public A  // Note the order  { 
@@ -561,7 +561,7 @@ int main()  {  C c; }
 <li>Una classe con una o più funzioni virtuali pure è detta <strong>astratta</strong></li>
 <li>Una classe astratta può essere usata solo come classe base per derivare altre classi, <em>non si possono istanziare</em> oggetti</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>class Abs {
+<pre class="" data-lang="C++"><code>class Abs {
 public:
     virtual void f() = 0;
 };
@@ -818,7 +818,7 @@ public:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>try
+      <pre class="" data-lang="C++"><code>try
 {
     /* Some statements */
     if (Exceptional_Case) throw exception;
@@ -1001,7 +1001,7 @@ catch(Type e)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;new&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;new&gt;
 using std::bad_alloc;
 //…
 try
@@ -1131,7 +1131,7 @@ catch(bad_alloc)
       <ul>
 <li>Se una classe F è friend di una classe C, tutte le funzioni membro di F sono friend della classe C</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>class F; // forward declaration
+<pre class="" data-lang="C++"><code>class F; // forward declaration
 class C
 {
 public:
@@ -1475,7 +1475,7 @@ class F
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>void showInterest(double balance, double rate);
+      <pre class="" data-lang="C++"><code>void showInterest(double balance, double rate);
 //Precondition: balance is a non-negative savings
 //account balance, rate is the interest rate expressed
 //as a percentage, such as 5 for 5%.
@@ -1567,7 +1567,7 @@ class F
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>#include &lt;tr1/memory&gt;
+      <pre class="" data-lang="C++"><code>#include &lt;tr1/memory&gt;
 typedef std::tr1::shared_ptr&lt;Polygon&gt; PolyPtr;
 
 class ListOfPolygons {
@@ -1599,7 +1599,7 @@ int ListOfPolygons::getSize() { return elements.size(); }
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>// Create a list and fill it with polygons
+      <pre class="" data-lang="C++"><code>// Create a list and fill it with polygons
 ListPtr list(new ListOfPolygons());
 list-&gt;addElement(new Rectangle(5, 7));
 list-&gt;addElement(new Square(6));

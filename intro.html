@@ -51,14 +51,14 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Testi, immagini e suoni</li>
 </ul>
 </li>
+<li>Sviluppo del software<ul>
+<li>Ciclo di vita; qualità e collaudo</li>
+</ul>
+</li>
 <li>Teoria della computazione<ul>
 <li>Linguaggi formali</li>
 <li>Automi e calcolatori</li>
 <li>Complessità computazionale</li>
-</ul>
-</li>
-<li>Sviluppo del software<ul>
-<li>Ciclo di vita; qualità e collaudo</li>
 </ul>
 </li>
 </ul></article>
@@ -79,7 +79,8 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Algoritmi in <em>Python 3</em></li>
 <li>Funzioni e oggetti</li>
 <li>Liste e composizione</li>
-<li>Ricorsione, file e matrici</li>
+<li>Ricorsione</li>
+<li>File e matrici</li>
 <li>Linguaggio <em>C++11</em></li>
 </ul></article>
  
@@ -96,12 +97,12 @@ URL: https://code.google.com/p/io-2012-slides
         <img src="images/dev/geek-girl.jpg">
         
       </figure><ul>
-<li>Esercizi di base, in Python<ul>
+<li>Esercizi brevi, prima in Python e poi in C++<ul>
 <li>A riga di comando e con grafica</li>
 </ul>
 </li>
-<li>Piccoli progetti a oggetti<ul>
-<li>Prima in Python e poi in C++</li>
+<li>Un paio di progetti più lunghi, in Python<ul>
+<li>Giochi dinamici e su matrice</li>
 </ul>
 </li>
 <li><strong>Attenzione</strong>: non sono sufficienti le poche ore in laboratorio per imparare a programmare!<ul>
@@ -159,7 +160,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Materiale di studio<ul>
 <li><em>Libri</em> di testo e slide del corso</li>
 <li><em>Esercizi risolti</em> degli anni precedenti</li>
-<li><a href="http://tomamic.github.io/fondinfo/">http://tomamic.github.io/fondinfo/</a></li>
+<li><a href="http://tomamic.github.io/">http://tomamic.github.io/</a></li>
 </ul>
 </li>
 <li>Durante le esercitazioni, assistenza di vari <em>tutor</em></li>
@@ -260,17 +261,17 @@ URL: https://code.google.com/p/io-2012-slides
         
       </figure><ul>
 <li>Strumenti open source, multi-piattaforma<ul>
-<li><a href="https://www.microsoft.com/it-it/p/python-37/9nj46sx7x90p"><strong>Python.org</strong></a>, v3.7, <em>battery included</em></li>
+<li><a href="https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe"><strong>Python.org</strong></a>, v3.7, <em>battery included</em></li>
 <li><a href="http://www.ce.unipr.it/brython/">Playground Python</a></li>
 <li><a href="https://nuwen.net/files/mingw/mingw-16.1-without-git.exe"><strong>MinGW</strong></a>, Compilatore C++, con <em>librerie</em></li>
 </ul>
 </li>
-<li>Installare <a href="https://lubuntu.me/downloads/">Ubuntu</a> in una <a href="https://download.virtualbox.org/virtualbox/6.0.8/VirtualBox-6.0.8-130520-Win.exe">VirtualBox</a><ul>
+<li>Installare <a href="http://releases.ubuntu.com/19.04/">Ubuntu</a> in una <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a><ul>
 <li><a href="https://www.wikihow.com/Install-Ubuntu-on-VirtualBox">WikiHow.com</a></li>
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="Shell"><code>## Ubuntu, Debian etc.
+<pre class="" data-lang="Shell"><code>## Ubuntu, Debian etc.
 sudo apt install idle3 python3-pip geany
 sudo apt install build-essential libboost-dev
 pip3 install pygame cppyy thonny
@@ -436,7 +437,7 @@ pip3 install pygame cppyy thonny
 <li>L'utente sceglie una parola segreta dal dizionario</li>
 <li>Il programma deve indovinarla</li>
 </ul>
-<pre class="prettyprint" data-lang="pseudo"><code>Prendi la prima parola nel dizionario
+<pre class="" data-lang="pseudo"><code>Prendi la prima parola nel dizionario
 Finchè non sei alla fine del dizionario:
     Chiedi all'utente: “È questa la tua parola segreta?”
     Se “Sì!”: finito!
@@ -461,15 +462,15 @@ Finchè non sei alla fine del dizionario:
 <li>Approccio più intelligente, sapendo che nel dizionario le parole sono ordinate</li>
 <li>Ad ogni passo si dimezza lo spazio di ricerca</li>
 </ul>
-<pre class="prettyprint" data-lang="pseudo"><code>SpazioDiRicerca = Intero dizionario
+<pre class="" data-lang="pseudo"><code>SpazioDiRicerca = Intero dizionario
 Finchè non hai indovinato:
     Prendi la parola a metà dello SpazioDiRicerca
     Chiedi all'utente: “È questa la tua parola segreta?”
     Se “Sì!”: finito!
     Altrimenti:
         Chiedi all'utente: “Viene prima o dopo della parola segreta?”
-        Se “Dopo”: Scarta la 2a metà dall'attuale SpazioDiRicerca
-        Altrimenti: Scarta la 1a metà dall'attuale SpazioDiRicerca
+        Se “Dopo”: Scarta la 2<sup>a</sup> metà dall'attuale SpazioDiRicerca
+        Altrimenti: Scarta la 1<sup>a</sup> metà dall'attuale SpazioDiRicerca
 </code></pre>
 <blockquote></blockquote>
 <p>In un dizionario di 100k parole, bastano 17 tentativi</p></article>

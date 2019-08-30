@@ -56,7 +56,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li><strong>Declarating a function pointer.</strong> Write out the declaration of a function, but with <code>(*func_name)</code> where you'd normally just put <code>func_name</code></li>
 <li><strong>Initializing.</strong> Give it the address of a function in your program; the syntax is like any other variable</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>void my_int_func(int x) {
+<pre class="prettyprint lang-c++" data-lang="c++"><code>void my_int_func(int x) {
     cout &lt;&lt; x &lt;&lt; endl;
 }
 
@@ -81,7 +81,7 @@ int main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>int main() {
+<pre class="prettyprint lang-c++" data-lang="c++"><code>int main() {
     void (*foo)(int);
     foo = &amp;my_int_func;
 
@@ -102,7 +102,7 @@ int main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="c++"><code>void qsort(void *base, size_t nmemb, size_t size,
+      <pre class="prettyprint lang-c++" data-lang="c++"><code>void qsort(void *base, size_t nmemb, size_t size,
             int(*compar)(const void *, const void *));
 </code></pre>
 <ul>
@@ -123,7 +123,7 @@ int main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>int int_sorter(const void * a, const void * b) {
+      <pre class="" data-lang="C++"><code>int int_sorter(const void * a, const void * b) {
     return *(int*)a - *(int*)b;
 }
 
@@ -152,18 +152,18 @@ int main() {
       <ul>
 <li><strong>Declaring.</strong> As though you were declaring a function, except with a name like <code>*foo</code> instead of just <code>foo</code></li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>void (*func_pointer)(int);
+<pre class="prettyprint lang-c++" data-lang="c++"><code>void (*func_pointer)(int);
 </code></pre>
 <ul>
 <li><strong>Initializing.</strong> Get the address of a function simply by naming it</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>void foo();
+<pre class="prettyprint lang-c++" data-lang="c++"><code>void foo();
 func_pointer = foo;
 </code></pre>
 <ul>
 <li>Or, <em>optionally</em>, by prefixing the name with an ampersand</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>void foo();
+<pre class="prettyprint lang-c++" data-lang="c++"><code>void foo();
 func_pointer = &amp;foo;
 </code></pre></article>
  
@@ -179,12 +179,12 @@ func_pointer = &amp;foo;
       <ul>
 <li><strong>Invoking.</strong> Just as if you were calling a function</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>func_pointer( arg1, arg2 );
+<pre class="prettyprint lang-c++" data-lang="c++"><code>func_pointer( arg1, arg2 );
 </code></pre>
 <ul>
 <li>Or, optionally <em>dereferencing</em> the function pointer before calling</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>(*func_pointer)( arg1, arg2 );
+<pre class="prettyprint lang-c++" data-lang="c++"><code>(*func_pointer)( arg1, arg2 );
 </code></pre></article>
  
 </slide>
@@ -218,7 +218,7 @@ func_pointer = &amp;foo;
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="c++"><code>class MyFunctorClass {
+      <pre class="prettyprint lang-c++" data-lang="c++"><code>class MyFunctorClass {
 public:
     MyFunctorClass (int x) : x_(x) {}
     int operator() (int y) { return x_ + y; }
@@ -252,7 +252,7 @@ int main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>vector&lt;int&gt; c = {1, 2, 3, 4, 5, 6, 7};
+<pre class="prettyprint lang-c++" data-lang="c++"><code>vector&lt;int&gt; c = {1, 2, 3, 4, 5, 6, 7};
 int x = 5;
 c.erase(remove_if(c.begin(), c.end(),
     [x](int n) { return n &lt; x; }), c.end());
@@ -304,7 +304,7 @@ c.erase(remove_if(c.begin(), c.end(),
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class Accumulator {
+      <pre class="" data-lang="C++"><code>class Accumulator {
 private:
     int value = 0;
 public:
@@ -312,7 +312,7 @@ public:
     int get_val() { return value; }
 };
 </code></pre>
-<pre class="prettyprint" data-lang="C++"><code>int main() {
+<pre class="" data-lang="C++"><code>int main() {
     Accumulator a;
     a.add(10);
     cout &lt;&lt; a.get_val() &lt;&lt; endl;
@@ -328,7 +328,7 @@ public:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C"><code>struct Accumulator {
+      <pre class="" data-lang="C"><code>struct Accumulator {
     int value;
 };
 void Accumulator__add(Accumulator* this, int inc) {
@@ -338,7 +338,7 @@ int Accumulator__get_val(Accumulator* this) {
     return (*this).value;
 }
 </code></pre>
-<pre class="prettyprint" data-lang="C"><code>int main() {
+<pre class="" data-lang="C"><code>int main() {
     Accumulator a; a.value = 0;
     Accumulator__add(&amp;a, 10);
     cout &lt;&lt; Accumulator__get_val(&amp;a) &lt;&lt; endl;
@@ -388,7 +388,7 @@ int Accumulator__get_val(Accumulator* this) {
 </li>
 <li><em>Note</em>: C++ structs are like classes, defaulting to <code>public</code></li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>struct A {  // or class
+<pre class="" data-lang="C++"><code>struct A {  // or class
     char c;
     int i;
 };
@@ -406,7 +406,7 @@ int Accumulator__get_val(Accumulator* this) {
       <figure>
         <img src="images/oop/cpp-struct-layout-b.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>struct B {  // or class
+      </figure><pre class="" data-lang="C++"><code>struct B {  // or class
 public:
     int bm1;
 protected:
@@ -443,7 +443,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>struct C {
+      <pre class="" data-lang="C++"><code>struct C {
     int c1;
     void cf();
 };
@@ -470,7 +470,7 @@ struct D : C {
       <figure>
         <img src="images/oop/cpp-struct-layout-c.png"><img src="images/oop/cpp-struct-layout-d.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>struct C {
+      </figure><pre class="" data-lang="C++"><code>struct C {
     int c1;
     void cf();
 };
@@ -509,7 +509,7 @@ struct D : C {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>struct Manager ... { ... };
+<pre class="" data-lang="C++"><code>struct Manager ... { ... };
 struct Worker ... { ... };
 struct MiddleManager : Manager, Worker { ... };
 </code></pre></article>
@@ -526,7 +526,7 @@ struct MiddleManager : Manager, Worker { ... };
       <figure>
         <img src="images/oop/cpp-struct-layout-e.png"><img src="images/oop/cpp-struct-layout-f.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>struct E {
+      </figure><pre class="" data-lang="C++"><code>struct E {
     int e1;
     void ef();
 };
@@ -557,7 +557,7 @@ struct F : C, E {
       </figure><ul>
 <li>What if both <code>Manager</code> and <code>Worker</code> are derived from <code>Employee</code>?</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>struct Employee { ... };
+<pre class="" data-lang="C++"><code>struct Employee { ... };
 struct Manager : Employee { ... };
 struct Worker : Employee { ... };
 struct MiddleManager : Manager, Worker { ... };
@@ -578,7 +578,7 @@ struct MiddleManager : Manager, Worker { ... };
     </hgroup>
     <article >
       <p>In C++, this “sharing inheritance” is (unfortunately) called <em>virtual inheritance</em></p>
-<pre class="prettyprint" data-lang="C++"><code>struct Employee { ... };
+<pre class="" data-lang="C++"><code>struct Employee { ... };
 struct Manager : virtual Employee { ... };
 struct Worker : virtual Employee { ... };
 struct MiddleManager : Manager, Worker { ... };
@@ -601,7 +601,7 @@ struct MiddleManager : Manager, Worker { ... };
       <figure>
         <img src="images/oop/cpp-struct-layout-g.png"><img src="images/oop/cpp-struct-layout-h.png"><img src="images/oop/cpp-struct-layout-i.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>struct G : virtual C {
+      </figure><pre class="" data-lang="C++"><code>struct G : virtual C {
     int g1; void gf();
 };
 struct H : virtual C {
@@ -632,20 +632,20 @@ struct I : G, H {
       <ul>
 <li>No inheritance, like C lang</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>C* pc;
+<pre class="" data-lang="C++"><code>C* pc;
 pc-&gt;c1; // *(pc + dCc1);
 </code></pre>
 <ul>
 <li>Single inheritance, displacement is <code>0</code></li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>D* pd;
+<pre class="" data-lang="C++"><code>D* pd;
 pd-&gt;c1; // *(pd + dDC + dCc1); // *(pd + dCc1);
 pd-&gt;d1; // *(pd + dDd1);
 </code></pre>
 <ul>
 <li>Multiple inheritance, constant displacement to a given base</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>F* pf;
+<pre class="" data-lang="C++"><code>F* pf;
 pf-&gt;c1; // *(pf + dFC + dCc1); // *(pf + dFc1);
 pf-&gt;e1; // *(pf + dFE + dEe1); // *(pf + dFe1);
 pf-&gt;f1; // *(pf + dFf1);
@@ -669,7 +669,7 @@ pf-&gt;f1; // *(pf + dFf1);
 </li>
 <li>For other members, it's just a displacement</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>I* pi;
+<pre class="" data-lang="C++"><code>I* pi;
 pi-&gt;c1; // *(pi + dIGvbptr + (*(pi+dIGvbptr))[1] + dCc1);
 pi-&gt;g1; // *(pi + dIG + dGg1); // *(pi + dIg1);
 pi-&gt;h1; // *(pi + dIH + dHh1); // *(pi + dIh1);
@@ -694,7 +694,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>F* pf;
+<pre class="" data-lang="C++"><code>F* pf;
 (C*)pf;  // (C*)(pf ? pf + dFC : 0); // (C*)pf;
 (E*)pf;  // (E*)(pf ? pf + dFE : 0);
 </code></pre></article>
@@ -712,7 +712,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
 <li>Casting over a virtual inheritance path is relatively expensive</li>
 <li>About the same cost as accessing a member of a virtual base:</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>I* pi;
+<pre class="" data-lang="C++"><code>I* pi;
 (G*)pi;  // (G*)pi;
 (H*)pi;  // (H*)(pi ? pi + dIH : 0);
 (C*)pi;  // (C*)(pi ? (pi+dIGvbptr + (*(pi+dIGvbptr))[1]) : 0);
@@ -744,7 +744,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
 <li>Virtual member functions incur an instance size hit</li>
 <li>They require a pointer to a (<em>per-class</em>) <strong>virtual function table</strong></li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>struct P {
+<pre class="" data-lang="C++"><code>struct P {
     int p1;
     void pf();           // new
     virtual void pvf();  // new
@@ -765,7 +765,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
 <li>Implicitly initialized from the object the member function is applied to</li>
 <li>Within the body of a member function, member access off the <code>this</code> pointer is implicit</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>void P::pf() {  // void P::pf([P *const this])
+<pre class="" data-lang="C++"><code>void P::pf() {  // void P::pf([P *const this])
     ++p1;       // ++(this-&gt;p1);
 }
 </code></pre></article>
@@ -790,7 +790,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>struct Q : P {
+<pre class="" data-lang="C++"><code>struct Q : P {
     int q1;
     void pf();           // overrides P::pf
     void qf();           // new
@@ -808,7 +808,7 @@ i.c1; // *(&amp;i + IdIC + dCc1); // *(&amp;i + IdIc1);
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>P p; P* pp = &amp;p; Q q; P* ppq = &amp;q; Q* pq = &amp;q;
+      <pre class="" data-lang="C++"><code>P p; P* pp = &amp;p; Q q; P* ppq = &amp;q; Q* pq = &amp;q;
 pp-&gt;pf();   // pp-&gt;P::pf();   // P::pf(pp);
 ppq-&gt;pf();  // ppq-&gt;P::pf();  // P::pf(ppq);
 pq-&gt;pf();   // pq-&gt;Q::pf();   // Q::pf((P*)pq);
@@ -830,7 +830,7 @@ pq-&gt;qf();   // pq-&gt;Q::qf();   // Q::qf(pq);
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>pp-&gt;pvf(); // pp-&gt;P::pvf(); // P::pvf(pp);
+      <pre class="" data-lang="C++"><code>pp-&gt;pvf(); // pp-&gt;P::pvf(); // P::pvf(pp);
 ppq-&gt;pvf(); // ppq-&gt;Q::pvf(); // Q::pvf((Q*)ppq);
 pq-&gt;pvf(); // pq-&gt;Q::pvf(); // Q::pvf(pq);
 </code></pre>
@@ -852,7 +852,7 @@ pq-&gt;pvf(); // pq-&gt;Q::pvf(); // Q::pvf(pq);
       <figure>
         <img src="images/oop/cpp-struct-layout-r.png"><img src="images/oop/cpp-struct-layout-s.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>struct R {
+      </figure><pre class="" data-lang="C++"><code>struct R {
     int r1;
     virtual void pvf(); // new
     virtual void rvf(); // new
@@ -879,7 +879,7 @@ struct S : P, R {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>S s; S* ps = &amp;s; P* pps = &amp;s; R* prs = &amp;s;
+      <pre class="" data-lang="C++"><code>S s; S* ps = &amp;s; P* pps = &amp;s; R* prs = &amp;s;
 (pps)-&gt;pvf();  // (pps)-&gt;P::vfptr[0])((S*)pps)
 (prs)-&gt;pvf();  // (prs)-&gt;R::vfptr[0])((S*)prs)
 ps-&gt;pvf();        // one of the above; calls S::pvf()

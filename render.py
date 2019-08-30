@@ -76,8 +76,10 @@ def parse_metadata(section):
 
 def postprocess_html(html, metadata):
     """Returns processed HTML to fit into the slide template format."""
+    html = re.sub(r"<p>code: *(py|c|c\+\+|cpp|java|js|html|css|hs|go|rs) *</p>\s*<pre>",
+                  r'<pre class="prettyprint lang-\1" data-lang="\1">', html)
     html = re.sub(r"<p>code: *([^\n\r]*)</p>\s*<pre>",
-                  r'<pre class="prettyprint" data-lang="\1">', html)
+                  r'<pre class="" data-lang="\1">', html)
     html = re.sub(r"\~\~([^\~]+)\~\~", r'<sub>\1</sub>', html)
     html = re.sub(r"\^\^([^\^]+)\^\^", r'<sup>\1</sup>', html)
     ## html = re.sub(r"<img([^>]+)svg", r'<embed\1svg', html)

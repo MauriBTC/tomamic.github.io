@@ -51,9 +51,9 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data TrafficLight = Red | Yellow | Green
+<pre class="" data-lang="haskell"><code>data TrafficLight = Red | Yellow | Green
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>data Shape = Circle Float Float Float
+<pre class="" data-lang="haskell"><code>data Shape = Circle Float Float Float
              | Rectangle Float Float Float Float
 </code></pre></article>
  
@@ -73,7 +73,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t Circle
+<pre class="" data-lang="haskell"><code>Prelude&gt; :t Circle
 Circle :: Float -&gt; Float -&gt; Float -&gt; Shape
 Prelude&gt; :t Rectangle
 Rectangle :: Float -&gt; Float -&gt; Float -&gt; Float -&gt; Shape
@@ -95,12 +95,12 @@ Rectangle :: Float -&gt; Float -&gt; Float -&gt; Float -&gt; Shape
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>surface :: Shape -&gt; Float
+<pre class="" data-lang="haskell"><code>surface :: Shape -&gt; Float
 surface (Circle _ _ r) = pi * r ^ 2
 surface (Rectangle x1 y1 x2 y2)
         = (abs $ x2 - x1) * (abs $ y2 - y1)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; surface $ Circle 10 20 10
+<pre class="" data-lang="haskell"><code>Prelude&gt; surface $ Circle 10 20 10
 314.15927
 Prelude&gt; surface $ Rectangle 0 0 100 100
 10000.0
@@ -122,11 +122,11 @@ Prelude&gt; surface $ Rectangle 0 0 100 100
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Shape = Circle Float Float Float
+<pre class="" data-lang="haskell"><code>data Shape = Circle Float Float Float
              | Rectangle Float Float Float Float
              deriving (Show)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; Circle 10 20 5
+<pre class="" data-lang="haskell"><code>Prelude&gt; Circle 10 20 5
 Circle 10.0 20.0 5.0
 Prelude&gt; Rectangle 50 230 60 90
 Rectangle 50.0 230.0 60.0 90.0
@@ -141,7 +141,7 @@ Rectangle 50.0 230.0 60.0 90.0
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>data Point = Point Float Float deriving (Show)
+      <pre class="" data-lang="haskell"><code>data Point = Point Float Float deriving (Show)
 data Shape = Circle Point Float |
              Rectangle Point Point deriving (Show)
 </code></pre>
@@ -151,12 +151,12 @@ data Shape = Circle Point Float |
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>surface :: Shape -&gt; Float
+<pre class="" data-lang="haskell"><code>surface :: Shape -&gt; Float
 surface (Circle _ r) = pi * r ^ 2
 surface (Rectangle (Point x1 y1) (Point x2 y2))
         = (abs $ x2 - x1) * (abs $ y2 - y1)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; surface (Rectangle (Point 0 0) (Point 100 100))
+<pre class="" data-lang="haskell"><code>Prelude&gt; surface (Rectangle (Point 0 0) (Point 100 100))
 10000.0
 Prelude&gt; surface (Circle (Point 0 0) 24)
 1809.5574
@@ -175,12 +175,12 @@ Prelude&gt; surface (Circle (Point 0 0) 24)
 <li>F. that takes shape, dx, dy...</li>
 <li>Returns a <em>new shape</em>, located somewhere</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>nudge :: Shape -&gt; Float -&gt; Float -&gt; Shape
+<pre class="" data-lang="haskell"><code>nudge :: Shape -&gt; Float -&gt; Float -&gt; Shape
 nudge (Circle (Point x y) r) a b = Circle (Point (x+a) (y+b)) r
 nudge (Rectangle (Point x1 y1) (Point x2 y2)) a b
       = Rectangle (Point (x1+a) (y1+b)) (Point (x2+a) (y2+b))
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; nudge (Circle (Point 34 34) 10) 5 10
+<pre class="" data-lang="haskell"><code>Prelude&gt; nudge (Circle (Point 34 34) 10) 5 10
 Circle (Point 39.0 44.0) 10.0
 </code></pre></article>
  
@@ -193,13 +193,13 @@ Circle (Point 39.0 44.0) 10.0
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>baseCircle :: Float -&gt; Shape
+      <pre class="" data-lang="haskell"><code>baseCircle :: Float -&gt; Shape
 baseCircle r = Circle (Point 0 0) r
 
 baseRect :: Float -&gt; Float -&gt; Shape
 baseRect width height = Rectangle (Point 0 0) (Point width height)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; nudge (baseRect 40 100) 60 23
+<pre class="" data-lang="haskell"><code>Prelude&gt; nudge (baseRect 40 100) 60 23
 Rectangle (Point 60.0 23.0) (Point 100.0 123.0)
 </code></pre></article>
  
@@ -218,10 +218,10 @@ Rectangle (Point 60.0 23.0) (Point 100.0 123.0)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Person = Person String String Int Float
+<pre class="" data-lang="haskell"><code>data Person = Person String String Int Float
                      String String deriving (Show)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; let guy = Person "Buddy" "Finklestein" 43 184.2
+<pre class="" data-lang="haskell"><code>Prelude&gt; let guy = Person "Buddy" "Finklestein" 43 184.2
                           "526-2928" "Chocolate"
 Prelude&gt; guy
 Person "Buddy" "Finklestein" 43 184.2 "526-2928" "Chocolate"
@@ -236,14 +236,14 @@ Person "Buddy" "Finklestein" 43 184.2 "526-2928" "Chocolate"
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>firstName   (Person firstname _ _ _ _ _) = firstname
+      <pre class="" data-lang="haskell"><code>firstName   (Person firstname _ _ _ _ _) = firstname
 lastName    (Person _ lastname  _ _ _ _) = lastname
 age         (Person _ _ age       _ _ _) = age
 height      (Person _ _ _ height    _ _) = height
 phoneNumber (Person _ _ _ _ number    _) = number
 flavor      (Person _ _ _ _ _ flavor   ) = flavor
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t flavor
+<pre class="" data-lang="haskell"><code>Prelude&gt; :t flavor
 flavor :: Person -&gt; String
 </code></pre></article>
  
@@ -260,7 +260,7 @@ flavor :: Person -&gt; String
 <li>Haskell automatically creates accessor f.s</li>
 <li>Deriving <code>Show</code>, output is more complete</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Person = Person { firstName :: String
+<pre class="" data-lang="haskell"><code>data Person = Person { firstName :: String
                      , lastName :: String
                      , age :: Int
                      , height :: Float
@@ -268,7 +268,7 @@ flavor :: Person -&gt; String
                      , flavor :: String
                      } deriving (Show)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t flavor
+<pre class="" data-lang="haskell"><code>Prelude&gt; :t flavor
 flavor :: Person -&gt; String
 Prelude&gt; :t firstName
 firstName :: Person -&gt; String
@@ -291,9 +291,9 @@ firstName :: Person -&gt; String
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Maybe a = Nothing | Just a
+<pre class="" data-lang="haskell"><code>data Maybe a = Nothing | Just a
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; import Data.Maybe
+<pre class="" data-lang="haskell"><code>Prelude&gt; import Data.Maybe
 Prelude Data.Maybe&gt; isJust Nothing
 False
 Prelude Data.Maybe&gt; fromJust (Just 5)
@@ -309,13 +309,13 @@ Prelude Data.Maybe&gt; fromJust (Just 5)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; import Text.Read
+      <pre class="" data-lang="haskell"><code>Prelude&gt; import Text.Read
 Prelude Text.Read&gt; readMaybe "5" :: Maybe Int
 Just 5
 Prelude Text.Read&gt; readMaybe "??" :: Maybe Int
 Nothing
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; import Data.List
+<pre class="" data-lang="haskell"><code>Prelude&gt; import Data.List
 Prelude Data.List&gt; elemIndex 0 [1,4,0,3,2]
 Just 2
 Prelude Data.List&gt; elemIndex 0 [1,4,3,2]
@@ -336,9 +336,9 @@ Nothing
 <li><code>Maybe'</code> defined for a precise content type, e.g. <code>Int</code></li>
 <li>For containing a <code>String</code>, different definition needed</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Maybe' = Nothing' | Just' Int
+<pre class="" data-lang="haskell"><code>data Maybe' = Nothing' | Just' Int
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t Just' 84
+<pre class="" data-lang="haskell"><code>Prelude&gt; :t Just' 84
 Just' 84 :: Maybe'
 Prelude&gt; :t Nothing'
 Nothing' :: Maybe'
@@ -363,7 +363,7 @@ Prelude&gt; Just' "Hello"
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Person = Person { firstName :: String
+<pre class="" data-lang="haskell"><code>data Person = Person { firstName :: String
                      , lastName :: String
                      , age :: Int
                      } deriving (Eq)
@@ -389,12 +389,12 @@ Prelude&gt; Just' "Hello"
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>data Person = Person { firstName :: String
+      <pre class="" data-lang="haskell"><code>data Person = Person { firstName :: String
                      , lastName :: String
                      , age :: Int
                      } deriving (Eq, Show, Read)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; let mikeD = Person {firstName = "Michael",
+<pre class="" data-lang="haskell"><code>Prelude&gt; let mikeD = Person {firstName = "Michael",
                      lastName = "Diamond", age = 43}
 Prelude&gt; "mikeD is: " ++ show mikeD
 "mikeD is: Person {firstName = \"Michael\",
@@ -419,11 +419,11 @@ True
       <ul>
 <li>Use algebraic data types to make enumerations</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Day = Monday | Tuesday | Wednesday | Thursday
+<pre class="" data-lang="haskell"><code>data Day = Monday | Tuesday | Wednesday | Thursday
            | Friday | Saturday | Sunday
            deriving (Eq, Ord, Show, Read, Bounded, Enum)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; succ Friday
+<pre class="" data-lang="haskell"><code>Prelude&gt; succ Friday
 Saturday
 Prelude&gt; Friday &gt;= Wednesday
 True
@@ -441,12 +441,12 @@ True
       <ul>
 <li>Giving some types different names</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>type String = [Char]  -- equivalent and interchangeable
+<pre class="" data-lang="haskell"><code>type String = [Char]  -- equivalent and interchangeable
 </code></pre>
 <ul>
 <li>To convey more information about data</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>type Name = String
+<pre class="" data-lang="haskell"><code>type Name = String
 type PhoneNumber = String
 type PhoneBook = [(Name,PhoneNumber)]
 
@@ -496,7 +496,7 @@ inPhoneBook name pnumber pbook = (name,pnumber) `elem` pbook
 <li>Mimic the following Python datatype, in Haskell <em>functional</em> style</li>
 <li>Implement a <code>move</code> f., for advancing a step and bouncing at borders</li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>ARENA_W, ARENA_H = 320, 240
+<pre class="" data-lang="python"><code>ARENA_W, ARENA_H = 320, 240
 BALL_W, BALL_H = 20, 20
 
 class Ball:
@@ -522,7 +522,7 @@ class Ball:
       <ul>
 <li>The <code>System.Random</code> module has all needed f.s, including <code>random</code></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>random :: (RandomGen g, Random a) =&gt; g -&gt; (a, g)
+<pre class="" data-lang="haskell"><code>random :: (RandomGen g, Random a) =&gt; g -&gt; (a, g)
 </code></pre>
 <ul>
 <li>It takes a random generator</li>
@@ -552,9 +552,9 @@ class Ball:
 <li><code>StdGen</code>: instance of <code>RandomGen</code></li>
 <li><code>mkStdGen</code> f., to manually make a random generator</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>mkStdGen :: Int -&gt; StdGen
+<pre class="" data-lang="haskell"><code>mkStdGen :: Int -&gt; StdGen
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; random (mkStdGen 100) :: (Int, StdGen)
+<pre class="" data-lang="haskell"><code>Prelude&gt; random (mkStdGen 100) :: (Int, StdGen)
 (-1352021624,651872571 1655838864)
 Prelude&gt; random (mkStdGen 100) :: (Int, StdGen)
 (-1352021624,651872571 1655838864)
@@ -576,14 +576,14 @@ Prelude&gt; random (mkStdGen 100) :: (Int, StdGen)
 <li>Represent a coin with a simple <code>Bool</code>: <code>True</code> is tails, <code>False</code> is heads</li>
 <li>Call <code>random</code> with a generator, get a coin and a new generator</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>threeCoins :: StdGen -&gt; (Bool, Bool, Bool)
+<pre class="" data-lang="haskell"><code>threeCoins :: StdGen -&gt; (Bool, Bool, Bool)
 threeCoins gen =
     let (firstCoin, newGen) = random gen
         (secondCoin, newGen') = random newGen
         (thirdCoin, newGen'') = random newGen'
     in  (firstCoin, secondCoin, thirdCoin)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; threeCoins (mkStdGen 21)
+<pre class="" data-lang="haskell"><code>Prelude&gt; threeCoins (mkStdGen 21)
 (True,True,True)
 Prelude&gt; threeCoins (mkStdGen 943)
 (True,False,True)
@@ -602,11 +602,11 @@ Prelude&gt; threeCoins (mkStdGen 943)
 <li><code>randoms</code> f. takes a generator and returns an infinite sequence of values</li>
 <li>Doesn't give the new random generator back</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>randoms' :: (RandomGen g, Random a) =&gt; g -&gt; [a]
+<pre class="" data-lang="haskell"><code>randoms' :: (RandomGen g, Random a) =&gt; g -&gt; [a]
 randoms' gen = let (value, newGen) = random gen
               in value:randoms' newGen
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; take 5 $ randoms (mkStdGen 11) :: [Int]
+<pre class="" data-lang="haskell"><code>Prelude&gt; take 5 $ randoms (mkStdGen 11) :: [Int]
 [-1807975507,545074951,-1015194702,-1622477312,-502893664]
 Prelude&gt; take 5 $ randoms (mkStdGen 11) :: [Bool]
 [True,True,True,True,False]
@@ -624,7 +624,7 @@ Prelude&gt; take 5 $ randoms (mkStdGen 11) :: [Bool]
       <ul>
 <li><code>randomR</code>: single random value within a defined range</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; randomR (1,6) (mkStdGen 123456)
+<pre class="" data-lang="haskell"><code>Prelude&gt; randomR (1,6) (mkStdGen 123456)
 (4,645041272 40692)
 Prelude&gt; randomR (1,6) (mkStdGen 654321)
 (6,412237752 40692)
@@ -632,7 +632,7 @@ Prelude&gt; randomR (1,6) (mkStdGen 654321)
 <ul>
 <li><code>randomRs</code>: stream of random values within a defined range</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; take 10 $ randomRs ('a','z') (mkStdGen 3) :: [Char]
+<pre class="" data-lang="haskell"><code>Prelude&gt; take 10 $ randomRs ('a','z') (mkStdGen 3) :: [Char]
 "ndkxbvmomg"
 </code></pre></article>
  
@@ -688,12 +688,12 @@ Prelude&gt; randomR (1,6) (mkStdGen 654321)
 <li>Up until now, we've always loaded our functions into GHCI to test them</li>
 <li>Let's write our first Haskell program (<code>helloworld.hs</code>)</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = print "hello, world"
+<pre class="" data-lang="haskell"><code>main = print "hello, world"
 </code></pre>
 <ul>
 <li>And now let's build and run it</li>
 </ul>
-<pre class="prettyprint" data-lang="shell"><code>$ ghc --make helloworld
+<pre class="" data-lang="shell"><code>$ ghc --make helloworld
 [1 of 1] Compiling Main             ( helloworld.hs, helloworld.o )
 Linking helloworld ...
 $ ./helloworld
@@ -709,7 +709,7 @@ $ ./helloworld
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t print
+      <pre class="" data-lang="haskell"><code>Prelude&gt; :t print
 print :: Show a =&gt; a -&gt; IO ()
 Prelude&gt; :t print "hello, world"
 print "hello, world" :: IO ()
@@ -743,7 +743,7 @@ print "hello, world" :: IO ()
 <li>One I/O action seems limiting...</li>
 <li>Use <strong><code>do</code></strong> syntax to glue together several I/O actions into one</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     print "Hello, what's your name?"
     name &lt;- getLine
     print ("Hey " ++ name ++ ", you rock!")
@@ -769,7 +769,7 @@ print "hello, world" :: IO ()
       <figure>
         <img src="images/algo/luggage.png">
         
-      </figure><pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :t getLine
+      </figure><pre class="" data-lang="haskell"><code>Prelude&gt; :t getLine
 getLine :: IO String
 </code></pre>
 <ul>
@@ -802,7 +802,7 @@ getLine :: IO String
       <ul>
 <li>Take a look at this piece of code. Is it valid?</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>nameTag = "Hello, my name is " ++ getLine
+<pre class="" data-lang="haskell"><code>nameTag = "Hello, my name is " ++ getLine
 </code></pre>
 <ul>
 <li><code>++</code> requires both its params to be lists over the same type<ul>
@@ -822,7 +822,7 @@ getLine :: IO String
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>name = getLine
+      <pre class="" data-lang="haskell"><code>name = getLine
 </code></pre>
 <ul>
 <li>This code doesn't read text from the input and bind it to a name<ul>
@@ -849,7 +849,7 @@ getLine :: IO String
       <ul>
 <li>Continuously read a line and print it out with the words reversed, until reading a blank line</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     line &lt;- getLine
     if null line
         then return ()
@@ -892,7 +892,7 @@ reverseWords = unwords . map reverse . words
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     a &lt;- return "hell"     -- hey, just use let!
     b &lt;- return "yeah!"    -- hey, just use let!
     print $ a ++ " " ++ b
@@ -944,7 +944,7 @@ reverseWords = unwords . map reverse . words
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>putStr :: String -&gt; IO ()
+<pre class="" data-lang="haskell"><code>putStr :: String -&gt; IO ()
 putStr [] = return ()
 putStr (x:xs) = do
     putChar x
@@ -974,7 +974,7 @@ putStr (x:xs) = do
 </li>
 <li>Encapsulats <code>if ... else return ()</code> pattern</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import Control.Monad
+<pre class="" data-lang="haskell"><code>import Control.Monad
 
 main = do
     c &lt;- getChar
@@ -997,13 +997,13 @@ main = do
 <li>It returns an I/O action to perform them in sequence</li>
 <li>Action result: list of the results</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>sequence :: [IO a] -&gt; IO [a]
+<pre class="" data-lang="haskell"><code>sequence :: [IO a] -&gt; IO [a]
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     rs &lt;- sequence [getLine, getLine, getLine]
     print rs
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     a &lt;- getLine
     b &lt;- getLine
     c &lt;- getLine
@@ -1024,7 +1024,7 @@ main = do
 <li><code>map print [1,2,3,4]</code> creates a list of I/O actions</li>
 <li><code>sequence</code> transforms that list into an I/O action</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; sequence (map print [1,2,3,4,5])
+<pre class="" data-lang="haskell"><code>Prelude&gt; sequence (map print [1,2,3,4,5])
 1
 2
 3
@@ -1052,7 +1052,7 @@ main = do
 <li><code>mapM</code> takes a f. and a list, maps the function over the list, then sequences it</li>
 <li><code>mapM_</code> does the same, only it throws away the result</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; mapM print [1,2,3]
+<pre class="" data-lang="haskell"><code>Prelude&gt; mapM print [1,2,3]
 1
 2
 3
@@ -1076,7 +1076,7 @@ Prelude&gt; mapM_ print [1,2,3]
 <li><code>forever</code> takes an I/O action <code>act</code> and...</li>
 <li>Returns an I/O action that just repeats <code>act</code> forever</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import Control.Monad
+<pre class="" data-lang="haskell"><code>import Control.Monad
 import Data.Char
 
 main = forever $ do
@@ -1098,7 +1098,7 @@ main = forever $ do
 <li><code>forM</code> is like <code>mapM</code>, with switched params</li>
 <li>Useful in combination with lambdas and <code>do</code> notation</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import Control.Monad
+<pre class="" data-lang="haskell"><code>import Control.Monad
 
 main = do
     colors &lt;- forM [1,2,3,4] (\a -&gt; do
@@ -1128,7 +1128,7 @@ main = do
       <ul>
 <li><code>getContents</code>: whole stdin as a <code>String</code> (<em>lazy</em>)</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = do
+<pre class="" data-lang="haskell"><code>main = do
     contents &lt;- getContents
     putStr (shortLinesOnly contents)
 
@@ -1141,7 +1141,7 @@ shortLinesOnly input =
 <ul>
 <li><code>interact</code>: applies a <code>String -&gt; String</code> f. between stdin and stdout (<em>lazy</em>)</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>main = interact $ unlines . filter ((&lt;10) . length) . lines
+<pre class="" data-lang="haskell"><code>main = interact $ unlines . filter ((&lt;10) . length) . lines
 </code></pre></article>
  
 </slide>
@@ -1162,7 +1162,7 @@ shortLinesOnly input =
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import System.IO
+<pre class="" data-lang="haskell"><code>import System.IO
 
 main = do
     withFile "something.txt" ReadMode (\handle -&gt; do
@@ -1182,7 +1182,7 @@ main = do
       <ul>
 <li><strong>simpler</strong> f.s: <code>readFile</code>, <code>writeFile</code>, <code>appendFile</code></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import System.IO
+<pre class="" data-lang="haskell"><code>import System.IO
 import Data.Char
 
 main = do
@@ -1206,7 +1206,7 @@ main = do
 </li>
 <li><code>newStdGen</code>, get a new generator, update the global one</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>import System.Random
+<pre class="" data-lang="haskell"><code>import System.Random
 
 main = do
     gen &lt;- getStdGen
@@ -1227,7 +1227,7 @@ eiqgcxykivpudlsvvjpg
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>main = do
+      <pre class="" data-lang="haskell"><code>main = do
     gen &lt;- getStdGen
     askForNumber gen
 
@@ -1252,7 +1252,7 @@ askForNumber gen = do
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>process :: StdGen -&gt; [String] -&gt; [String]
+      <pre class="" data-lang="haskell"><code>process :: StdGen -&gt; [String] -&gt; [String]
 process gen guesses =
     "Which number (1-10) am I thinking of?":
         check newGen (show secret) guesses
@@ -1326,10 +1326,10 @@ main = do
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Either a b = Left a | Right b
+<pre class="" data-lang="haskell"><code>data Either a b = Left a | Right b
                   deriving (Eq, Ord, Read, Show)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; Right 20
+<pre class="" data-lang="haskell"><code>Prelude&gt; Right 20
 Right 20
 Prelude&gt; :t Right 'a'
 Right 'a' :: Either a Char
@@ -1396,11 +1396,11 @@ Left True :: Either Bool b
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>data List a = Empty
+      <pre class="" data-lang="haskell"><code>data List a = Empty
               | Cons a (List a)
               deriving (Show, Read, Eq, Ord)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>data List a = Empty
+<pre class="" data-lang="haskell"><code>data List a = Empty
               | Cons { listHead :: a, listTail :: List a}
               deriving (Show, Read, Eq, Ord)
 </code></pre>
@@ -1410,7 +1410,7 @@ Left True :: Either Bool b
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; Empty
+<pre class="" data-lang="haskell"><code>Prelude&gt; Empty
 Empty
 Prelude&gt; 4 `Cons` (5 `Cons` Empty)
 Cons 4 (Cons 5 Empty)
@@ -1430,11 +1430,11 @@ Cons 4 (Cons 5 Empty)
 <li>A <code>List'</code> should be defined for a precise content type, e.g. <code>Int</code></li>
 <li>For containing a <code>String</code>, for example, a different definition of <code>List'</code> would be needed</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data List' = Empty'
+<pre class="" data-lang="haskell"><code>data List' = Empty'
              | Cons' Int (List')
              deriving (Show, Read, Eq, Ord)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; Empty'
+<pre class="" data-lang="haskell"><code>Prelude&gt; Empty'
 Empty'
 Prelude&gt; 4 `Cons'` (5 `Cons'` Empty')
 Cons' 4 (Cons' 5 Empty')
@@ -1457,7 +1457,7 @@ Cons' 4 (Cons' 5 Empty')
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>data Tree a = EmptyTree
+<pre class="" data-lang="haskell"><code>data Tree a = EmptyTree
               | Node a (Tree a) (Tree a)
               deriving (Show, Read, Eq)
 </code></pre>
@@ -1483,7 +1483,7 @@ Cons' 4 (Cons' 5 Empty')
 </li>
 <li>It seems inefficient, but most of the structure is shared</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>singleton :: a -&gt; Tree a    -- just a shortcut f.
+<pre class="" data-lang="haskell"><code>singleton :: a -&gt; Tree a    -- just a shortcut f.
 singleton x = Node x EmptyTree EmptyTree
 
 treeInsert :: (Ord a) =&gt; a -&gt; Tree a -&gt; Tree a
@@ -1507,7 +1507,7 @@ treeInsert x (Node a left right)
 <li>Folding: traversing a list and returning some value</li>
 <li>Use a fold to build up a tree from a list</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; let nums = [8,6,4,1,7,3,5]
+<pre class="" data-lang="haskell"><code>Prelude&gt; let nums = [8,6,4,1,7,3,5]
 Prelude&gt; let numsTree = foldr treeInsert EmptyTree nums
 Prelude&gt; numsTree
 Node 5 (Node 3 ...
@@ -1522,14 +1522,14 @@ Node 5 (Node 3 ...
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>treeElem :: (Ord a) =&gt; a -&gt; Tree a -&gt; Bool
+      <pre class="" data-lang="haskell"><code>treeElem :: (Ord a) =&gt; a -&gt; Tree a -&gt; Bool
 treeElem x EmptyTree = False
 treeElem x (Node a left right)
     | x == a = True
     | x &lt; a  = treeElem x left
     | x &gt; a  = treeElem x right
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; 8 `treeElem` numsTree
+<pre class="" data-lang="haskell"><code>Prelude&gt; 8 `treeElem` numsTree
 True
 Prelude&gt; 100 `treeElem` numsTree
 False
@@ -1554,7 +1554,7 @@ False
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>class Eq a where            -- stdlib
+      <pre class="" data-lang="haskell"><code>class Eq a where            -- stdlib
     (==) :: a -&gt; a -&gt; Bool
     (/=) :: a -&gt; a -&gt; Bool
     x == y = not (x /= y)
@@ -1585,12 +1585,12 @@ False
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>data TrafficLight = Red | Yellow | Green
+      <pre class="" data-lang="haskell"><code>data TrafficLight = Red | Yellow | Green
 </code></pre>
 <ul>
 <li>Let's write up an <em>instance</em> by hand</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>instance Eq TrafficLight where
+<pre class="" data-lang="haskell"><code>instance Eq TrafficLight where
     Red == Red = True
     Green == Green = True
     Yellow == Yellow = True
@@ -1620,12 +1620,12 @@ False
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>instance Show TrafficLight where
+<pre class="" data-lang="haskell"><code>instance Show TrafficLight where
     show Red = "Red light"
     show Yellow = "Yellow light"
     show Green = "Green light"
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; Red == Yellow
+<pre class="" data-lang="haskell"><code>Prelude&gt; Red == Yellow
 False
 Prelude&gt; Red `elem` [Red, Yellow, Green]
 True
@@ -1646,7 +1646,7 @@ Prelude&gt; [Red, Yellow, Green]
 <li>You can also make typeclasses that are <em>subclasses</em> of other typeclasses</li>
 <li>Ex.: class declaration for <code>Num</code></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>class (Eq a) =&gt; Num a where
+<pre class="" data-lang="haskell"><code>class (Eq a) =&gt; Num a where
    ...
 </code></pre>
 <ul>
@@ -1687,7 +1687,7 @@ Prelude&gt; [Red, Yellow, Green]
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>class Functor f where
+<pre class="" data-lang="haskell"><code>class Functor f where
     fmap :: (a -&gt; b) -&gt; f a -&gt; f b
 </code></pre>
 <ul>
@@ -1715,12 +1715,12 @@ Prelude&gt; [Red, Yellow, Green]
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>map :: (a -&gt; b) -&gt; [a] -&gt; [b]
+<pre class="" data-lang="haskell"><code>map :: (a -&gt; b) -&gt; [a] -&gt; [b]
 
 instance Functor [] where
     fmap = map
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; fmap (*2) [1..3]  -- same as map
+<pre class="" data-lang="haskell"><code>Prelude&gt; fmap (*2) [1..3]  -- same as map
 [2,4,6]
 </code></pre>
 <ul>
@@ -1744,7 +1744,7 @@ instance Functor [] where
 <li>Types that can act <em>like a box</em> can be functors</li>
 <li>Here's how <code>Maybe</code> is a functor</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>instance Functor Maybe where
+<pre class="" data-lang="haskell"><code>instance Functor Maybe where
     fmap f (Just x) = Just (f x)
     fmap f Nothing = Nothing
 </code></pre>
@@ -1771,7 +1771,7 @@ instance Functor [] where
 <li>If it's an empty value of <code>Nothing</code>, then just return a <code>Nothing</code></li>
 <li>If it's a single value packed up in a <code>Just</code>, then we apply the function on the contents of the <code>Just</code></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; fmap (++ " LOOK MA, INSIDE JUST") Nothing
+<pre class="" data-lang="haskell"><code>Prelude&gt; fmap (++ " LOOK MA, INSIDE JUST") Nothing
 Nothing
 Prelude&gt; fmap (++ " LOOK MA, INSIDE JUST") (Just "Stg serious.")
 Just "Stg serious. LOOK MA, INSIDE JUST"
@@ -1790,12 +1790,12 @@ Nothing
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>instance Functor Tree where
+      <pre class="" data-lang="haskell"><code>instance Functor Tree where
     fmap f EmptyTree = EmptyTree
     fmap f (Node x leftsub rightsub)
            = Node (f x) (fmap f leftsub) (fmap f rightsub)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; fmap (*4) EmptyTree
+<pre class="" data-lang="haskell"><code>Prelude&gt; fmap (*4) EmptyTree
 EmptyTree
 Prelude&gt; fmap (*4) (foldr treeInsert EmptyTree [5,7,3,2,1,7])
 Node 28 (Node 4 EmptyTree (Node 8 EmptyTree ...
@@ -1814,7 +1814,7 @@ Node 28 (Node 4 EmptyTree (Node 8 EmptyTree ...
 <li>The <code>Functor</code> typeclass wants a <em>type constructor</em> that takes only one type parameter but <code>Either</code> takes two</li>
 <li>Partial application: <code>Either a</code> is a type constructor that takes one parameter</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>instance Functor (Either a) where
+<pre class="" data-lang="haskell"><code>instance Functor (Either a) where
     fmap f (Right x) = Right (f x)
     fmap f (Left x) = Left x
 </code></pre>
@@ -1850,7 +1850,7 @@ Node 28 (Node 4 EmptyTree (Node 8 EmptyTree ...
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>class Arena:  # ...
+<pre class="" data-lang="python"><code>class Arena:  # ...
     def __init__(self):
         self._actors = []
     def add(self, a: Actor):

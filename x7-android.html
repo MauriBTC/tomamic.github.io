@@ -92,7 +92,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/dev/qpython-10.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>import androidhelper
+      </figure><pre class="" data-lang="Python"><code>import androidhelper
 droid = androidhelper.Android()
 respond = droid.dialogGetInput(
     "Hello", "What is your name?")
@@ -167,7 +167,7 @@ droid.makeToast(message)
       <figure>
         <img src="images/oop/tk-notepad-1.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>from kivy.base import runTouchApp
+      </figure><pre class="" data-lang="Python"><code>from kivy.base import runTouchApp
 from kivy.uix.textinput import TextInput
 
 t = TextInput(text='Hello, world', multiline=True)
@@ -207,7 +207,7 @@ runTouchApp(t)
       <figure>
         <img src="images/oop/tk-notepad-2.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>from kivy.app import runTouchApp, stopTouchApp  # ...
+      </figure><pre class="" data-lang="Python"><code>from kivy.app import runTouchApp, stopTouchApp  # ...
 
 class Notepad(BoxLayout):
     def __init__(self):
@@ -237,7 +237,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/oop/tk-notepad-3.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class Notepad(BoxLayout):
+      </figure><pre class="" data-lang="Python"><code>class Notepad(BoxLayout):
     def __init__(self):
         BoxLayout.__init__(self,
                            orientation='horizontal')
@@ -267,7 +267,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/dev/kivy-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>from kivy.base import runTouchApp  # ...
+      </figure><pre class="" data-lang="Python"><code>from kivy.base import runTouchApp  # ...
 
 class GameWidget(Widget):
     def __init__(self):
@@ -293,7 +293,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/dev/kivy-android.jpg">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class GameWidget(Widget):
+      </figure><pre class="" data-lang="Python"><code>class GameWidget(Widget):
 
     def on_touch_down(self, touch):
         print(touch.x, touch.y, touch.uid)
@@ -318,7 +318,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/dev/kivy-coord.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class GameWidget(Widget):
+      </figure><pre class="" data-lang="Python"><code>class GameWidget(Widget):
     def __init__(self):  # ...
         self._x = 20
         Clock.schedule_interval(self.advance_game,
@@ -348,7 +348,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/misc/typewriter-caps-lock.jpg">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class GameWidget(Widget):
+      </figure><pre class="" data-lang="Python"><code>class GameWidget(Widget):
     def __init__(self):  # ...
         self._kbd = Window.request_keyboard(
             self.kbd_closed, self)
@@ -378,7 +378,7 @@ if __name__ == '__main__':
       <figure>
         <img src="images/qt/puzzle.png">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>class GridButton(Button):
+      </figure><pre class="" data-lang="Python"><code>class GridButton(Button):
     grid_pos = ListProperty((0, 0))  # Kivy
 
 class GameGui(GridLayout):
@@ -405,7 +405,7 @@ class GameGui(GridLayout):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>class GameGui(GridLayout):
+      <pre class="" data-lang="Python"><code>class GameGui(GridLayout):
     # ...
     def update_button(self, x: int, y: int):
         val = self.__game.get_val(x, y)
@@ -428,7 +428,7 @@ class GameGui(GridLayout):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>class GameGui(GridLayout):
+      <pre class="" data-lang="Python"><code>class GameGui(GridLayout):
     # ...
     def handle_click(self, btn: GridButton):
         self.__game.play_at(*btn.grid_pos)  # args unpacking

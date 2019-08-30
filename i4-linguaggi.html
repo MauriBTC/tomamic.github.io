@@ -368,7 +368,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="html"><code>&lt;script&gt;
+      <pre class="prettyprint lang-html" data-lang="html"><code>&lt;script&gt;
 function validate(val) {
     var expr = /^\d{2}\/\d{2}\/\d{4}$/;
     if (! expr.test(val)) {
@@ -394,7 +394,7 @@ function validate(val) {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; import re
+      <pre class="" data-lang="python"><code>&gt;&gt;&gt; import re
 &gt;&gt;&gt; text = "Though not quickly, he run the 5th lap steadily."
 &gt;&gt;&gt; re.findall(r"[a-z]+ly", text)
 ['quickly', 'steadily']
@@ -645,7 +645,7 @@ function validate(val) {
 <li><code>{...}</code>: parte ripetibile (0+), <code>[...]</code>: parte opzionale,</li>
 <li><code>(...)</code>: raggruppamento, <code>|</code>: scelta</li>
 </ul>
-<pre class="prettyprint" data-lang="EBNF"><code>V<sub>T</sub> = {"il", "gatto", "topo", "sasso", "mangia", "beve"}
+<pre class="" data-lang="EBNF"><code>V<sub>T</sub> = {"il", "gatto", "topo", "sasso", "mangia", "beve"}
 P = {
     frase = soggetto verbo complemento
     soggetto = articolo nome
@@ -674,7 +674,7 @@ P = {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="ebnf"><code>expr = term {( "+" | "-" ) term}
+<pre class="" data-lang="ebnf"><code>expr = term {( "+" | "-" ) term}
 term = factor {( "*" | "/" ) factor}
 factor = number | "(" expr ")" | "-" term
 </code></pre>
@@ -684,7 +684,7 @@ factor = number | "(" expr ")" | "-" term
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="ebnf"><code>expr = number | "+" expr expr | "-" expr expr |
+<pre class="" data-lang="ebnf"><code>expr = number | "+" expr expr | "-" expr expr |
                 "*" expr expr | "/" expr expr
 number = digit {digit}
 digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
@@ -1084,7 +1084,7 @@ digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
       <figure>
         <img src="images/dev/ast-euclid.svg">
         
-      </figure><pre class="prettyprint" data-lang="Python"><code>while b != 0:
+      </figure><pre class="" data-lang="Python"><code>while b != 0:
     if a &gt; b:
         a = a − b
     else:

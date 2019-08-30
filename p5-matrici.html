@@ -79,7 +79,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Scrittura su file: funzione <code>print</code>, o metodo <code>write</code></li>
 <li>Blocco <code>with</code>: chiude il file al termine delle operazioni (anche in caso di errore)</li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>with open("some_file.txt", "w") as f1:
+<pre class="prettyprint lang-py" data-lang="py"><code>with open("some_file.txt", "w") as f1:
     f1.write("First line\n")   # explicit newline
     f1.write("Second line\n")  # continue writing here...
 
@@ -97,7 +97,7 @@ with open("other_file.txt", "w") as f2:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>with open("some_file.txt", "r") as f1:
+      <pre class="prettyprint lang-py" data-lang="py"><code>with open("some_file.txt", "r") as f1:
     first_line = f1.readline()
     second_line = f1.readline()
     # both strings contain '\n' at the end
@@ -127,7 +127,7 @@ with open("last_file.txt", "r") as f3:
 <li>Stringhe come stream: <code>io.StringIO</code></li>
 <li>Console come stream: <code>sys.stdin</code>, <code>sys.stdout</code>, <code>sys.stderr</code></li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>import io, sys
+<pre class="prettyprint lang-py" data-lang="py"><code>import io, sys
 
 with io.StringIO() as output:
     output.write("First line.\n")
@@ -136,7 +136,7 @@ with io.StringIO() as output:
     contents = output.getvalue()
     sys.stdout.write(contents)
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
+<pre class="prettyprint lang-py" data-lang="py"><code>for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
     print(len(line))    # notice '\n' at the end
 </code></pre></article>
  
@@ -160,7 +160,7 @@ with io.StringIO() as output:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="py"><code>try:
+<pre class="prettyprint lang-py" data-lang="py"><code>try:
     with open("other_file.txt", "r") as f:
         whole_text = f.read()
         # do stg with whole_text
@@ -187,7 +187,7 @@ except IOError as err:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>a = [['A', 'B', 'C', 'D'],
+      <pre class="prettyprint lang-py" data-lang="py"><code>a = [['A', 'B', 'C', 'D'],
      ['E', 'F', 'G', 'H'],
      ['I', 'L', 'M', 'N']]          # 2D
 
@@ -210,7 +210,7 @@ x = i % cols                        # 1D -&gt; 2D
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>matrix = [[2, 4, 3, 8],
+      <pre class="prettyprint lang-py" data-lang="py"><code>matrix = [[2, 4, 3, 8],
           [9, 3, 2, 7],
           [5, 6, 9, 1]]
 rows = len(matrix)
@@ -233,7 +233,7 @@ for x in range(cols):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>matrix = [2, 4, 3, 8,
+      <pre class="prettyprint lang-py" data-lang="py"><code>matrix = [2, 4, 3, 8,
           9, 3, 2, 7,
           5, 6, 9, 1]
 cols, rows = 4, 3  # rows = len(matrix) // cols
@@ -261,10 +261,10 @@ for x in range(cols):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>matrix = [[' ' for x in range(cols)] for y in range(rows)]
+      <pre class="prettyprint lang-py" data-lang="py"><code>matrix = [[' ' for x in range(cols)] for y in range(rows)]
 # all elements are inited as ' ' -- your need may vary
 </code></pre>
-<pre class="prettyprint" data-lang="py"><code>matrix = []
+<pre class="prettyprint lang-py" data-lang="py"><code>matrix = []
 for y in range(rows):
     new_row = []
     for x in range(cols):
@@ -281,7 +281,7 @@ for y in range(rows):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>def abstract():
+      <pre class="prettyprint lang-py" data-lang="py"><code>def abstract():
     raise NotImplementedError("Abstract method")
 
 class BoardGame:
@@ -305,7 +305,7 @@ class BoardGame:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>def print_game(game: BoardGame):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def print_game(game: BoardGame):
     for y in range(game.rows()):
         for x in range(game.cols()):
             print('{:3}'.format(game.get_val(x, y)), end='')
@@ -334,7 +334,7 @@ def console_play(game: BoardGame):
       <figure>
         <img src="images/qt/fifteen-puzzle.jpg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>class Fifteen(BoardGame):
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>class Fifteen(BoardGame):
     def __init__(self, w: int, h: int):
         # start with sorted tiles, then...
         b = list(range(1, w * h)) + [0]
@@ -360,7 +360,7 @@ def console_play(game: BoardGame):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>class Fifteen(BoardGame):
+      <pre class="prettyprint lang-py" data-lang="py"><code>class Fifteen(BoardGame):
     #...
     def play_at(self, x: int, y: int):
         x0, y0, w, h = self._x0, self._y0, self._w, self._h
@@ -547,7 +547,7 @@ def console_play(game: BoardGame):
       <figure>
         <img src="images/fun/queens-sol.svg">
         
-      </figure><pre class="prettyprint" data-lang="py"><code>def print_board(board: list):
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def print_board(board: list):
     for y in range(len(board)):
         for x in range(len(board)):
             if x == board[y]: print('|♛', end='')
@@ -573,7 +573,7 @@ def under_attack(board: list, x: int, y: int) -&gt; bool:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="py"><code>def place_queens(board: list, y=0) -&gt; bool:
+      <pre class="prettyprint lang-py" data-lang="py"><code>def place_queens(board: list, y=0) -&gt; bool:
     if y == len(board):
         return True  # all queens already placed
     for x in range(len(board)):
@@ -669,7 +669,7 @@ Non estrarre un nuovo valore da uno stream, se quello precedente non è ancora s
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="File"><code>5,7,2,11
+<pre class="" data-lang="File"><code>5,7,2,11
 1,3,12,9
 4,6,10,8
 </code></pre>
@@ -703,7 +703,7 @@ Non estrarre un nuovo valore da uno stream, se quello precedente non è ancora s
 <li>Tabella 1: mostrare in ordine i caratteri, colonna per colonna</li>
 <li>Tabella 2: mostrare in ordine i caratteri, riga per riga</li>
 </ul>
-<pre class="prettyprint" data-lang="Tabella 1"><code> $(,048&lt;@DHLPTX\`dhlptx|
+<pre class="" data-lang="Tabella 1"><code> $(,048&lt;@DHLPTX\`dhlptx|
 !%)-159=AEIMQUY]aeimquy}
 "&amp;*.26:&gt;BFJNRVZ^bfjnrvz~
 #'+/37;?CGKOSW[_cgkosw{

@@ -52,7 +52,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>func Hypotenuse(a, b float64) float64 {
+<pre class="prettyprint lang-go" data-lang="go"><code>func Hypotenuse(a, b float64) float64 {
     c := math.Sqrt(a*a + b*b)
     return c
 }
@@ -77,7 +77,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>func main() {
+<pre class="prettyprint lang-go" data-lang="go"><code>func main() {
     side1 := ToFloat(Prompt("1st leg?"))
     side2 := ToFloat(Prompt("2st leg?"))
     side3 := Hypotenuse(side1, side2)
@@ -117,13 +117,13 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>func Inc(a int) {
+      <pre class="prettyprint lang-go" data-lang="go"><code>func Inc(a int) int {
     a += 1
     Println(a)  // just for debug
 }
 
 func main() {
-    x := 10
+    x = 10
     Inc(x)
     Println(x)      // just for debug
 }
@@ -144,7 +144,7 @@ func main() {
 <li><em>Docstring</em>: descrizione testuale di una funzione</li>
 <li><em><code>go doc</code></em>: comando per visualizzare la documentazione</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>// Return the hypotenuse of a right triangle,
+<pre class="prettyprint lang-go" data-lang="go"><code>// Return the hypotenuse of a right triangle,
 // given both its legs (catheti).
 func Hypotenuse(leg1, leg2 float64) float64 {
     return math.Sqrt(leg1*leg1 + leg2*leg2)
@@ -163,14 +163,14 @@ func Hypotenuse(leg1, leg2 float64) float64 {
       <figure>
         <img src="images/fun/multiplication-table.jpg">
         
-      </figure><pre class="prettyprint" data-lang="go"><code>max := 10
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>max := 10
 y := 3
 for x := 1; x &lt;= max; x++ {
     Println(x * y)
     // Printf("%4d", x * y)
 }
 </code></pre>
-<pre class="prettyprint" data-lang="go"><code>max := 10
+<pre class="prettyprint lang-go" data-lang="go"><code>max := 10
 for y := 1; y &lt;= max; y++ {
     for x := 1; x &lt;= max; x++ {
         Printf("%4d", x * y)  // width = 4, no newline
@@ -198,7 +198,7 @@ for y := 1; y &lt;= max; y++ {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>Printf("%2d", 3)     // " 3", int, width 2
+<pre class="prettyprint lang-go" data-lang="go"><code>Printf("%2d", 3)     // " 3", int, width 2
 Printf("%6.2f", 7.3) // "  7.30", float, width 6, precision 2
 Printf("%d", '🌐')   // "127760", code
 Printf("%c", '🌐')   // "🌐", char
@@ -223,7 +223,7 @@ Printf("%s", "hi!")  // "hi!", string
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>func printRow(y, size int) {
+<pre class="prettyprint lang-go" data-lang="go"><code>func printRow(y, size int) {
     for x := 1; x &lt;= size; x++ {
         Printf("%4d", x * y)
     }
@@ -245,7 +245,7 @@ func printTable(size int) {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>var image = LoadImage("ball.png")
+      <pre class="prettyprint lang-go" data-lang="go"><code>var image = LoadImage("ball.png")
 var x, y, dx = 50, 50, 5
 var screen = Size{480, 360}
 
@@ -314,7 +314,7 @@ func main() {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>func moveBall(x, y, dx, dy int) (int, int, int, int) {
+<pre class="prettyprint lang-go" data-lang="go"><code>func moveBall(x, y, dx, dy int) (int, int, int, int) {
     if x + dx &lt; 0 || x + dx + size.W &gt; screen.W {
         dx = -dx
     }
@@ -371,7 +371,7 @@ func main() {
 </li>
 <li>Ma se <code>rq</code> ha effetti collaterali, non si può!</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>var baseValue = 0  // global variable
+<pre class="prettyprint lang-go" data-lang="go"><code>var baseValue = 0  // global variable
 
 func rq(x int) int {
     baseValue++
@@ -409,7 +409,7 @@ func rq(x int) int {
 <li><em>Referenziazione</em>: <code>&amp;</code> per indirizzo di un dato</li>
 <li><em>Dereferenziazione</em>: <code>*</code> per accesso a dato puntato</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>var i int8 = 56  // one byte
+<pre class="prettyprint lang-go" data-lang="go"><code>var i int8 = 56  // one byte
 var p *int8      // a ptr to some byte (uninitialized)
 p = &amp;i           // now p points to i
 *p = *p + 1      // i++
@@ -486,7 +486,7 @@ p = nil          // ptr to nothing
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>type Ball struct {
+<pre class="prettyprint lang-go" data-lang="go"><code>type Ball struct {
     x, y    int
     w, h    int
     dx, dy  int
@@ -518,7 +518,7 @@ func NewBall(pos Point) *Ball {
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>ball := NewBall(Point{40, 80})  // Allocation and initialization
+<pre class="prettyprint lang-go" data-lang="go"><code>ball := NewBall(Point{40, 80})  // Allocation and initialization
 </code></pre></article>
  
 </slide>
@@ -534,7 +534,7 @@ func NewBall(pos Point) *Ball {
 <li>Espongono <em>servizi</em> ad altri oggetti</li>
 <li>Bisogna indicare l'<em>oggetto ricevitore</em>, come puntatore</li>
 </ul>
-<pre class="prettyprint" data-lang="go"><code>var screen = Size{480, 360}
+<pre class="prettyprint lang-go" data-lang="go"><code>var arenaW, arenaH = 480, 360
 
 func (b *Ball) Move() {
     if !(0 &lt;= b.x+b.dx &amp;&amp; b.x+b.dx &lt;= arenaW-b.w) {
@@ -557,7 +557,7 @@ func (b *Ball) Move() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>func (b *Ball) Position() Rect {
+      <pre class="prettyprint lang-go" data-lang="go"><code>func (b *Ball) Position() Rect {
     return Rect{b.x, b.y, b.w, b.h}
 }
 
@@ -585,7 +585,7 @@ func main() {
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="go"><code>var b1 = NewBall(Point{40, 80})
+      <pre class="prettyprint lang-go" data-lang="go"><code>var b1 = NewBall(Point{40, 80})
 var b2 = NewBall(Point{80, 40})
 
 func tick() {

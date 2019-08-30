@@ -247,7 +247,7 @@ Si può sfruttare l'operatore <code>%</code> (resto della divisione)</p></articl
 </li>
 <li>Il gioco termina quando l'utente perde tutto o si ritira</li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from random import randint
+<pre class="" data-lang="python"><code>from random import randint
 # ...
 secret = randint(1, 3)
 </code></pre></article>
@@ -422,7 +422,7 @@ Con <code>s = (a + b + c) / 2</code>, semiperimetro</p>
 <li>Poi, su una spirale, aumentando passo a passo anche <code>r</code></li>
 <li>Infine, disegnare lungo il percorso dei cerchi sempre più grandi e di colore diverso</li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>xc, yc, r, angle = 320, 240, 40, 0.0
+<pre class="" data-lang="python"><code>xc, yc, r, angle = 320, 240, 40, 0.0
 for i in range(8):
     y = yc + int(r * math.sin(angle))
     x = xc + int(r * math.cos(angle))
@@ -475,7 +475,7 @@ for i in range(8):
 </li>
 <li>Visualizzare i risultati in forma di tabella (una riga per ogni valore di <code>y</code>)</li>
 </ul>
-<pre class="prettyprint" data-lang="Output"><code>    2  3   5   4
+<pre class="" data-lang="Output"><code>    2  3   5   4
     4  9  25  16
     8 27 125  64
    16 81 625 256
@@ -885,7 +885,7 @@ Segnare in un <code>bool</code> se si è incontrato un asterisco iniziale, ma no
       <ul>
 <li>In un file è riprodotto il contenuto di una matrice di interi, riga per riga, con le celle separate da uno spazio...</li>
 </ul>
-<pre class="prettyprint" data-lang="File"><code>5 7 2 11
+<pre class="" data-lang="File"><code>5 7 2 11
 1 3 12 9
 4 6 10 8
 </code></pre>
@@ -1061,7 +1061,7 @@ Segnare in un <code>bool</code> se si è incontrato un asterisco iniziale, ma no
 <li>Se il draghetto entra nello spazio di una piattaforma, deve essere respinto</li>
 <li>Bisogna distinguere se l'urto avviene dall'alto, da sinistra, o da destra</li>
 </ul>
-<pre class="prettyprint" data-lang="pseudo-code"><code>if y2_dragon &lt;= y1_platform + DY:
+<pre class="" data-lang="pseudo-code"><code>if y2_dragon &lt;= y1_platform + DY:
     y2_dragon = y1_platform
     # the dragon is on *this one* platform, now
 elif x2_dragon &lt;= x1_platform + DX:
@@ -1245,7 +1245,7 @@ elif x1_dragon &gt;= x2_platform - DX:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class HitoriPuzzle {
+      <pre class="" data-lang="C++"><code>class HitoriPuzzle {
 public:
     HitoriPuzzle();                  // default board
     void mark_black(int x, int y);
@@ -1271,7 +1271,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class HitoriPuzzle {
+      <pre class="" data-lang="C++"><code>class HitoriPuzzle {
 public:
     // ...
 private:
@@ -1326,7 +1326,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>class HitoriGui : public QMainWindow {
+      <pre class="" data-lang="C++"><code>class HitoriGui : public QMainWindow {
     Q_OBJECT
 public:
     HitoriGui(HitoriPuzzle* puzzle);
@@ -1385,7 +1385,7 @@ private:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="C++"><code>bool HitoriPuzzle::solve_recursive(int i) {
+      <pre class="" data-lang="C++"><code>bool HitoriPuzzle::solve_recursive(int i) {
     // mark_auto();  // mark all obvious black and circled cells
     // is there an undecided cell after i?
     while (i &lt; annotations_.size() &amp;&amp; annotations_[i] != NONE) ++i;

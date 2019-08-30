@@ -925,11 +925,11 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Per ogni riga, trascrivere a <em>console</em> solo il testo compreso tra parentesi angolari (<code>&lt;</code> e <code>&gt;</code>)</li>
 <li>Se ci sono più parti da trascrivere, separarle con una barra verticale</li>
 </ul>
-<pre class="prettyprint" data-lang="Input"><code>Python is a &lt;multi-paradigm&gt; &lt;programming language&gt;.
+<pre class="" data-lang="Input"><code>Python is a &lt;multi-paradigm&gt; &lt;programming language&gt;.
 It is intended to be a highly readable language.
 Its philosophy is summarized by &lt;The Zen of Python&gt;.
 </code></pre>
-<pre class="prettyprint" data-lang="Ouput"><code>multi-paradigm|programming language
+<pre class="" data-lang="Ouput"><code>multi-paradigm|programming language
 
 The Zen of Python
 </code></pre></article>
@@ -986,11 +986,11 @@ The Zen of Python
 </li>
 <li>Riscrivere in un altro file <em>CSV</em> il risultato di <code>smooth</code> (es. 5.2) sulla matrice</li>
 </ul>
-<pre class="prettyprint" data-lang="Input"><code>5.00,7.00,2.00,11.00
+<pre class="" data-lang="Input"><code>5.00,7.00,2.00,11.00
 1.00,3.00,12.00,9.00
 4.00,6.00,10.00,8.00
 </code></pre>
-<pre class="prettyprint" data-lang="Output"><code>4.33,4.25,8.00,7.33
+<pre class="" data-lang="Output"><code>4.33,4.25,8.00,7.33
 3.25,5.80,7.20,10.00
 3.67,5.75,9.00,9.00
 </code></pre></article>
@@ -1242,7 +1242,7 @@ The Zen of Python
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="matrix"><code>0 0 0 0 0
+<pre class="" data-lang="matrix"><code>0 0 0 0 0
 0 1 2 3 1
 0 3 1 2 0
 2 2 3 1 0
@@ -1385,7 +1385,7 @@ The Zen of Python
 <li>5.3</li>
 <li>5.5</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>std::reverse(begin(v), end(v));  // reverse the vector v
+<pre class="" data-lang="C++"><code>std::reverse(begin(v), end(v));  // reverse the vector v
 </code></pre>
 <blockquote></blockquote>
 <p>Esercizi già assegnati in Python, da ripetere in C++</p></article>
@@ -1479,7 +1479,7 @@ The Zen of Python
 <li>6.3</li>
 <li>6.6</li>
 </ul>
-<pre class="prettyprint" data-lang="c++"><code>string part = text.substr(pos, len);
+<pre class="prettyprint lang-c++" data-lang="c++"><code>string part = text.substr(pos, len);
 </code></pre>
 <blockquote></blockquote>
 <p>Esercizi già assegnati in Python, da ripetere in C++</p></article>
@@ -1505,10 +1505,10 @@ The Zen of Python
 </li>
 <li>Supporre che i “token” siano tutti separati da spazio</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>string to_infix(vector&lt;string&gt;&amp; tokens);
+<pre class="" data-lang="C++"><code>string to_infix(vector&lt;string&gt;&amp; tokens);
 float evaluate(vector&lt;string&gt;&amp; tokens);
 </code></pre>
-<pre class="prettyprint" data-lang="EBNF"><code>expr = number | "+" expr expr | "-" expr expr |
+<pre class="" data-lang="EBNF"><code>expr = number | "+" expr expr | "-" expr expr |
        "*" expr expr | "/" expr expr | "abs" expr
 </code></pre>
 <blockquote></blockquote>
@@ -1603,7 +1603,7 @@ float evaluate(vector&lt;string&gt;&amp; tokens);
 <li>3.5 del 2014 -- Usare un <code>vector&lt;Triangle*&gt;</code> e ricordarsi <code>delete</code></li>
 <li>3.8 del 2013 -- Su Github, in Python</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>// ex. 3.5 ...
+<pre class="" data-lang="C++"><code>// ex. 3.5 ...
 delete triangles[i];                  // remove triangle from memory
 triangles.erase(begin(triangles) + i);  // remove pointer from vector
 </code></pre></article>
@@ -1722,7 +1722,7 @@ triangles.erase(begin(triangles) + i);  // remove pointer from vector
 <li>Attivare il completamento tramite click su una cella di bordo (dove ci possono essere i vincoli)</li>
 <li>Fare sempre le prove su una copia del gioco</li>
 </ul>
-<pre class="prettyprint" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = some_val; // ...
+<pre class="" data-lang="C++"><code>auto copy1 = *this; copy1.board_[y][x] = some_val; // ...
 </code></pre></article>
  
 </slide>
@@ -1758,7 +1758,7 @@ triangles.erase(begin(triangles) + i);  // remove pointer from vector
       <figure>
         <img src="images/misc/artificial-intelligence.png">
         
-      </figure><pre class="prettyprint" data-lang="C++"><code>bool Skyscrapers::solve_recursive() {
+      </figure><pre class="" data-lang="C++"><code>bool Skyscrapers::solve_recursive() {
     // solve_simple();
     auto pos = find_first_playable();  // vector of 2 ints
     auto x = pos[0], y = pos[1];

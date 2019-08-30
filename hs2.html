@@ -96,7 +96,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>maximum' :: (Ord a) =&gt; [a] -&gt; a
+      <pre class="" data-lang="haskell"><code>maximum' :: (Ord a) =&gt; [a] -&gt; a
 maximum' [] = error "maximum of empty list"
 maximum' [x] = x
 maximum' (x:xs)
@@ -126,7 +126,7 @@ maximum' (x:xs)
       <ul>
 <li><code>max</code> takes two numbers and returns the bigger</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>maximum' :: (Ord a) =&gt; [a] -&gt; a
+<pre class="" data-lang="haskell"><code>maximum' :: (Ord a) =&gt; [a] -&gt; a
 maximum' [] = error "maximum of empty list"
 maximum' [x] = x
 maximum' (x:xs) = max x (maximum' xs)
@@ -148,7 +148,7 @@ maximum' (x:xs) = max x (maximum' xs)
 <li>For instance, <code>replicate 3 5</code> returns <code>[5,5,5]</code></li>
 <li>Edge condition: replicate something zero times (or less) → empty list</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>replicate' :: Int -&gt; a -&gt; [a]
+<pre class="" data-lang="haskell"><code>replicate' :: Int -&gt; a -&gt; [a]
 replicate' n x
     | n &lt;= 0    = []
     | otherwise = x:replicate' (n-1) x
@@ -175,7 +175,7 @@ replicate' n x
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>take' :: Int -&gt; [a] -&gt; [a]
+<pre class="" data-lang="haskell"><code>take' :: Int -&gt; [a] -&gt; [a]
 take' n _
     | n &lt;= 0   = []
 take' _ []     = []
@@ -197,7 +197,7 @@ take' n (x:xs) = x : take' (n-1) xs
 <li>Edge condition: the empty list!</li>
 <li>Split a list to a head and a tail, the result is the reversed tail and then the head at the end</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>reverse' :: [a] -&gt; [a]
+<pre class="" data-lang="haskell"><code>reverse' :: [a] -&gt; [a]
 reverse' [] = []
 reverse' (x:xs) = reverse' xs ++ [x]
 </code></pre></article>
@@ -216,7 +216,7 @@ reverse' (x:xs) = reverse' xs ++ [x]
 <li>Recursion without edge condition</li>
 <li><code>repeat</code> takes an element and returns an infinite list...</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>repeat' :: a -&gt; [a]
+<pre class="" data-lang="haskell"><code>repeat' :: a -&gt; [a]
 repeat' x = x:repeat' x
 </code></pre>
 <ul>
@@ -240,7 +240,7 @@ repeat' x = x:repeat' x
 <li>Truncates the longer list to match the shorter</li>
 <li>zip something with an empty list =&gt; empty list (<em>edge conditions</em>)</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>zip' :: [a] -&gt; [b] -&gt; [(a,b)]
+<pre class="" data-lang="haskell"><code>zip' :: [a] -&gt; [b] -&gt; [(a,b)]
 zip' _ [] = []
 zip' [] _ = []
 zip' (x:xs) (y:ys) = (x,y):zip' xs ys
@@ -264,7 +264,7 @@ zip' (x:xs) (y:ys) = (x,y):zip' xs ys
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>elem' :: (Eq a) =&gt; a -&gt; [a] -&gt; Bool
+<pre class="" data-lang="haskell"><code>elem' :: (Eq a) =&gt; a -&gt; [a] -&gt; Bool
 elem' a [] = False
 elem' a (x:xs)
     | a == x    = True
@@ -298,7 +298,7 @@ elem' a (x:xs)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
+<pre class="" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
 </code></pre></article>
  
 </slide>
@@ -310,14 +310,14 @@ elem' a (x:xs)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
+      <pre class="" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
 quicksort [] = []
 quicksort (x:xs) =
     let smallerSorted = quicksort [a | a &lt;- xs, a &lt;= x]
         biggerSorted = quicksort [a | a &lt;- xs, a &gt; x]
     in  smallerSorted ++ [x] ++ biggerSorted
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; quicksort [5,1,9,4,6,7,3]
+<pre class="" data-lang="haskell"><code>Prelude&gt; quicksort [5,1,9,4,6,7,3]
 [1,3,4,5,6,7,9]
 Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
 "        abcdeeefghhijklmnoooopqrrsttuuvwxyz"
@@ -358,7 +358,7 @@ Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
+      <pre class="" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
     '''In v, sort elements between first and last'''
     if last - first &gt; 0:
         middle = (first + last) // 2
@@ -404,10 +404,10 @@ Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
       <figure>
         <img src="images/fun/stack.svg">
         
-      </figure><pre class="prettyprint" data-lang="haskell"><code>factorial 0 = 1
+      </figure><pre class="" data-lang="haskell"><code>factorial 0 = 1
 factorial n = n * factorial (n - 1)
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; factorial 3
+<pre class="" data-lang="haskell"><code>Prelude&gt; factorial 3
 6
 </code></pre>
 <ul>
@@ -427,12 +427,12 @@ factorial n = n * factorial (n - 1)
       <figure>
         <img src="images/fun/stack-tr.svg">
         
-      </figure><pre class="prettyprint" data-lang="haskell"><code>fact_tr 0 acc = acc
+      </figure><pre class="" data-lang="haskell"><code>fact_tr 0 acc = acc
 fact_tr n acc = fact_tr (n - 1) (n * acc)
 
 factorial' n = fact_tr n 1
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; factorial' 3
+<pre class="" data-lang="haskell"><code>Prelude&gt; factorial' 3
 6
 Prelude&gt; fact_tr 3 1
 6
@@ -455,7 +455,7 @@ Prelude&gt; fact_tr 3 1
       <figure>
         <img src="images/fun/stack-tr.svg">
         
-      </figure><pre class="prettyprint" data-lang="c"><code>int fact_tr(int n, int acc) {
+      </figure><pre class="prettyprint lang-c" data-lang="c"><code>int fact_tr(int n, int acc) {
 loop:
     if (n == 0) return acc;
     return fact_tr(n - 1, acc * n);
@@ -480,7 +480,7 @@ loop:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>reverse' :: [a] -&gt; [a]
+      <pre class="" data-lang="haskell"><code>reverse' :: [a] -&gt; [a]
 reverse' [] = []
 reverse' (x:xs) = reverse' xs ++ [x]
 </code></pre>
@@ -536,7 +536,7 @@ reverse' (x:xs) = reverse' xs ++ [x]
 <li>Apparently... the <code>max</code> function takes two <code>Ord</code> parameters and returns the one that's bigger</li>
 <li>In reality, the following two calls are equivalent:</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; max 4 5
+<pre class="" data-lang="haskell"><code>Prelude&gt; max 4 5
 5
 Prelude&gt; (max 4) 5
 5
@@ -587,7 +587,7 @@ Prelude&gt; (max 4) 5
 <li>The returned f. takes as many parameters as we left out</li>
 <li>Using partial application is a neat way to create f.s on the fly</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; a -&gt; a -&gt; a
+<pre class="" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; a -&gt; a -&gt; a
 multThree x y z = x * y * z
 </code></pre>
 <ul>
@@ -608,13 +608,13 @@ multThree x y z = x * y * z
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; a -&gt; a -&gt; a
+      <pre class="" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; a -&gt; a -&gt; a
 </code></pre>
 <ul>
 <li>The thing before the <code>-&gt;</code> is the parameter that a f. takes</li>
 <li>The thing after it is what it returns</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; (a -&gt; (a -&gt; a))  -- same as above
+<pre class="" data-lang="haskell"><code>multThree :: (Num a) =&gt; a -&gt; (a -&gt; (a -&gt; a))  -- same as above
 </code></pre>
 <ul>
 <li>Our f. takes an <code>a</code> and returns a f. of type<ul>
@@ -640,7 +640,7 @@ multThree x y z = x * y * z
       <ul>
 <li>By calling functions with too few parameters, we're creating new functions on the fly</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; let multTwoWith9 = multThree 9
+<pre class="" data-lang="haskell"><code>Prelude&gt; let multTwoWith9 = multThree 9
 Prelude&gt; multTwoWith9 2 3
 54
 Prelude&gt; let multWith18 = multTwoWith9 2
@@ -657,7 +657,7 @@ Prelude&gt; multWith18 10
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>compareWithHundred :: (Num a, Ord a) =&gt; a -&gt; Ordering
+      <pre class="" data-lang="haskell"><code>compareWithHundred :: (Num a, Ord a) =&gt; a -&gt; Ordering
 compareWithHundred x = compare 100 x
 </code></pre>
 <ul>
@@ -666,7 +666,7 @@ compareWithHundred x = compare 100 x
 <li>However, <code>compare 100</code> returns a function, that takes a number and compares it with 100</li>
 <li>The type declaration stays the same</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>compareWithHundred :: (Num a, Ord a) =&gt; a -&gt; Ordering
+<pre class="" data-lang="haskell"><code>compareWithHundred :: (Num a, Ord a) =&gt; a -&gt; Ordering
 compareWithHundred = compare 100
 </code></pre></article>
  
@@ -691,7 +691,7 @@ compareWithHundred = compare 100
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>divideByTen :: (Floating a) =&gt; a -&gt; a
+<pre class="" data-lang="haskell"><code>divideByTen :: (Floating a) =&gt; a -&gt; a
 divideByTen = (/10)
 
 isUpperAlpha :: Char -&gt; Bool
@@ -711,7 +711,7 @@ isUpperAlpha = (`elem` ['A'..'Z'])
 <li>F.s can take f.s as parameters and also return f.s</li>
 <li>Ex.: a f. that takes a f., and then applies it twice to something</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>applyTwice :: (a -&gt; a) -&gt; a -&gt; a
+<pre class="" data-lang="haskell"><code>applyTwice :: (a -&gt; a) -&gt; a -&gt; a
 applyTwice f x = f (f x)
 </code></pre>
 <ul>
@@ -732,7 +732,7 @@ applyTwice f x = f (f x)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; applyTwice (+3) 10
+      <pre class="" data-lang="haskell"><code>Prelude&gt; applyTwice (+3) 10
 16
 Prelude&gt; applyTwice (++ " HAHA") "HEY"
 "HEY HAHA HAHA"
@@ -772,7 +772,7 @@ Prelude&gt; applyTwice (3:) [1]
 <li>It applies that f. to every element in the list</li>
 <li>It produces a new list</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]
+<pre class="" data-lang="haskell"><code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]
 map' _ [] = []
 map' f (x:xs) = f x : map' f xs
 </code></pre></article>
@@ -790,7 +790,7 @@ map' f (x:xs) = f x : map' f xs
 <li><code>map</code> is a really versatile higher-order function, can be used in many different ways</li>
 <li>These could be achieved with a list comprehension, but <code>map</code> can be more readable</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; map (+3) [1,5,3,1,6]
+<pre class="" data-lang="haskell"><code>Prelude&gt; map (+3) [1,5,3,1,6]
 [4,8,6,4,9]
 Prelude&gt; map (++ "!") ["BIFF", "BANG", "POW"]
 ["BIFF!","BANG!","POW!"]
@@ -815,7 +815,7 @@ Prelude&gt; map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
 <li>It takes a predicate (a f. that returns a bool) and a list</li>
 <li>It returns the list of elements that satisfy the predicate</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>filter' :: (a -&gt; Bool) -&gt; [a] -&gt; [a]
+<pre class="" data-lang="haskell"><code>filter' :: (a -&gt; Bool) -&gt; [a] -&gt; [a]
 filter' _ [] = []
 filter' p (x:xs)
     | p x       = x : filter' p xs
@@ -831,14 +831,14 @@ filter' p (x:xs)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; filter (&gt;3) [1,5,3,2,1,6,4,3,2,1]
+      <pre class="" data-lang="haskell"><code>Prelude&gt; filter (&gt;3) [1,5,3,2,1,6,4,3,2,1]
 [5,6,4]
 Prelude&gt; filter even [1..10]
 [2,4,6,8,10]
 Prelude&gt; filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
 "uagameasadifeent"
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
+<pre class="" data-lang="haskell"><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]
 quicksort [] = []
 quicksort (x:xs) =
     let smallerSorted = quicksort (filter (&lt;=x) xs)
@@ -863,7 +863,7 @@ quicksort (x:xs) =
 </li>
 <li>Ex.: largest number under 100,000 that's divisible by 3829</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>largestDivisible :: (Integral a) =&gt; a
+<pre class="" data-lang="haskell"><code>largestDivisible :: (Integral a) =&gt; a
 largestDivisible = head (filter p [100000,99999..])
     where p x = x `mod` 3829 == 0
 </code></pre></article>
@@ -886,7 +886,7 @@ largestDivisible = head (filter p [100000,99999..])
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>zipWith' :: (a -&gt; b -&gt; c) -&gt; [a] -&gt; [b] -&gt; [c]
+<pre class="" data-lang="haskell"><code>zipWith' :: (a -&gt; b -&gt; c) -&gt; [a] -&gt; [b] -&gt; [c]
 zipWith' _ [] _ = []
 zipWith' _ _ [] = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
@@ -904,7 +904,7 @@ zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
       <ul>
 <li>Pretty similar to the normal zip, with a joining function</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; zipWith (+) [4,2,5,6] [2,6,2,3]
+<pre class="" data-lang="haskell"><code>Prelude&gt; zipWith (+) [4,2,5,6] [2,6,2,3]
 [6,8,7,9]
 Prelude&gt; zipWith max [6,3,2,1] [7,3,1,5]
 [7,3,2,5]
@@ -933,10 +933,10 @@ Prelude&gt; zipWith (zipWith (*)) [[1,2,3],[3,5,6],[2,3,4]]
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>flip' :: (a -&gt; b -&gt; c) -&gt; (b -&gt; a -&gt; c)
+<pre class="" data-lang="haskell"><code>flip' :: (a -&gt; b -&gt; c) -&gt; (b -&gt; a -&gt; c)
 flip' f y x = f x y
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; flip zip [1,2,3,4,5] "hello"
+<pre class="" data-lang="haskell"><code>Prelude&gt; flip zip [1,2,3,4,5] "hello"
 [('h',1),('e',2),('l',3),('l',4),('o',5)]
 Prelude&gt; zipWith (flip div) [2,2..] [10,8,6,4,2]
 [5,4,3,2,1]
@@ -956,7 +956,7 @@ Prelude&gt; zipWith (flip div) [2,2..] [10,8,6,4,2]
 <li>It goes from the beginning of the list and returns its elements while the predicate holds true</li>
 <li>Once an element is found for which the predicate doesn't hold, it stops</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; takeWhile (/=' ') "elephants know how to party"
+<pre class="" data-lang="haskell"><code>Prelude&gt; takeWhile (/=' ') "elephants know how to party"
 "elephants"
 </code></pre></article>
  
@@ -992,7 +992,7 @@ Prelude&gt; zipWith (flip div) [2,2..] [10,8,6,4,2]
 <li>Take the resulting number and apply the same thing to it...</li>
 <li><em>Conjecture</em>: for all starting numbers, the chains finish at the number <code>1</code> (edge, cycle <code>1-4-2-1</code>)</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>collatz :: (Integral a) =&gt; a -&gt; [a]
+<pre class="" data-lang="haskell"><code>collatz :: (Integral a) =&gt; a -&gt; [a]
 collatz 1 = [1]
 collatz n
     | even n =  n:collatz (n `div` 2)
@@ -1039,7 +1039,7 @@ collatz n
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; let listOfFuns = map (*) [0..]
+<pre class="" data-lang="haskell"><code>Prelude&gt; let listOfFuns = map (*) [0..]
 Prelude&gt; (listOfFuns !! 4) 5
 20
 </code></pre></article>
@@ -1058,7 +1058,7 @@ Prelude&gt; (listOfFuns !! 4) 5
 <li>A <em>lambda</em> starts with a <code>\</code> (~ greek letter lambda), followed by params, a <code>-&gt;</code>, finally the body</li>
 <li>Usually, surrounded by parentheses</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>numLongChains :: Int
+<pre class="" data-lang="haskell"><code>numLongChains :: Int
 numLongChains = length (filter (\xs -&gt; length xs &gt; 15)
                                (map collatz [1..100]))
 </code></pre></article>
@@ -1085,7 +1085,7 @@ numLongChains = length (filter (\xs -&gt; length xs &gt; 15)
 <p>Like normal functions, lambdas can take any number of parameters:</p>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; :set +m
+<pre class="" data-lang="haskell"><code>Prelude&gt; :set +m
 Prelude&gt; let xs = zipWith (\a b -&gt; (a * 30 + 3) / b)
 Prelude|                  [5,4,3,2,1] [1,2,3,4,5]
 Prelude|
@@ -1109,11 +1109,11 @@ Prelude&gt; xs
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>map (\x -&gt; x + 3) [1,6,3,2]
+<pre class="" data-lang="haskell"><code>map (\x -&gt; x + 3) [1,6,3,2]
 
 map (let n = 3 in \x -&gt; x + n) [1,6,3,2]
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>f a b c = a * b + c
+<pre class="" data-lang="haskell"><code>f a b c = a * b + c
 
 f' a b = \c -&gt; a * b + c
 </code></pre></article>
@@ -1144,7 +1144,7 @@ f' a b = \c -&gt; a * b + c
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from functools import partial
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; from functools import partial
 &gt;&gt;&gt; pow(2, 5)
 32
 &gt;&gt;&gt; pow2 = partial(pow, 2)
@@ -1168,14 +1168,14 @@ f' a b = \c -&gt; a * b + c
 <li>Callable: any object with <code>__call__</code> method</li>
 <li><code>foo()</code> is interpreted as <code>foo.__call__()</code></li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>class Multiplier:
+<pre class="" data-lang="python"><code>class Multiplier:
     def __init__(self, to_mul):
         self._to_mul = to_mul
 
     def __call__(self, val):
         return self._to_mul * val
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; triple = Multiplier(3)
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; triple = Multiplier(3)
 &gt;&gt;&gt; triple(5)
 15
 </code></pre>
@@ -1196,12 +1196,12 @@ f' a b = \c -&gt; a * b + c
 <li>Applies the f. to each value in the sequence</li>
 <li>Returns the (<em>lazy</em>) sequence of results</li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
 &gt;&gt;&gt; values = [0, 1, 2, 3, 4]
 &gt;&gt;&gt; list(map(sqrt, values))
 [0.0, 1.0, 1.4142, 1.7320, 2.0]
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
 &gt;&gt;&gt; list(map(sqrt, range(5)))
 [0.0, 1.0, 1.4142, 1.7320, 2.0]
 </code></pre></article>
@@ -1225,7 +1225,7 @@ f' a b = \c -&gt; a * b + c
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>from multiprocessing import Pool
+<pre class="" data-lang="python"><code>from multiprocessing import Pool
 
 with Pool(5) as p:
     print(p.map(sqrt, [1, 2, 3]))
@@ -1246,7 +1246,7 @@ with Pool(5) as p:
       <ul>
 <li>The <code>operator</code> module defines f.s representing operators</li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
 &gt;&gt;&gt; add(2, 3)
 5
 &gt;&gt;&gt; list(map(add, [3, 5, 2, 1], [2, 5, 3]))
@@ -1278,7 +1278,7 @@ with Pool(5) as p:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; sorted([3, -4, 5, -2])
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; sorted([3, -4, 5, -2])
 [-4, -2, 3, 5]
 &gt;&gt;&gt; sorted([3, -4, 5, -2], key=abs)
 [-2, 3, -4, 5]
@@ -1305,7 +1305,7 @@ with Pool(5) as p:
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; def mypow(x, y): return x ** y  # or a lambda...
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; def mypow(x, y): return x ** y  # or a lambda...
 &gt;&gt;&gt; cube = partial(mypow, y=3)
 &gt;&gt;&gt; cube(2)
 8
@@ -1324,7 +1324,7 @@ TypeError: pow() takes no keyword arguments
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>def func(required_arg, *args, **kwargs):
+      <pre class="" data-lang="python"><code>def func(required_arg, *args, **kwargs):
     print(required_arg)
     # args is a tuple of positional arguments,
     if args: # if not empty.
@@ -1333,7 +1333,7 @@ TypeError: pow() takes no keyword arguments
     if kwargs: # if not empty.
         print(kwargs)
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; func()
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; func()
 TypeError: func() takes at least 1 argument (0 given)
 &gt;&gt;&gt; func("required argument", 1, 2, '3', key1=4, key2="foo")
 required argument
@@ -1354,14 +1354,14 @@ required argument
 <li>Call with <code>*</code> to unpack params out of a sequence</li>
 <li>Dictionaries can deliver keyword params with <code>**</code></li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; int("14", 16)    # int(x, base=10)
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; int("14", 16)    # int(x, base=10)
 20
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; values = ["14", 16]
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; values = ["14", 16]
 &gt;&gt;&gt; int(*values)
 20
 </code></pre>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; d = {"x":"14", "base":16}
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; d = {"x":"14", "base":16}
 &gt;&gt;&gt; int(**d)
 20
 </code></pre></article>
@@ -1438,13 +1438,13 @@ required argument
 <li>The <code>foldl</code> f. folds the list up from the left side</li>
 <li>Ex.: implement sum using a fold</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
+<pre class="" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
 sum' xs = foldl (\acc x -&gt; acc + x) 0 xs
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; sum' [3,5,2,1]
+<pre class="" data-lang="haskell"><code>Prelude&gt; sum' [3,5,2,1]
 11
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>foldl' f z [] = z
+<pre class="" data-lang="haskell"><code>foldl' f z [] = z
 foldl' f z (x:xs) = foldl' f (f z x) xs
 </code></pre></article>
  
@@ -1469,7 +1469,7 @@ foldl' f z (x:xs) = foldl' f (f z x) xs
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
+<pre class="" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
 sum' = foldl (+) 0
 </code></pre></article>
  
@@ -1482,7 +1482,7 @@ sum' = foldl (+) 0
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>elem' :: (Eq a) =&gt; a -&gt; [a] -&gt; Bool
+      <pre class="" data-lang="haskell"><code>elem' :: (Eq a) =&gt; a -&gt; [a] -&gt; Bool
 elem' y ys = foldl (\acc x -&gt; x == y || acc) False ys
 -- if x == y then True else acc
 </code></pre>
@@ -1521,10 +1521,10 @@ elem' y ys = foldl (\acc x -&gt; x == y || acc) False ys
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]
+<pre class="" data-lang="haskell"><code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]
 map' f xs = foldr (\x acc -&gt; f x : acc) [] xs
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>foldr' f z [] = z
+<pre class="" data-lang="haskell"><code>foldr' f z [] = z
 foldr' f z (x:xs) = f x (foldr' f z xs)
 </code></pre></article>
  
@@ -1553,7 +1553,7 @@ foldr' f z (x:xs) = f x (foldr' f z xs)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>map' f xs = foldl (\acc x -&gt; acc ++ [f x]) [] xs
+<pre class="" data-lang="haskell"><code>map' f xs = foldl (\acc x -&gt; acc ++ [f x]) [] xs
 </code></pre></article>
  
 </slide>
@@ -1588,7 +1588,7 @@ foldr' f z (x:xs) = f x (foldr' f z xs)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="haskell"><code>maximum' = foldr1 (\x acc -&gt; if x &gt; acc then x else acc)
+      <pre class="" data-lang="haskell"><code>maximum' = foldr1 (\x acc -&gt; if x &gt; acc then x else acc)
 
 reverse' = foldl (\acc x -&gt; x : acc) []
 reverse'' = foldl (flip (:)) []
@@ -1619,7 +1619,7 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from functools import reduce
+<pre class="" data-lang="python"><code>&gt;&gt;&gt; from functools import reduce
 &gt;&gt;&gt; reduce(lambda a, b: a + b, [3, 5, 2, 1], 0)
 11
 </code></pre></article>
@@ -1633,7 +1633,7 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
+      <pre class="" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
 &gt;&gt;&gt; add(2, 3)
 5
 &gt;&gt;&gt; reduce(add, [3, 5, 2, 1])
@@ -1665,7 +1665,7 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; scanl (+) 0 [3,5,2,1]
+<pre class="" data-lang="haskell"><code>Prelude&gt; scanl (+) 0 [3,5,2,1]
 [0,3,8,10,11]
 Prelude&gt; scanr (+) 0 [3,5,2,1]
 [11,8,3,1,0]
@@ -1693,7 +1693,7 @@ Prelude&gt; scanl (flip (:)) [] [3,2,1]
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>sqrtSums :: Int
+<pre class="" data-lang="haskell"><code>sqrtSums :: Int
 sqrtSums = length (takeWhile (&lt;1000) (scanl1 (+) (map sqrt [1..]))) + 1
 
 Prelude&gt; sqrtSums
@@ -1745,7 +1745,7 @@ Prelude&gt; sum (map sqrt [1..131])  -- try also 130
       <ul>
 <li>The <code>$</code> f. is also called <strong>function application</strong></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>($) :: (a -&gt; b) -&gt; a -&gt; b
+<pre class="" data-lang="haskell"><code>($) :: (a -&gt; b) -&gt; a -&gt; b
 f $ x = f x
 </code></pre>
 <ul>
@@ -1779,7 +1779,7 @@ f $ x = f x
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; map ($ 3) [(4+), (10*), (^2), sqrt]
+<pre class="" data-lang="haskell"><code>Prelude&gt; map ($ 3) [(4+), (10*), (^2), sqrt]
 [7.0,30.0,9.0,1.7320508075688772]
 </code></pre></article>
  
@@ -1805,7 +1805,7 @@ f $ x = f x
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>(.) :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+<pre class="" data-lang="haskell"><code>(.) :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 f . g = \x -&gt; f (g x)
 </code></pre>
 <ul>
@@ -1833,7 +1833,7 @@ f . g = \x -&gt; f (g x)
 </ul>
 </li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; map (negate . abs) [5,-3,-6,7,-3,2]
+<pre class="" data-lang="haskell"><code>Prelude&gt; map (negate . abs) [5,-3,-6,7,-3,2]
 [-5,-3,-6,-7,-3,-2]
 Prelude&gt; map (\x -&gt; negate (abs x)) [5,-3,-6,7,-3,2]
 [-5,-3,-6,-7,-3,-2]
@@ -1852,7 +1852,7 @@ Prelude&gt; map (\x -&gt; negate (abs x)) [5,-3,-6,7,-3,2]
 <li>F. composition is right-associative, so we can compose many f.s at a time</li>
 <li><code>f (g (h x))</code> is equivalent to <code>(f . g . h) x</code></li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>Prelude&gt; map (negate . sum . tail) [[1..5],[3..6],[1..7]]
+<pre class="" data-lang="haskell"><code>Prelude&gt; map (negate . sum . tail) [[1..5],[3..6],[1..7]]
 [-14,-15,-27]
 Prelude&gt; map (\xs -&gt; negate (sum (tail xs))) [[1..5],[3..6],[1..7]]
 [-14,-15,-27]
@@ -1900,11 +1900,11 @@ Prelude&gt; map (\xs -&gt; negate (sum (tail xs))) [[1..5],[3..6],[1..7]]
 <li>Defining f.s in the <em>point free style</em> (or <em>pointless style</em>)</li>
 <li>Problem if param in the f. body has parentheses after it</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
+<pre class="" data-lang="haskell"><code>sum' :: (Num a) =&gt; [a] -&gt; a
 -- sum' xs = foldl (+) 0 xs
 sum' = foldl (+) 0
 </code></pre>
-<pre class="prettyprint" data-lang="haskell"><code>-- fn x = ceiling (negate (tan (cos (max 50 x))))
+<pre class="" data-lang="haskell"><code>-- fn x = ceiling (negate (tan (cos (max 50 x))))
 fn = ceiling . negate . tan . cos . max 50
 </code></pre></article>
  
@@ -1920,7 +1920,7 @@ fn = ceiling . negate . tan . cos . max 50
       <ul>
 <li>Ex.: sum of all odd squares that are smaller than 10,000</li>
 </ul>
-<pre class="prettyprint" data-lang="haskell"><code>oddSquareSum :: Integer
+<pre class="" data-lang="haskell"><code>oddSquareSum :: Integer
 oddSquareSum = sum (takeWhile (&lt;10000) (filter odd (map (^2) [1..])))
 
 oddSquareSum' = sum . takeWhile (&lt;10000) . filter odd . map (^2) $ [1..]

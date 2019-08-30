@@ -708,7 +708,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="SQL"><code>create table Person (
+      <pre class="" data-lang="SQL"><code>create table Person (
     Name character(20) primary key,
     Age numeric(3),
     Income numeric(9)
@@ -737,7 +737,7 @@ create table Maternity (
 <li>Tell me everything of people less than 30 yo</li>
 <li>Fathers of people earning more than 50</li>
 </ul>
-<pre class="prettyprint" data-lang="SQL"><code>select Name, Income from Person where Age &lt; 30
+<pre class="" data-lang="SQL"><code>select Name, Income from Person where Age &lt; 30
 
 select * from Person where Age &lt; 30
 
@@ -757,7 +757,7 @@ select Paternity.Father
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="SQL"><code>insert into Person
+      <pre class="" data-lang="SQL"><code>insert into Person
     values ('Mario', 25, 52);
 insert into Person (Name, Age)
     values ('Pino', 25);
@@ -784,7 +784,7 @@ update Person
 <li>Tell me name, income and fathers' age of people earning more than their father</li>
 <li>Tell me the name of each person's mother and father</li>
 </ul>
-<pre class="prettyprint" data-lang="SQL"><code>select C.Name, C.Income, F.Age
+<pre class="" data-lang="SQL"><code>select C.Name, C.Income, F.Age
     from Person C
     join Paternity P on C.Name = P.Child
     join Person F on F.Name = P.Father
@@ -804,7 +804,7 @@ select Paternity.Child, Father, Mother
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="SQL"><code>create table Employee (
+      <pre class="" data-lang="SQL"><code>create table Employee (
     Id character(6) primary key,
     Name character(20) not null,
     Surname character(20) not null,
@@ -826,7 +826,7 @@ select Paternity.Child, Father, Mother
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="SQL"><code>create table Table (
+      <pre class="" data-lang="SQL"><code>create table Table (
     Attribute Domain [Constraints],
     Attribute Domain [Constraints]
     …
@@ -846,7 +846,7 @@ select Attribute, Attribute …
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint" data-lang="SQL"><code>insert into Table [(Attributes)] values(Values)
+      <pre class="" data-lang="SQL"><code>insert into Table [(Attributes)] values(Values)
 insert into Table [(Attributes)] select …
 update Table set Attribute =
     &lt;Expression | select … | null | default&gt;
