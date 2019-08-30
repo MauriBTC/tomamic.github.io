@@ -645,7 +645,7 @@ code: C++
 
 >
 
-<https://github.com/tomamic/fondinfo/blob/master/cpp/boardgames/boardgame.h>
+<https://github.com/tomamic/fondinfo/blob/master/cpp/g2d/boardgame.hpp>
 
 ---
 
