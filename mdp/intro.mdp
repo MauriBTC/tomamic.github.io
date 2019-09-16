@@ -75,7 +75,7 @@ title: Tutor e assistenza
     - *Esempi* prima delle esercitazioni
     - *Soluzioni* di esercizi delle settimane precedenti
 - Ogni mercoledì, *ricevimento* aperto a tutti, 12:30-14:30
-    - Palazzina A della sede scientifica (~ biblioteca)
+    - Palazzina B della sede scientifica (~ biblioteca)
 
 ---
 
@@ -108,9 +108,9 @@ figure: images/dev/books.png
 title: Altri testi e video
 
 - C.S. Horstmann: *Fondamenti di C++*, McGraw-Hill 2003, 978-8838661051 (~43€, 768pp.)
-- S.B. Lippman, J. Lajoie, B.E. Moo: *C++ Primer* 5e, Addison Wesley 2012, 978-0321714114 (~36€, 940pp.)
+- S.B. Lippman, J. Lajoie, B.E. Moo: *C++ Primer* 5e, Addison Wesley 2012, 978-0321714114 (~49€, 940pp.)
 - M. Dawson: *Python Programming for the Absolute Beginner* 3e, Course Tech. 2010, 978-1435455009 (~25€, 450pp.)
-- M. Dawson: *Beginning C++ Through Game Programming* 4e, Course Tech. 2014, 978-1305109919 (~28€, 390pp.)
+- M. Dawson: *Beginning C++ Through Game Programming* 4e, Course Tech. 2014, 978-1305109919 (~35€, 390pp.)
 - MIT: *Intro to CS and Programming in Python* - [Video delle lezioni](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/index.htm)
 - Documentazione
     - [python.org](https://docs.python.org/3/) - [isocpp.org](http://isocpp.org/)
@@ -141,20 +141,21 @@ title: Problem solving
 figure: images/dev/problem-solving-cycle.svg
 class: large-figure
 
-- [“How to solve it”](https://archive.org/details/HowToSolveIt)
+- [“How to solve it”](https://www.dropbox.com/s/86ua0v7mbr6tkgm/Polya_How-to-solve-it.pdf?dl=1)
     - George Polya, 1945
-    - Soluzione di problemi matematici: processo raramente lineare <br>&nbsp;
+    - Soluzione di problemi (mat.): processo raramente lineare <br>&nbsp;
 - **(1) See.** Capire il problema
     - Quali dati, incognite, condizioni?
     - Figure, notazione... *modello*
 
 > Make things as simple as possible, but not simpler. *(A. Einstein)*
 
-> For every complex problem there is an answer that is clear, simple, and wrong. *(H.L. Mencken)*
+> For every complex problem there is an answer that is clear, simple... and wrong. *(H.L. Mencken)*
 
 ---
 
-title: Dal problema alla soluzione, e ritorno
+title: Dal problema alla soluzione
+figure: images/dev/problem-solving-cycle.svg images/hist/polya.jpg
 
 - **(2) Plan.** Elaborare un piano
     - Mettere in relazione dati e incognite
@@ -162,12 +163,21 @@ title: Dal problema alla soluzione, e ritorno
     - Cominciare a risolvere un problema *più semplice*
 - **(3) Do.** Implementare il piano
     - Realizzare il sistema da sperimentare
+
+> If you can't solve a problem... then there is an easier problem you can solve: find it. *(G. Polya)*
+
+---
+
+title: ... E ritorno
+figure: images/dev/problem-solving-cycle.svg images/hist/voltaire.jpg
+
 - **(4) Check.** Controllare la soluzione
     - Corretta? Ottenibile in altro modo?
     - Risultato, o metodo, utilizzabile per altri problemi?
 
-> If you can't solve a problem... <br> then there is an easier problem you can solve: find it. *(G. Polya)*
+> Vi scrivo una lunga lettera perché non ho tempo di scriverne una breve. *(Voltaire)*
 
+Ottenere una soluzione più breve, semplice e chiara richiede di solito più iterazioni
 
 ---
 
