@@ -192,16 +192,14 @@ figure: images/repr/additive-color.svg
 code: go
 
     type Point struct{ X, Y int }
-    type Size struct{ W, H int }
     type Rect struct{ X, Y, W, H int }
     type Color struct{ R, G, B int }
 
 code: go
 
     center := Point{150, 100}
-    myBlue := Color{10, 10, 200}  // each component in 0..255
-    windowSize := Size{640, 480}
     rectangle := Rect{150, 100, 200, 200}  // square
+    myBlue := Color{10, 10, 200}  // each component in 0..255
 
 ---
 
@@ -211,7 +209,7 @@ figure: images/oop/raster-coord.png
 code: go
 
     // width, height
-    InitCanvas(Size{640, 480})
+    InitCanvas(Point{640, 480})
 
     // red + green = yellow
     SetColor(Color{255, 255, 0})
@@ -486,7 +484,7 @@ figure: images/misc/red-squares.png
 
 code: go
 
-    InitCanvas(Size{300, 300})
+    InitCanvas(Point{300, 300})
 
     for i := 0; i < 5; i++ {
         x := i * 40

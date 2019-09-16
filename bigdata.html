@@ -1,0 +1,929 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Framework per Big Data</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/db/overflow.png"></figure>
+  <hgroup>
+    <h2>Hadoop e (Py)Spark</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>Volume e Velocity</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>I Big Data sono spesso caratterizzati in termini di 5 V
+(cui talvolta ne sono aggiunte altre) :
+volume, variety, velocity, value,
+veracity.
+In particolare, la necessità di gestire grandi quantità di
+dati (volume) e di reagire prontamente al loro arrivo
+(velocity) pongono delle sfide alle architetture
+tradizionali di elaborazione dei dati.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quanto Grande?</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Jacobs (2009) ci fornisce una "meta-definizione" di Big Data
+incentrata sul concetto di Volume:
+"big data should be defined at any point in time as “data whose size
+forces us to look beyond the tried-and-true methods that
+are prevalent at that time.”
+Alcune osservazioni:
+– Questa definizione ignora le altre V dei Big Data
+– L'asticella di quanto un dataset debba essere grande per definirsi
+"big data" varia col tempo (aumentando col progresso tecnologico)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quanto Grande?</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Alcuni spunti tratti da Jacob (2009):
+• transaction processing e data storage sono problemi
+largamente risolti
+• è più facile inserire (get in) dati in un database
+relazionale che tirarli fuori (get out)
+• le vere patologie dei Big Data sono quelle dell'analisi</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quanto Grande?</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Oggigiorno si può considerare sufficientemente grande un dataset che non
+può essere caricato in un database relazionale ed essere elaborato con
+l'ausilio di pacchetti desktop di analisi/visualizzazione. [Jacob(2009)]
+Jacob (2009) ci fa l'esempio di un dataset di quasi 7 miliardi di record:
+– Si può salvare su un comune hard disk
+– Semplicemente leggendo il file, si può rispondere ad alcune semplici domande in
+modo rapido (mix, max, media), ma non rispondere a domande più complesse
+– Con un po' di fatica si riesce a caricare su un RDBMS
+– Le query SQL di analisi sono oltremodo lente</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Free Lunch</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Per molto tempo i programmi (ben scritti) hanno
+beneficiato gratuitamente dell'aumento delle
+prestazione dell'hardware, in particolar modo della
+CPU:
+Un processore col doppio della frequenza di clock dovrebbe
+essere in grado di eseguire lo stesso programma sequenziale
+due volte più velocemente</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Free Lunch is Over</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Ci sono però dei limiti
+(anche di natura fisica)
+sulle risorse hardware di una
+singola macchina.
+Diversi fattori (tra cui limiti nella dissipazione del calore) hanno arrestato la corsa
+ai GHz nello sviluppo dei processori.
+Siamo entrati nell'era dei processori multi-core.
+Tuttavia, un programma single-threaded può sfruttare un solo core.
+Un programma si può avvantaggiare dei processori multi-core solo se
+è multi-threaded:
+The free lunch is over (Sutter, 2004)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Difficoltà della concorrenza (1/2)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Lo sviluppo dei programmi concorrenti presenta dei problemi:
+– È difficile (es. deadlock, livelock, starvation, race, etc...)
+– Non tutti i programmi sono facilmente parallelizzabili
+La legge di Amdahl pone un limite allo speedup di un programma (cioè di quante volte
+si riduce il suo tempo di esecuzione)
+T 1 = T ser + T par
+T P ≥ T ser +
+T par
+P
+= fT 1 +
+1−f T 1
+P
+dove fè la frazione seriale non parallelizzabile del lavoro totale
+T 1
+T 1
+1
+S P =
+≤
+≤
+1−f
+1 − f T 1
+T P
+f+ P
+fT 1 +
+P
+1
+1
+S ∞ ≤ lim
+=
+1−f f
+P→∞
+f+
+P
+Un programma che spende l'1% del proprio tempo di esecuzione a svolgere
+lavoro non parallelizzabile non potrà avere uno speedup superiore a 100.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Difficoltà della concorrenza (2/2)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>La legge di Amdahl assume che il workload di un programma sia fisso e che l'obiettivo
+sia ridurre il tempo di esecuzione.
+La legge di Gustafson-Barsis, invece, si occupa della capacità di scalare a problemi di
+dimensione maggiore.
+Se la parte seriale è costante, oppure cresce più lentamente di quella parallelizzabile,
+allora lo speedup cresce insieme al numero di processori.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sistemi Distribuiti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Le risorse disponibili su una sola macchina sono
+comunque limitate.
+Cosa fare quando non sono più sufficienti?
+Comprare un'altra macchina ed usarla insieme alla
+precedente:
+Siamo entrati nel mondo dei sistemi distribuiti</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Difficoltà dei Sistemi Distribuiti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>A prima vista potrebbero sembrare non molto diversi da
+programmi concorrenti (soprattutto quelli non sfruttano la
+memoria condivisa).
+In realtà, lo sviluppo di sistemi distribuiti è ancora più complesso:
+– È difficile distinguere un nodo eccessivamente lento da uno fallito
+– È difficile sapere se un comando è stato effettivamente eseguito
+– È difficile fare in modo che i nodi trovino un consenso su qualcosa
+– Etc.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sistemi per il calcolo distribuito</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Ciò di cui abbiamo bisogno è un computing model che ci
+permetta di esprimere facilmente la computazione di cui
+abbiamo bisogno, delegando i dettagli della sua esecuzione
+ad un framework che deve gestire le complessità dei sistemi
+distribuiti:
+– Fault tolerance
+– Data distribution
+– Parallelization
+– Load balancing</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Bounded Dataset vs Unbounded Dataset</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Bounded Dataset:
+– Un insieme finito di dati disponibili tutti qui ed ora
+Unbounded Dataset:
+– Dati in continuo arrivo
+– Spesso associati alla parola "streaming"</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Unbounded Dataset – 2 domini temporali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Un unbounded dataset è caratterizzato da due domini temporali:
+– Tempo dell'evento: istante in cui l'evento descritto da un dato è
+effettivamente occorso
+– Tempo dell'elaborazione: istante in cui il dato entra all'interno del
+sistema di elaborazione
+Spesso c'è una differenza non costante tra i due, chiamata skew.
+Quando si è interessati a ragionare sul tempo dell'evento, lo skew
+può complicare la generazione di risultati corretti.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di bounded dataset</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>I bounded dataset sono generalmente elaborati con
+sistemi di tipo batch:
+– MapReduce ne è un esempio</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di unbounded dataset</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Un dataset unbound può essere elaborato in vari modi:
+– Batch
+– Streaming</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di unbounded dataset - batch</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>I dati sono bufferizzati (secondo una logica di
+windowing) creando una sorta di bounded dataset, che
+può essere elaborato con un sistema di tipo batch:
+– Se l'event time è rilevante, allora abbiamo possibili
+problemi di incompletezza
+– L'analisi di una sessione utente potrebbe essere suddivisa
+tra più batch (se la sessione dura più della finestra)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di unbounded dataset -</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>streaming
+Ci sono diversi approcci di elaborazione streaming:
+• Time-agnostic
+• Approximation
+• Windowing by processing time
+• Windowing by event time</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di unbounded dataset – streaming – time agnostic</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>L'elaborazione di stream quando il tempo non
+interessa:
+– Filtrare i dati
+– Calcolare la join di due dataset. Un dato è bufferizzato
+finché non arriva un messaggio corrispondente. Tuttavia,
+se questo messaggio potesse non esistere, occorrerebbe
+inserire un timeout, quindi una nozione di tempo</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Elaborazione di unbounded dataset – streaming – widowing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Posso suddividere i dati in ingresso in finestre (fisse,
+scorrevoli o sessioni) secondo il processing time o l'event
+time:
+Nel secondo caso è difficile giudicare la completezza di una
+finestra:
+• Ci si può basare su delle euristiche
+• Oppure, chiedere all'"esterno" quando i dati vanno materializzati
+• Procedure per raffinare i dati nel tempo</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>• Introdotto da Google per risolvere i propri problemi
+di Big Data (es. indicizzazione del Web)
+• Ispirato alle primitive map e reduce del linguaggio di
+programmazione funzionale Lisp
+• Utilizzando un approccio funzionale, può sfruttare la
+ri-esecuzione come meccanismo principale di fault
+tolerance</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – primitive</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Un job MapReduce prende in ingresso una collezione di coppie <K 1 ,
+V 1 > e produce una collezione di coppie <K 2 , V 2 >
+L'utente deve specificare due operazioni:
+– map: <K 1 , V 1 >  List&lt;<K 2 , V 2 >&gt;
+per ciascuna coppia di input genera un numero arbitrario di coppie chiave-
+valore intermedie
+– reduce: <K 2 , List<V 2 >&gt;  List<V 2 >
+ricevendo in ingresso una chiave intermedia e l'insieme di valori per quella
+chiave (generati da diversi coppie di input) , fonde i diversi valori, producendone
+in genere zero o uno</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – esempio (1/2)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>map(String key, String value):
+// key: document name
+// value: document contents
+for each word w in value:
+EmitIntermediate(w, "1");
+reduce(String key, Iterator values):
+// key: a word
+// values: a list of counts
+int result = 0;
+for each v in values:
+result += ParseInt(v);
+Emit(AsString(result));</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – esempio (2/2) [26]</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>(the, 1)
+the cat
+the dog
+a cat
+a dog
+(cat, 1) (a, 1)
+(the, 1) (cat, 1)
+(dog, 1) (cat, 1)
+(a, 1) (dog, 1)
+(cat, 1)
+(a, 1)
+(dog, 1)
+11/12/2018
+(a, 1)
+(a, 2)
+(cat, 2)
+(dog, 2)
+(dog, 1)
+(the, 1)
+(the, 2)
+(the, 1)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – map task</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Se map è una funzione pura, può essere eseguita in
+parallelo su porzioni differenti dell'input.
+Da ciò l'idea di suddividere l'input in tanti blocchi (di
+64MB)
+ciascuno dei quali è un map task, che può essere
+assegnato (scheduled) su uno dei nodi worker.
+Solitamente il numero di map task viene indicato con
+M.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – reduce task</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Per quanto riguarda la funzione reduce, lo spazio delle
+chiavi intermedie viene partizionato.
+Ciascuna partizione diventa un reduce task, che può
+essere assegnato (scheduled) su uno dei nodi worker.
+Se R è il numero di reduce task, una funzione di
+partizionamento può essere: hash(k 2 ) mod R</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – DFS (1)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Il computing model MapReduce è abbinato ad un filesystem
+distribuito (DFS):
+– Ciascun file di input è suddiviso in blocchi di dimensione fissa
+– Ciascun blocco viene immagazzinato su un data node e la
+posizione dei diversi blocchi è immagazzinata su un name node
+(responsabile del namespace)
+– Fault tolerance (rispetto ai guasti dei data node) ottenuta
+replicando ciascun blocco su un numero (stabilito) di data node
+(secondo varie policy)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – DFS (2)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Come si combinano MapReduce e DFS?
+– Si cerca di assegnare a ciascun worker map task relativi a blocchi
+che sono replicati su quella macchina (località)
+– Il woker responsabile di un map task scriverà le chiavi
+intermedie su tanti file nel proprio file system locale quanti
+sono i reduce task
+– Ciascun reduce task chieve legge (tramite RPC) il contenuto del
+filesystem locale di ciascun mapper, e produce un file nel DFS
+(ordinato per chiave) con
+11/12/2018
+il risultato del proprio lavoro.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – esecuzione [31]</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      </article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – fault tolerance</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Se un worker fallisce:
+• map task completati sono rieseguiti, perché il loro
+output non è più accessibile (si trova nel filesyste locale)
+• reduce task completati non sono rieseguiti, perché il
+loro output è stato salvato nel DFS (quindi i blocchi si
+trovano, possibilmente replicati, su altri nodi)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – alcune ottimizzazioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>combiner:
+– Effettuano una riduzione parziale localmente a ciascun map task.
+In molti casi, il combiner è banalmente il reducer.
+backup task:
+– Talvolta un task può richiedere molto più tempo del previsto
+(per diversi ragioni): quando il processo di MapReduce è
+prossimo al completamento, il master avvia delle copie di
+backup dei task ancora running, per evitare che il processo sia
+rallentato da questi task che sono più lenti del normale.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce – algoritmi iterativi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>MapReduce non è particolarmente indicato per
+implementare algoritmi iterativi su grafi:
+– Occorre gestire (fuori dal framework) una sequenza di job
+MapReduce (sconvenienza)
+– La natura funzionale del modello computazione ci costringe
+spesso a copiare l'intero grafo da un'iterazione all'altra
+(inefficienza)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Apache Hadoop</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>L'implementazione di MapReduce fatta da Google è
+proprietaria, ed usata internamente dal motore di ricerca di
+Mountain View.
+Gli altri possono usare il "clone open-source" Apache
+Hadoop.
+http://hadoop.apache.org/</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Apache Hadoop 2</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Nella versione 2, l'introduzione di YARN per la gestione del cluster, ha permesso ad
+Hadoop di svincolarsi da MapReduce (quale unico programming model)
+https://it.hortonworks.com/blog/apache-hadoop-2-is-ga/</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>HDFS - Assunzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
+Hadoop.
+Principali assunzioni:
+• Hardware failure: tolleranza ai guasti implementata al livello applicativo
+(principalmente attraverso la replicazione dei blocchi di dati)
+• Streaming Data Access: orientato alle applicazioni batch, piuttosto che all'uso
+interattivo. Favorisce il throughput alla latency
+• Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
+• Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
+appendervi del contenuto oppure troncarlo
+• "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
+interfacce che permettono alle applicazioni di spostarsi vicino a dove i dati sono
+effettivamente immagazzinati
+• Portability across Heterogeneous Hardware and Software Platforms</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>HDFS - Architettura</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>HDFS - Cartoon</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>https://wiki.scc.kit.edu/gridkaschool/upload/1/18/Hdfs-cartoon.pdf</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>YARN - Architettura</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>https://developer.ibm.com/tutorials/bd-yarn-intro/</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>HDFS – Assunzioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
+Hadoop.
+Principali assunzioni:
+• Hardware failure: tolleranza ai guasti implementata al livello applicativo
+(principalmente attraverso la replicazione dei blocchi di dati)
+• Streaming Data Access: orientato alle applicazioni batch, piuttosto che l'uso
+interattivo. Favorisce il throughput alla latency
+• Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
+• Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
+appendervi del contenuto oppure troncarlo
+• "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
+interfacce che permettono alle applicazioni di spostarsi vicino a dove i dati sono
+effettivamente immagazzinati
+• Portability across Heterogeneous Hardware and Software Platforms</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop – Modailità d'uso</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>• Modalità locale (standalone) [default]
+– Eseguito come un singolo processo Java
+– Utile per il debugging
+• Modalità pseudodistribuita
+– Eseguito come un insieme di processi (NameNode, DataNode,
+Secondary NameNode, ResourceManager, NodeManager,
+WebAppProxy and Map Reduce Job History Server) su una singola
+macchina
+• Modalità pienamente distribuita
+– I vari processi elencati in precedenza sono distribuiti su più macchine</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – InputFormat</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Un InputFormat describe la specifica di input per un job
+MapReduce.
+Il framework MapReduce si affida all'InputFormat del job per:
+• Validare la specifica del'input del job.
+• Suddividere i file di in istanze di InputSplit, ciascuna delle
+quali è assegnato ad un Mapper invididuale.
+• Fornire l'implementazione del RecordReader per estrarre
+dall'InputSplit i record che saranno elaborate dal Mapper.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – InputSplit</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>InputSplit rappresenta i dati che devono essere elaborati da un
+certo Mapper.
+Tipicamente InputSplit presenta un visione dell'input orientata ai
+byte, ed è responsabilità del RecordReader elaborarla e
+presentare una visione a record.
+FileSplit è l'InputSplit predefinito. Esso setta
+mapreduce.map.input.file al path del file di input dello split logico.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – RecordReader</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Un RecordReader legge coppie <key, value> da un InputSplit.
+Tipicamente un RecordReader converte la visione dell'input
+orientata ai byte, fornita da un InputSplit, e presenta una
+visione a record alle implementazioni di Mapper per
+l'elaborazione. Il RecordReader assume pertanto la
+responsabilità di elaborare i confini dei record e presentare
+ai task chiavi e valori.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – OutputFormat</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>OutputFormat descrive la specifica di output per un job
+MapReduce.
+Il framework MapReduce si affida all'OutputFormat del job per:
+• Validare la specifica di output del job; per esempio,
+controllare la cartella di output non esista già.
+• Fornire l'implementazione di RecordWriter usata per scrivere i
+file di output del job. I file di output solo immagazzinati in un
+FileSystem.
+TextOutputFormat è l'OutputFormat predefinito.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – Counter</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>I counters rappresentano contatori globali, definiti dal
+framework MapReduce o dalle applicazioni. Ogni
+Counter può essere di qualunque tipo Enum. Contatori
+di un particolare Enum sono messi insieme in gruppi di
+tipo Counters.Group.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – SkipBadRecords</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Hadoop fornisce un'opzione dove un certo insieme di
+input record cattivi può essere saltato durante la fase di
+map. Le applicazioni possono controllare questa feature
+attraverso la classe SkipBadRecords.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – input/output multipli</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>La classe MultipleInputs supporta job MapReduce con più
+input path aventi ciascuno un InputFormat e Mapper diversi.
+https://hadoop.apache.org/docs/r2.9.2/api/org/apache/hadoo
+p/mapreduce/lib/input/MultipleInputs.html
+La classe MultipleOutputs semplifica la scrittura su più file di
+output.
+https://hadoop.apache.org/docs/r2.9.2/api/org/apache/hadoo
+p/mapreduce/lib/output/MultipleOutputs.html</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop MapReduce – lib</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>--</p>
+<p>title: Hadoop MapReduce – scrivere soltanto i valori</p>
+<p>Per scrivere soltanto I valori si può usare NullWritable
+come tipo di output.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Hadoop – Modalità locale (default)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Comandi per shell Unix. Per la PowerShell di Windows è sufficiente usare il
+backslash
+Esegue un JAR.
+$ mkdir input
+$ cp etc/hadoop/<em>.xml input
+$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-
+2.9.2.jar grep input output 'dfs[a-z.]+'
+$ cat output/</em></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      </article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

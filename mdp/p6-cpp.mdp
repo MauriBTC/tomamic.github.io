@@ -235,7 +235,6 @@ title: Strutture in g2d
 code: c++
 
     struct Point { int x, y; };
-    struct Size { int w, h; };
     struct Rect { int x, y, w, h; };
     struct Color { int r, g, b; };
 
@@ -447,7 +446,7 @@ code: c++
         int x_, y_;             // private stuff
         int dx_ = 5, dy_ = 5;
     public:
-        Ball(int x0, int y0) {  // contructor
+        Ball(int x0, int y0) {  // constructor
             x_ = x0; y_ = y0;
         }
         void Ball::move() {
@@ -488,10 +487,10 @@ title: Allocazione dinamica
 
 code: c++
 
-    Ball b1{40, 80};
-    Ball* b2 = new Ball{80, 40};
-    // Ball* alias1 = &b1; // no new ball is created
-    // Ball* alias2 = b2;  // no new ball is created
+    auto b1 = Ball{40, 80};      // Ball
+    auto b2 = new Ball{80, 40};  // Ball*
+    //Ball* alias1 = &b1;        // no new ball is created
+    //Ball* alias2 = b2;         // no new ball is created
 
     for (auto i = 0; i < 25; ++i) {
         b1.move();

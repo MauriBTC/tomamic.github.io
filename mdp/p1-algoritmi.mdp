@@ -85,8 +85,8 @@ figure: images/algo/var-label.svg
 code: py
 
     >>> x = 100
-    >>> DELTA = 5          # Constants: UPPER_CASE
-    >>> x = x + DELTA      # Variables: lower_case
+    >>> DELTA_X = 5        # Constants: UPPER_CASE
+    >>> x = x + DELTA_X    # Variables: lower_case
     >>> next_position = x  # Use explicative names!
 
 ---
@@ -136,7 +136,7 @@ class: large-image
 title: Leggere e scrivere
 figure: images/algo/hello-user.svg
 
-- **`input`** legge una riga di testo, inserita dall'utente, in una *variabile*
+- **`input`** legge una riga di *testo*, inserita dall'utente, in una *variabile*
     - Prima mostra un messaggio
 - **`print`** scrive una serie di valori su una riga
     - Tra i valori (parametri) viene inserito uno spazio

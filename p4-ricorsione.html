@@ -381,13 +381,12 @@ Altrimenti, Python non genera immediatamente i risultati (<em>lazy</em>)</p></ar
       <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; grocery = ["spam", "egg", "bacon", "sausage"]
 &gt;&gt;&gt; sorted(grocery)
 ['bacon', 'egg', 'sausage', 'spam']
-&gt;&gt;&gt; sorted(grocery, reverse=True)
-['spam', 'sausage', 'egg', 'bacon']
 &gt;&gt;&gt; sorted(grocery, key=len)  # lengths of elements are compared
 ['egg', 'spam', 'bacon', 'sausage']
-</code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; list(reversed(grocery))
+&gt;&gt;&gt; list(reversed(grocery))
 ['sausage', 'bacon', 'egg', 'spam']
+&gt;&gt;&gt; grocery
+["spam", "egg", "bacon", "sausage"]
 </code></pre>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; grocery.sort()     # in-place
 &gt;&gt;&gt; grocery.reverse()  # in-place

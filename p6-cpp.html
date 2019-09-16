@@ -319,7 +319,6 @@ int main() {
 <li>Le seguenti <code>struct</code> sono definite in <code>g2d/actor.hpp</code></li>
 </ul>
 <pre class="prettyprint lang-c++" data-lang="c++"><code>struct Point { int x, y; };
-struct Size { int w, h; };
 struct Rect { int x, y, w, h; };
 struct Color { int r, g, b; };
 </code></pre>
@@ -565,7 +564,7 @@ p = nullptr;  // ptr to nothing
     int x_, y_;             // private stuff
     int dx_ = 5, dy_ = 5;
 public:
-    Ball(int x0, int y0) {  // contructor
+    Ball(int x0, int y0) {  // constructor
         x_ = x0; y_ = y0;
     }
     void Ball::move() {
@@ -614,10 +613,10 @@ public:
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-c++" data-lang="c++"><code>Ball b1{40, 80};
-Ball* b2 = new Ball{80, 40};
-// Ball* alias1 = &amp;b1; // no new ball is created
-// Ball* alias2 = b2;  // no new ball is created
+      <pre class="prettyprint lang-c++" data-lang="c++"><code>auto b1 = Ball{40, 80};      // Ball
+auto b2 = new Ball{80, 40};  // Ball*
+//Ball* alias1 = &amp;b1;        // no new ball is created
+//Ball* alias2 = b2;         // no new ball is created
 
 for (auto i = 0; i &lt; 25; ++i) {
     b1.move();

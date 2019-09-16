@@ -303,14 +303,12 @@ Alert("The sum is ", total)
 <li>Strutture e funzioni definite nel modulo <code>g2d</code></li>
 </ul>
 <pre class="prettyprint lang-go" data-lang="go"><code>type Point struct{ X, Y int }
-type Size struct{ W, H int }
 type Rect struct{ X, Y, W, H int }
 type Color struct{ R, G, B int }
 </code></pre>
 <pre class="prettyprint lang-go" data-lang="go"><code>center := Point{150, 100}
-myBlue := Color{10, 10, 200}  // each component in 0..255
-windowSize := Size{640, 480}
 rectangle := Rect{150, 100, 200, 200}  // square
+myBlue := Color{10, 10, 200}  // each component in 0..255
 </code></pre></article>
  
 </slide>
@@ -326,7 +324,7 @@ rectangle := Rect{150, 100, 200, 200}  // square
         <img src="images/oop/raster-coord.png">
         
       </figure><pre class="prettyprint lang-go" data-lang="go"><code>// width, height
-InitCanvas(Size{640, 480})
+InitCanvas(Point{640, 480})
 
 // red + green = yellow
 SetColor(Color{255, 255, 0})
@@ -679,7 +677,7 @@ for i := 1; i &lt; 11; i++ {
       <figure>
         <img src="images/misc/red-squares.png">
         
-      </figure><pre class="prettyprint lang-go" data-lang="go"><code>InitCanvas(Size{300, 300})
+      </figure><pre class="prettyprint lang-go" data-lang="go"><code>InitCanvas(Point{300, 300})
 
 for i := 0; i &lt; 5; i++ {
     x := i * 40

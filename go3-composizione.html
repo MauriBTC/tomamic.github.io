@@ -547,8 +547,8 @@ func NewGhost(arena *Arena, x, y int) *Ghost {
 func (g *Ghost) Move() {
     dx, dy := 5 * RandInt(-1, 1), 5 * RandInt(-1, 1)
     as := g.arena.Size()      // ref to arena
-    g.x = (g.x + dx + as.W) % as.W
-    g.y = (g.y + dy + as.H) % as.H
+    g.x = (g.x + dx + as.X) % as.X
+    g.y = (g.y + dy + as.Y) % as.Y
 }
 </code></pre>
 <blockquote></blockquote>
@@ -574,7 +574,7 @@ func (g *Ghost) Move() {
     </hgroup>
     <article >
       <pre class="prettyprint lang-go" data-lang="go"><code>var sprites = LoadImage("sprites.png")
-var arena = NewArena(Size{320, 240})
+var arena = NewArena(Point{480, 360})
 var hero = NewTurtle(arena, Point{80, 80})  // actor knows the arena
 func tick() {
     // ...

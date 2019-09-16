@@ -259,15 +259,12 @@ code: py
     >>> grocery = ["spam", "egg", "bacon", "sausage"]
     >>> sorted(grocery)
     ['bacon', 'egg', 'sausage', 'spam']
-    >>> sorted(grocery, reverse=True)
-    ['spam', 'sausage', 'egg', 'bacon']
     >>> sorted(grocery, key=len)  # lengths of elements are compared
     ['egg', 'spam', 'bacon', 'sausage']
-
-code: py
-
     >>> list(reversed(grocery))
     ['sausage', 'bacon', 'egg', 'spam']
+    >>> grocery
+    ["spam", "egg", "bacon", "sausage"]
 
 code: py
 

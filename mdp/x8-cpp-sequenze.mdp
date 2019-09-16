@@ -1,0 +1,242 @@
+title: Linguaggio C++11
+subtitle: Introduzione alla programmazione
+figure: images/dev/cpp.png
+
+---
+
+title: Output su file
+
+code: c++
+
+    #include <fstream>
+
+code: c++
+
+    int n; float r; string w;
+    cin >> n >> r >> w;
+
+    ofstream file2{"output.txt"};  // file output stream
+    if (file2) {                   // is stream available?
+        file2 << "Values: " << n << " " << r << " " << w << endl;
+    }
+    file2.close();
+
+---
+
+title: Lettura di righe
+
+code: c++
+
+    ifstream file1{"input.txt"};  // when finished, close file1!
+
+code: c++
+
+    string first_line, second_line;
+    getline(file1, first_line);   // no newline at end
+    getline(file1, second_line);  // no newline at end
+
+code: c++
+
+    string whole_text;
+    getline(file1, whole_text, '\0');  // read whole file
+
+code: c++
+
+    // for each line in file1...
+    for (string line; getline(file1, line);) {
+        cout << line << endl;
+    }
+
+>
+
+<http://tomamic.github.io/p5-matrici.html#4>
+
+---
+
+title: Flussi e stringhe
+
+- Si può gestire una stringa come uno stream
+    - `istringstream`, `ostringstream` in libreria `<sstream>`
+    - Per estrarre valori ed inserire valori, rispettivamente
+
+code: c++
+
+    /* Split a text into a sequence of strings */
+    string text = "one:two::three";
+    istringstream sstr{text};  // a stream view on a string
+    for (string item; getline(sstr, item, ':');) {
+        cout << "- " << item << endl;
+    }
+
+code: output
+
+    - one
+    - two
+    -
+    - three
+
+---
+
+title: Lettura di dati
+
+code: c++
+
+    ifstream file1{"input.txt"};
+
+code: c++
+
+    if (file1) {                         // is stream available?
+        int n; float r; string w;
+        file1 >> n >> r >> w;
+    }
+
+code: c++
+
+    for (int val; file1 >> val;) {       // or float, string ...
+        cout << setw(4) << val << endl;  // val occupies 4 chars
+    }                                    // setw in <iomanip>
+
+code: c++
+
+    file1 >> noskipws;                   // scan also whitespaces
+    for (char val; file1 >> val;) {      // for each char in file1
+        cout << val << endl;
+    }
+
+---
+
+title: Strutture dati lineari
+class: segue dark
+
+---
+
+title: Vector, array dinamici
+figure: images/fun/dynamic-array.svg
+class: large-figure
+
+- **Array**: area di memoria che contiene in *celle contigue* elementi tutti dello *stesso tipo*
+- Usato internamente dai `vector` del C++
+    - Riallocazione dinamica e trasparente per inserimenti e rimozioni
+- `Vector` come **array dinamici**
+    - Accesso casuale: `O(1)`
+    - Aggiunta o rimozione in fondo all'array: `O(1)`, ma a volte riallocazione
+    - Inserimento o rimozione: `O(n)`
+
+---
+
+title: Vector di float
+
+code: C++
+
+    class FloatVector {  // ...
+        int capacity_;
+        int size_;
+        float* data_;
+    public:
+        FloatVector(int size, float val);
+        float get(int pos);
+        void set(int pos, float val);
+        void insert(int pos, float val);
+        float remove(int pos);
+        int size();
+    };
+
+Implementazione nel repository di esempi
+
+---
+
+title: Inserimento in vector
+
+code: C++
+
+    void FloatVector::insert(int pos, float val) {
+        if (pos < 0 || pos > size_) throw out_of_range("wrong pos");
+        if (size_ == capacity_) expand_capacity();
+        for (int i = size_; i > pos; --i) data_[i] = data_[i - 1];
+        data_[pos] = val;
+        ++size_;
+    }
+    void FloatVector::expand_capacity() {
+        capacity_ *= 2;
+        float* bigger = new float[capacity_];
+        for (int i = 0; i < size_; i++) bigger[i] = data_[i];
+        delete[] data_;
+        data_ = bigger;
+    }
+
+---
+
+title: Liste concatenate
+
+![](images/fun/linked-list.svg)
+
+- Ciascun **nodo** contiene un *valore* della lista ed un *puntatore* al nodo successivo
+    - Accesso casuale: `O(n)`
+    - Aggiunta o rimozione in testa all'array: `O(1)`
+    - Aggiunta o rimozione in fondo all'array: `O(n)`, oppure `O(1)` se noto ultimo nodo
+    - Inserimento o rimozione: `O(1) + O(n)` per ricerca
+
+---
+
+title: Lista di float
+
+code: C++
+
+    struct Node {
+        float val;
+        Node* next;
+    };
+    class FloatList {  // ...
+        Node* head_; int size_;
+    public:
+        FloatList(int size, float val);
+        float get(int pos);
+        void set(int pos, float val);
+        void insert(int pos, float val);
+        float remove(int pos);
+        int size();
+    };
+
+Implementazione nel repository di esempi
+
+---
+
+title: Inserimento in lista
+
+code: C++
+
+    void FloatList::insert(int pos, float val) {
+        if (pos < 0 || pos > size_) throw out_of_range("wrong pos");
+        if (pos == 0) {
+            head_ = new Node{val, head_};
+        } else {
+            Node* n = head_;
+            for (int i = 0; i < pos - 1; ++i) n = n->next;
+            n->next = new Node{val, n->next};
+        }
+        ++size_;
+    }
+
+---
+
+title: Template C++
+
+- **Programmazione generica**: codice che opera su *tipi parametrizzati*
+    - Es. liste di `int`, `string` ecc.: cambia solo il tipo di dato!
+- **Template**: meccanismo di programmazione generica in C++
+    - Generaz. trasparente di codice specializzato per un tipo
+    - Es. `vector<float>` genera una classe ≈ `FloatVector`
+
+code: C++
+
+    template <class T>
+    T max(T a, T b) {
+        if (a >= b) return a;
+        return b;
+    }
+
+code: C++
+
+    double x = max<double>(5.0, 3.5);  # <double>, <int>: optional
+    int i = max<int>(4, 6);            # inferred from parameters
+

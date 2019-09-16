@@ -185,9 +185,13 @@ b is a           # False, they are two objects in memory
 c = a
 c is a           # True, same object in memory
                  # (try and modify one of them...)
-
 d = ["sausage", "tomato"]
 grocery = c + d  # list concatenation --&gt; new list!
+
+# Lexicographical comparison of lists (or strings, tuples...)
+# Compare the first two *different* elements
+[2, 0, 0] &gt; [1, 2, 0]  # True: 2 &gt; 1
+[2, 1, 0] &gt; [2, 0, 1]  # True: 2 == 2, 1 &gt; 0
 </code></pre></article>
  
 </slide>
@@ -281,8 +285,8 @@ pt[0]  # 5
 pt[1]  # 6
 pt[2]  # "red"
 
-# multiple assignments, from a tuple
-x, y, colour = pt  # sequence unpacking
+# Sequence unpacking (from a list, string, tuple...)
+x, y, colour = pt
 a, b = 3, 4
 a, b = b, a
 </code></pre></article>

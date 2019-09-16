@@ -247,7 +247,7 @@ func printTable(size int) {
     <article >
       <pre class="prettyprint lang-go" data-lang="go"><code>var image = LoadImage("ball.png")
 var x, y, dx = 50, 50, 5
-var screen = Size{480, 360}
+var screen = Point{480, 360}
 
 func tick() {
     //if KeyPressed("Enter") { ... }
@@ -315,10 +315,10 @@ func main() {
 </li>
 </ul>
 <pre class="prettyprint lang-go" data-lang="go"><code>func moveBall(x, y, dx, dy int) (int, int, int, int) {
-    if x + dx &lt; 0 || x + dx + size.W &gt; screen.W {
+    if x + dx &lt; 0 || x + dx + size.X &gt; screen.X {
         dx = -dx
     }
-    if y + dy &lt; 0 || y + dy + size.H &gt; screen.H {
+    if y + dy &lt; 0 || y + dy + size.Y &gt; screen.Y {
         dy = -dy
     }
     return x + dx, y + dy, dx, dy
@@ -597,7 +597,7 @@ func tick() {
 }
 
 func main() {
-    InitCanvas(Size{arenaW, arenaH})
+    InitCanvas(Point{arenaW, arenaH})
     //SetFrameRate(30)  // default
     MainLoop(tick)
 }
