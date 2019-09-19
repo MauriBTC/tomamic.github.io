@@ -4,93 +4,67 @@ figure: images/db/overflow.png
 
 ---
 
-title: Volume e Velocity
+title: Volume and velocity
 
-I Big Data sono spesso caratterizzati in termini di 5 V
-(cui talvolta ne sono aggiunte altre) :
-volume, variety, velocity, value,
-veracity.
-In particolare, la necessità di gestire grandi quantità di
-dati (volume) e di reagire prontamente al loro arrivo
-(velocity) pongono delle sfide alle architetture
-tradizionali di elaborazione dei dati.
+- Big Data often characterized in terms of 5 Vs (+ others)
+    - Volume, variety, velocity, value, veracity
+- Challenges to traditional computational architectures
+    - Handle large quantities of data (volume)
+    - Readily react to their arrival (velocity)
 
 ---
 
-title: Quanto Grande?
+title: A meta-definition
 
-Jacobs (2009) ci fornisce una "meta-definizione" di Big Data
-incentrata sul concetto di Volume:
-"big data should be defined at any point in time as “data whose size
-forces us to look beyond the tried-and-true methods that
-are prevalent at that time.”
-Alcune osservazioni:
-– Questa definizione ignora le altre V dei Big Data
-– L'asticella di quanto un dataset debba essere grande per definirsi
-"big data" varia col tempo (aumentando col progresso tecnologico)
+> Big data should be defined at any point in time as “data whose size forces us to look beyond the tried-and-true methods that are prevalent at that time.” (Jacobs, 2009)
+
+- Meta-definition centered on Volume
+    - It ignores other Vs
+- Moving threshold, for a dataset to be defined as “big data”
+    - It grows together with technological advances
 
 ---
 
-title: Quanto Grande?
+title: Big data pathologies
 
-Alcuni spunti tratti da Jacob (2009):
-• transaction processing e data storage sono problemi
-largamente risolti
-• è più facile inserire (get in) dati in un database
-relazionale che tirarli fuori (get out)
-• le vere patologie dei Big Data sono quelle dell'analisi
+- Transaction processing and data storage are largely solved problems
+- Data with a traditional RDBMS
+    - Easier to *get in* than *get out*
+    - Worst pathologies are related to data analysis
 
 ---
 
-title: Quanto Grande?
+title: How much data?
 
-Oggigiorno si può considerare sufficientemente grande un dataset che non
-può essere caricato in un database relazionale ed essere elaborato con
-l'ausilio di pacchetti desktop di analisi/visualizzazione. [Jacob(2009)]
-Jacob (2009) ci fa l'esempio di un dataset di quasi 7 miliardi di record:
-– Si può salvare su un comune hard disk
-– Semplicemente leggendo il file, si può rispondere ad alcune semplici domande in
-modo rapido (mix, max, media), ma non rispondere a domande più complesse
-– Con un po' di fatica si riesce a caricare su un RDBMS
-– Le query SQL di analisi sono oltremodo lente
+- Nowadays, a dataset which cannot be loaded and processed effectively with desktop tools for data analys and visualization
+- A dataset of 7 billion records (Jacob, 2009)
+- It can be saved in a common HDD
+    - Simple questions (min, max, avg) can be answered quickly, by reading the file sequentially
+    - More complex queries are difficult
+- With some effort, it can be loaded in a RDMBS
+    - Analysis through SQL queries is way too slow
 
 ---
 
-title: Free Lunch
+title: Free lunch is over
 
-Per molto tempo i programmi (ben scritti) hanno
-beneficiato gratuitamente dell'aumento delle
-prestazione dell'hardware, in particolar modo della
-CPU:
-Un processore col doppio della frequenza di clock dovrebbe
-essere in grado di eseguire lo stesso programma sequenziale
-due volte più velocemente
-
----
-
-title: Free Lunch is Over
-
-Ci sono però dei limiti
-(anche di natura fisica)
-sulle risorse hardware di una
-singola macchina.
-Diversi fattori (tra cui limiti nella dissipazione del calore) hanno arrestato la corsa
-ai GHz nello sviluppo dei processori.
-Siamo entrati nell'era dei processori multi-core.
-Tuttavia, un programma single-threaded può sfruttare un solo core.
-Un programma si può avvantaggiare dei processori multi-core solo se
-è multi-threaded:
-The free lunch is over (Sutter, 2004)
+- For a long time, programs have taken advantage from growing hardware performances
+- Limits to Moore's law
+    - Physical limits make it hard to increase the transistor density
+    - Heat dissipation make it hard to increase frequency
+- The free lunch is over (Sutter, 2004)
+    - Multi-core processors
+    - Only multi-threaded programs can exploid hardware parallelism
+- Concurrent programming is hard
+    - Deadlock, livelock, starvation, race, etc.
+    - Some algorithms are intrinsically sequential
 
 ---
 
-title: Difficoltà della concorrenza (1/2)
+title: Amdahl's law
 
-Lo sviluppo dei programmi concorrenti presenta dei problemi:
-– È difficile (es. deadlock, livelock, starvation, race, etc...)
-– Non tutti i programmi sono facilmente parallelizzabili
-La legge di Amdahl pone un limite allo speedup di un programma (cioè di quante volte
-si riduce il suo tempo di esecuzione)
+- A limit to program speedup (how much it is faster on a parallel hardware)
+
 T 1 = T ser + T par
 T P ≥ T ser +
 T par
@@ -119,8 +93,9 @@ S ∞ ≤ lim
 P→∞
 f+
 P
-Un programma che spende l'1% del proprio tempo di esecuzione a svolgere
-lavoro non parallelizzabile non potrà avere uno speedup superiore a 100.
+
+- A program spending 1% of its execution time on a sequential task
+    - Speedup limited to max 100 times faster, with unlimited parallelism
 
 ---
 
@@ -135,7 +110,7 @@ allora lo speedup cresce insieme al numero di processori.
 
 ---
 
-title: Sistemi Distribuiti
+title: Sistemi distribuiti
 
 Le risorse disponibili su una sola macchina sono
 comunque limitate.
@@ -152,10 +127,10 @@ A prima vista potrebbero sembrare non molto diversi da
 programmi concorrenti (soprattutto quelli non sfruttano la
 memoria condivisa).
 In realtà, lo sviluppo di sistemi distribuiti è ancora più complesso:
-– È difficile distinguere un nodo eccessivamente lento da uno fallito
-– È difficile sapere se un comando è stato effettivamente eseguito
-– È difficile fare in modo che i nodi trovino un consenso su qualcosa
-– Etc.
+-- È difficile distinguere un nodo eccessivamente lento da uno fallito
+-- È difficile sapere se un comando è stato effettivamente eseguito
+-- È difficile fare in modo che i nodi trovino un consenso su qualcosa
+-- Etc.
 
 ---
 
@@ -166,29 +141,29 @@ permetta di esprimere facilmente la computazione di cui
 abbiamo bisogno, delegando i dettagli della sua esecuzione
 ad un framework che deve gestire le complessità dei sistemi
 distribuiti:
-– Fault tolerance
-– Data distribution
-– Parallelization
-– Load balancing
+-- Fault tolerance
+-- Data distribution
+-- Parallelization
+-- Load balancing
 
 ---
 
 title: Bounded Dataset vs Unbounded Dataset
 
 Bounded Dataset:
-– Un insieme finito di dati disponibili tutti qui ed ora
+-- Un insieme finito di dati disponibili tutti qui ed ora
 Unbounded Dataset:
-– Dati in continuo arrivo
-– Spesso associati alla parola "streaming"
+-- Dati in continuo arrivo
+-- Spesso associati alla parola "streaming"
 
 ---
 
-title: Unbounded Dataset – 2 domini temporali
+title: Unbounded Dataset -- 2 domini temporali
 
 Un unbounded dataset è caratterizzato da due domini temporali:
-– Tempo dell'evento: istante in cui l'evento descritto da un dato è
+-- Tempo dell'evento: istante in cui l'evento descritto da un dato è
 effettivamente occorso
-– Tempo dell'elaborazione: istante in cui il dato entra all'interno del
+-- Tempo dell'elaborazione: istante in cui il dato entra all'interno del
 sistema di elaborazione
 Spesso c'è una differenza non costante tra i due, chiamata skew.
 Quando si è interessati a ragionare sul tempo dell'evento, lo skew
@@ -200,15 +175,15 @@ title: Elaborazione di bounded dataset
 
 I bounded dataset sono generalmente elaborati con
 sistemi di tipo batch:
-– MapReduce ne è un esempio
+-- MapReduce ne è un esempio
 
 ---
 
 title: Elaborazione di unbounded dataset
 
 Un dataset unbound può essere elaborato in vari modi:
-– Batch
-– Streaming
+-- Batch
+-- Streaming
 
 ---
 
@@ -217,9 +192,9 @@ title: Elaborazione di unbounded dataset - batch
 I dati sono bufferizzati (secondo una logica di
 windowing) creando una sorta di bounded dataset, che
 può essere elaborato con un sistema di tipo batch:
-– Se l'event time è rilevante, allora abbiamo possibili
+-- Se l'event time è rilevante, allora abbiamo possibili
 problemi di incompletezza
-– L'analisi di una sessione utente potrebbe essere suddivisa
+-- L'analisi di una sessione utente potrebbe essere suddivisa
 tra più batch (se la sessione dura più della finestra)
 
 ---
@@ -228,66 +203,66 @@ title: Elaborazione di unbounded dataset -
 
 streaming
 Ci sono diversi approcci di elaborazione streaming:
-• Time-agnostic
-• Approximation
-• Windowing by processing time
-• Windowing by event time
+- Time-agnostic
+- Approximation
+- Windowing by processing time
+- Windowing by event time
 
 ---
 
-title: Elaborazione di unbounded dataset – streaming – time agnostic
+title: Elaborazione di unbounded dataset -- streaming -- time agnostic
 
 L'elaborazione di stream quando il tempo non
 interessa:
-– Filtrare i dati
-– Calcolare la join di due dataset. Un dato è bufferizzato
+-- Filtrare i dati
+-- Calcolare la join di due dataset. Un dato è bufferizzato
 finché non arriva un messaggio corrispondente. Tuttavia,
 se questo messaggio potesse non esistere, occorrerebbe
 inserire un timeout, quindi una nozione di tempo
 
 ---
 
-title: Elaborazione di unbounded dataset – streaming – widowing
+title: Elaborazione di unbounded dataset -- streaming -- widowing
 
 Posso suddividere i dati in ingresso in finestre (fisse,
 scorrevoli o sessioni) secondo il processing time o l'event
 time:
 Nel secondo caso è difficile giudicare la completezza di una
 finestra:
-• Ci si può basare su delle euristiche
-• Oppure, chiedere all'"esterno" quando i dati vanno materializzati
-• Procedure per raffinare i dati nel tempo
+- Ci si può basare su delle euristiche
+- Oppure, chiedere all'"esterno" quando i dati vanno materializzati
+- Procedure per raffinare i dati nel tempo
 
 ---
 
 title: MapReduce
 
-• Introdotto da Google per risolvere i propri problemi
+- Introdotto da Google per risolvere i propri problemi
 di Big Data (es. indicizzazione del Web)
-• Ispirato alle primitive map e reduce del linguaggio di
+- Ispirato alle primitive map e reduce del linguaggio di
 programmazione funzionale Lisp
-• Utilizzando un approccio funzionale, può sfruttare la
+- Utilizzando un approccio funzionale, può sfruttare la
 ri-esecuzione come meccanismo principale di fault
 tolerance
 
 ---
 
-title: MapReduce – primitive
+title: MapReduce -- primitive
 
 Un job MapReduce prende in ingresso una collezione di coppie <K 1 ,
 V 1 > e produce una collezione di coppie <K 2 , V 2 >
 L'utente deve specificare due operazioni:
-– map: <K 1 , V 1 >  List<<K 2 , V 2 >>
+-- map: <K 1 , V 1 >  List<<K 2 , V 2 >>
 per ciascuna coppia di input genera un numero arbitrario di coppie chiave-
 valore intermedie
-– reduce: <K 2 , List<V 2 >>  List<V 2 >
+-- reduce: <K 2 , List<V 2 >>  List<V 2 >
 ricevendo in ingresso una chiave intermedia e l'insieme di valori per quella
 chiave (generati da diversi coppie di input) , fonde i diversi valori, producendone
 in genere zero o uno
 
 ---
 
-title: MapReduce – esempio (1/2)
+title: MapReduce -- esempio (1/2)
 
 map(String key, String value):
 // key: document name
@@ -304,7 +279,7 @@ Emit(AsString(result));
 
 ---
 
-title: MapReduce – esempio (2/2) [26]
+title: MapReduce -- esempio (2/2) [26]
 
 (the, 1)
 the cat
@@ -330,7 +305,7 @@ a dog
 
 ---
 
-title: MapReduce – map task
+title: MapReduce -- map task
 
 Se map è una funzione pura, può essere eseguita in
 parallelo su porzioni differenti dell'input.
@@ -343,7 +318,7 @@ M.
 
 ---
 
-title: MapReduce – reduce task
+title: MapReduce -- reduce task
 
 Per quanto riguarda la funzione reduce, lo spazio delle
 chiavi intermedie viene partizionato.
@@ -354,29 +329,29 @@ partizionamento può essere: hash(k 2 ) mod R
 
 ---
 
-title: MapReduce – DFS (1)
+title: MapReduce -- DFS (1)
 
 Il computing model MapReduce è abbinato ad un filesystem
 distribuito (DFS):
-– Ciascun file di input è suddiviso in blocchi di dimensione fissa
-– Ciascun blocco viene immagazzinato su un data node e la
+-- Ciascun file di input è suddiviso in blocchi di dimensione fissa
+-- Ciascun blocco viene immagazzinato su un data node e la
 posizione dei diversi blocchi è immagazzinata su un name node
 (responsabile del namespace)
-– Fault tolerance (rispetto ai guasti dei data node) ottenuta
+-- Fault tolerance (rispetto ai guasti dei data node) ottenuta
 replicando ciascun blocco su un numero (stabilito) di data node
 (secondo varie policy)
 
 ---
 
-title: MapReduce – DFS (2)
+title: MapReduce -- DFS (2)
 
 Come si combinano MapReduce e DFS?
-– Si cerca di assegnare a ciascun worker map task relativi a blocchi
+-- Si cerca di assegnare a ciascun worker map task relativi a blocchi
 che sono replicati su quella macchina (località)
-– Il woker responsabile di un map task scriverà le chiavi
+-- Il woker responsabile di un map task scriverà le chiavi
 intermedie su tanti file nel proprio file system locale quanti
 sono i reduce task
-– Ciascun reduce task chieve legge (tramite RPC) il contenuto del
+-- Ciascun reduce task chieve legge (tramite RPC) il contenuto del
 filesystem locale di ciascun mapper, e produce un file nel DFS
 (ordinato per chiave) con
 11/12/2018
@@ -384,28 +359,28 @@ il risultato del proprio lavoro.
 
 ---
 
-title: MapReduce – esecuzione [31]
+title: MapReduce -- esecuzione [31]
 
 ---
 
-title: MapReduce – fault tolerance
+title: MapReduce -- fault tolerance
 
 Se un worker fallisce:
-• map task completati sono rieseguiti, perché il loro
+- map task completati sono rieseguiti, perché il loro
 output non è più accessibile (si trova nel filesyste locale)
-• reduce task completati non sono rieseguiti, perché il
+- reduce task completati non sono rieseguiti, perché il
 loro output è stato salvato nel DFS (quindi i blocchi si
 trovano, possibilmente replicati, su altri nodi)
 
 ---
 
-title: MapReduce – alcune ottimizzazioni
+title: MapReduce -- alcune ottimizzazioni
 
 combiner:
-– Effettuano una riduzione parziale localmente a ciascun map task.
+-- Effettuano una riduzione parziale localmente a ciascun map task.
 In molti casi, il combiner è banalmente il reducer.
 backup task:
-– Talvolta un task può richiedere molto più tempo del previsto
+-- Talvolta un task può richiedere molto più tempo del previsto
 (per diversi ragioni): quando il processo di MapReduce è
 prossimo al completamento, il master avvia delle copie di
 backup dei task ancora running, per evitare che il processo sia
@@ -413,13 +388,13 @@ rallentato da questi task che sono più lenti del normale.
 
 ---
 
-title: MapReduce – algoritmi iterativi
+title: MapReduce -- algoritmi iterativi
 
 MapReduce non è particolarmente indicato per
 implementare algoritmi iterativi su grafi:
-– Occorre gestire (fuori dal framework) una sequenza di job
+-- Occorre gestire (fuori dal framework) una sequenza di job
 MapReduce (sconvenienza)
-– La natura funzionale del modello computazione ci costringe
+-- La natura funzionale del modello computazione ci costringe
 spesso a copiare l'intero grafo da un'iterazione all'altra
 (inefficienza)
 
@@ -449,17 +424,17 @@ title: HDFS - Assunzioni
 Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
 Hadoop.
 Principali assunzioni:
-• Hardware failure: tolleranza ai guasti implementata al livello applicativo
+- Hardware failure: tolleranza ai guasti implementata al livello applicativo
 (principalmente attraverso la replicazione dei blocchi di dati)
-• Streaming Data Access: orientato alle applicazioni batch, piuttosto che all'uso
+- Streaming Data Access: orientato alle applicazioni batch, piuttosto che all'uso
 interattivo. Favorisce il throughput alla latency
-• Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
-• Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
+- Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
+- Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
 appendervi del contenuto oppure troncarlo
-• "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
+- "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
 interfacce che permettono alle applicazioni di spostarsi vicino a dove i dati sono
 effettivamente immagazzinati
-• Portability across Heterogeneous Hardware and Software Platforms
+- Portability across Heterogeneous Hardware and Software Platforms
 
 ---
 
@@ -481,56 +456,56 @@ https://developer.ibm.com/tutorials/bd-yarn-intro/
 
 ---
 
-title: HDFS – Assunzioni
+title: HDFS -- Assunzioni
 
 Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
 Hadoop.
 Principali assunzioni:
-• Hardware failure: tolleranza ai guasti implementata al livello applicativo
+- Hardware failure: tolleranza ai guasti implementata al livello applicativo
 (principalmente attraverso la replicazione dei blocchi di dati)
-• Streaming Data Access: orientato alle applicazioni batch, piuttosto che l'uso
+- Streaming Data Access: orientato alle applicazioni batch, piuttosto che l'uso
 interattivo. Favorisce il throughput alla latency
-• Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
-• Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
+- Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
+- Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
 appendervi del contenuto oppure troncarlo
-• "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
+- "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
 interfacce che permettono alle applicazioni di spostarsi vicino a dove i dati sono
 effettivamente immagazzinati
-• Portability across Heterogeneous Hardware and Software Platforms
+- Portability across Heterogeneous Hardware and Software Platforms
 
 ---
 
-title: Hadoop – Modailità d'uso
+title: Hadoop -- Modailità d'uso
 
-• Modalità locale (standalone) [default]
-– Eseguito come un singolo processo Java
-– Utile per il debugging
-• Modalità pseudodistribuita
-– Eseguito come un insieme di processi (NameNode, DataNode,
+- Modalità locale (standalone) [default]
+-- Eseguito come un singolo processo Java
+-- Utile per il debugging
+- Modalità pseudodistribuita
+-- Eseguito come un insieme di processi (NameNode, DataNode,
 Secondary NameNode, ResourceManager, NodeManager,
 WebAppProxy and Map Reduce Job History Server) su una singola
 macchina
-• Modalità pienamente distribuita
-– I vari processi elencati in precedenza sono distribuiti su più macchine
+- Modalità pienamente distribuita
+-- I vari processi elencati in precedenza sono distribuiti su più macchine
 
 
 ---
 
-title: Hadoop MapReduce – InputFormat
+title: Hadoop MapReduce -- InputFormat
 
 Un InputFormat describe la specifica di input per un job
 MapReduce.
 Il framework MapReduce si affida all'InputFormat del job per:
-• Validare la specifica del'input del job.
-• Suddividere i file di in istanze di InputSplit, ciascuna delle
+- Validare la specifica del'input del job.
+- Suddividere i file di in istanze di InputSplit, ciascuna delle
 quali è assegnato ad un Mapper invididuale.
-• Fornire l'implementazione del RecordReader per estrarre
+- Fornire l'implementazione del RecordReader per estrarre
 dall'InputSplit i record che saranno elaborate dal Mapper.
 
 
 ---
 
-title: Hadoop MapReduce – InputSplit
+title: Hadoop MapReduce -- InputSplit
 
 InputSplit rappresenta i dati che devono essere elaborati da un
 certo Mapper.
@@ -543,7 +518,7 @@ mapreduce.map.input.file al path del file di input dello split logico.
 
 ---
 
-title: Hadoop MapReduce – RecordReader
+title: Hadoop MapReduce -- RecordReader
 
 Un RecordReader legge coppie <key, value> da un InputSplit.
 Tipicamente un RecordReader converte la visione dell'input
@@ -556,14 +531,14 @@ ai task chiavi e valori.
 
 ---
 
-title: Hadoop MapReduce – OutputFormat
+title: Hadoop MapReduce -- OutputFormat
 
 OutputFormat descrive la specifica di output per un job
 MapReduce.
 Il framework MapReduce si affida all'OutputFormat del job per:
-• Validare la specifica di output del job; per esempio,
+- Validare la specifica di output del job; per esempio,
 controllare la cartella di output non esista già.
-• Fornire l'implementazione di RecordWriter usata per scrivere i
+- Fornire l'implementazione di RecordWriter usata per scrivere i
 file di output del job. I file di output solo immagazzinati in un
 FileSystem.
 TextOutputFormat è l'OutputFormat predefinito.
@@ -571,7 +546,7 @@ TextOutputFormat è l'OutputFormat predefinito.
 
 ---
 
-title: Hadoop MapReduce – Counter
+title: Hadoop MapReduce -- Counter
 
 I counters rappresentano contatori globali, definiti dal
 framework MapReduce o dalle applicazioni. Ogni
@@ -581,7 +556,7 @@ tipo Counters.Group.
 
 ---
 
-title: Hadoop MapReduce – SkipBadRecords
+title: Hadoop MapReduce -- SkipBadRecords
 
 Hadoop fornisce un'opzione dove un certo insieme di
 input record cattivi può essere saltato durante la fase di
@@ -591,7 +566,7 @@ attraverso la classe SkipBadRecords.
 
 ---
 
-title: Hadoop MapReduce – input/output multipli
+title: Hadoop MapReduce -- input/output multipli
 
 La classe MultipleInputs supporta job MapReduce con più
 input path aventi ciascuno un InputFormat e Mapper diversi.
@@ -604,20 +579,20 @@ p/mapreduce/lib/output/MultipleOutputs.html
 
 ---
 
-title: Hadoop MapReduce – lib
+title: Hadoop MapReduce -- lib
 Nel package org.apache.hadoop.mapreduce.lib si trova
 una libreria di classi di interesse.
 
 --
 
-title: Hadoop MapReduce – scrivere soltanto i valori
+title: Hadoop MapReduce -- scrivere soltanto i valori
 
 Per scrivere soltanto I valori si può usare NullWritable
 come tipo di output.
 
 ---
 
-title: Hadoop – Modalità locale (default)
+title: Hadoop -- Modalità locale (default)
 
 Comandi per shell Unix. Per la PowerShell di Windows è sufficiente usare il
 backslash

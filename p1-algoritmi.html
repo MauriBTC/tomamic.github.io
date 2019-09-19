@@ -413,7 +413,7 @@ g2d.main_loop()
 </blockquote>
 <pre class="prettyprint lang-py" data-lang="py"><code>radius = int(g2d.prompt("Radius? [50-99]"))
 
-if 50 &lt;= radius and radius &lt;= 99 {
+if 50 &lt;= radius and radius &lt;= 99:
     g2d.set_color((0, 0, 255))
     g2d.fill_circle((200, 200), radius)
 
@@ -694,7 +694,8 @@ for i in range(5):  ## range(0, 5)
     x = i * 40
     y = x
     red = i * 60
-    g2d.fill_rect((red, 0, 0), (x, y, 140, 140))
+    g2d.set_color((red, 0, 0))
+    g2d.fill_rect((x, y, 140, 140))
 
 g2d.main_loop()
 </code></pre>
