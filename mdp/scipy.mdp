@@ -15,7 +15,7 @@ title: Python applications
 title: Readability counts
 figure: images/algo/perfect-square.svg
 
-code: python
+code: py
 
     n = 0
     while n <= 0:
@@ -44,7 +44,7 @@ figure: images/fun/function.png
 - Then, you **call** a function to execute it
 - Type *annotations* for params and return value are optional and not verified
 
-code: python
+code: py
 
     def hypotenuse(leg1: float, leg2: float) -> float:
         hyp = (leg1 ** 2 + leg2 ** 2) ** 0.5
@@ -62,17 +62,17 @@ figure: images/fun/month-list.svg
 - Current *length* of a list `x`: `len(x)`
 - Elements *enumerated* from `0` to `len(x)-1`
 
-code: python
+code: py
 
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-code: python
+code: py
 
     num_days = [31, 28, 31, 30, 31, 30,
                 31, 31, 30, 31, 30, 31]
 
-code: python
+code: py
 
     results_by_month = [0] * 12  # List repetition
 
@@ -84,7 +84,7 @@ figure: images/fun/wile-coyote.png
 - **Attention: use valid indices!**
     - But *negative* indices counts from the end
 
-code: python
+code: py
 
     n = len(months)            # 12
     months[3]                  # "Apr"
@@ -100,7 +100,7 @@ code: python
 title: Insertion and removal
 figure: images/fun/shopping-list.png
 
-code: python
+code: py
 
     grocery = ["spam", "egg", "beans"]
 
@@ -119,7 +119,7 @@ code: python
 
 title: Equality and identity
 
-code: python
+code: py
 
     a = ["spam", "egg", "beans"]
     b = a[:]         # new list!
@@ -140,7 +140,7 @@ title: Strings and lists
 - **String**: *immutable* sequence of chars
 - **`join`** and **`split`**: from list to string and viceversa
 
-code: python
+code: py
 
     txt = "Monty Python's Flying Circus"
     txt[3]    # 't'
@@ -148,12 +148,12 @@ code: python
     txt[6:12] # "Python"
     txt[-6:]  # "Circus"
 
-code: python
+code: py
 
     days = ["tue", "thu", "sat"]
     txt = "|".join(days)  # "tue|thu|sat"
 
-code: python
+code: py
 
     txt = "mon|wed|fri"
     days = txt.split("|")  # ["mon", "wed", "fri"]
@@ -164,7 +164,7 @@ title: Tuple
 
 - **Immutable** sequence of values, even of *different type*
 
-code: python
+code: py
 
     # Tuple packing
     pt = 5, 6, "red"
@@ -181,13 +181,13 @@ code: python
 
 title: Cycles on sequences: for
 
-code: python
+code: py
 
     grocery = ["spam", "egg", "bacon", "sausage"]
     for product in grocery:
         print(product)
 
-code: python
+code: py
 
     for val in range(0, 5):
         print(val * val, end=" ")  # 0 1 4 9 16
@@ -202,7 +202,7 @@ code: python
 
 title: Functions on lists
 
-code: python
+code: py
 
     def limit_values(values, max_val):
         # procedure: process data, no direct result
@@ -228,14 +228,14 @@ figure: images/dev/computer-ninja.png
 - Each element: result of an operation on a member of another iterable
 - Condition on elements, optional
 
-code: python
+code: py
 
     squares = [x ** 2 for x in range(12)]
     # squares = []
     # for x in range(12):
     #    squares.append(x ** 2)
 
-code: python
+code: py
 
     even_nums = [str(x) for x in range(12) if (x % 2) == 0]
 
@@ -248,13 +248,13 @@ figure: images/repr/child-fingers.png
 - It generates a sequence of tuples (pairs)
 - In `for` cycles, using both value and index
 
-code: python
+code: py
 
     >>> grocery = ["spam", "egg", "bacon", "sausage"]
     >>> list(enumerate(grocery))
     [(0, "spam"), (1, "egg"), (2, "bacon"), (3, "sausage")]
 
-code: python
+code: py
 
     grocery = ["spam", "egg", "bacon", "sausage"]
     for i, val in enumerate(grocery):
@@ -274,7 +274,7 @@ figure: images/fun/zip.png
 - It generates a sequence of tuples (pairs)
 - The result has the len of the shortest sequence
 
-code: python
+code: py
 
     >>> grocery = ["spam", "egg", "bacon", "sausage"]
     >>> quantities = ["100 g", "6 pc", "200 g", "500 g", "too much"]
@@ -296,14 +296,14 @@ figure: images/fun/legomap.png
 - Applies the function to each value
 - Returns the sequence of results
 
-code: python
+code: py
 
     >>> from math import sqrt
     >>> values = [0, 1, 2, 3, 4]
     >>> list(map(sqrt, values))
     [0.0, 1.0, 1.4142, 1.7320, 2.0]
 
-code: python
+code: py
 
     >>> from math import sqrt
     >>> list(map(sqrt, range(5)))
@@ -344,9 +344,9 @@ figure: images/fun/dictionary.png
 - Sometimes called *map* or *associative array*
 - Unordered set of key / value pairs
     - Keys are *unique*: like *indices* for lists, to access the associated value
-    - They can be `int` or **`str`** (or any other immutable type)
+    - They can be sparse `int` or **`str`** (or any other immutable type)
 
-code: python
+code: py
 
     >>> tel = {"john": 4098, "terry": 4139}
     >>> tel["john"]
@@ -366,7 +366,7 @@ title: Multidim lists
     - Access to elements: two or more indices (or *dimensions*)
     - If bidimensional, called *matrices*
 
-code: python
+code: py
 
     a = [['A', 'B', 'C', 'D'],
          ['E', 'F', 'G', 'H'],
@@ -385,7 +385,7 @@ code: python
 
 title: Sum of columns: matrix
 
-code: python
+code: py
 
     matrix = [[2, 4, 3, 8],
               [9, 3, 2, 7],
@@ -404,7 +404,7 @@ code: python
 
 title: List as pseudo-matrix
 
-code: python
+code: py
 
     matrix = [2, 4, 3, 8,
               9, 3, 2, 7,
@@ -423,12 +423,12 @@ code: python
 
 title: Matrix with known size
 
-code: python
+code: py
 
     matrix = [[' ' for x in range(cols)] for y in range(rows)]
     # all elements are inited as ' ' -- your need may vary
 
-code: python
+code: py
 
     matrix = []
     for y in range(rows):
@@ -460,7 +460,7 @@ title: Writing on file
 - Writing to file: `print` funtion, or `write` method
 - `with` section: at the end the file is closed (also in case of error)
 
-code: python
+code: py
 
     with open("some_file.txt", "w") as f1:
         f1.write("First line\n")   # explicit newline
@@ -474,7 +474,7 @@ code: python
 
 title: Reading from file
 
-code: python
+code: py
 
     with open("some_file.txt", "r") as f1:
         first_line = f1.readline()
@@ -496,7 +496,7 @@ code: python
 
 title: Basic CSV files
 
-code: Python
+code: py
 
     matrix = []
     cols, rows = 0, 0
@@ -516,7 +516,7 @@ code: Python
 
 title: CSV module
 
-code: Python
+code: py
 
     import csv
     matrix = []
@@ -538,7 +538,7 @@ title: I/O for strings and console
 - Strings as streams: `io.StringIO`
 - Console as stream: `sys.stdin`, `sys.stdout`, `sys.stderr`
 
-code: python
+code: py
 
     import io, sys
 
@@ -549,7 +549,7 @@ code: python
         contents = output.getvalue()
         sys.stdout.write(contents)
 
-code: python
+code: py
 
     for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
         print(len(line))    # notice '\n' at the end
@@ -564,7 +564,7 @@ figure: images/fun/garbled-tape.png
     - `except` section is executed, to handle the specific type of error (multiple `except` sections are allowed)
     - A `with` section assures the file is closed
 
-code: python
+code: py
 
     try:
         with open("other_file.txt", "r") as f:
@@ -674,8 +674,9 @@ class: segue dark
 
 ---
 
-title: Modulo NumPy
+title: NumPy module
 figure: images/scipy/numpy-mem.png
+figcaption: np.zeros(shape=(2, 5), dtype=np.int32)
 class: large-figure
 
 - Numeric, 1995; NumPy, 2006
@@ -694,7 +695,7 @@ class: large-figure
 
 title: NumPy arrays
 
-code: Python
+code: py
 
     >>> import numpy as np
     >>> a = np.array([2, 3, 4])
@@ -703,13 +704,13 @@ code: Python
     >>> a.dtype
     dtype('int64')
 
-code: Python
+code: py
 
     >>> b = np.array([1.2, 3.5, 5.1])
     >>> b.dtype
     dtype('float64')
 
-code: Python
+code: py
 
     c = np.array([[1, 2], [3, 4]], dtype=np.float64)
     >>> c
@@ -720,7 +721,7 @@ code: Python
 
 title: Zeros and ones
 
-code: Python
+code: py
 
     >>> np.zeros(4)
     array([0., 0., 0., 0.])
@@ -741,17 +742,17 @@ code: Python
 
 title: Range and shape
 
-code: Python
+code: py
 
     >>> np.arange(10, 30, 5)  # from 10, to 30, step 5
     array([10, 15, 20, 25])
 
-code: Python
+code: py
 
     >>> np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
     array([0., 0.5, 1., 1.5, 2.])
 
-code: Python
+code: py
 
     >>> a = np.arange(15).reshape(3, 5)
     >>> a
@@ -762,6 +763,17 @@ code: Python
     (3, 5)
 
 - *Shape*: the number of elements along each axis
+
+---
+
+title: NumPy internals
+class: large-image
+
+![](images/scipy/strides.png)
+
+- Example in slide #38 (first on NumPy)
+- Problem: byte-address of cell @ `(y, x)`?
+    - `data + y * 20 + x * 4`
 
 ---
 
@@ -785,7 +797,7 @@ title: Elementwise operations
 - A new array holds the result
 - Some ops act *in place*: `+=`, `*=`, ...
 
-code: Python
+code: py
 
     >>> a = np.array([20, 30, 40, 50])
     >>> a < 35
@@ -802,7 +814,7 @@ code: Python
 title: Matrix multiplication
 figure: images/scipy/matrix-mult.svg
 
-code: Python
+code: py
 
     >>> A = np.array([[1, 1],
     ...               [0, 1]])
@@ -824,7 +836,7 @@ title: Aggregate functions
 
 - By default, array handled as a list of numbers, regardless of shape
 
-code: Python
+code: py
 
     >>> b = np.arange(12).reshape(3, 4)
     >>> b
@@ -848,13 +860,13 @@ title: Universal functions
     - Operate elementwise and return an array
     - `sin`, `cos`, `exp` etc.
 
-code: Python
+code: py
 
     >>> A = np.linspace(0, np.pi/2, 4)
     >>> np.sin(A)
     array([0., 0.5, 0.8660254, 1.])
 
-code: Python
+code: py
 
     >>> B = np.arange(3)
     >>> B
@@ -871,7 +883,7 @@ title: Indexing and slicing
 - Multidimensional arrays: one index per axis
     - Indices are given in a tuple separated by commas
 
-code: Python
+code: py
 
     >>> def f(y, x): return 10 * y + x
     >>> b = np.fromfunction(f, (3, 4), dtype=int)
@@ -894,7 +906,7 @@ title: Dots
 - Dots (`...`) represent as many colons as needed
     - ... to produce a complete indexing tuple
 
-code: Python
+code: py
 
     >>> c = np.array( [[[  0,  1,  2],    # a 3D array
                         [ 10, 12, 13]],
@@ -916,7 +928,7 @@ title: Iterating
 - Iterating over a multidim. array: wrt the first axis
 - The `flat` attribute is an iterator over all the elements
 
-code: Python
+code: py
 
     >>> b
     array([[ 0,  1,  2,  3],
@@ -933,7 +945,7 @@ code: Python
 
 title: Shape manipulation
 
-code: Python
+code: py
 
     >>> a = np.random.randint(10, size=(3, 4))
     >>> a
@@ -954,7 +966,7 @@ code: Python
 
 title: Transposition
 
-code: Python
+code: py
 
     >>> a = np.array([[ 2.,  8.,  0.],
                       [ 4.,  5.,  1.]])
@@ -975,7 +987,7 @@ code: Python
 
 title: Stacking
 
-code: Python
+code: py
 
     >>> a = np. array([[ 8.,  8.],
                        [ 0.,  0.]])
@@ -999,7 +1011,7 @@ title: Splitting into several arrays
     - Specifying columns where division should occur
 - `vsplit` works on the vertical axis
 
-code: Python
+code: py
 
     >>> a = np.array([[9., 5., 6., 3., 6., 8., 0., 7., 9.],
                       [1., 4., 9., 2., 2., 1., 0., 6., 2.]])
@@ -1050,7 +1062,7 @@ class: large-figure
 
 title: Determinant and autovectors
 
-code: Python
+code: py
 
     >>> a = np.array([[1.0, 2.0],
                       [3.0, 4.0]])
@@ -1073,7 +1085,7 @@ code: Python
 
 title: Solve a linear system
 
-code: Python
+code: py
 
     >>> a = np.array([[1, 1],
                       [4, 1.5]])
@@ -1105,7 +1117,7 @@ title: Pandas
 
 title: Creating a DataFrame
 
-code: Python
+code: py
 
     >>> import pandas as pd
     >>> dates = pd.date_range('20130101', periods=6)
@@ -1128,7 +1140,7 @@ code: Python
 
 title: DataFrame from a dict
 
-code: Python
+code: py
 
     >>> df2 = pd.DataFrame({
             'A' : 1.,
@@ -1153,7 +1165,7 @@ title: Data summary
 - Transpose: `df.T`
 - Show static summary
 
-code: Python
+code: py
 
     >>> df.describe()
                   A         B         C         D
@@ -1170,7 +1182,7 @@ code: Python
 
 title: Sorting by values or index
 
-code: Python
+code: py
 
     >>> df.sort_values(by='B')  # asc values of B
                        A         B         C         D
@@ -1194,7 +1206,7 @@ code: Python
 
 title: Projection of columns
 
-code: Python
+code: py
 
     >>> df['A']
     2013-01-01    0.469112
@@ -1208,7 +1220,7 @@ code: Python
 
 title: Selection of rows
 
-code: Python
+code: py
 
     >>> df[0:3]
                        A         B         C         D
@@ -1226,7 +1238,7 @@ code: Python
 
 title: Slicing in both axis
 
-code: Python
+code: py
 
     >>> df.loc['20130102':'20130104',['A','B']]
                        A         B
@@ -1243,7 +1255,7 @@ code: Python
 
 title: Boolean filtering
 
-code: Python
+code: py
 
     >>> df[df.A > 0]
                        A         B         C         D
@@ -1264,7 +1276,7 @@ code: Python
 
 title: Setting
 
-code: Python
+code: py
 
     >>> df2 = df.copy()
     >>> df2[df2 > 0] = -df2
@@ -1281,7 +1293,7 @@ code: Python
 
 title: Is-in
 
-code: Python
+code: py
 
     >>> df2 = df.copy()
     >>> df2['E'] = ['one', 'one','two','three','four','three']
@@ -1303,7 +1315,7 @@ code: Python
 
 title: Histogramming
 
-code: Python
+code: py
 
     >>> s = pd.Series(np.random.randint(7, size=10))
     >>> s
@@ -1328,7 +1340,7 @@ title: Concat and merge
 - `concat()`: one piece below the other
 - `merge()`: rows are joined when they have the same `key`
 
-code: Python
+code: py
 
     >>> left = pd.DataFrame({'key': ['foo', 'bar'], 'lval': [1, 2]})
     >>> right = pd.DataFrame({'key': ['foo', 'bar'], 'rval': [4, 5]})
@@ -1345,7 +1357,7 @@ title: Group-by
 - Apply a function to each group independently
 - Combine the results into a data structure
 
-code: Python
+code: py
 
     >>> df = pd.DataFrame({'A' : ['foo', 'bar', 'foo', 'bar',
                                   'foo', 'bar', 'foo', 'foo'],
@@ -1367,7 +1379,7 @@ title: Pivot table
     - Using values as new rows and columns titles
     - Cells contain averages, i.e., `aggfunc=np.mean`
 
-code: Python
+code: py
 
     >>> df = pd.DataFrame({
             'A' : ['one', 'one', 'two', 'three'] * 3,
@@ -1392,14 +1404,14 @@ class: segue dark
 title: Basic plots
 figure: images/scipy/pyplot-1.png images/scipy/pyplot-2.png
 
-code: Python
+code: py
 
     import matplotlib.pyplot as plt
     plt.plot([1, 2, 3, 4])
     plt.ylabel('some numbers')
     plt.show()
 
-code: Python
+code: py
 
     # plot x versus y
     plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
@@ -1414,13 +1426,13 @@ code: Python
 title: Formatting the plot
 figure: images/scipy/pyplot-3.png
 
-code: Python
+code: py
 
     plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
     plt.axis([0, 6, 0, 20])  # xmin, xmax, ymin, ymax
     plt.show()
 
-code: Python
+code: py
 
     # example format strings
     'b'    # blue markers with default shape
@@ -1438,7 +1450,7 @@ code: Python
 title: Plotting NumPy arrays
 figure: images/scipy/pyplot-4.png
 
-code: Python
+code: py
 
     # evenly sampled time at 200ms intervals
     t = np.arange(0., 5., 0.2)
@@ -1454,7 +1466,7 @@ code: Python
 title: Plotting data from dict
 figure: images/scipy/pyplot-5.png
 
-code: Python
+code: py
 
     data = {'a': np.arange(50),
             'c': np.random.randint(0, 20, 50),
@@ -1475,7 +1487,7 @@ title: Plotting with categorical variables
 figure: images/scipy/pyplot-6.png
 class: large-figure
 
-code: Python
+code: py
 
     names = ['group_a', 'group_b', 'group_c']
     values = [1, 10, 100]
@@ -1496,7 +1508,7 @@ code: Python
 title: Subplots in column
 figure: images/scipy/pyplot-7.png
 
-code: Python
+code: py
 
     def f(t):
         return np.exp(-t) * np.cos(2*np.pi*t)
@@ -1516,7 +1528,7 @@ code: Python
 title: Histogram and text
 figure: images/scipy/pyplot-8.png
 
-code: Python
+code: py
 
     mu, sigma = 100, 15
     x = mu + sigma * np.random.randn(10000)
@@ -1537,7 +1549,7 @@ code: Python
 title: Nonlinear axes
 
 
-code: Python
+code: py
 
     # make up some data in the interval ]0, 1[
     mu, sigma = 0.5, 0.4
