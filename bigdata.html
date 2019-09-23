@@ -48,8 +48,8 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 <li>Challenges to traditional computational architectures<ul>
-<li>Handle large quantities of data (volume)</li>
-<li>Readily react to their arrival (velocity)</li>
+<li>Handle large quantities of data (<em>volume</em>)</li>
+<li>Readily react to their arrival (<em>velocity</em>)</li>
 </ul>
 </li>
 </ul></article>
@@ -64,14 +64,14 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <blockquote>
-<p>Big data should be defined at any point in time as “data whose size forces us to look beyond the tried-and-true methods that are prevalent at that time.” (Jacobs, 2009)</p>
+<p>Big data should be defined at any point in time as «data whose size forces us to look beyond the tried-and-true methods that are prevalent at that time.» <em>(Jacobs, 2009)</em></p>
 </blockquote>
 <ul>
-<li>Meta-definition centered on Volume<ul>
+<li>Meta-definition centered on <em>volume</em><ul>
 <li>It ignores other Vs</li>
 </ul>
 </li>
-<li>Moving threshold, for a dataset to be defined as “big data”<ul>
+<li><em>Moving threshold</em>, for a dataset to be defined as “big data”<ul>
 <li>It grows together with technological advances</li>
 </ul>
 </li>
@@ -90,7 +90,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Transaction processing and data storage are largely solved problems</li>
 <li>Data with a traditional RDBMS<ul>
 <li>Easier to <em>get in</em> than <em>get out</em></li>
-<li>Worst pathologies are related to data analysis</li>
+<li>Worst pathologies are related to <strong>data analysis</strong></li>
 </ul>
 </li>
 </ul></article>
@@ -105,8 +105,11 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <ul>
-<li>Nowadays, a dataset which cannot be loaded and processed effectively with desktop tools for data analys and visualization</li>
-<li>A dataset of 7 billion records (Jacob, 2009)</li>
+<li>Nowadays, a dataset is “big”, if<ul>
+<li>It cannot be loaded and processed effectively with desktop tools for data analys and visualization</li>
+</ul>
+</li>
+<li>Ex.: dataset of 7 billion records (Jacob, 2009)</li>
 <li>It can be saved in a common HDD<ul>
 <li>Simple questions (min, max, avg) can be answered quickly, by reading the file sequentially</li>
 <li>More complex queries are difficult</li>
@@ -117,150 +120,6 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Free lunch is over</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>For a long time, programs have taken advantage from growing hardware performances</li>
-<li>Limits to Moore's law<ul>
-<li>Physical limits make it hard to increase the transistor density</li>
-<li>Heat dissipation make it hard to increase frequency</li>
-</ul>
-</li>
-<li>The free lunch is over (Sutter, 2004)<ul>
-<li>Multi-core processors</li>
-<li>Only multi-threaded programs can exploid hardware parallelism</li>
-</ul>
-</li>
-<li>Concurrent programming is hard<ul>
-<li>Deadlock, livelock, starvation, race, etc.</li>
-<li>Some algorithms are intrinsically sequential</li>
-</ul>
-</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Amdahl's law</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>A limit to program speedup (how much it is faster on a parallel hardware)</li>
-</ul>
-<p>T 1 = T ser + T par
-T P ≥ T ser +
-T par
-P
-= fT 1 +
-1−f T 1
-P
-dove fè la frazione seriale non parallelizzabile del lavoro totale
-T 1
-T 1
-1
-S P =
-≤
-≤
-1−f
-1 − f T 1
-T P
-f+ P
-fT 1 +
-P
-1
-1
-S ∞ ≤ lim
-=
-1−f f
-P→∞
-f+
-P</p>
-<ul>
-<li>A program spending 1% of its execution time on a sequential task<ul>
-<li>Speedup limited to max 100 times faster, with unlimited parallelism</li>
-</ul>
-</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Difficoltà della concorrenza (2/2)</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>La legge di Amdahl assume che il workload di un programma sia fisso e che l'obiettivo
-sia ridurre il tempo di esecuzione.
-La legge di Gustafson-Barsis, invece, si occupa della capacità di scalare a problemi di
-dimensione maggiore.
-Se la parte seriale è costante, oppure cresce più lentamente di quella parallelizzabile,
-allora lo speedup cresce insieme al numero di processori.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Sistemi distribuiti</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Le risorse disponibili su una sola macchina sono
-comunque limitate.
-Cosa fare quando non sono più sufficienti?
-Comprare un'altra macchina ed usarla insieme alla
-precedente:
-Siamo entrati nel mondo dei sistemi distribuiti</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Difficoltà dei Sistemi Distribuiti</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>A prima vista potrebbero sembrare non molto diversi da
-programmi concorrenti (soprattutto quelli non sfruttano la
-memoria condivisa).
-In realtà, lo sviluppo di sistemi distribuiti è ancora più complesso:
--- È difficile distinguere un nodo eccessivamente lento da uno fallito
--- È difficile sapere se un comando è stato effettivamente eseguito
--- È difficile fare in modo che i nodi trovino un consenso su qualcosa
--- Etc.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Sistemi per il calcolo distribuito</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Ciò di cui abbiamo bisogno è un computing model che ci
-permetta di esprimere facilmente la computazione di cui
-abbiamo bisogno, delegando i dettagli della sua esecuzione
-ad un framework che deve gestire le complessità dei sistemi
-distribuiti:
--- Fault tolerance
--- Data distribution
--- Parallelization
--- Load balancing</p></article>
  
 </slide>
 
@@ -394,18 +253,27 @@ finestra:
 <slide  >
   
     <hgroup>
-      <h2>MapReduce</h2>
+      <h2>Free lunch is over</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>Introdotto da Google per risolvere i propri problemi
-di Big Data (es. indicizzazione del Web)</li>
-<li>Ispirato alle primitive map e reduce del linguaggio di
-programmazione funzionale Lisp</li>
-<li>Utilizzando un approccio funzionale, può sfruttare la
-ri-esecuzione come meccanismo principale di fault
-tolerance</li>
+<li>For a long time, programs have taken advantage from growing hardware performances</li>
+<li>Limits to Moore's law<ul>
+<li>Physical limits make it hard to increase the transistor density</li>
+<li>Heat dissipation make it hard to increase frequency</li>
+</ul>
+</li>
+<li>The free lunch is over (Sutter, 2004)<ul>
+<li>Multi-core processors</li>
+<li>Multi-threaded programs to exploit hardware parallelism</li>
+</ul>
+</li>
+<li>Concurrent programming is hard<ul>
+<li>Deadlock, livelock, starvation, race, etc.</li>
+<li>Some algorithms are intrinsically sequential</li>
+</ul>
+</li>
 </ul></article>
  
 </slide>
@@ -413,42 +281,120 @@ tolerance</li>
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- primitive</h2>
+      <h2>Amdahl's law</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <p>Un job MapReduce prende in ingresso una collezione di coppie <K 1 ,
-V 1 > e produce una collezione di coppie <K 2 , V 2 >
-L'utente deve specificare due operazioni:
--- map: <K 1 , V 1 >  List&lt;<K 2 , V 2 >&gt;
-per ciascuna coppia di input genera un numero arbitrario di coppie chiave-
-valore intermedie
--- reduce: <K 2 , List<V 2 >&gt;  List<V 2 >
-ricevendo in ingresso una chiave intermedia e l'insieme di valori per quella
-chiave (generati da diversi coppie di input) , fonde i diversi valori, producendone
-in genere zero o uno</p></article>
+      <ul>
+<li>A limit to program speedup (how much it is faster on a parallel hardware)<ul>
+<li><em>T<sub>1</sub> = T<sub>ser</sub> + T<sub>par</sub></em></li>
+<li><em>f = T<sub>ser</sub>/T<sub>1</sub></em></li>
+<li><em>T<sub>P</sub> ≥ T<sub>ser</sub> + T<sub>par</sub>/P = fT<sub>1</sub> + (1−f)T<sub>1</sub>/P</em></li>
+<li><em>S<sub>P</sub> = T<sub>1</sub>/T<sub>P</sub> ≤ T<sub>1</sub>/(fT<sub>1</sub> + (1−f)T<sub>1</sub>/P) = 1/(f + (1−f)/P)</em></li>
+<li><em>S<sub>∞</sub> ≤ lim<sub>P→∞</sub> 1/(f + (1−f)/P) = 1/f</em></li>
+</ul>
+</li>
+<li><em>f</em>: fraction of work which is sequential</li>
+<li>A program spending 1% of its execution time on a sequential task<ul>
+<li>Speedup limited to max 100 times faster, with unlimited parallelism</li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- esempio (1/2)</h2>
+      <h2>Distributed systems</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <p>map(String key, String value):
-// key: document name
-// value: document contents
-for each word w in value:
-EmitIntermediate(w, "1");
-reduce(String key, Iterator values):
-// key: a word
-// values: a list of counts
-int result = 0;
-for each v in values:
-result += ParseInt(v);
-Emit(AsString(result));</p></article>
+      <ul>
+<li>Limited resources on a single node -&gt; more nodes</li>
+<li>Additional problems, wrt parallel systems<ul>
+<li>Is a node dead or very slow?</li>
+<li>Is a task being executed?</li>
+<li>How to reach consensus?</li>
+</ul>
+</li>
+<li>Framework for distributed computing<ul>
+<li>Fault tolerance</li>
+<li>Data distribution</li>
+<li>Parallelization</li>
+<li>Load balancing</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Introduced by Google for indexing the web etc.</li>
+<li>Inspired by <code>map</code> and <code>reduce</code> functions in Lisp</li>
+<li>Functional approach<ul>
+<li>Higher level functions</li>
+<li>Immutable data -&gt; independent execution</li>
+<li>Redundance for fault tolerance</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce basics</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><em>Input</em>: a collection of pairs <code>(K<sub>1</sub>, V<sub>1</sub>)</code></li>
+<li><em>Output</em>: <code>(K<sub>2</sub>, V<sub>2</sub>)</code></li>
+<li><code>map</code><ul>
+<li>For each input pair, it generates a list of intermediate pairs</li>
+<li>Each intermediate key associated with multiple values</li>
+</ul>
+</li>
+<li><code>reduce</code><ul>
+<li>For each intermediate key, it aggregates all the corresponding values into a final result</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>MapReduce example</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>def map(key: str, value: str):
+    # key: document name
+    # value: document contents
+    counts = dict()
+    for w in value.split():
+        counts[w] = 1 + counts.get(w, 0)
+    emit_intermediate(counts)
+
+reduce(key: str, values: list):
+    # key: a word
+    # values: a list of counts
+    result = 0
+    for v in values:
+        result += v
+    emit(result)
+</code></pre></article>
  
 </slide>
 
@@ -470,9 +416,8 @@ a dog
 (a, 1) (dog, 1)
 (cat, 1)
 (a, 1)
-(dog, 1)
-11/12/2018
-(a, 1)
+(dog, 1)</p>
+<p>(a, 1)
 (a, 2)
 (cat, 2)
 (dog, 2)

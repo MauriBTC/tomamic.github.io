@@ -221,12 +221,12 @@ txt[3]    # 't'
 txt[-2]   # 'u'
 txt[6:12] # "Python"
 txt[-6:]  # "Circus"
-
-days = ["tue", "thu", "sat"]
+</code></pre>
+<pre class="" data-lang="python"><code>days = ["tue", "thu", "sat"]
 txt = "|".join(days)  # "tue|thu|sat"
-
-days = "mon|wed|fri".split("|")
-# ["mon", "wed", "fri"]
+</code></pre>
+<pre class="" data-lang="python"><code>txt = "mon|wed|fri"
+days = txt.split("|")  # ["mon", "wed", "fri"]
 </code></pre></article>
  
 </slide>
@@ -423,18 +423,17 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>&gt;&gt;&gt; grocery = ["spam", "egg", "bacon", "sausage"]
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; grocery = ["spam", "egg", "bacon", "sausage"]
 &gt;&gt;&gt; sorted(grocery)
 ['bacon', 'egg', 'sausage', 'spam']
-&gt;&gt;&gt; sorted(grocery, reverse=True)
-['spam', 'sausage', 'egg', 'bacon']
 &gt;&gt;&gt; sorted(grocery, key=len)  # lengths of elements are compared
 ['egg', 'spam', 'bacon', 'sausage']
-</code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; list(reversed(grocery))
+&gt;&gt;&gt; list(reversed(grocery))
 ['sausage', 'bacon', 'egg', 'spam']
+&gt;&gt;&gt; grocery
+["spam", "egg", "bacon", "sausage"]
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; grocery.sort()     # in-place
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; grocery.sort()     # in-place
 &gt;&gt;&gt; grocery.reverse()  # in-place
 &gt;&gt;&gt; grocery
 ['spam', 'sausage', 'egg', 'bacon']
@@ -1415,7 +1414,7 @@ array([[-0.82456484,  0.56576746],
        [-0.41597356, -0.90937671]])
 &gt;&gt;&gt; sum(v.T[0] ** 2)  # magnitude = 1
 1.0
-&gt;&gt;&gt; (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0    
+&gt;&gt;&gt; (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0
 array([ 0.,  0.])
 </code></pre></article>
  
@@ -1433,7 +1432,7 @@ array([ 0.,  0.])
 &gt;&gt;&gt; b = np.array([2200, 5050])
 &gt;&gt;&gt; np.linalg.inv(a) @ b
 array([  700.,  1500.])
-&gt;&gt;&gt; np.linalg.solve(a, b)   
+&gt;&gt;&gt; np.linalg.solve(a, b)
 array([  700.,  1500.])
 </code></pre></article>
  

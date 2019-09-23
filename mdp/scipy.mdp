@@ -148,11 +148,15 @@ code: python
     txt[6:12] # "Python"
     txt[-6:]  # "Circus"
 
+code: python
+
     days = ["tue", "thu", "sat"]
     txt = "|".join(days)  # "tue|thu|sat"
 
-    days = "mon|wed|fri".split("|")
-    # ["mon", "wed", "fri"]
+code: python
+
+    txt = "mon|wed|fri"
+    days = txt.split("|")  # ["mon", "wed", "fri"]
 
 ---
 
@@ -313,22 +317,19 @@ Results in a list: only (!) to visualize them
 
 title: Sort and reverse
 
-code: python
+code: py
 
     >>> grocery = ["spam", "egg", "bacon", "sausage"]
     >>> sorted(grocery)
     ['bacon', 'egg', 'sausage', 'spam']
-    >>> sorted(grocery, reverse=True)
-    ['spam', 'sausage', 'egg', 'bacon']
     >>> sorted(grocery, key=len)  # lengths of elements are compared
     ['egg', 'spam', 'bacon', 'sausage']
-
-code: python
-
     >>> list(reversed(grocery))
     ['sausage', 'bacon', 'egg', 'spam']
+    >>> grocery
+    ["spam", "egg", "bacon", "sausage"]
 
-code: python
+code: py
 
     >>> grocery.sort()     # in-place
     >>> grocery.reverse()  # in-place
@@ -1065,7 +1066,7 @@ code: Python
            [-0.41597356, -0.90937671]])
     >>> sum(v.T[0] ** 2)  # magnitude = 1
     1.0
-    >>> (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0	
+    >>> (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0
     array([ 0.,  0.])
 
 ---
@@ -1079,7 +1080,7 @@ code: Python
     >>> b = np.array([2200, 5050])
     >>> np.linalg.inv(a) @ b
     array([  700.,  1500.])
-    >>> np.linalg.solve(a, b)	
+    >>> np.linalg.solve(a, b)
     array([  700.,  1500.])
 
 ---
@@ -1363,8 +1364,8 @@ code: Python
 title: Pivot table
 
 - Reshape the dataframe
-	- Using values as new rows and columns titles
-	- Cells contain averages, i.e., `aggfunc=np.mean`
+    - Using values as new rows and columns titles
+    - Cells contain averages, i.e., `aggfunc=np.mean`
 
 code: Python
 

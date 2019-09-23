@@ -9,18 +9,18 @@ title: Volume and velocity
 - Big Data often characterized in terms of 5 Vs (+ others)
     - Volume, variety, velocity, value, veracity
 - Challenges to traditional computational architectures
-    - Handle large quantities of data (volume)
-    - Readily react to their arrival (velocity)
+    - Handle large quantities of data (*volume*)
+    - Readily react to their arrival (*velocity*)
 
 ---
 
 title: A meta-definition
 
-> Big data should be defined at any point in time as “data whose size forces us to look beyond the tried-and-true methods that are prevalent at that time.” (Jacobs, 2009)
+> Big data should be defined at any point in time as «data whose size forces us to look beyond the tried-and-true methods that are prevalent at that time.» *(Jacobs, 2009)*
 
-- Meta-definition centered on Volume
+- Meta-definition centered on *volume*
     - It ignores other Vs
-- Moving threshold, for a dataset to be defined as “big data”
+- *Moving threshold*, for a dataset to be defined as “big data”
     - It grows together with technological advances
 
 ---
@@ -30,121 +30,20 @@ title: Big data pathologies
 - Transaction processing and data storage are largely solved problems
 - Data with a traditional RDBMS
     - Easier to *get in* than *get out*
-    - Worst pathologies are related to data analysis
+    - Worst pathologies are related to **data analysis**
 
 ---
 
 title: How much data?
 
-- Nowadays, a dataset which cannot be loaded and processed effectively with desktop tools for data analys and visualization
-- A dataset of 7 billion records (Jacob, 2009)
+- Nowadays, a dataset is “big”, if
+    - It cannot be loaded and processed effectively with desktop tools for data analys and visualization
+- Ex.: dataset of 7 billion records (Jacob, 2009)
 - It can be saved in a common HDD
     - Simple questions (min, max, avg) can be answered quickly, by reading the file sequentially
     - More complex queries are difficult
 - With some effort, it can be loaded in a RDMBS
     - Analysis through SQL queries is way too slow
-
----
-
-title: Free lunch is over
-
-- For a long time, programs have taken advantage from growing hardware performances
-- Limits to Moore's law
-    - Physical limits make it hard to increase the transistor density
-    - Heat dissipation make it hard to increase frequency
-- The free lunch is over (Sutter, 2004)
-    - Multi-core processors
-    - Only multi-threaded programs can exploid hardware parallelism
-- Concurrent programming is hard
-    - Deadlock, livelock, starvation, race, etc.
-    - Some algorithms are intrinsically sequential
-
----
-
-title: Amdahl's law
-
-- A limit to program speedup (how much it is faster on a parallel hardware)
-
-T 1 = T ser + T par
-T P ≥ T ser +
-T par
-P
-= fT 1 +
-1−f T 1
-P
-dove fè la frazione seriale non parallelizzabile del lavoro totale
-T 1
-T 1
-1
-S P =
-≤
-≤
-1−f
-1 − f T 1
-T P
-f+ P
-fT 1 +
-P
-1
-1
-S ∞ ≤ lim
-=
-1−f f
-P→∞
-f+
-P
-
-- A program spending 1% of its execution time on a sequential task
-    - Speedup limited to max 100 times faster, with unlimited parallelism
-
----
-
-title: Difficoltà della concorrenza (2/2)
-
-La legge di Amdahl assume che il workload di un programma sia fisso e che l'obiettivo
-sia ridurre il tempo di esecuzione.
-La legge di Gustafson-Barsis, invece, si occupa della capacità di scalare a problemi di
-dimensione maggiore.
-Se la parte seriale è costante, oppure cresce più lentamente di quella parallelizzabile,
-allora lo speedup cresce insieme al numero di processori.
-
----
-
-title: Sistemi distribuiti
-
-Le risorse disponibili su una sola macchina sono
-comunque limitate.
-Cosa fare quando non sono più sufficienti?
-Comprare un'altra macchina ed usarla insieme alla
-precedente:
-Siamo entrati nel mondo dei sistemi distribuiti
-
----
-
-title: Difficoltà dei Sistemi Distribuiti
-
-A prima vista potrebbero sembrare non molto diversi da
-programmi concorrenti (soprattutto quelli non sfruttano la
-memoria condivisa).
-In realtà, lo sviluppo di sistemi distribuiti è ancora più complesso:
--- È difficile distinguere un nodo eccessivamente lento da uno fallito
--- È difficile sapere se un comando è stato effettivamente eseguito
--- È difficile fare in modo che i nodi trovino un consenso su qualcosa
--- Etc.
-
----
-
-title: Sistemi per il calcolo distribuito
-
-Ciò di cui abbiamo bisogno è un computing model che ci
-permetta di esprimere facilmente la computazione di cui
-abbiamo bisogno, delegando i dettagli della sua esecuzione
-ad un framework che deve gestire le complessità dei sistemi
-distribuiti:
--- Fault tolerance
--- Data distribution
--- Parallelization
--- Load balancing
 
 ---
 
@@ -235,47 +134,92 @@ finestra:
 
 ---
 
+title: Free lunch is over
+
+- For a long time, programs have taken advantage from growing hardware performances
+- Limits to Moore's law
+    - Physical limits make it hard to increase the transistor density
+    - Heat dissipation make it hard to increase frequency
+- The free lunch is over (Sutter, 2004)
+    - Multi-core processors
+    - Multi-threaded programs to exploit hardware parallelism
+- Concurrent programming is hard
+    - Deadlock, livelock, starvation, race, etc.
+    - Some algorithms are intrinsically sequential
+
+---
+
+title: Amdahl's law
+
+- A limit to program speedup (how much it is faster on a parallel hardware)
+    - *T~~1~~ = T~~ser~~ + T~~par~~*
+    - *f = T~~ser~~/T~~1~~*
+    - *T~~P~~ ≥ T~~ser~~ + T~~par~~/P = fT~~1~~ + (1−f)T~~1~~/P*
+    - *S~~P~~ = T~~1~~/T~~P~~ ≤ T~~1~~/(fT~~1~~ + (1−f)T~~1~~/P) = 1/(f + (1−f)/P)*
+    - *S~~∞~~ ≤ lim~~P→∞~~ 1/(f + (1−f)/P) = 1/f*
+- *f*: fraction of work which is sequential
+- A program spending 1% of its execution time on a sequential task
+    - Speedup limited to max 100 times faster, with unlimited parallelism
+
+---
+
+title: Distributed systems
+
+- Limited resources on a single node -> more nodes
+- Additional problems, wrt parallel systems
+    - Is a node dead or very slow?
+    - Is a task being executed?
+    - How to reach consensus?
+- Framework for distributed computing
+    - Fault tolerance
+    - Data distribution
+    - Parallelization
+    - Load balancing
+
+---
+
 title: MapReduce
 
-- Introdotto da Google per risolvere i propri problemi
-di Big Data (es. indicizzazione del Web)
-- Ispirato alle primitive map e reduce del linguaggio di
-programmazione funzionale Lisp
-- Utilizzando un approccio funzionale, può sfruttare la
-ri-esecuzione come meccanismo principale di fault
-tolerance
+- Introduced by Google for indexing the web etc.
+- Inspired by `map` and `reduce` functions in Lisp
+- Functional approach
+    - Higher level functions
+    - Immutable data -> independent execution
+    - Redundance for fault tolerance
 
 ---
 
-title: MapReduce -- primitive
+title: MapReduce basics
 
-Un job MapReduce prende in ingresso una collezione di coppie <K 1 ,
-V 1 > e produce una collezione di coppie <K 2 , V 2 >
-L'utente deve specificare due operazioni:
--- map: <K 1 , V 1 >  List<<K 2 , V 2 >>
-per ciascuna coppia di input genera un numero arbitrario di coppie chiave-
-valore intermedie
--- reduce: <K 2 , List<V 2 >>  List<V 2 >
-ricevendo in ingresso una chiave intermedia e l'insieme di valori per quella
-chiave (generati da diversi coppie di input) , fonde i diversi valori, producendone
-in genere zero o uno
+- *Input*: a collection of pairs `(K~~1~~, V~~1~~)`
+- *Output*: `(K~~2~~, V~~2~~)`
+- `map`
+    - For each input pair, it generates a list of intermediate pairs
+    - Each intermediate key associated with multiple values
+- `reduce`
+    - For each intermediate key, it aggregates all the corresponding values into a final result
 
 ---
 
-title: MapReduce -- esempio (1/2)
+title: MapReduce example
 
-map(String key, String value):
-// key: document name
-// value: document contents
-for each word w in value:
-EmitIntermediate(w, "1");
-reduce(String key, Iterator values):
-// key: a word
-// values: a list of counts
-int result = 0;
-for each v in values:
-result += ParseInt(v);
-Emit(AsString(result));
+code: py
+
+    def map(key: str, value: str):
+        # key: document name
+        # value: document contents
+        counts = dict()
+        for w in value.split():
+            counts[w] = 1 + counts.get(w, 0)
+        emit_intermediate(counts)
+
+    reduce(key: str, values: list):
+        # key: a word
+        # values: a list of counts
+        result = 0
+        for v in values:
+            result += v
+        emit(result)
 
 ---
 
@@ -293,7 +237,7 @@ a dog
 (cat, 1)
 (a, 1)
 (dog, 1)
-11/12/2018
+
 (a, 1)
 (a, 2)
 (cat, 2)
