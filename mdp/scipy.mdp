@@ -771,7 +771,8 @@ class: large-image
 
 ![](images/scipy/strides.png)
 
-- Example in slide #38 (first on NumPy)
+- Example in slide [#38](#38) (first on NumPy)
+    - `np.zeros(shape=(2, 5), dtype=np.int32)`
 - Problem: byte-address of cell @ `(y, x)`?
     - `data + y * 20 + x * 4`
 
