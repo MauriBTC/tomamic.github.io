@@ -1,0 +1,127 @@
+title: Esercizi 2019
+subtitle: Introduzione alla programmazione
+figure: images/dev/geek-girl.jpg
+
+---
+
+title: Esercitazione 1 (09-23)
+class: segue dark
+
+---
+
+title: 1.1 Hello, user!
+figure: images/misc/handshake.png
+
+- Compilare ed eseguire il programma “`Hello world`”
+- In una versione successiva del programma...
+- Chiedere il nome all'utente e aggiungere tale nome al messaggio di saluto
+- Se il nome dell'utente è “`admin`”, mostrare inoltre il messaggio speciale “`At your command`”
+
+---
+
+title: 1.2 Sfera
+figure: images/misc/solids.jpg
+class: large-figure
+
+- Chiedere all'utente il raggio di una sfera e la sua densità (in Kg/m^^3^^)
+- Calcolare e visualizzare la superficie, il volume e il peso della sfera
+
+>
+
+Definire le variabili necessarie (nomi in minuscolo)
+
+Nel modulo `math` è definita la costante `pi`
+
+---
+
+title: 1.3 Anni bisestili
+
+- Chiedere all'utente di inserire un anno
+- Dire se è bisestile oppure no
+- Ripetere tutto ciclicamente, finchè l'utente non inserisce il valore `0`
+
+>
+
+Un anno è bisestile se il suo numero è divisibile per 4, con l'eccezione degli anni secolari (quelli divisibili per 100) che non sono divisibili per 400
+
+---
+
+title: 1.4 Rettangoli con ombra
+figure: images/misc/shadows.png
+
+- Chiedere all'utente un numero `n`
+- Disegnare `n` rettangoli
+    - Ciascuno con posizione, dimensione e colore casuale
+    - Ciascuno con un ombra grigia spostata a destra ed in basso di 5 pixel
+
+>
+
+Fare in modo che i rettangoli e le ombre siano tutti all'interno nel canvas
+
+---
+
+title: 1.5 Sequenza di quadrati
+figure: images/misc/green-squares.png
+
+- Chiedere all'utente un numero `n`
+- Su un canvas 500x500, disegnare `n` quadrati
+    - Quadrati con lato decrescente
+    - Tutti allineati in alto e a sinistra
+- Far variare il colore dei quadrati
+    - Dal nero del quadrato più grande
+    - Fino al verde del quadrato più piccolo
+
+>
+
+Determinare automaticamente le variazioni migliori per lato e colore, prima di iniziare il ciclo
+
+---
+
+title: 1.6 Carattere Unicode
+figure: images/misc/characters.png
+
+- Chiedere all'utente un numero
+- Visualizzare il simbolo Unicode corrispondente
+- Ripetere le operazioni in un ciclo, finchè l'utente non inserisce il valore `0`
+
+>
+
+Usare la funzione `chr` per convertire un codice nel simbolo corrispondente
+
+---
+
+title: 1.7 Tabella ASCII
+
+- Visualizzare la tabella dei codici ASCII
+- Un carattere per ogni riga
+    - All'inizio della riga: il carattere
+    - Di fianco: il codice ASCII
+- Limitare l'intervallo tra 32 a 126 (due costanti)
+
+>
+
+Non c'è input dell'utente
+
+---
+
+title: 1.8 Media dei dispari
+figure: images/misc/data-sequence.png
+
+- Leggere, attraverso un ciclo, una sequenza di numeri naturali
+- La sequenza termina quando l'utente inserisce un valore negativo
+- Calcolare il valore medio, considerando solo i valori dispari tra quelli inseriti
+
+---
+
+title: 1.9 Passeggiata casuale
+
+- Chidere all'utente un numero `n`
+- A partire dalla posizione `x = 0, y = 0`
+- Compiere `n` passi, ciascuno in una direzione casuale
+    - Estrarre un numero casuale `r` tra 0 e 3
+    - Se `r == 0`, sottrarre 1 alla `y` attuale (alto)
+    - Se `r == 1`, sommare 1 alla `x` attuale (destra)
+    - Se `r == 2`, sommare 1 alla `y` attuale (basso)
+    - Se `r == 3`, sottrarre 1 alla `x` attuale (sinistra)
+- Al termine comunicare le coordinate finali e la distanza raggiunta dall'origine, calcolata come `abs(x) + abs(y)`
+

@@ -1,0 +1,259 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Esercizi 2019</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/tomamic.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="theme/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <h1 data-config-title><!-- populated from slide_config.json --></h1>
+  <figure><img src="images/dev/geek-girl.jpg"></figure>
+  <hgroup>
+    <h2>Introduzione alla programmazione</h2>
+    <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
+  </hgroup>
+</slide>
+
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 1 (09-23)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.1 Hello, user!</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/handshake.png">
+        
+      </figure><ul>
+<li>Compilare ed eseguire il programma “<code>Hello world</code>”</li>
+<li>In una versione successiva del programma...</li>
+<li>Chiedere il nome all'utente e aggiungere tale nome al messaggio di saluto</li>
+<li>Se il nome dell'utente è “<code>admin</code>”, mostrare inoltre il messaggio speciale “<code>At your command</code>”</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>1.2 Sfera</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/solids.jpg">
+        
+      </figure><ul>
+<li>Chiedere all'utente il raggio di una sfera e la sua densità (in Kg/m<sup>3</sup>)</li>
+<li>Calcolare e visualizzare la superficie, il volume e il peso della sfera</li>
+</ul>
+<blockquote></blockquote>
+<p>Definire le variabili necessarie (nomi in minuscolo)</p>
+<p>Nel modulo <code>math</code> è definita la costante <code>pi</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.3 Anni bisestili</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Chiedere all'utente di inserire un anno</li>
+<li>Dire se è bisestile oppure no</li>
+<li>Ripetere tutto ciclicamente, finchè l'utente non inserisce il valore <code>0</code></li>
+</ul>
+<blockquote></blockquote>
+<p>Un anno è bisestile se il suo numero è divisibile per 4, con l'eccezione degli anni secolari (quelli divisibili per 100) che non sono divisibili per 400</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.4 Rettangoli con ombra</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/shadows.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Disegnare <code>n</code> rettangoli<ul>
+<li>Ciascuno con posizione, dimensione e colore casuale</li>
+<li>Ciascuno con un ombra grigia spostata a destra ed in basso di 5 pixel</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Fare in modo che i rettangoli e le ombre siano tutti all'interno nel canvas</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.5 Sequenza di quadrati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/green-squares.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Su un canvas 500x500, disegnare <code>n</code> quadrati<ul>
+<li>Quadrati con lato decrescente</li>
+<li>Tutti allineati in alto e a sinistra</li>
+</ul>
+</li>
+<li>Far variare il colore dei quadrati<ul>
+<li>Dal nero del quadrato più grande</li>
+<li>Fino al verde del quadrato più piccolo</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Determinare automaticamente le variazioni migliori per lato e colore, prima di iniziare il ciclo</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.6 Carattere Unicode</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/characters.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero</li>
+<li>Visualizzare il simbolo Unicode corrispondente</li>
+<li>Ripetere le operazioni in un ciclo, finchè l'utente non inserisce il valore <code>0</code></li>
+</ul>
+<blockquote></blockquote>
+<p>Usare la funzione <code>chr</code> per convertire un codice nel simbolo corrispondente</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.7 Tabella ASCII</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Visualizzare la tabella dei codici ASCII</li>
+<li>Un carattere per ogni riga<ul>
+<li>All'inizio della riga: il carattere</li>
+<li>Di fianco: il codice ASCII</li>
+</ul>
+</li>
+<li>Limitare l'intervallo tra 32 a 126 (due costanti)</li>
+</ul>
+<blockquote></blockquote>
+<p>Non c'è input dell'utente</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.8 Media dei dispari</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/data-sequence.png">
+        
+      </figure><ul>
+<li>Leggere, attraverso un ciclo, una sequenza di numeri naturali</li>
+<li>La sequenza termina quando l'utente inserisce un valore negativo</li>
+<li>Calcolare il valore medio, considerando solo i valori dispari tra quelli inseriti</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>1.9 Passeggiata casuale</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Chidere all'utente un numero <code>n</code></li>
+<li>A partire dalla posizione <code>x = 0, y = 0</code></li>
+<li>Compiere <code>n</code> passi, ciascuno in una direzione casuale<ul>
+<li>Estrarre un numero casuale <code>r</code> tra 0 e 3</li>
+<li>Se <code>r == 0</code>, sottrarre 1 alla <code>y</code> attuale (alto)</li>
+<li>Se <code>r == 1</code>, sommare 1 alla <code>x</code> attuale (destra)</li>
+<li>Se <code>r == 2</code>, sommare 1 alla <code>y</code> attuale (basso)</li>
+<li>Se <code>r == 3</code>, sottrarre 1 alla <code>x</code> attuale (sinistra)</li>
+</ul>
+</li>
+<li>Al termine comunicare le coordinate finali e la distanza raggiunta dall'origine, calcolata come <code>abs(x) + abs(y)</code></li>
+</ul></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="theme/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Domande?&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    Michele Tomaiuolo
+    <br>
+    Palazzina 1, int. 5708
+    <br>
+    Ingegneria dell'Informazione, UniPR
+    <br>
+    <a href="http://sowide.unipr.it/tomamic">sowide.unipr.it/tomamic</a>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>

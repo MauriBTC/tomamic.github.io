@@ -299,9 +299,9 @@ code: py
 
     class Ball:
 
-        def __init__(self, pos: (int, int)):
-            self._x = pos[0]
-            self._y = pos[1]
+        def __init__(self, x: int, y: int):
+            self._x = x
+            self._y = y
             self._dx = 5
             self._dy = 5
         # ...
@@ -321,7 +321,7 @@ figure: images/oop/bob-builder.jpg
 
 code: py
 
-    ball = Ball((40, 80))  # Allocation and initialization
+    ball = Ball(40, 80)  # Allocation and initialization
 
 ---
 
@@ -356,8 +356,8 @@ figure: images/oop/balls.png
 code: py
 
     # Create two objects, instances of the Ball class
-    b1 = Ball((140, 180))
-    b2 = Ball((180, 140))
+    b1 = Ball(140, 180)
+    b2 = Ball(180, 140)
 
     for i in range(25):
         b1.move()
@@ -379,14 +379,14 @@ title: Il primo parametro, self
 
 code: py
 
-    b1 = Ball((40, 80))
+    b1 = Ball(40, 80)
     b1.move()
 
 code: py
 
     # Python internals, DON'T do this!
     b1 = object.__new__(Ball)
-    Ball.__init__(b1, (40, 80))
+    Ball.__init__(b1, 40, 80)
     Ball.move(b1)
 
 ---
@@ -395,8 +395,8 @@ title: Animazione di due palline
 
 code: py
 
-    b1 = Ball((40, 80))
-    b2 = Ball((80, 40))
+    b1 = Ball(40, 80)
+    b2 = Ball(80, 40)
 
     def tick():
         g2d.clear_canvas()  # BG
@@ -448,7 +448,7 @@ code: py
 
 code: py
 
-    ball = Ball((40, 80))
+    ball = Ball(40, 80)
     print('ball @', ball.pos)
     # ball.pos = (60, 20)   # with the setter, you could change the pos
 
