@@ -34,17 +34,14 @@ figure: images/fun/wile-coyote.png
 
 code: py
 
-    >>> grocery = ["spam", "eggs", "beans", "bacon"]
-    >>> n = len(grocery)           # 4
-    >>> grocery[0]
-    "spam"
-    >>> grocery[1]
-    "eggs"
-    >>> grocery[n-1]
-    "bacon"
-    >>> grocery[1] = "ketchup"     # replace a value, len is still 4
-    >>> grocery.append("sausage")  # add to the end, len is 5
-    >>> grocery                    # guess!
+    grocery = ["spam", "eggs", "beans", "bacon"]
+    n = len(grocery)           # 4
+    grocery[0]                 # "spam"
+    grocery[1]                 # "eggs"
+    grocery[n-1]               # "bacon"
+    grocery[1] = "ketchup"     # replace a value, len is still 4
+    grocery.append("sausage")  # add to the end, len is 5
+    grocery                    # guess!
 
 ---
 
@@ -129,20 +126,24 @@ code: py
 
 ---
 
-title: Cicli su stringhe 🤔
-
-- Il ciclo `for` scorre i valori qualsiasi sequenza
-- Una stringa è una sequenza di caratteri
+title: Funzioni su liste 🤔
 
 code: py
 
-    text = input("text? ")
+    def limit_values(values, max_val):
+        # procedure: process data, no direct result
+        for i in range(len(values)):
+            if values[i] > max_val:
+                values[i] = max_val
 
-    for c in text:
-        if c in "aeiou":
-            print(c.upper(), end="")
-        else:
-            print(c, end="")
+        # the pythonic way: for i, val in enumerate(values): ...
+
+    def main ():
+        data = [5, 4, 2]
+        limit_values(data, 4)
+        print(data)
+
+    main()
 
 ---
 
@@ -167,24 +168,20 @@ code: py
 
 ---
 
-title: Funzioni su liste 🤔
+title: Cicli su stringhe
+
+- Il ciclo `for` scorre i valori qualsiasi sequenza
+- Una stringa è una sequenza di caratteri
 
 code: py
 
-    def limit_values(values, max_val):
-        # procedure: process data, no direct result
-        for i in range(len(values)):
-            if values[i] > max_val:
-                values[i] = max_val
+    text = input("text? ")
 
-        # the pythonic way: for i, val in enumerate(values): ...
-
-    def main ():
-        data = [5, 4, 2]
-        limit_values(data, 4)
-        print(data)
-
-    main()
+    for c in text:
+        if c in "aeiou":
+            print(c.upper(), end="")
+        else:
+            print(c, end="")
 
 ---
 
@@ -276,7 +273,7 @@ title: Fattoria parlante
 figure: images/oop/animals.png
 
 - Noi definiremo una *classe base* come **interfaccia astratta**
-- Es. `Animal`:
+- Es. `Animal`
     - Tutti gli animali fanno un verso (*interfaccia*)
     - Ogni animale fa un verso diverso (*polimorfismo*)
 

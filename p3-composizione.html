@@ -78,17 +78,14 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; grocery = ["spam", "eggs", "beans", "bacon"]
-&gt;&gt;&gt; n = len(grocery)           # 4
-&gt;&gt;&gt; grocery[0]
-"spam"
-&gt;&gt;&gt; grocery[1]
-"eggs"
-&gt;&gt;&gt; grocery[n-1]
-"bacon"
-&gt;&gt;&gt; grocery[1] = "ketchup"     # replace a value, len is still 4
-&gt;&gt;&gt; grocery.append("sausage")  # add to the end, len is 5
-&gt;&gt;&gt; grocery                    # guess!
+<pre class="prettyprint lang-py" data-lang="py"><code>grocery = ["spam", "eggs", "beans", "bacon"]
+n = len(grocery)           # 4
+grocery[0]                 # "spam"
+grocery[1]                 # "eggs"
+grocery[n-1]               # "bacon"
+grocery[1] = "ketchup"     # replace a value, len is still 4
+grocery.append("sausage")  # add to the end, len is 5
+grocery                    # guess!
 </code></pre></article>
  
 </slide>
@@ -199,21 +196,24 @@ grocery = c + d  # list concatenation --&gt; new list!
 <slide  >
   
     <hgroup>
-      <h2>Cicli su stringhe 🤔</h2>
+      <h2>Funzioni su liste 🤔</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
-<li>Una stringa è una sequenza di caratteri</li>
-</ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>text = input("text? ")
+      <pre class="prettyprint lang-py" data-lang="py"><code>def limit_values(values, max_val):
+    # procedure: process data, no direct result
+    for i in range(len(values)):
+        if values[i] &gt; max_val:
+            values[i] = max_val
 
-for c in text:
-    if c in "aeiou":
-        print(c.upper(), end="")
-    else:
-        print(c, end="")
+    # the pythonic way: for i, val in enumerate(values): ...
+
+def main ():
+    data = [5, 4, 2]
+    limit_values(data, 4)
+    print(data)
+
+main()
 </code></pre></article>
  
 </slide>
@@ -247,24 +247,21 @@ days = "mon|wed|fri".split("|")
 <slide  >
   
     <hgroup>
-      <h2>Funzioni su liste 🤔</h2>
+      <h2>Cicli su stringhe</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>def limit_values(values, max_val):
-    # procedure: process data, no direct result
-    for i in range(len(values)):
-        if values[i] &gt; max_val:
-            values[i] = max_val
+      <ul>
+<li>Il ciclo <code>for</code> scorre i valori qualsiasi sequenza</li>
+<li>Una stringa è una sequenza di caratteri</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>text = input("text? ")
 
-    # the pythonic way: for i, val in enumerate(values): ...
-
-def main ():
-    data = [5, 4, 2]
-    limit_values(data, 4)
-    print(data)
-
-main()
+for c in text:
+    if c in "aeiou":
+        print(c.upper(), end="")
+    else:
+        print(c, end="")
 </code></pre></article>
  
 </slide>
@@ -399,7 +396,7 @@ arena.move_all()
         
       </figure><ul>
 <li>Noi definiremo una <em>classe base</em> come <strong>interfaccia astratta</strong></li>
-<li>Es. <code>Animal</code>:<ul>
+<li>Es. <code>Animal</code><ul>
 <li>Tutti gli animali fanno un verso (<em>interfaccia</em>)</li>
 <li>Ogni animale fa un verso diverso (<em>polimorfismo</em>)</li>
 </ul>
