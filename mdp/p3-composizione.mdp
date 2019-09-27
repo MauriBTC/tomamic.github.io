@@ -216,19 +216,17 @@ title: Lista di palline
 
 code: py
 
-    import g2d
-    from p3_oop_ball import Ball, ARENA_W, ARENA_H
+    from p2_oop_ball import Ball, ARENA_W, ARENA_H
 
-    def update():
-        g2d.fill_canvas((255, 255, 255))  # BG
+    def tick():
+        g2d.clear_canvas()  # BG
         for b in balls:
             b.move()
-            g2d.draw_rect((127, 127, 127), b.position())  # FG
+            g2d.fill_rect(b.position())  # FG
 
-    balls = [Ball((40, 80)), Ball((80, 40)), Ball((120, 120))]
+    balls = [Ball(40, 80), Ball(80, 40), Ball(120, 120)]
     g2d.init_canvas((ARENA_W, ARENA_H))
-    g2d.main_loop(update, 1000 // 30)  # Millis
-
+    g2d.main_loop(tick)
 
 >
 
@@ -254,8 +252,8 @@ code: py
                 b.move()
 
     arena = BallArena()
-    arena.add( Ball((40, 80)) )
-    arena.add( Ball((80, 40)) ) # ...
+    arena.add(Ball(40, 80))
+    arena.add(Ball(80, 40)) # ...
     arena.move_all()
 
 ---
@@ -386,9 +384,7 @@ figure: images/oop/actors.svg
 
 code: py
 
-    arena.add( Ball((40, 80)) )
-    arena.add( Ghost((120, 40)) ) # ...
-    arena.move_all()
+    arena.add(some_actor)  # any of Ball, Ghost etc.
 
 - Principio di **sostituzione** di Liskov
     - Si può sempre usare un oggetto di una *classe derivata*, al posto di uno della *classe base*
@@ -421,8 +417,8 @@ code: py
 
     class Ghost(Actor):
 
-        def __init__(self, arena, x, y):
-            self._x, self._y = x, y
+        def __init__(self, arena: Arena, pos: (int, int)):
+            self._x, self._y = pos
             self._arena = arena  # save a ref to the arena
             arena.add(self)      # register yourself into the arena
 
