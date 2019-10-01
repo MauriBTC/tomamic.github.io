@@ -125,3 +125,131 @@ title: 1.9 Passeggiata casuale
     - Se `r == 3`, sottrarre 1 alla `x` attuale (sinistra)
 - Al termine comunicare le coordinate finali e la distanza raggiunta dall'origine, calcolata come `abs(x) + abs(y)`
 
+---
+
+title: Esercitazione 2 (09-30)
+class: segue dark
+
+---
+
+title: 2.1 Funzione, Fahrenheit
+figure: images/misc/thermometer.png
+
+- Definire una funzione `cels_to_fahr`
+    - Parametro: temperatura in gradi Celsius, in `float`
+    - Risultato: temperatura in gradi Fahrenheit, in `float`
+- Invocare la funzione dalla shell interattiva
+- Definire poi una funzione `main`
+    - *Procedura, senza parametri e senza risultato*
+    - Chiedere all'utente la temperatura in gradi Celsius
+    - Poi chiamare `cels_to_fahr` con questo parametro
+    - Infine mostrare all'utente il risultato
+
+>
+
+Partire dalla formula `fahr = cels * 1.8 + 32`
+
+---
+
+title: 2.2 Box
+
+- Classe che modella un riquadro
+    - Due campi privati, per largezza ed altezza: `_width`, `_heigth`
+    - Due metodi, per ottenere area e perimetro: `area`, `perimeter`
+- Nel corpo principale del programma, creare e usare un riquadro
+    - Chiedere all'utente le dimensioni del riquadro
+    - Passare queste dimensioni al costruttore, come parametri
+    - Mostrare area e perimetro del riquadro creato
+
+---
+
+title: 2.3 Triangolo di cifre
+
+- Leggere un numero intero positivo `n` (< 10)
+- Per ciascun valore `y` tra 1 ed `n`...
+- Stampare una riga con le cifre da 1 ad `y`
+
+code: Output
+
+    1
+    12
+    123
+    1234
+
+>
+
+Usare due cicli for annidati <br>
+All'inizio non considerare `n`, ma fissare `y` e scrivere una sola riga: `y = 3` → `“123”` <br>
+Poi racchiudere tutto in un ciclo for esterno
+
+---
+
+title: 2.4 Triangolo di cerchi colorati
+figure: images/misc/xmas-triangle.png
+
+- Chiedere all'utente un numero `n`
+- Disegnare `n` righe di cerchi, allineate a sinistra
+- Il numero di riga corrisponde al numero di cerchi da disegnare
+- Ogni cerchio ha un colore casuale
+
+---
+
+title: 2.5 Animazione pallina
+figure: images/oop/anim-rotate.png
+
+- Partire dall'esempio dell'animazione orizzontale, senza classi
+    - Quando la pallina arriva ad uno dei 4 bordi...
+    - Cambia direzione di 90°, in senso orario
+    - Es. Arrivata al bordo destro, vira verso il basso
+- Mostrare l'animazione di una pallina su un canvas
+
+---
+
+title: 2.6 Pallina con svolta
+figure: images/oop/anim-rotate.png
+
+- Creare una classe `TurningBall`
+    - A partire dalla classe `Ball` vista a lezione
+- Modificare il metodo `move`
+    - Quando la pallina arriva ad uno dei 4 bordi...
+    - Vira la direzione di 90°, in senso orario
+    - Es. Arrivata al bordo destro, vira verso il basso
+
+---
+
+title: 2.7 Rimbalzi con gravità
+figure: images/misc/bouncing-ball.jpg
+
+- Creare una classe `FallingBall`
+    - A partire dalla classe `Ball` vista a lezione
+- Nel metodo `move`, aggiungere l'effetto della gravità
+    - Accelerazione: aggiungere un piccolo valore *costante* alla velocità verticale
+    - `g = 0.4`
+    - `dy += g`
+    - Quando si tocca il fondo, cambiare il segno di `dy`
+- Mostrare l'animazione di una pallina, con l'effetto della gravità
+
+---
+
+title: 2.8 Palline colorate
+
+- Aggiungere ai dati della pallina (es. 2.7) anche un colore
+    - Generare una tupla `RGB` casuale, nell'inizializzatore
+- Aggiungere un corrispondente metodo *getter* denominato `color`
+    - Per ottenere dall'esterno il colore della pallina
+    - Restituire il colore come una tupla (tripla RGB)
+- Creare due palline e mostrarne graficamente il movimento
+    - Per ogni frame, chiamare il metodo `move` di ogni pallina
+    - Rappresentare un rettangolo o un cerchio colorato nella posizione aggiornata di ogni pallina
+
+---
+
+title: 2.9 Albero di cerchi colorati
+figure: images/misc/xmas-tree.png
+
+- Chiedere all'utente un numero `n`
+- Generare `n` righe di cerchi, allineate al centro
+- Il numero di riga corrisponde al numero di cerchi da disegnare
+- Ogni cerchio ha un colore casuale
+- Aggiungere in fondo una riga con un solo cerchio
+

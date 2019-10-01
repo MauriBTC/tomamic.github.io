@@ -714,8 +714,8 @@ code: py
 
     c = np.array([[1, 2], [3, 4]], dtype=np.float64)
     >>> c
-    array([[1, 2.],
-           [3, 4.]])
+    array([[1., 2.],
+           [3., 4.]])
 
 ---
 
@@ -724,7 +724,7 @@ title: Zeros and ones
 code: py
 
     >>> np.zeros(4)
-    array([0, 0, 0, 0.])
+    array([0, 0, 0, 0])
 
     >>> np.ones((2, 3), dtype=np.int16)  # dtype can also be specified
     array([[[ 1, 1, 1],
@@ -750,7 +750,7 @@ code: py
 code: py
 
     >>> np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
-    array([0, 0.5, 1, 1.5, 2.])
+    array([0, 0.5, 1, 1.5, 2])
 
 code: py
 
@@ -878,7 +878,7 @@ title: Data type objects
     - Examples: `"i2"`, `"f4"`, `"U10"` (10 chars) , `"O"` (Py obj)
     - `"<"` little endian, `">"` big endian
 
-code:
+code: py
 
     a = np.array([1, 2, 3, 4], dtype="<i2")
     a  # array([1, 2, 3, 4], dtype=int16)
@@ -1002,7 +1002,7 @@ code: py
 
     >>> A = np.linspace(0, np.pi/2, 4)
     >>> np.sin(A)
-    array([0, 0.5, 0.8660254, 1.])
+    array([0, 0.5, 0.8660254, 1])
 
 code: py
 
@@ -1106,16 +1106,16 @@ title: Transposition
 
 code: py
 
-    >>> a = np.array([[ 2,  8,  0.],
-                      [ 4,  5,  1.]])
+    >>> a = np.array([[ 2,  8,  0],
+                      [ 4,  5,  1]])
     >>> a.shape
     (2, 3)
     >>> a.strides
     (24, 8)
     >>> a.T  # returns a transposed view, same as a.transpose()
-    array([[ 2,  4.],
-           [ 8,  5.],
-           [ 0,  1.]])
+    array([[ 2,  4],
+           [ 8,  5],
+           [ 0,  1]])
     >>> a.T.shape
     (3, 2)
     >>> a.T.strides
@@ -1127,18 +1127,18 @@ title: Stacking
 
 code: py
 
-    >>> a = np. array([[ 8,  8.],
-                       [ 0,  0.]])
-    >>> b = np.array([[ 1,  8.],
-                      [ 0,  4.]])
+    >>> a = np. array([[ 8,  8],
+                       [ 0,  0]])
+    >>> b = np.array([[ 1,  8],
+                      [ 0,  4]])
     >>> np.vstack((a, b))
-    array([[ 8,  8.],
-           [ 0,  0.],
-           [ 1,  8.],
-           [ 0,  4.]])
+    array([[ 8,  8],
+           [ 0,  0],
+           [ 1,  8],
+           [ 0,  4]])
     >>> np.hstack((a, b))
-    array([[ 8,  8,  1,  8.],
-           [ 0,  0,  0,  4.]])
+    array([[ 8,  8,  1,  8],
+           [ 0,  0,  0,  4]])
 
 ---
 
@@ -1151,16 +1151,16 @@ title: Splitting into several arrays
 
 code: py
 
-    >>> a = np.array([[9, 5, 6, 3, 6, 8, 0, 7, 9.],
-                      [1, 4, 9, 2, 2, 1, 0, 6, 2.]])
+    >>> a = np.array([[9, 5, 6, 3, 6, 8, 0, 7, 9],
+                      [1, 4, 9, 2, 2, 1, 0, 6, 2]])
     >>> np.hsplit(a, 3)   # Split a into 3
-    [array([[ 9,  5,  6.], [ 1,  4,  9.]]),
-     array([[ 3,  6,  8.], [ 2,  2,  1.]]),
-     array([[ 0,  7,  9.], [ 0,  6,  2.]])]
+    [array([[ 9,  5,  6], [ 1,  4,  9]]),
+     array([[ 3,  6,  8], [ 2,  2,  1]]),
+     array([[ 0,  7,  9], [ 0,  6,  2]])]
     >>> np.hsplit(a, (3, 4))   # Split after 3rd and 4th column
-    [array([[ 9,  5,  6.], [ 1,  4,  9.]]),
-     array([[ 3.], [ 2.]]),
-     array([[ 6,  8,  0,  7,  9.], [ 2,  1,  0,  6,  2.]])]
+    [array([[ 9,  5,  6], [ 1,  4,  9]]),
+     array([[ 3], [ 2]]),
+     array([[ 6,  8,  0,  7,  9], [ 2,  1,  0,  6,  2]])]
 
 ---
 
@@ -1177,8 +1177,8 @@ title: Linear algebra
            [ 0,  1. ]])
     >>> u = np.eye(2)  # unit 2x2 matrix; "eye" represents "I"
     >>> u
-    array([[ 1,  0.],
-           [ 0,  1.]])
+    array([[ 1,  0],
+           [ 0,  1]])
 
 ---
 
@@ -1217,7 +1217,7 @@ code: py
     >>> sum(v.T[0] ** 2)  # magnitude = 1
     1.0
     >>> (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0
-    array([ 0,  0.])
+    array([ 0,  0])
 
 ---
 
@@ -1229,9 +1229,9 @@ code: py
                       [4, 1.5]])
     >>> b = np.array([2200, 5050])
     >>> np.linalg.inv(a) @ b
-    array([  700,  1500.])
+    array([  700,  1500])
     >>> np.linalg.solve(a, b)
-    array([  700,  1500.])
+    array([  700,  1500])
 
 ---
 

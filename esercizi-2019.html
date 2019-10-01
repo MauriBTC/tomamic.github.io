@@ -234,6 +234,232 @@ URL: https://code.google.com/p/io-2012-slides
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 2 (09-30)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.1 Funzione, Fahrenheit</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/thermometer.png">
+        
+      </figure><ul>
+<li>Definire una funzione <code>cels_to_fahr</code><ul>
+<li>Parametro: temperatura in gradi Celsius, in <code>float</code></li>
+<li>Risultato: temperatura in gradi Fahrenheit, in <code>float</code></li>
+</ul>
+</li>
+<li>Invocare la funzione dalla shell interattiva</li>
+<li>Definire poi una funzione <code>main</code><ul>
+<li><em>Procedura, senza parametri e senza risultato</em></li>
+<li>Chiedere all'utente la temperatura in gradi Celsius</li>
+<li>Poi chiamare <code>cels_to_fahr</code> con questo parametro</li>
+<li>Infine mostrare all'utente il risultato</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Partire dalla formula <code>fahr = cels * 1.8 + 32</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.2 Box</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Classe che modella un riquadro<ul>
+<li>Due campi privati, per largezza ed altezza: <code>_width</code>, <code>_heigth</code></li>
+<li>Due metodi, per ottenere area e perimetro: <code>area</code>, <code>perimeter</code></li>
+</ul>
+</li>
+<li>Nel corpo principale del programma, creare e usare un riquadro<ul>
+<li>Chiedere all'utente le dimensioni del riquadro</li>
+<li>Passare queste dimensioni al costruttore, come parametri</li>
+<li>Mostrare area e perimetro del riquadro creato</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.3 Triangolo di cifre</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Leggere un numero intero positivo <code>n</code> (&lt; 10)</li>
+<li>Per ciascun valore <code>y</code> tra 1 ed <code>n</code>...</li>
+<li>Stampare una riga con le cifre da 1 ad <code>y</code></li>
+</ul>
+<pre class="" data-lang="Output"><code>1
+12
+123
+1234
+</code></pre>
+<blockquote></blockquote>
+<p>Usare due cicli for annidati <br>
+All'inizio non considerare <code>n</code>, ma fissare <code>y</code> e scrivere una sola riga: <code>y = 3</code> → <code>“123”</code> <br>
+Poi racchiudere tutto in un ciclo for esterno</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.4 Triangolo di cerchi colorati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/xmas-triangle.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Disegnare <code>n</code> righe di cerchi, allineate a sinistra</li>
+<li>Il numero di riga corrisponde al numero di cerchi da disegnare</li>
+<li>Ogni cerchio ha un colore casuale</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.5 Animazione pallina</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-rotate.png">
+        
+      </figure><ul>
+<li>Partire dall'esempio dell'animazione orizzontale, senza classi<ul>
+<li>Quando la pallina arriva ad uno dei 4 bordi...</li>
+<li>Cambia direzione di 90°, in senso orario</li>
+<li>Es. Arrivata al bordo destro, vira verso il basso</li>
+</ul>
+</li>
+<li>Mostrare l'animazione di una pallina su un canvas</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.6 Pallina con svolta</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-rotate.png">
+        
+      </figure><ul>
+<li>Creare una classe <code>TurningBall</code><ul>
+<li>A partire dalla classe <code>Ball</code> vista a lezione</li>
+</ul>
+</li>
+<li>Modificare il metodo <code>move</code><ul>
+<li>Quando la pallina arriva ad uno dei 4 bordi...</li>
+<li>Vira la direzione di 90°, in senso orario</li>
+<li>Es. Arrivata al bordo destro, vira verso il basso</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.7 Rimbalzi con gravità</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bouncing-ball.jpg">
+        
+      </figure><ul>
+<li>Creare una classe <code>FallingBall</code><ul>
+<li>A partire dalla classe <code>Ball</code> vista a lezione</li>
+</ul>
+</li>
+<li>Nel metodo <code>move</code>, aggiungere l'effetto della gravità<ul>
+<li>Accelerazione: aggiungere un piccolo valore <em>costante</em> alla velocità verticale</li>
+<li><code>g = 0.4</code></li>
+<li><code>dy += g</code></li>
+<li>Quando si tocca il fondo, cambiare il segno di <code>dy</code></li>
+</ul>
+</li>
+<li>Mostrare l'animazione di una pallina, con l'effetto della gravità</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.8 Palline colorate</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Aggiungere ai dati della pallina (es. 2.7) anche un colore<ul>
+<li>Generare una tupla <code>RGB</code> casuale, nell'inizializzatore</li>
+</ul>
+</li>
+<li>Aggiungere un corrispondente metodo <em>getter</em> denominato <code>color</code><ul>
+<li>Per ottenere dall'esterno il colore della pallina</li>
+<li>Restituire il colore come una tupla (tripla RGB)</li>
+</ul>
+</li>
+<li>Creare due palline e mostrarne graficamente il movimento<ul>
+<li>Per ogni frame, chiamare il metodo <code>move</code> di ogni pallina</li>
+<li>Rappresentare un rettangolo o un cerchio colorato nella posizione aggiornata di ogni pallina</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>2.9 Albero di cerchi colorati</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/xmas-tree.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente un numero <code>n</code></li>
+<li>Generare <code>n</code> righe di cerchi, allineate al centro</li>
+<li>Il numero di riga corrisponde al numero di cerchi da disegnare</li>
+<li>Ogni cerchio ha un colore casuale</li>
+<li>Aggiungere in fondo una riga con un solo cerchio</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
