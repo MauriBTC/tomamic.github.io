@@ -559,7 +559,7 @@ MCD(a, b) = MCD(b, a mod b), se b &gt; 0</p>
 <slide  >
   
     <hgroup>
-      <h2>Combinazioni di simboli</h2>
+      <h2>Configurazioni di simboli</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -567,15 +567,9 @@ MCD(a, b) = MCD(b, a mod b), se b &gt; 0</p>
         <img src="images/fun/bike-lock.png">
         
       </figure><ul>
-<li>Scrivere una funzione per generare tutte le combinazioni di lunghezza 3<ul>
-<li>Parametri: <code>str</code> contenente l'insieme dei simboli validi (presenti su ogni ruota)</li>
-<li>Risultato: lista di <code>str</code> (combinazioni)</li>
-</ul>
-</li>
-<li>Possibile approccio<ul>
-<li>Usare 3 cicli <code>for</code> annidati</li>
-<li>Ogni <code>for</code> scorre tutto l'insieme di simboli</li>
-<li>Una combinazione è una <code>str</code>, ottenuta concatenando i 3 simboli correnti</li>
+<li>Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (<em>disposizioni con ripetizione</em>)<ul>
+<li>Parametri: <code>str</code> contenente l'insieme dei simboli (presenti su ogni ruota)</li>
+<li>Risultato: lista di <code>str</code> (configurazioni)</li>
 </ul>
 </li>
 <li>Per test, fornire in input le vocali <code>"AEIOU"</code>, per ottenere:<ul>
@@ -584,6 +578,9 @@ MCD(a, b) = MCD(b, a mod b), se b &gt; 0</p>
 </li>
 </ul>
 <blockquote></blockquote>
+<p>Possibile approccio con 3 cicli <code>for</code> annidati <br>
+Ogni <code>for</code> scorre tutto l'insieme di simboli <br>
+Configurazione: <code>str</code> con i 3 simboli correnti</p>
 <p><a href="http://www.ce.unipr.it/brython/?p4_fun_combine.py">http://www.ce.unipr.it/brython/?p4_fun_combine.py</a></p></article>
  
 </slide>

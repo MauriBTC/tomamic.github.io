@@ -316,18 +316,20 @@ Segnare in un `bool` se si è incontrato un asterisco iniziale, ma non ancora un
 
 ---
 
-title: 3.4 Combinazioni di simboli
+title: 3.4 Configurazioni di simboli
 figure: images/fun/bike-lock.png
 
-- Scrivere una funzione per generare tutte le combinazioni di lunghezza 3
-    - Parametri: `str` contenente l'insieme dei simboli validi (presenti su ogni ruota)
-    - Risultato: lista di `str` (combinazioni)
-- Possibile approccio
-    - Usare 3 cicli `for` annidati
-    - Ogni `for` scorre tutto l'insieme di simboli
-    - Una combinazione è una `str`, ottenuta concatenando i 3 simboli correnti
+- Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (*disposizioni con ripetizione*)
+    - Parametri: `str` contenente l'insieme dei simboli (presenti su ogni ruota)
+    - Risultato: lista di `str` (configurazioni)
 - Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
     - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
+
+>
+
+Possibile approccio con 3 cicli `for` annidati <br>
+Ogni `for` scorre tutto l'insieme di simboli <br>
+Configurazione: `str` con i 3 simboli correnti
 
 ---
 
@@ -452,17 +454,17 @@ Saranno accettate esclusivamente le soluzioni ricorsive
 
 ---
 
-title: 4.4 Combinazioni
+title: 4.4 Configurazioni
 figure: images/fun/bike-lock.png
 
-- Generare tutte le combinazioni di simboli
+- Generare tutte le configurazioni di simboli
     - Parametro: numero di ruote
     - Parametro: `str` contenente i possibili simboli
     - Risultato: una lista di stringhe
 - Algoritmo:
-    - Zero ruote: l'unica combinazione è la stringa vuota: `['']`
+    - Zero ruote: l'unica configurazione è la stringa vuota: `['']`
     - Altrimenti: per ogni elemento della prima ruota...
-    - Concatenarlo con tutte le combinazioni sulle ruote rimanenti (ricorsione)
+    - Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)
 
 >
 

@@ -71,8 +71,8 @@ figure: images/repr/sum-binary.jpg
 - Informazione digitale nei calcolatori rappresentata con una sequenza di 0 e 1
     - Sistema ideato da Leibniz, ~1700
     - Calcolatore progr. Zuse, ~1940
-- Ogni elemento di una sequenza binaria viene detto *bit*
-- Una sequenza di 8 bit viene detta *byte*
+- Ogni elemento di una sequenza binaria viene detto **bit**
+- Una sequenza di *8 bit* viene detta **byte**
 
 ---
 
@@ -138,8 +138,9 @@ figure: images/repr/4bits.png
 
 ![](images/repr/bin-hex.png)
 
-- Ogni gruppo di 4 bit: 16 configurazioni diverse (2^^4^^ = 16)
-- Ciascuna combinazione corrisponde ad uno dei 16 simboli esadecimali
+- Ogni gruppo di 4 bit: 16 configurazioni diverse
+    - *Disposizioni con ripetizione*: `2^^4^^ = 16`
+- Ciascuna configurazione corrisponde ad uno dei 16 simboli esadecimali
 
 ---
 
@@ -230,7 +231,7 @@ figure: images/repr/4bits-sign.png
 - Anche così, il primo bit indica il segno
     - 0 positivo, 1 negativo
 - *Attenzione*: bisogna conoscere codifica e num bit
-    - Esempi seguenti: ogni intero con segno memorizzato in un singolo byte
+    - Esempi seguenti: ogni intero con segno memorizzato in un singolo *byte*
 
 ---
 
@@ -369,8 +370,8 @@ title: Funzione e tabella di verità
 class: large-table
 
 - Una *tabella di verità* permette di definire una *funzione booleana*
-- Valore risultante per ciascuna combinazione dei valori in ingresso
-- A volte, *specifica incompleta* (certe combinazioni di ingressi non possono verificarsi) → Non è specificato alcun valore
+- Valore risultante per ciascuna configurazione dei valori in ingresso
+- A volte, *specifica incompleta* (certe configurazioni di ingressi non possono verificarsi) → Non è specificato alcun valore
 
  A | B | C | F~~1~~
 ---|---|---|---

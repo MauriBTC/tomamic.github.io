@@ -394,7 +394,7 @@ figure: images/comp/knapsack.svg
     - Su macchine deterministiche: non noto algoritmo polinomiale per la **ricerca** di una soluzione...
     - Ma algoritmo polinomiale per la **verifica** di una soluzione
 - Esempio NP: *Knapsack*
-    - ∃ combinazione di elementi che realizza utilità `≥V`, con peso `≤W`?
+    - ∃ configurazione di elementi che realizza utilità `≥V`, con peso `≤W`?
 - *Linguaggi di classe P, oppure NP*: stringa `x` riconosciuta in tempo polinomiale rispetto a `|x|` da *DTM*, oppure *NTM*
 
 ---
@@ -421,5 +421,5 @@ figure: images/comp/classes.svg
 - Esempio: *Knapsack*
 - Esempio: *SAT*
     - Data una formula booleana *PdS*, è soddisfacibile?
-    - ∃ combinazione di input che dà risultato vero?
+    - ∃ configurazione di input che dà risultato vero?
 

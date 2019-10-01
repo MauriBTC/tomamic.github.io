@@ -557,7 +557,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>3.4 Combinazioni di simboli</h2>
+      <h2>3.4 Configurazioni di simboli</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -565,22 +565,20 @@ URL: https://code.google.com/p/io-2012-slides
         <img src="images/fun/bike-lock.png">
         
       </figure><ul>
-<li>Scrivere una funzione per generare tutte le combinazioni di lunghezza 3<ul>
-<li>Parametri: <code>str</code> contenente l'insieme dei simboli validi (presenti su ogni ruota)</li>
-<li>Risultato: lista di <code>str</code> (combinazioni)</li>
-</ul>
-</li>
-<li>Possibile approccio<ul>
-<li>Usare 3 cicli <code>for</code> annidati</li>
-<li>Ogni <code>for</code> scorre tutto l'insieme di simboli</li>
-<li>Una combinazione è una <code>str</code>, ottenuta concatenando i 3 simboli correnti</li>
+<li>Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (<em>disposizioni con ripetizione</em>)<ul>
+<li>Parametri: <code>str</code> contenente l'insieme dei simboli (presenti su ogni ruota)</li>
+<li>Risultato: lista di <code>str</code> (configurazioni)</li>
 </ul>
 </li>
 <li>Per test, fornire in input le vocali <code>"AEIOU"</code>, per ottenere:<ul>
 <li><code>["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...</code></li>
 </ul>
 </li>
-</ul></article>
+</ul>
+<blockquote></blockquote>
+<p>Possibile approccio con 3 cicli <code>for</code> annidati <br>
+Ogni <code>for</code> scorre tutto l'insieme di simboli <br>
+Configurazione: <code>str</code> con i 3 simboli correnti</p></article>
  
 </slide>
 
@@ -806,7 +804,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>4.4 Combinazioni</h2>
+      <h2>4.4 Configurazioni</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -814,16 +812,16 @@ URL: https://code.google.com/p/io-2012-slides
         <img src="images/fun/bike-lock.png">
         
       </figure><ul>
-<li>Generare tutte le combinazioni di simboli<ul>
+<li>Generare tutte le configurazioni di simboli<ul>
 <li>Parametro: numero di ruote</li>
 <li>Parametro: <code>str</code> contenente i possibili simboli</li>
 <li>Risultato: una lista di stringhe</li>
 </ul>
 </li>
 <li>Algoritmo:<ul>
-<li>Zero ruote: l'unica combinazione è la stringa vuota: <code>['']</code></li>
+<li>Zero ruote: l'unica configurazione è la stringa vuota: <code>['']</code></li>
 <li>Altrimenti: per ogni elemento della prima ruota...</li>
-<li>Concatenarlo con tutte le combinazioni sulle ruote rimanenti (ricorsione)</li>
+<li>Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)</li>
 </ul>
 </li>
 </ul>

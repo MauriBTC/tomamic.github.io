@@ -381,20 +381,20 @@ figure: images/misc/cubic-function.png
 
 ---
 
-title: Combinazioni di simboli
+title: Configurazioni di simboli
 figure: images/fun/bike-lock.png
 
-- Scrivere una funzione per generare tutte le combinazioni di lunghezza 3
-    - Parametri: `str` contenente l'insieme dei simboli validi (presenti su ogni ruota)
-    - Risultato: lista di `str` (combinazioni)
-- Possibile approccio
-    - Usare 3 cicli `for` annidati
-    - Ogni `for` scorre tutto l'insieme di simboli
-    - Una combinazione è una `str`, ottenuta concatenando i 3 simboli correnti
+- Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (*disposizioni con ripetizione*)
+    - Parametri: `str` contenente l'insieme dei simboli (presenti su ogni ruota)
+    - Risultato: lista di `str` (configurazioni)
 - Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
     - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
 
 >
+
+Possibile approccio con 3 cicli `for` annidati <br>
+Ogni `for` scorre tutto l'insieme di simboli <br>
+Configurazione: `str` con i 3 simboli correnti
 
 <http://www.ce.unipr.it/brython/?p4_fun_combine.py>
 

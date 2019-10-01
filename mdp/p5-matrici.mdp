@@ -339,9 +339,9 @@ figure: images/fun/queens-sol.svg
     - `8` elementi con indici `0..7` e con valori `0..7`
     - (`N` elementi con indici `0..N-1` e con valori `0..N-1`)
 - *Generate*
-    - Tutte le combinazioni di 8 valori: `8^^8^^ = ~ 16 milioni`
+    - Tutte le configurazioni di 8 valori: `8^^8^^ = ~ 16 milioni`
 - *Test*
-    - Per ogni combinazione, verificare i vincoli
+    - Per ogni configurazione, verificare i vincoli
 
 ---
 

@@ -596,7 +596,7 @@ title: Fixture 🤔
 title: Esempio di fixture 🤔
 
 - Numerosi metodi di test che operano su stessi dati iniziali
-    - Esempio, una combinazione di palline in posizioni predefinite
+    - Esempio, una configurazione di palline in posizioni predefinite
 
 code: Python
 
