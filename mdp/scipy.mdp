@@ -714,8 +714,8 @@ code: py
 
     c = np.array([[1, 2], [3, 4]], dtype=np.float64)
     >>> c
-    array([[1., 2.],
-           [3., 4.]])
+    array([[1, 2.],
+           [3, 4.]])
 
 ---
 
@@ -724,7 +724,7 @@ title: Zeros and ones
 code: py
 
     >>> np.zeros(4)
-    array([0., 0., 0., 0.])
+    array([0, 0, 0, 0.])
 
     >>> np.ones((2, 3), dtype=np.int16)  # dtype can also be specified
     array([[[ 1, 1, 1],
@@ -750,7 +750,7 @@ code: py
 code: py
 
     >>> np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
-    array([0., 0.5, 1., 1.5, 2.])
+    array([0, 0.5, 1, 1.5, 2.])
 
 code: py
 
@@ -766,18 +766,6 @@ code: py
 
 ---
 
-title: NumPy internals
-class: large-image
-
-![](images/scipy/strides.png)
-
-- Example in slide [#38](#38) (first on NumPy)
-    - `np.zeros(shape=(2, 5), dtype=np.int32)`
-- Problem: byte-address of cell @ `(y, x)`?
-    - `data + y * 20 + x * 4`
-
----
-
 title: Exercise - Memory game
 figure: images/misc/memory.png
 
@@ -789,6 +777,155 @@ figure: images/misc/memory.png
     - Given `n = rows * cols`
     - `n / 2` different values, each repeated twice
     - But random positions
+
+---
+
+title: Vector data
+
+- Each sample encoded as a 1D vector
+- A *batch* of data encoded as a **2D tensor**
+    - First axis: samples
+    - Second axis: features
+- Example: *actuarial dataset of people*
+    - Each person has 3 features: age, ZIP code, income
+    - Dataset of 100,000 people has shape (100000, 3)
+- Example: *dataset of text documents*
+    - Each document encoded as a vector of 20,000 values
+    - Occurrences of each word, from a dict. of 20,000
+    - Dataset of 500 documents: shape `(500, 20000)`
+
+---
+
+title: Timeseries or sequence data
+figure: images/scipy/tensor-timeseries.png
+class: large-figure
+
+- Each sample encoded as a 2D tensor: time sequence of vectors
+- A *batch* of data encoded as a **3D tensor**
+    - First axis: samples
+    - Second axis: always the time axis (#1), by convention
+- Example: *dataset of stock prices*
+    - Each minute encoded as a vector of 3 values
+    - Current price of stock, highest and lowest price in the past minute
+    - Each sample, an entire day of trading: shape `(390, 3)`
+    - 250 days’ worth of data: shape `(250, 390, 3)`
+
+---
+
+title: Image data
+figure: images/scipy/tensor-image.png
+class: large-figure
+
+- By convention, image tensors are always 3D
+    - Height, width, color depth
+    - 1D color channel for grayscale images
+- A *batch* of data encoded as **4D tensor**
+    - 128 grayscale 256x256 images: shape `(128, 256, 256, 1)`
+    - 128 color images: shape `(128, 256, 256, 3)`
+- Two conventions
+    - *Channels-last* (TensorFlow)
+    - *Channels-first* (Theano): samples, color depth, height, width
+
+---
+
+title: Video data
+
+- Each frame is a color image: 3D tensor
+- Each video is a sequence of frames: 4D tensor
+- A *batch* of data encoded as **5D tensor**
+    - Samples, frames, height, width, color depth
+- Example: *dataset of YouTube videos*
+    - 144×256 video clip with 240 frames
+    - 60-second video, sampled at 4 fps
+    - A batch of four such video clips: shape `(4, 240, 144, 256, 3)`
+    - If `dtype` is `float32`: 405 MB
+
+---
+
+title: NumPy internals
+
+- NumPy arrays consist of two major components
+- Raw array data, *data buffer*
+    - Contiguous (and fixed) block of memory
+    - As arrays in C or Fortran
+- Information about data, *metadata*
+    - Start of data within buffer (offset)
+    - Number of dimensions, size of each dimension
+    - Separation between elements for each dimension, *stride*
+    - Interpretation of data buffer, *dtype*
+    - C-order (row major, default) or Fortran-order (column major)
+
+---
+
+title: Multiple array views
+
+- Possible to create a new array metadata object
+    - Same data buffer, shared
+    - New view, interpretation of that data buffer
+- Slice, transpose, reshape etc.: data doesn't move
+    - Different array object (metadata)
+    - Different shape, offset, byte order, strides, etc.
+    - But same shared data buffer
+- New and independent array: `copy()` method
+
+---
+
+title: Data type objects
+
+- `dtype`: interpretation of the array buffer
+    - *No rearrangement* of the data!
+- Predefined types (i.e. `np.int32`), or string definitions
+    - Examples: `"i2"`, `"f4"`, `"U10"` (10 chars) , `"O"` (Py obj)
+    - `"<"` little endian, `">"` big endian
+
+code:
+
+    a = np.array([1, 2, 3, 4], dtype="<i2")
+    a  # array([1, 2, 3, 4], dtype=int16)
+    a.data.tobytes()  # b'\x01\x00\x02\x00\x03\x00\x04\x00'
+    a.dtype = ">i2"
+    a  # array([ 256,  512,  768, 1024], dtype=int16)
+    a.dtype = "f2, 2i1"
+    a  # array([(6.e-08, [2, 0]), (2.e-07, [4, 0])],
+       #       dtype=[('f0', '<i2'), ('f1', 'i1', (2,))])
+
+---
+
+title: Strides
+class: large-image
+
+![](images/scipy/strides.png)
+
+code: py
+
+    a = np.zeros(shape=(3, 3), dtype=np.int32)
+    a.strides  # (12, 4)
+
+- Problem: byte-address of cell @ `(y, x)`?
+    - `data + y * 12 + x * 4`
+
+---
+
+title: Row or column-major
+
+- C-order, row-major: data in a row is contiguous
+- F-order, column-major: data in a column is contiguous
+- Strides: *indexing is invariant* wrt data ordering
+- But *cache efficiency* may be different
+
+code: py
+
+    a = np.array([[1, 2], [3, 4]], order="C", dtype="i1")
+    a  # array([[1, 2], [3, 4]], dtype=int8)
+    a.strides  # (2, 1)
+    a.flatten("K")  # array([1, 2, 3, 4], dtype=int8)
+
+code: py
+
+    a = np.array([[1, 2], [3, 4]], order="F", dtype="i1")
+    a  # array([[1, 2], [3, 4]], dtype=int8)
+    a.strides  # (1, 2)
+    a.flatten("K")  # array([1, 3, 2, 4], dtype=int8)
 
 ---
 
@@ -848,7 +985,7 @@ code: py
     66
     >>> b.sum(axis=1)        # sum of each row
     array([ 6, 22, 38])
-    >>> b / b.max(axis=0)    # morm each column
+    >>> b / b.max(axis=0)    # norm each column
     array([[0.  , 0.11, 0.2 , 0.27],
            [0.5 , 0.55, 0.6 , 0.63],
            [1.  , 1.  , 1.  , 1.  ]])
@@ -865,7 +1002,7 @@ code: py
 
     >>> A = np.linspace(0, np.pi/2, 4)
     >>> np.sin(A)
-    array([0., 0.5, 0.8660254, 1.])
+    array([0, 0.5, 0.8660254, 1.])
 
 code: py
 
@@ -873,9 +1010,9 @@ code: py
     >>> B
     array([0, 1, 2])
     >>> np.exp(B)
-    array([1., 2.71828183, 7.3890561])
+    array([1, 2.71828183, 7.3890561])
     >>> np.sqrt(B)
-    array([0., 1., 1.41421356])
+    array([0, 1, 1.41421356])
 
 ---
 
@@ -918,7 +1055,7 @@ code: py
     >>> c[1,...]  # same as c[1,:,:] or c[1]
     array([[100, 101, 102],
            [110, 112, 113]])
-    >>> c[...,2]  # same as c[:,:,2]
+    >>> c[..,2]  # same as c[:,:,2]
     array([[  2,  13],
            [102, 113]])
 
@@ -950,18 +1087,18 @@ code: py
 
     >>> a = np.random.randint(10, size=(3, 4))
     >>> a
-    array([[ 2.,  8.,  0.,  6.],
-           [ 4.,  5.,  1.,  1.],
-           [ 8.,  9.,  3.,  6.]])
-    >>> a.ravel()  # returns a new view, flattened
-    array([ 2.,  8.,  0.,  6.,  4.,  5.,  1.,  1.,  8.,  9.,  3.,  6.])
+    array([[2,  8,  0,  6],
+           [4,  5,  1,  1],
+           [8,  9,  3,  6]])
+    >>> a.flatten()  # order "C" / "F" / "K"; returns a new view
+    array([2,  8,  0,  6,  4,  5,  1,  1,  8,  9,  3,  6])
     >>> a.reshape(2, 6)  # new view, different shape
-    array([[ 2.,  8.,  0.,  6.,  4.,  5.],
-           [ 1.,  1.,  8.,  9.,  3.,  6.]])
+    array([[2,  8,  0,  6,  4,  5],
+           [1,  1,  8,  9,  3,  6]])
     >>> a.resize(2, 6)  # modifies the array itself
     >>> a
-    array([[ 2.,  8.,  0.,  6.,  4.,  5.],
-           [ 1.,  1.,  8.,  9.,  3.,  6.]])
+    array([[2,  8,  0,  6,  4,  5],
+           [1,  1,  8,  9,  3,  6]])
 
 ---
 
@@ -969,16 +1106,16 @@ title: Transposition
 
 code: py
 
-    >>> a = np.array([[ 2.,  8.,  0.],
-                      [ 4.,  5.,  1.]])
+    >>> a = np.array([[ 2,  8,  0.],
+                      [ 4,  5,  1.]])
     >>> a.shape
     (2, 3)
     >>> a.strides
     (24, 8)
     >>> a.T  # returns a transposed view, same as a.transpose()
-    array([[ 2.,  4.],
-           [ 8.,  5.],
-           [ 0.,  1.]])
+    array([[ 2,  4.],
+           [ 8,  5.],
+           [ 0,  1.]])
     >>> a.T.shape
     (3, 2)
     >>> a.T.strides
@@ -990,18 +1127,18 @@ title: Stacking
 
 code: py
 
-    >>> a = np. array([[ 8.,  8.],
-                       [ 0.,  0.]])
-    >>> b = np.array([[ 1.,  8.],
-                      [ 0.,  4.]])
+    >>> a = np. array([[ 8,  8.],
+                       [ 0,  0.]])
+    >>> b = np.array([[ 1,  8.],
+                      [ 0,  4.]])
     >>> np.vstack((a, b))
-    array([[ 8.,  8.],
-           [ 0.,  0.],
-           [ 1.,  8.],
-           [ 0.,  4.]])
+    array([[ 8,  8.],
+           [ 0,  0.],
+           [ 1,  8.],
+           [ 0,  4.]])
     >>> np.hstack((a, b))
-    array([[ 8.,  8.,  1.,  8.],
-           [ 0.,  0.,  0.,  4.]])
+    array([[ 8,  8,  1,  8.],
+           [ 0,  0,  0,  4.]])
 
 ---
 
@@ -1014,16 +1151,16 @@ title: Splitting into several arrays
 
 code: py
 
-    >>> a = np.array([[9., 5., 6., 3., 6., 8., 0., 7., 9.],
-                      [1., 4., 9., 2., 2., 1., 0., 6., 2.]])
+    >>> a = np.array([[9, 5, 6, 3, 6, 8, 0, 7, 9.],
+                      [1, 4, 9, 2, 2, 1, 0, 6, 2.]])
     >>> np.hsplit(a, 3)   # Split a into 3
-    [array([[ 9.,  5.,  6.], [ 1.,  4.,  9.]]),
-     array([[ 3.,  6.,  8.], [ 2.,  2.,  1.]]),
-     array([[ 0.,  7.,  9.], [ 0.,  6.,  2.]])]
+    [array([[ 9,  5,  6.], [ 1,  4,  9.]]),
+     array([[ 3,  6,  8.], [ 2,  2,  1.]]),
+     array([[ 0,  7,  9.], [ 0,  6,  2.]])]
     >>> np.hsplit(a, (3, 4))   # Split after 3rd and 4th column
-    [array([[ 9.,  5.,  6.], [ 1.,  4.,  9.]]),
+    [array([[ 9,  5,  6.], [ 1,  4,  9.]]),
      array([[ 3.], [ 2.]]),
-     array([[ 6.,  8.,  0.,  7.,  9.], [ 2.,  1.,  0.,  6.,  2.]])]
+     array([[ 6,  8,  0,  7,  9.], [ 2,  1,  0,  6,  2.]])]
 
 ---
 
@@ -1036,12 +1173,12 @@ title: Linear algebra
     array([[-2. ,  1. ],
            [ 1.5, -0.5]])
     >>> a @ b
-    array([[ 1.,  0. ],
-           [ 0.,  1. ]])
+    array([[ 1,  0. ],
+           [ 0,  1. ]])
     >>> u = np.eye(2)  # unit 2x2 matrix; "eye" represents "I"
     >>> u
-    array([[ 1.,  0.],
-           [ 0.,  1.]])
+    array([[ 1,  0.],
+           [ 0,  1.]])
 
 ---
 
@@ -1080,7 +1217,7 @@ code: py
     >>> sum(v.T[0] ** 2)  # magnitude = 1
     1.0
     >>> (w[0] * np.eye(2) - a) @ v.T[0]  # (λI − A)v = 0
-    array([ 0.,  0.])
+    array([ 0,  0.])
 
 ---
 
@@ -1092,9 +1229,9 @@ code: py
                       [4, 1.5]])
     >>> b = np.array([2200, 5050])
     >>> np.linalg.inv(a) @ b
-    array([  700.,  1500.])
+    array([  700,  1500.])
     >>> np.linalg.solve(a, b)
-    array([  700.,  1500.])
+    array([  700,  1500.])
 
 ---
 
@@ -1144,7 +1281,7 @@ title: DataFrame from a dict
 code: py
 
     >>> df2 = pd.DataFrame({
-            'A' : 1.,
+            'A' : 1,
             'B' : pd.Timestamp('20130102'),
             'C' : pd.Series(1,index=list(range(4)),dtype='float32'),
             'D' : np.array([3] * 4,dtype='int32'),
@@ -1454,7 +1591,7 @@ figure: images/scipy/pyplot-4.png
 code: py
 
     # evenly sampled time at 200ms intervals
-    t = np.arange(0., 5., 0.2)
+    t = np.arange(0, 5, 0.2)
 
     # red dashes, blue squares and green triangles
     plt.plot(t, t, 'r--',
