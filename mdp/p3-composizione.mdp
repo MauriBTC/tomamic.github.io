@@ -1,4 +1,5 @@
 title: Liste e composizione
+title: Liste e composizione
 subtitle: Introduzione alla programmazione
 figure: images/oop/lego-blocks.png
 
@@ -393,7 +394,7 @@ code: py
 title: Polimorfismo
 
 - **Metodo polimorfo**
-    - Dichiarato in una *interfaccia astratta*
+    - Può essere dichiarato in una *interfaccia astratta*
     - Implementato in forme diverse nelle *classi concrete*
     - Attori diversi possono muoversi in modo diverso
 
