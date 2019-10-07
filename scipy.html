@@ -969,7 +969,7 @@ array([[1., 2.],
 <slide  >
   
     <hgroup>
-      <h2>Zeros and ones</h2>
+      <h2>Zeros, ones, ranges</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -984,9 +984,11 @@ array([[[1, 1, 1],
 array([[3.73603959e-262, 6.02658058e-154, 6.55490914e-260],
        [5.30498948e-313, 3.14673309e-307, 1.00000000e+000]])
 
-&gt;&gt;&gt; np.random.random((2, 3))
-array([[0.1528439, 0.00263175, 0.21967677],
-       [0.66804669, 0.84067279, 0.23624629]])
+&gt;&gt;&gt; np.arange(10, 30, 5)  # from 10, to 30, step 5
+array([10, 15, 20, 25])
+
+&gt;&gt;&gt; np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
+array([0, 0.5, 1, 1.5, 2])
 </code></pre></article>
  
 </slide>
@@ -994,27 +996,55 @@ array([[0.1528439, 0.00263175, 0.21967677],
 <slide  >
   
     <hgroup>
-      <h2>Range and shape</h2>
+      <h2>Reshape and resize</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.arange(10, 30, 5)  # from 10, to 30, step 5
-array([10, 15, 20, 25])
-</code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
-array([0, 0.5, 1, 1.5, 2])
-</code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.arange(15).reshape(3, 5)
+      <ul>
+<li><strong>Shape</strong>: the number of elements along each axis</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.arange(12)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+&gt;&gt;&gt; a = a.reshape(3, 4)  # a new array
 &gt;&gt;&gt; a
-array([[0, 1, 2, 3, 4],
-       [5, 6, 7, 8, 9],
-       [10, 11, 12, 13, 14]])
+array([[0, 1, 2, 3],
+       [4, 5, 6, 7],
+       [8, 9, 10, 11]])
 &gt;&gt;&gt; a.shape
-(3, 5)
+(3, 4)
+
+&gt;&gt;&gt; a.resize(2, 6)  # modifies the array itself
+&gt;&gt;&gt; a
+array([[0, 1, 2, 3, 4, 5],
+       [6, 7, 8, 9, 10, 11]])
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Random</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.random.randn(2, 3)  # normal Gaussian, mean=0, variance=1
+array([[-0.452, -1.295, 0.379],
+       [1.134, -0.554, -1.007]])
+
+&gt;&gt;&gt; np.random.rand(2, 3)  # uniform in [0.0, 1.0)
+array([[0.152, 0.002, 0.219],
+       [0.668, 0.840, 0.236]])
+
+&gt;&gt;&gt; np.random.randint(0, 10, (2, 3))  # discrete uniform in [0, 10)
+array([[1, 9, 3],
+       [3, 8, 9]])
+
+&gt;&gt;&gt; a = np.arange(6)
+&gt;&gt;&gt; np.random.shuffle(a)  # modifies the array itself
+array([5, 3, 2, 4, 1, 0]])
 </code></pre>
-<ul>
-<li><em>Shape</em>: the number of elements along each axis</li>
-</ul></article>
+<blockquote></blockquote>
+<p><a href="https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html">https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html</a></p></article>
  
 </slide>
 
@@ -1034,7 +1064,6 @@ array([[0, 1, 2, 3, 4],
 <li>There's also a method of <code>ndarray</code></li>
 </ul>
 </li>
-<li><code>np.random.shuffle(a)</code> shuffles <code>a</code></li>
 <li><em>Exercise</em>: create a matrix with couples<ul>
 <li>Given <code>n = rows * cols</code></li>
 <li><code>n / 2</code> different values, each repeated twice</li>
@@ -1260,14 +1289,68 @@ a.strides  # (12, 4)
 <slide  >
   
     <hgroup>
+      <h2>Shape manipulation</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.array([[2, 8, 0],
+                  [4, 5, 1]], dtype=np.int64)
+&gt;&gt;&gt; a.strides
+(24, 8)
+&gt;&gt;&gt; b = a.reshape(3, 2)  # new view, different shape
+&gt;&gt;&gt; b
+array([[2, 8],
+       [0, 4],
+       [5, 1]])
+&gt;&gt;&gt; b.strides
+(16, 8)
+&gt;&gt;&gt; b.flatten()
+array([2, 8, 0, 4, 5, 1])
+</code></pre>
+<blockquote></blockquote>
+<p><code>flatten</code> has optional param for <code>order</code>: "K" (as in memory), or "C", or "F"</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Transposition</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.array([[2, 8, 0],
+                  [4, 5, 1]], dtype=np.int64)
+&gt;&gt;&gt; a.shape, a.strides
+((2, 3), (24, 8))
+&gt;&gt;&gt; a.T  # transposed view, same as a.transpose()
+array([[2, 4],
+       [8, 5],
+       [0, 1]])
+&gt;&gt;&gt; a.T.shape, a.T.strides
+((3, 2), (8, 24))
+&gt;&gt;&gt; a.T.flatten()
+array([2, 4, 8, 5, 0, 1])
+&gt;&gt;&gt; a.T.flatten("K")  # real order of data in memory!
+array([2, 8, 0, 4, 5, 1])
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Row or column-major</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li>C-order, row-major: data in a row is contiguous</li>
-<li>F-order, column-major: data in a column is contiguous</li>
-<li>Strides: <em>indexing is invariant</em> wrt data ordering</li>
+      <figure>
+        <img src="images/scipy/row-col-major.svg">
+        
+      </figure><ul>
+<li>C-order, row-major: a row is contiguous</li>
+<li>F-order, col-major: a col is contiguous</li>
+<li>Strides: <em>indexing is invariant</em> wrt ordering</li>
 <li>But <em>cache efficiency</em> may be different</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>a = np.array([[1, 2], [3, 4]], order="C", dtype="i1")
@@ -1478,56 +1561,6 @@ array([[0, 1, 2, 3],
 <slide  >
   
     <hgroup>
-      <h2>Shape manipulation</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.random.randint(10, size=(3, 4))
-&gt;&gt;&gt; a
-array([[2, 8, 0, 6],
-       [4, 5, 1, 1],
-       [8, 9, 3, 6]])
-&gt;&gt;&gt; a.flatten()  # order "C" / "F" / "K"; returns a new view
-array([2, 8, 0, 6, 4, 5, 1, 1, 8, 9, 3, 6])
-&gt;&gt;&gt; a.reshape(2, 6)  # new view, different shape
-array([[2, 8, 0, 6, 4, 5],
-       [1, 1, 8, 9, 3, 6]])
-&gt;&gt;&gt; a.resize(2, 6)  # modifies the array itself
-&gt;&gt;&gt; a
-array([[2, 8, 0, 6, 4, 5],
-       [1, 1, 8, 9, 3, 6]])
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Transposition</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.array([[2, 8, 0],
-                  [4, 5, 1]])
-&gt;&gt;&gt; a.shape
-(2, 3)
-&gt;&gt;&gt; a.strides
-(24, 8)
-&gt;&gt;&gt; a.T  # returns a transposed view, same as a.transpose()
-array([[2, 4],
-       [8, 5],
-       [0, 1]])
-&gt;&gt;&gt; a.T.shape
-(3, 2)
-&gt;&gt;&gt; a.T.strides
-(8, 24)
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Stacking</h2>
       <h3></h3>
     </hgroup>
@@ -1717,45 +1750,19 @@ array([700., 1500.])
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; import pandas as pd
-&gt;&gt;&gt; dates = pd.date_range('2013-01-01', periods=3)
-&gt;&gt;&gt; dates
-DatetimeIndex(['2013-01-01', '2013-01-02', '2013-01-03'],
-              dtype='datetime64[ns]', freq='D')
-&gt;&gt;&gt; df = pd.DataFrame(np.random.randn(3, 4), index=dates,
-                      columns=list('ABCD'))
+      <ul>
+<li><strong>DataFrame</strong> : ~ Excel worksheet</li>
+<li><em>Values</em> as <code>np.array</code> + <em>indexes</em> for rows and cols</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; import pandas as pd
+&gt;&gt;&gt; df = pd.DataFrame([[1, 2], [4, 5], [7, 8]],
+                      index=['cobra', 'viper', 'sidewinder'],
+                      columns=['max_speed', 'shield'])
 &gt;&gt;&gt; df
-                   A         B         C         D
-2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-2013-01-03  0.337121  1.403836 -0.619386  0.782967
-</code></pre>
-<blockquote></blockquote>
-<p><a href="https://docs.scipy.org/doc/numpy/reference/random/generated/numpy.random.mtrand.RandomState.randn.html"><code>random.randn</code></a>
-: “normal” (Gaussian) distribution of mean 0 and variance 1</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>DataFrame from a dict</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df2 = pd.DataFrame({
-        'A' : 1.,
-        'B' : pd.Timestamp('2013-01-02'),
-        'C' : pd.Series(1., index=list(range(4)), dtype='float32'),
-        'D' : np.array([3] * 4, dtype='int32'),
-        'E' : pd.Categorical(["test", "train", "test", "train"]),
-        'F' : 'foo' })
-&gt;&gt;&gt; df2
-     A          B    C  D      E    F
-0  1.0 2013-01-02  1.0  3   test  foo
-1  1.0 2013-01-02  1.0  3  train  foo
-2  1.0 2013-01-02  1.0  3   test  foo
-3  1.0 2013-01-02  1.0  3  train  foo
+            max_speed  shield
+cobra               1       2
+viper               4       5
+sidewinder          7       8
 </code></pre></article>
  
 </slide>
@@ -1768,43 +1775,20 @@ DatetimeIndex(['2013-01-01', '2013-01-02', '2013-01-03'],
     </hgroup>
     <article >
       <ul>
-<li>View top or bottom rows: <code>df.head()</code>, <code>df.tail()</code></li>
-<li>Access index, columns, data: <code>df.index</code>, <code>df.columns</code>, <code>df.values</code></li>
-<li>Transpose: <code>df.T</code></li>
-<li>Show static summary</li>
+<li>Show top or bottom rows: <code>df.head()</code>, <code>df.tail()</code></li>
+<li>Access values, index, columns: <code>df.values</code>, <code>df.index</code>, <code>df.columns</code></li>
+<li>Transposed view: <code>df.T</code></li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.describe()
-              A         B         C         D
-count  3.000000  3.000000  3.000000  3.000000
-mean   0.044653  0.124258 -0.248527  0.218500
-std    0.278924  1.115815  0.446238  1.376056
-min   -0.218395 -0.646117 -0.619386 -1.350031
-25%   -0.101582 -0.515531 -0.496142 -0.283532
-50%    0.015232 -0.384946 -0.372898  0.782967
-75%    0.176176  0.509445 -0.063097  1.002766
-max    0.337121  1.403836  0.246703  1.222565
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Sorting by values or index</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.sort_values(by='B')  # asc values of B
-                   A         B         C         D
-2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-2013-01-03  0.337121  1.403836 -0.619386  0.782967
-
-&gt;&gt;&gt; df.sort_index(axis=1, ascending=False)  # desc column names
-                   D         C         B         A
-2013-01-01 -1.350031 -0.372898 -0.646117  0.015232
-2013-01-02  1.222565  0.246703 -0.384946 -0.218395
-2013-01-03  0.782967 -0.619386  1.403836  0.337121
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.describe()  # show static summary
+       max_speed  shield
+count        3.0     3.0
+mean         4.0     5.0
+std          3.0     3.0
+min          1.0     2.0
+25%          2.5     3.5
+50%          4.0     5.0
+75%          5.5     6.5
+max          7.0     8.0
 </code></pre></article>
  
 </slide>
@@ -1816,11 +1800,23 @@ max    0.337121  1.403836  0.246703  1.222565
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df['A']
-2013-01-01    0.015232
-2013-01-02   -0.218395
-2013-01-03    0.337121
-Freq: D, Name: A, dtype: float64
+      <ul>
+<li>Each column is a <strong><code>Series</code></strong><ul>
+<li><em>Values</em> as <code>np.array</code> + <em>name</em> + <em>index</em></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df['max_speed']  # or simply df.max_speed
+cobra         1
+viper         4
+sidewinder    7
+Name: max_speed, dtype: int64
+
+&gt;&gt;&gt; df[['max_speed', 'shield']]
+            max_speed  shield
+cobra               1       2
+viper               4       5
+sidewinder          7       8
 </code></pre></article>
  
 </slide>
@@ -1832,15 +1828,22 @@ Freq: D, Name: A, dtype: float64
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df[1:3]
-                   A         B         C         D
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-2013-01-03  0.337121  1.403836 -0.619386  0.782967
+      <ul>
+<li>With brackets, a slice of rows can be selected<ul>
+<li>Provide both start and stop, not a single position or label</li>
+<li>With labels, <em>the stop label is included!</em></li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df[1:3]
+            max_speed  shield
+viper               4       5
+sidewinder          7       8
 
-&gt;&gt;&gt; df['2013-01-02':'2013-01-03']
-                   A         B         C         D
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-2013-01-03  0.337121  1.403836 -0.619386  0.782967
+&gt;&gt;&gt; df['viper':'sidewinder']
+            max_speed  shield
+viper               4       5
+sidewinder          7       8
 </code></pre></article>
  
 </slide>
@@ -1852,16 +1855,21 @@ Freq: D, Name: A, dtype: float64
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.loc['2013-01-02':'2013-01-03',['A','B']]
-                   A         B
-2013-01-02  1.212112 -0.173215
-2013-01-03 -0.861849 -2.104569
-2013-01-04  0.721555 -0.706771
-
-&gt;&gt;&gt; df.iloc[3:5,0:2]
-                   A         B
-2013-01-02 -0.218395 -0.384946
-2013-01-03  0.337121  1.403836
+      <ul>
+<li>Slicing by labels (<em>the stop label is included!</em>)</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.loc['viper':'sidewinder', 'max_speed':'shield']
+            max_speed  shield
+viper               4       5
+sidewinder          7       8
+</code></pre>
+<ul>
+<li>Slicing by positions (<em>the stop position is not included!</em>)</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.iloc[1:3, 0:2]
+            max_speed  shield
+viper               4       5
+sidewinder          7       8
 </code></pre></article>
  
 </slide>
@@ -1873,16 +1881,17 @@ Freq: D, Name: A, dtype: float64
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df[df.A &gt; 0]
-                   A         B         C         D
-2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-2013-01-03  0.337121  1.403836 -0.619386  0.782967
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.loc[[False, False, True]]
+            max_speed  shield
+sidewinder          7       8
 
-&gt;&gt;&gt; df[df &gt; 0]
-                   A         B         C         D
-2013-01-01  0.015232       NaN       NaN       NaN
-2013-01-02       NaN       NaN  0.246703  1.222565
-2013-01-03  0.337121  1.403836       NaN  0.782967
+&gt;&gt;&gt; df.loc[df['shield'] &gt; 6]
+            max_speed  shield
+sidewinder          7       8
+
+&gt;&gt;&gt; df.loc[df['shield'] &gt; 6, 'max_speed']
+            max_speed
+sidewinder          7
 </code></pre></article>
  
 </slide>
@@ -1895,12 +1904,12 @@ Freq: D, Name: A, dtype: float64
     </hgroup>
     <article >
       <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df2 = df.copy()
-&gt;&gt;&gt; df2[df2 &gt; 0] = -df2
+&gt;&gt;&gt; df2.loc[['viper', 'sidewinder'], ['shield']] = 50
 &gt;&gt;&gt; df2
-                   A         B         C         D
-2013-01-01 -0.015232 -0.646117 -0.372898 -1.350031
-2013-01-02 -0.218395 -0.384946 -0.246703 -1.222565
-2013-01-03 -0.337121 -1.403836 -0.619386 -0.782967
+            max_speed  shield
+cobra               1       2
+viper               4      50
+sidewinder          7      50
 </code></pre></article>
  
 </slide>
@@ -1908,22 +1917,65 @@ Freq: D, Name: A, dtype: float64
 <slide  >
   
     <hgroup>
-      <h2>Is-in</h2>
+      <h2>Adding a column, is-in</h2>
       <h3></h3>
     </hgroup>
     <article >
       <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df2 = df.copy()
-&gt;&gt;&gt; df2['E'] = ['one','two','three']
+&gt;&gt;&gt; df2['label'] = ['one','two','three']
 &gt;&gt;&gt; df2
-                   A         B         C         D    E
-2013-01-01  0.015232 -0.646117 -0.372898 -1.350031  one
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565  two
-2013-01-03  0.337121  1.403836 -0.619386  0.782967  three
+            max_speed  shield  label
+cobra               1       2    one
+viper               4       5    two
+sidewinder          7       8  three
 
-&gt;&gt;&gt; df2[df2['E'].isin(['one','two'])]
-                   A         B         C         D     E
-2013-01-01  0.015232 -0.646117 -0.372898 -1.350031  one
-2013-01-02 -0.218395 -0.384946  0.246703  1.222565  two
+&gt;&gt;&gt; df2[df2['label'].isin(['one','two'])]
+            max_speed  shield  label
+cobra               1       2    one
+viper               4       5    two
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Sorting by value or index</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.sort_values(by='shield')  # asc values of shield
+            max_speed  shield
+cobra               1       2
+viper               4       5
+sidewinder          7       8
+
+&gt;&gt;&gt; df.sort_index(axis=1, ascending=False)  # desc column names
+            shield  max_speed
+cobra            2          1
+viper            5          4
+sidewinder       8          7
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>DataFrame from a dict, csv, xlsx</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>df1 = pd.DataFrame({
+            'shield': np.array([2, 5, 8], dtype='int32'),
+            'max_speed': np.array([1, 4, 7], dtype='int32') },
+        index=['cobra', 'viper', 'sidewinder'])
+
+df2 = pd.read_csv('data.csv')
+df2.to_csv('data.csv')
+
+df3 = pd.read_excel('data.xlsx')
+df3.to_excel('data.xlsx')
 </code></pre></article>
  
 </slide>
@@ -1935,7 +1987,7 @@ Freq: D, Name: A, dtype: float64
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; s = pd.Series(np.random.randint(7, size=10))
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; s = pd.Series(np.random.randint(6, size=10))  # [0, 6)
 &gt;&gt;&gt; s
 0    4
 1    2
@@ -1943,7 +1995,7 @@ Freq: D, Name: A, dtype: float64
 3    2
 ...
 dtype: int64
-&gt;&gt;&gt; s.value_counts()
+&gt;&gt;&gt; s.value_counts()  # result is also a Series
 4    5
 6    2
 2    2
@@ -1962,8 +2014,16 @@ dtype: int64
     <article >
       <ul>
 <li>Take multiple pandas and put them together</li>
-<li><code>concat()</code>: one piece below the other</li>
-<li><code>merge()</code>: rows are joined when they have the same <code>key</code></li>
+<li><code>concat()</code>: one dataframe or series below the other<ul>
+<li><code>join</code>: one of <code>'outer'</code>, <code>'inner'</code></li>
+<li>Default is <code>'outer'</code>, return all columns</li>
+</ul>
+</li>
+<li><code>merge()</code>: rows are joined when they have the same <em>key</em><ul>
+<li><code>how</code>: one of <code>'left'</code>, <code>'right'</code>, <code>'outer'</code>, <code>'inner'</code></li>
+<li>Default is <code>inner</code>: <em>key</em> must occurr in <em>both</em> frames</li>
+</ul>
+</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; left = pd.DataFrame({'key': ['foo', 'bar'], 'lval': [1, 2]})
 &gt;&gt;&gt; right = pd.DataFrame({'key': ['foo', 'bar'], 'rval': [4, 5]})
@@ -1993,7 +2053,7 @@ dtype: int64
                               'two', 'two', 'one', 'three'],
                        'C' : np.random.randn(8),
                        'D' : np.random.randn(8)})
-&gt;&gt;&gt; df.groupby('A').sum()
+&gt;&gt;&gt; df.groupby('A').sum()  # only numeric data
             C        D
 A
 bar -2.802588  2.42611
@@ -2010,20 +2070,18 @@ foo  3.146492 -0.63958
     </hgroup>
     <article >
       <ul>
-<li>Reshape the dataframe<ul>
+<li>Transform the dataframe<ul>
 <li>Using values as new rows and columns titles</li>
-<li>Cells contain averages, i.e., <code>aggfunc=np.mean</code></li>
+<li>Cells contain <em>averages</em>, i.e., <code>aggfunc=np.mean</code></li>
 </ul>
 </li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df = pd.DataFrame({
         'A' : ['one', 'one', 'two', 'three'] * 3,
-        'B' : ['A', 'B', 'C'] * 4,
-        'C' : ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'] * 2,
-        'D' : np.random.randn(12),
-        'E' : np.random.randn(12)})
-&gt;&gt;&gt; pd.pivot_table(df, values='D', index='A', columns='C')
-C           bar       foo
+        'B' : ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'] * 2,
+        'C' : np.random.randn(12)})
+&gt;&gt;&gt; pd.pivot_table(df, index='A', columns='B', values='C')
+B           bar       foo
 A
 one    0.463952  0.419066
 three -0.660418  0.991739
@@ -2077,7 +2135,7 @@ plt.show()
         <img src="images/scipy/pyplot-3.png">
         
       </figure><pre class="prettyprint lang-py" data-lang="py"><code>plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
-plt.axis([0, 6, 0, 20])  # xmin, xmax, ymin, ymax
+plt.axis((0, 6, 0, 20))  # xmin, xmax, ymin, ymax
 plt.show()
 </code></pre>
 <pre class="prettyprint lang-py" data-lang="py"><code># example format strings
@@ -2102,7 +2160,7 @@ plt.show()
       <figure>
         <img src="images/scipy/pyplot-4.png">
         
-      </figure><pre class="prettyprint lang-py" data-lang="py"><code># evenly sampled time at 200ms intervals
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code># evenly sampled time at 200ms steps
 t = np.arange(0, 5, 0.2)
 
 # red dashes, blue squares and green triangles
@@ -2110,7 +2168,9 @@ plt.plot(t, t, 'r--',
          t, t**2, 'bs',
          t, t**3, 'g^')
 plt.show()
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p>To use a logarithmic scale: <code>plt.yscale('log')</code></p></article>
  
 </slide>
 
@@ -2143,7 +2203,7 @@ plt.show()
 <slide class="large-figure" >
   
     <hgroup>
-      <h2>Plotting with categorical variables</h2>
+      <h2>Subplots in row</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -2213,7 +2273,6 @@ plt.xlabel('Smarts')
 plt.ylabel('Probability')
 plt.title('Histogram of IQ')
 plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
-plt.axis([40, 160, 0, 0.03])
 plt.grid(True, alpha=0.75)
 plt.show()
 </code></pre></article>
@@ -2223,23 +2282,93 @@ plt.show()
 <slide  >
   
     <hgroup>
-      <h2>Nonlinear axes</h2>
+      <h2>Seaborn histogram</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code># make up some data in the interval ]0, 1[
-mu, sigma = 0.5, 0.4
-y = mu + sigma * np.random.randn(1000)
-y = y[(y &gt; 0) &amp; (y &lt; 1)]
-y.sort()
-x = np.arange(len(y))
+      <figure>
+        <img src="images/scipy/sns-distplot.png">
+        
+      </figure><ul>
+<li><strong>Seaborn</strong>: high level data visualization library based on <em>matplotlib</em></li>
+<li><code>distplot</code>: histogram + <em>kde (kernel density estimation)</em><ul>
+<li>Optional params: <code>bins</code> (<code>int</code>),<br/> <code>kde</code>, <code>rug</code>, <code>hist</code>, <code>shade</code> (<code>bool</code>)</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# log
-plt.plot(x, y)
-plt.yscale('log')
-plt.title('log')
-plt.grid(True)
+x = np.random.randn(100)
+sns.distplot(x)
 plt.show()
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Linear regression and correlation</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/scipy/sns-regplot.png">
+        
+      </figure><ul>
+<li>Best fitting linear model<ul>
+<li>Minimize the <em>mean squared error</em></li>
+<li>Translucent bands: confidence interval</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>tips = sns.load_dataset("tips")
+sns.regplot(tips.total_bill, tips.tip)
+plt.show()
+</code></pre>
+<ul>
+<li>Pearson's correlation coeff.: [-1, 1]</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>from scipy import stats
+
+x, y = tips.total_bill, tips.tip
+## r_value, p_value = stats.pearsonr(x, y)
+slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Errors wrt a model</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/scipy/curve-fit.png">
+        
+      </figure><ul>
+<li>Fitting data wrt a model<ul>
+<li>Find optimal parameters</li>
+<li>Measure the mean squared error</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>from scipy.optimize import curve_fit
+## from sklearn.metrics import mean_squared_error
+
+def f(x, a, b):  # model
+    return a * x + b
+
+x = np.arange(5)
+y_true = x ** 2
+popt, pcov = curve_fit(f, x, y_true)  # popt = array([ 4., -2.])
+y_pred = f(x, *popt)
+mse = ((y_true - y_pred) ** 2).mean()  # 2.8
+plt.plot(x, y_true, 'r-'); plt.plot(x, y_pred, 'g--'); plt.show()
 </code></pre></article>
  
 </slide>
@@ -2261,7 +2390,9 @@ plt.show()
 <li>Use of multiple figures</li>
 </ul>
 <blockquote></blockquote>
-<p><a href="https://github.com/tomamic/paradigmi/tree/master/questionari">https://github.com/tomamic/paradigmi/tree/master/questionari</a></p></article>
+<p><a href="https://www.dropbox.com/s/bfunquwvcg8mv09/report-2016-2017.csv?dl=1">https://www.dropbox.com/s/bfunquwvcg8mv09/report-2016-2017.csv?dl=1</a><br/>
+<a href="https://www.dropbox.com/s/bj3rm90083d2rqz/report-2017-2018.csv?dl=1">https://www.dropbox.com/s/bj3rm90083d2rqz/report-2017-2018.csv?dl=1</a><br/>
+<a href="https://www.dropbox.com/s/shlodh26c06eaib/questionari.odp?dl=1">https://www.dropbox.com/s/shlodh26c06eaib/questionari.odp?dl=1</a></p></article>
  
 </slide>
 

@@ -719,7 +719,7 @@ code: py
 
 ---
 
-title: Zeros and ones
+title: Zeros, ones, ranges
 
 code: py
 
@@ -734,35 +734,59 @@ code: py
     array([[3.73603959e-262, 6.02658058e-154, 6.55490914e-260],
            [5.30498948e-313, 3.14673309e-307, 1.00000000e+000]])
 
-    >>> np.random.random((2, 3))
-    array([[0.1528439, 0.00263175, 0.21967677],
-           [0.66804669, 0.84067279, 0.23624629]])
-
----
-
-title: Range and shape
-
-code: py
-
     >>> np.arange(10, 30, 5)  # from 10, to 30, step 5
     array([10, 15, 20, 25])
-
-code: py
 
     >>> np.linspace(0, 2, 5)  # 5 numbers from 0 to 2
     array([0, 0.5, 1, 1.5, 2])
 
+---
+
+title: Reshape and resize
+
+- **Shape**: the number of elements along each axis
+
 code: py
 
-    >>> a = np.arange(15).reshape(3, 5)
+    >>> a = np.arange(12)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    >>> a = a.reshape(3, 4)  # a new array
     >>> a
-    array([[0, 1, 2, 3, 4],
-           [5, 6, 7, 8, 9],
-           [10, 11, 12, 13, 14]])
+    array([[0, 1, 2, 3],
+           [4, 5, 6, 7],
+           [8, 9, 10, 11]])
     >>> a.shape
-    (3, 5)
+    (3, 4)
 
-- *Shape*: the number of elements along each axis
+    >>> a.resize(2, 6)  # modifies the array itself
+    >>> a
+    array([[0, 1, 2, 3, 4, 5],
+           [6, 7, 8, 9, 10, 11]])
+
+---
+
+title: Random
+
+code: py
+
+    >>> np.random.randn(2, 3)  # normal Gaussian, mean=0, variance=1
+    array([[-0.452, -1.295, 0.379],
+           [1.134, -0.554, -1.007]])
+
+    >>> np.random.rand(2, 3)  # uniform in [0.0, 1.0)
+    array([[0.152, 0.002, 0.219],
+           [0.668, 0.840, 0.236]])
+
+    >>> np.random.randint(0, 10, (2, 3))  # discrete uniform in [0, 10)
+    array([[1, 9, 3],
+           [3, 8, 9]])
+
+    >>> a = np.arange(6)
+    >>> np.random.shuffle(a)  # modifies the array itself
+    array([5, 3, 2, 4, 1, 0]])
+
+>
+
+<https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html>
 
 ---
 
@@ -772,7 +796,6 @@ figure: images/misc/memory.png
 - `np.tile(a, reps)` repeats the whole `a`
 - `np.repeat(a, reps)` repeats each element of `a`
     - There's also a method of `ndarray`
-- `np.random.shuffle(a)` shuffles `a`
 - *Exercise*: create a matrix with couples
     - Given `n = rows * cols`
     - `n / 2` different values, each repeated twice
@@ -906,11 +929,57 @@ code: py
 
 ---
 
-title: Row or column-major
+title: Shape manipulation
 
-- C-order, row-major: data in a row is contiguous
-- F-order, column-major: data in a column is contiguous
-- Strides: *indexing is invariant* wrt data ordering
+code: py
+
+    >>> a = np.array([[2, 8, 0],
+                      [4, 5, 1]], dtype=np.int64)
+    >>> a.strides
+    (24, 8)
+    >>> b = a.reshape(3, 2)  # new view, different shape
+    >>> b
+    array([[2, 8],
+           [0, 4],
+           [5, 1]])
+    >>> b.strides
+    (16, 8)
+    >>> b.flatten()
+    array([2, 8, 0, 4, 5, 1])
+
+>
+
+`flatten` has optional param for `order`: "K" (as in memory), or "C", or "F"
+
+---
+
+title: Transposition
+
+code: py
+
+    >>> a = np.array([[2, 8, 0],
+                      [4, 5, 1]], dtype=np.int64)
+    >>> a.shape, a.strides
+    ((2, 3), (24, 8))
+    >>> a.T  # transposed view, same as a.transpose()
+    array([[2, 4],
+           [8, 5],
+           [0, 1]])
+    >>> a.T.shape, a.T.strides
+    ((3, 2), (8, 24))
+    >>> a.T.flatten()
+    array([2, 4, 8, 5, 0, 1])
+    >>> a.T.flatten("K")  # real order of data in memory!
+    array([2, 8, 0, 4, 5, 1])
+
+---
+
+title: Row or column-major
+figure: images/scipy/row-col-major.svg
+
+- C-order, row-major: a row is contiguous
+- F-order, col-major: a col is contiguous
+- Strides: *indexing is invariant* wrt ordering
 - But *cache efficiency* may be different
 
 code: py
@@ -1081,48 +1150,6 @@ code: py
 
 ---
 
-title: Shape manipulation
-
-code: py
-
-    >>> a = np.random.randint(10, size=(3, 4))
-    >>> a
-    array([[2, 8, 0, 6],
-           [4, 5, 1, 1],
-           [8, 9, 3, 6]])
-    >>> a.flatten()  # order "C" / "F" / "K"; returns a new view
-    array([2, 8, 0, 6, 4, 5, 1, 1, 8, 9, 3, 6])
-    >>> a.reshape(2, 6)  # new view, different shape
-    array([[2, 8, 0, 6, 4, 5],
-           [1, 1, 8, 9, 3, 6]])
-    >>> a.resize(2, 6)  # modifies the array itself
-    >>> a
-    array([[2, 8, 0, 6, 4, 5],
-           [1, 1, 8, 9, 3, 6]])
-
----
-
-title: Transposition
-
-code: py
-
-    >>> a = np.array([[2, 8, 0],
-                      [4, 5, 1]])
-    >>> a.shape
-    (2, 3)
-    >>> a.strides
-    (24, 8)
-    >>> a.T  # returns a transposed view, same as a.transpose()
-    array([[2, 4],
-           [8, 5],
-           [0, 1]])
-    >>> a.T.shape
-    (3, 2)
-    >>> a.T.strides
-    (8, 24)
-
----
-
 title: Stacking
 
 code: py
@@ -1255,130 +1282,104 @@ title: Pandas
 
 title: Creating a DataFrame
 
+- **DataFrame** : ~ Excel worksheet
+- *Values* as `np.array` + *indexes* for rows and cols
+
 code: py
 
     >>> import pandas as pd
-    >>> dates = pd.date_range('2013-01-01', periods=3)
-    >>> dates
-    DatetimeIndex(['2013-01-01', '2013-01-02', '2013-01-03'],
-                  dtype='datetime64[ns]', freq='D')
-    >>> df = pd.DataFrame(np.random.randn(3, 4), index=dates,
-                          columns=list('ABCD'))
+    >>> df = pd.DataFrame([[1, 2], [4, 5], [7, 8]],
+                          index=['cobra', 'viper', 'sidewinder'],
+                          columns=['max_speed', 'shield'])
     >>> df
-                       A         B         C         D
-    2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967
-
->
-
-[`random.randn`](https://docs.scipy.org/doc/numpy/reference/random/generated/numpy.random.mtrand.RandomState.randn.html)
-: “normal” (Gaussian) distribution of mean 0 and variance 1
-
----
-
-title: DataFrame from a dict
-
-code: py
-
-    >>> df2 = pd.DataFrame({
-            'A' : 1.,
-            'B' : pd.Timestamp('2013-01-02'),
-            'C' : pd.Series(1., index=list(range(4)), dtype='float32'),
-            'D' : np.array([3] * 4, dtype='int32'),
-            'E' : pd.Categorical(["test", "train", "test", "train"]),
-            'F' : 'foo' })
-    >>> df2
-         A          B    C  D      E    F
-    0  1.0 2013-01-02  1.0  3   test  foo
-    1  1.0 2013-01-02  1.0  3  train  foo
-    2  1.0 2013-01-02  1.0  3   test  foo
-    3  1.0 2013-01-02  1.0  3  train  foo
+                max_speed  shield
+    cobra               1       2
+    viper               4       5
+    sidewinder          7       8
 
 ---
 
 title: Data summary
 
-- View top or bottom rows: `df.head()`, `df.tail()`
-- Access index, columns, data: `df.index`, `df.columns`, `df.values`
-- Transpose: `df.T`
-- Show static summary
+- Show top or bottom rows: `df.head()`, `df.tail()`
+- Access values, index, columns: `df.values`, `df.index`, `df.columns`
+- Transposed view: `df.T`
 
 code: py
 
-    >>> df.describe()
-                  A         B         C         D
-    count  3.000000  3.000000  3.000000  3.000000
-    mean   0.044653  0.124258 -0.248527  0.218500
-    std    0.278924  1.115815  0.446238  1.376056
-    min   -0.218395 -0.646117 -0.619386 -1.350031
-    25%   -0.101582 -0.515531 -0.496142 -0.283532
-    50%    0.015232 -0.384946 -0.372898  0.782967
-    75%    0.176176  0.509445 -0.063097  1.002766
-    max    0.337121  1.403836  0.246703  1.222565
-
----
-
-title: Sorting by values or index
-
-code: py
-
-    >>> df.sort_values(by='B')  # asc values of B
-                       A         B         C         D
-    2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967
-
-    >>> df.sort_index(axis=1, ascending=False)  # desc column names
-                       D         C         B         A
-    2013-01-01 -1.350031 -0.372898 -0.646117  0.015232
-    2013-01-02  1.222565  0.246703 -0.384946 -0.218395
-    2013-01-03  0.782967 -0.619386  1.403836  0.337121
+    >>> df.describe()  # show static summary
+           max_speed  shield
+    count        3.0     3.0
+    mean         4.0     5.0
+    std          3.0     3.0
+    min          1.0     2.0
+    25%          2.5     3.5
+    50%          4.0     5.0
+    75%          5.5     6.5
+    max          7.0     8.0
 
 ---
 
 title: Projection of columns
 
+- Each column is a **`Series`**
+    - *Values* as `np.array` + *name* + *index*
+
 code: py
 
-    >>> df['A']
-    2013-01-01    0.015232
-    2013-01-02   -0.218395
-    2013-01-03    0.337121
-    Freq: D, Name: A, dtype: float64
+    >>> df['max_speed']  # or simply df.max_speed
+    cobra         1
+    viper         4
+    sidewinder    7
+    Name: max_speed, dtype: int64
+
+    >>> df[['max_speed', 'shield']]
+                max_speed  shield
+    cobra               1       2
+    viper               4       5
+    sidewinder          7       8
 
 ---
 
 title: Selection of rows
 
+- With brackets, a slice of rows can be selected
+    - Provide both start and stop, not a single position or label
+    - With labels, *the stop label is included!*
+
 code: py
 
     >>> df[1:3]
-                       A         B         C         D
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967
+                max_speed  shield
+    viper               4       5
+    sidewinder          7       8
 
-    >>> df['2013-01-02':'2013-01-03']
-                       A         B         C         D
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967
+    >>> df['viper':'sidewinder']
+                max_speed  shield
+    viper               4       5
+    sidewinder          7       8
 
 ---
 
 title: Slicing in both axis
 
+- Slicing by labels (*the stop label is included!*)
+
 code: py
 
-    >>> df.loc['2013-01-02':'2013-01-03',['A','B']]
-                       A         B
-    2013-01-02  1.212112 -0.173215
-    2013-01-03 -0.861849 -2.104569
-    2013-01-04  0.721555 -0.706771
+    >>> df.loc['viper':'sidewinder', 'max_speed':'shield']
+                max_speed  shield
+    viper               4       5
+    sidewinder          7       8
 
-    >>> df.iloc[3:5,0:2]
-                       A         B
-    2013-01-02 -0.218395 -0.384946
-    2013-01-03  0.337121  1.403836
+- Slicing by positions (*the stop position is not included!*)
+
+code: py
+
+    >>> df.iloc[1:3, 0:2]
+                max_speed  shield
+    viper               4       5
+    sidewinder          7       8
 
 ---
 
@@ -1386,16 +1387,17 @@ title: Boolean filtering
 
 code: py
 
-    >>> df[df.A > 0]
-                       A         B         C         D
-    2013-01-01  0.015232 -0.646117 -0.372898 -1.350031
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967
+    >>> df.loc[[False, False, True]]
+                max_speed  shield
+    sidewinder          7       8
 
-    >>> df[df > 0]
-                       A         B         C         D
-    2013-01-01  0.015232       NaN       NaN       NaN
-    2013-01-02       NaN       NaN  0.246703  1.222565
-    2013-01-03  0.337121  1.403836       NaN  0.782967
+    >>> df.loc[df['shield'] > 6]
+                max_speed  shield
+    sidewinder          7       8
+
+    >>> df.loc[df['shield'] > 6, 'max_speed']
+                max_speed
+    sidewinder          7
 
 ---
 
@@ -1404,31 +1406,66 @@ title: Setting
 code: py
 
     >>> df2 = df.copy()
-    >>> df2[df2 > 0] = -df2
+    >>> df2.loc[['viper', 'sidewinder'], ['shield']] = 50
     >>> df2
-                       A         B         C         D
-    2013-01-01 -0.015232 -0.646117 -0.372898 -1.350031
-    2013-01-02 -0.218395 -0.384946 -0.246703 -1.222565
-    2013-01-03 -0.337121 -1.403836 -0.619386 -0.782967
+                max_speed  shield
+    cobra               1       2
+    viper               4      50
+    sidewinder          7      50
 
 ---
 
-title: Is-in
+title: Adding a column, is-in
 
 code: py
 
     >>> df2 = df.copy()
-    >>> df2['E'] = ['one','two','three']
+    >>> df2['label'] = ['one','two','three']
     >>> df2
-                       A         B         C         D    E
-    2013-01-01  0.015232 -0.646117 -0.372898 -1.350031  one
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565  two
-    2013-01-03  0.337121  1.403836 -0.619386  0.782967  three
+                max_speed  shield  label
+    cobra               1       2    one
+    viper               4       5    two
+    sidewinder          7       8  three
 
-    >>> df2[df2['E'].isin(['one','two'])]
-                       A         B         C         D     E
-    2013-01-01  0.015232 -0.646117 -0.372898 -1.350031  one
-    2013-01-02 -0.218395 -0.384946  0.246703  1.222565  two
+    >>> df2[df2['label'].isin(['one','two'])]
+                max_speed  shield  label
+    cobra               1       2    one
+    viper               4       5    two
+
+---
+
+title: Sorting by value or index
+
+code: py
+
+    >>> df.sort_values(by='shield')  # asc values of shield
+                max_speed  shield
+    cobra               1       2
+    viper               4       5
+    sidewinder          7       8
+
+    >>> df.sort_index(axis=1, ascending=False)  # desc column names
+                shield  max_speed
+    cobra            2          1
+    viper            5          4
+    sidewinder       8          7
+
+---
+
+title: DataFrame from a dict, csv, xlsx
+
+code: py
+
+    df1 = pd.DataFrame({
+                'shield': np.array([2, 5, 8], dtype='int32'),
+                'max_speed': np.array([1, 4, 7], dtype='int32') },
+            index=['cobra', 'viper', 'sidewinder'])
+
+    df2 = pd.read_csv('data.csv')
+    df2.to_csv('data.csv')
+
+    df3 = pd.read_excel('data.xlsx')
+    df3.to_excel('data.xlsx')
 
 ---
 
@@ -1436,7 +1473,7 @@ title: Histogramming
 
 code: py
 
-    >>> s = pd.Series(np.random.randint(7, size=10))
+    >>> s = pd.Series(np.random.randint(6, size=10))  # [0, 6)
     >>> s
     0    4
     1    2
@@ -1444,7 +1481,7 @@ code: py
     3    2
     ...
     dtype: int64
-    >>> s.value_counts()
+    >>> s.value_counts()  # result is also a Series
     4    5
     6    2
     2    2
@@ -1456,8 +1493,12 @@ code: py
 title: Concat and merge
 
 - Take multiple pandas and put them together
-- `concat()`: one piece below the other
-- `merge()`: rows are joined when they have the same `key`
+- `concat()`: one dataframe or series below the other
+    - `join`: one of `'outer'`, `'inner'`
+    - Default is `'outer'`, return all columns
+- `merge()`: rows are joined when they have the same *key*
+    - `how`: one of `'left'`, `'right'`, `'outer'`, `'inner'`
+    - Default is `inner`: *key* must occurr in *both* frames
 
 code: py
 
@@ -1484,7 +1525,7 @@ code: py
                                   'two', 'two', 'one', 'three'],
                            'C' : np.random.randn(8),
                            'D' : np.random.randn(8)})
-    >>> df.groupby('A').sum()
+    >>> df.groupby('A').sum()  # only numeric data
                 C        D
     A
     bar -2.802588  2.42611
@@ -1494,20 +1535,18 @@ code: py
 
 title: Pivot table
 
-- Reshape the dataframe
+- Transform the dataframe
     - Using values as new rows and columns titles
-    - Cells contain averages, i.e., `aggfunc=np.mean`
+    - Cells contain *averages*, i.e., `aggfunc=np.mean`
 
 code: py
 
     >>> df = pd.DataFrame({
             'A' : ['one', 'one', 'two', 'three'] * 3,
-            'B' : ['A', 'B', 'C'] * 4,
-            'C' : ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'] * 2,
-            'D' : np.random.randn(12),
-            'E' : np.random.randn(12)})
-    >>> pd.pivot_table(df, values='D', index='A', columns='C')
-    C           bar       foo
+            'B' : ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'] * 2,
+            'C' : np.random.randn(12)})
+    >>> pd.pivot_table(df, index='A', columns='B', values='C')
+    B           bar       foo
     A
     one    0.463952  0.419066
     three -0.660418  0.991739
@@ -1548,7 +1587,7 @@ figure: images/scipy/pyplot-3.png
 code: py
 
     plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
-    plt.axis([0, 6, 0, 20])  # xmin, xmax, ymin, ymax
+    plt.axis((0, 6, 0, 20))  # xmin, xmax, ymin, ymax
     plt.show()
 
 code: py
@@ -1571,7 +1610,7 @@ figure: images/scipy/pyplot-4.png
 
 code: py
 
-    # evenly sampled time at 200ms intervals
+    # evenly sampled time at 200ms steps
     t = np.arange(0, 5, 0.2)
 
     # red dashes, blue squares and green triangles
@@ -1579,6 +1618,10 @@ code: py
              t, t**2, 'bs',
              t, t**3, 'g^')
     plt.show()
+
+>
+
+To use a logarithmic scale: `plt.yscale('log')`
 
 ---
 
@@ -1602,7 +1645,7 @@ code: py
 
 ---
 
-title: Plotting with categorical variables
+title: Subplots in row
 figure: images/scipy/pyplot-6.png
 class: large-figure
 
@@ -1659,30 +1702,76 @@ code: py
     plt.ylabel('Probability')
     plt.title('Histogram of IQ')
     plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
-    plt.axis([40, 160, 0, 0.03])
     plt.grid(True, alpha=0.75)
     plt.show()
 
 ---
 
-title: Nonlinear axes
+title: Seaborn histogram
+figure: images/scipy/sns-distplot.png
 
+- **Seaborn**: high level data visualization library based on *matplotlib*
+- `distplot`: histogram + *kde (kernel density estimation)*
+    - Optional params: `bins` (`int`),<br/> `kde`, `rug`, `hist`, `shade` (`bool`)
 
 code: py
 
-    # make up some data in the interval ]0, 1[
-    mu, sigma = 0.5, 0.4
-    y = mu + sigma * np.random.randn(1000)
-    y = y[(y > 0) & (y < 1)]
-    y.sort()
-    x = np.arange(len(y))
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import seaborn as sns
 
-    # log
-    plt.plot(x, y)
-    plt.yscale('log')
-    plt.title('log')
-    plt.grid(True)
+    x = np.random.randn(100)
+    sns.distplot(x)
     plt.show()
+
+---
+
+title: Linear regression and correlation
+figure: images/scipy/sns-regplot.png
+
+- Best fitting linear model
+    - Minimize the *mean squared error*
+    - Translucent bands: confidence interval
+
+code: py
+
+    tips = sns.load_dataset("tips")
+    sns.regplot(tips.total_bill, tips.tip)
+    plt.show()
+
+- Pearson's correlation coeff.: [-1, 1]
+
+code: py
+
+    from scipy import stats
+
+    x, y = tips.total_bill, tips.tip
+    ## r_value, p_value = stats.pearsonr(x, y)
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+
+---
+
+title: Errors wrt a model
+figure: images/scipy/curve-fit.png
+
+- Fitting data wrt a model
+    - Find optimal parameters
+    - Measure the mean squared error
+
+code: py
+
+    from scipy.optimize import curve_fit
+    ## from sklearn.metrics import mean_squared_error
+
+    def f(x, a, b):  # model
+        return a * x + b
+
+    x = np.arange(5)
+    y_true = x ** 2
+    popt, pcov = curve_fit(f, x, y_true)  # popt = array([ 4., -2.])
+    y_pred = f(x, *popt)
+    mse = ((y_true - y_pred) ** 2).mean()  # 2.8
+    plt.plot(x, y_true, 'r-'); plt.plot(x, y_pred, 'g--'); plt.show()
 
 ---
 
@@ -1696,5 +1785,7 @@ figure: images/dii/quiz.png
 
 >
 
-<https://github.com/tomamic/paradigmi/tree/master/questionari>
+<https://www.dropbox.com/s/bfunquwvcg8mv09/report-2016-2017.csv?dl=1><br/>
+<https://www.dropbox.com/s/bj3rm90083d2rqz/report-2017-2018.csv?dl=1><br/>
+<https://www.dropbox.com/s/shlodh26c06eaib/questionari.odp?dl=1>
 
