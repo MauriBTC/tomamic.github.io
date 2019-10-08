@@ -780,13 +780,23 @@ code: py
     array([[1, 9, 3],
            [3, 8, 9]])
 
+>
+
+<https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html>
+
+---
+
+title: Shuffle and choice
+
+code: py
+
     >>> a = np.arange(6)
     >>> np.random.shuffle(a)  # modifies the array itself
     array([5, 3, 2, 4, 1, 0]])
 
->
-
-<https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html>
+    >>> np.random.choice(["one", "two"], (2, 3))
+    >>> array([['two', 'one', 'one'],
+       ['two', 'two', 'one']], dtype='<U3')
 
 ---
 
@@ -1193,8 +1203,12 @@ code: py
 
 title: Linear algebra
 
+code: py
+
     >>> a = np.array([[1.0, 2.0],
                       [3.0, 4.0]])
+    >>> np.linalg.det(a)
+    -2.0
     >>> b = np.linalg.inv(a)
     >>> b
     array([[-2., 1. ],
@@ -1202,8 +1216,7 @@ title: Linear algebra
     >>> a @ b
     array([[1., 0.],
            [0., 1.]])
-    >>> u = np.eye(2)  # unit 2x2 matrix; "eye" represents "I"
-    >>> u
+    >>> np.eye(2)  # unit 2x2 matrix; "eye" represents "I"
     array([[1, 0],
            [0, 1]])
 
@@ -1220,7 +1233,7 @@ class: large-figure
     - 2200 visitors have entered (*b1*)
     - 5050€ have been collected (*b2*)
 - How many adults (*x1*) and how many children (*x2*) have entered?
-    - Linear system (`a @ x = b`)
+    - Linear system: `a @ x = b`
     - Solve with matrix operations
 
 ---
@@ -1231,8 +1244,6 @@ code: py
 
     >>> a = np.array([[1.0, 2.0],
                       [3.0, 4.0]])
-    >>> np.linalg.det(a)
-    -2.0
     >>> w, v = np.linalg.eig(a)
     >>> w  # eigenvalues
     array([-0.37228132, 5.37228132])
@@ -1250,12 +1261,17 @@ code: py
 
 title: Solve a linear system
 
+- Linear system
+    - `a @ x = b`
+    - `inv(a) @ a @ x = inv(a) @ b`
+    - `x = inv(a) @ b`
+
 code: py
 
     >>> a = np.array([[1., 1.],
                       [4., 1.5]])
     >>> b = np.array([2200., 5050.])
-    >>> np.linalg.inv(a) @ b
+    >>> np.linalg.inv(a) @ b  # b: 1D, as column vector
     array([700., 1500.])
     >>> np.linalg.solve(a, b)
     array([700., 1500.])
@@ -1281,6 +1297,7 @@ title: Pandas
 ---
 
 title: Creating a DataFrame
+figure: images/misc/sidewinder.jpg
 
 - **DataFrame** : ~ Excel worksheet
 - *Values* as `np.array` + *indexes* for rows and cols
@@ -1561,6 +1578,7 @@ class: segue dark
 
 title: Basic plots
 figure: images/scipy/pyplot-1.png images/scipy/pyplot-2.png
+class: large-figure
 
 code: py
 
@@ -1583,11 +1601,12 @@ code: py
 
 title: Formatting the plot
 figure: images/scipy/pyplot-3.png
+class: large-figure
 
 code: py
 
     plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
-    plt.axis((0, 6, 0, 20))  # xmin, xmax, ymin, ymax
+    plt.axis((0, 6, 0, 20)) # xmin, xmax, ymin, ymax
     plt.show()
 
 code: py
@@ -1607,6 +1626,7 @@ code: py
 
 title: Plotting NumPy arrays
 figure: images/scipy/pyplot-4.png
+class: large-figure
 
 code: py
 
@@ -1627,6 +1647,7 @@ To use a logarithmic scale: `plt.yscale('log')`
 
 title: Plotting data from dict
 figure: images/scipy/pyplot-5.png
+class: large-figure
 
 code: py
 
@@ -1669,6 +1690,7 @@ code: py
 
 title: Subplots in column
 figure: images/scipy/pyplot-7.png
+class: large-figure
 
 code: py
 
@@ -1689,6 +1711,7 @@ code: py
 
 title: Histogram and text
 figure: images/scipy/pyplot-8.png
+class: large-figure
 
 code: py
 
@@ -1709,10 +1732,11 @@ code: py
 
 title: Seaborn histogram
 figure: images/scipy/sns-distplot.png
+class: large-figure
 
 - **Seaborn**: high level data visualization library based on *matplotlib*
 - `distplot`: histogram + *kde (kernel density estimation)*
-    - Optional params: `bins` (`int`),<br/> `kde`, `rug`, `hist`, `shade` (`bool`)
+    - Optional params: `bins` (`int`),<br/> `kde`, `rug`, `hist` (`bool`)
 
 code: py
 
@@ -1721,29 +1745,27 @@ code: py
     import seaborn as sns
 
     x = np.random.randn(100)
-    sns.distplot(x)
+    sns.distplot(x)  # try rug=True, kde=False
     plt.show()
 
 ---
 
 title: Linear regression and correlation
 figure: images/scipy/sns-regplot.png
+class: large-figure
 
 - Best fitting linear model
     - Minimize the *mean squared error*
     - Translucent bands: confidence interval
-
-code: py
-
-    tips = sns.load_dataset("tips")
-    sns.regplot(tips.total_bill, tips.tip)
-    plt.show()
-
-- Pearson's correlation coeff.: [-1, 1]
+- *Pearson's r*, correlation coeff.: [-1, 1]
 
 code: py
 
     from scipy import stats
+
+    tips = sns.load_dataset("tips")
+    sns.regplot(tips.total_bill, tips.tip)
+    plt.show()
 
     x, y = tips.total_bill, tips.tip
     ## r_value, p_value = stats.pearsonr(x, y)
@@ -1751,32 +1773,54 @@ code: py
 
 ---
 
-title: Errors wrt a model
-figure: images/scipy/curve-fit.png
+title: Fitting data wrt a model
 
-- Fitting data wrt a model
-    - Find optimal parameters
-    - Measure the mean squared error
+- *1.* Define the model as a parametric function
+- *2.* Find optimal parameters: `curve_fit`
+- *3.* Measure the error
 
 code: py
 
     from scipy.optimize import curve_fit
     ## from sklearn.metrics import mean_squared_error
+    ## from sklearn.metrics import mean_squared_log_error
 
-    def f(x, a, b):  # model
-        return a * x + b
+    x = np.arange(5); y_true = x ** 2  # data
+    def f(x, a, b): return a * x + b   # model
 
-    x = np.arange(5)
-    y_true = x ** 2
-    popt, pcov = curve_fit(f, x, y_true)  # popt = array([ 4., -2.])
-    y_pred = f(x, *popt)
+    popt, _ = curve_fit(f, x, y_true)  # [4, -2]
+    y_pred = f(x, *popt)  # arguments unpacking
     mse = ((y_true - y_pred) ** 2).mean()  # 2.8
-    plt.plot(x, y_true, 'r-'); plt.plot(x, y_pred, 'g--'); plt.show()
+
+---
+
+title: Comparing models
+figure: images/scipy/curve-fit.png
+class: large-figure
+
+code: py
+
+    x = np.arange(5); y_true = x ** 2
+    plt.plot(x, y_true, "ro")
+
+    def f1(x, a, b): return a * x + b
+    def f2(x, a, b, c): return a * b ** x + c
+    models = [(f1, "b--"), (f2, "g--")]  # or lambdas
+
+    for f, style in models:
+        popt, _ = curve_fit(f, x, y_true)
+        y_pred = f(x, *popt)  # arguments unpacking
+        mse = ((y_true - y_pred) ** 2).mean()
+        print(mse, popt)
+        plt.plot(x, y_pred, style)
+
+    plt.show()
 
 ---
 
 title: Example: students' questionnaires
 figure: images/dii/quiz.png
+class: large-figure
 
 - Students' answers to questionnaires about courses
 - Data transformation to evaluate marks
