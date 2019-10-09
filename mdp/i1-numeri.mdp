@@ -74,6 +74,12 @@ figure: images/repr/sum-binary.jpg
 - Ogni elemento di una sequenza binaria viene detto **bit**
 - Una sequenza di *8 bit* viene detta **byte**
 
+>
+
+<https://www.wikihow.com/Convert-from-Binary-to-Decimal>
+
+<https://www.wikihow.com/Convert-from-Decimal-to-Binary>
+
 ---
 
 title: Codifica decimale → binaria
@@ -338,6 +344,10 @@ title: IEEE 754 single & double
 
 ![](images/repr/ieee754-32-ex.svg)
 ![](images/repr/ieee754-64.svg)
+
+>
+
+<https://www.wikihow.com/Convert-a-Number-from-Decimal-to-IEEE-754-Floating-Point-Representation>
 
 ---
 
