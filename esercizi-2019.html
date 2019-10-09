@@ -460,6 +460,186 @@ Poi racchiudere tutto in un ciclo for esterno</p></article>
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 3 (10-07)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.1 Percentuale di maiuscole</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/troll-key.png">
+        
+      </figure><ul>
+<li>Chiedere una riga di testo all'utente</li>
+<li>Mostrare la percentuale di lettere maiuscole presenti</li>
+<li>Implementare il calcolo in una funzione<ul>
+<li>Parametro: testo (<code>str</code>)</li>
+<li>Risultato: percentuale (<code>float</code>)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare un ciclo <code>for</code> sulla stringa</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.2 Pallina con conteggio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/repr/child-fingers.png">
+        
+      </figure><ul>
+<li>Partire dalla classe <code>TurningBall</code> dell'esercizio 2.6</li>
+<li>Effettuare gli spostamenti su una traiettoria quadrata<ul>
+<li>Virare la direzione in senso orario ogni <code>10</code> fotogrammi (p.es.), anzichè ai bordi del canvas</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.3 Lista di palline</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bouncing-ball.jpg">
+        
+      </figure><ul>
+<li>Partire dalla classe <code>FallingBall</code> dell'esercizio 2.8</li>
+<li>Anzichè una solo pallina, crearne diverse ed inserirle in una lista</li>
+<li>Rappresentare graficamente il movimento di tutte le palline<ul>
+<li>Per ogni frame, in un ciclo <code>for</code>, chiamare il metodo <code>move</code> di ogni pallina</li>
+<li>Rappresentare un cerchio o un rettangolo colorato nella posizione aggiornata di ogni pallina</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.4 Stazione meteorologica</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/weather.png">
+        
+      </figure><ul>
+<li>Scrivere classe per una stazione meteo, rappresentata così:<ul>
+<li>Nome della stazione</li>
+<li>Lista dei dati di piovosità, inizialmente vuota</li>
+</ul>
+</li>
+<li>Metodo per aggiungere un nuovo dato: giorno di misurazione (es.: <code>"2019-10-07"</code>) e millimetri di pioggia</li>
+<li>Metodo per ottenere la pioggia totale in mm. tra due date scelte (parametri)</li>
+<li>Nella parte principale del programma<ul>
+<li>Istanziare la stazione e chiedere tutti i dati di piovosità all'utente (valore negativo per terminare)</li>
+<li>In un ciclo, chiedere poi all'utente due date e calcolare la pioggia totale in mm. in quel periodo</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.5 Istogramma con barre orizzontali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/histogram-rot.png">
+        
+      </figure><ul>
+<li>Chiedere all'utente una lista di valori positivi<ul>
+<li>La lista termina quando l'utente inserisce un valore negativo</li>
+</ul>
+</li>
+<li>Su canvas <code>500x500</code>, disegnare un istogramma<ul>
+<li>Spazio verticale diviso equamente tra le barre</li>
+<li>Dimensione orizzontale di una barra: proporzionale al valore corrispondente</li>
+<li>La barra più estesa occupa tutto lo spazio orizzontale disponibile</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.6 Moon Patrol, rover</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Ridenominare come <code>Rover</code> la classe <code>Turtle</code> dell'esempio <code>bounce</code></li>
+<li>Aggiungere al rover la gravità (vedi es. 2.7)</li>
+<li>Consentire al rover di saltare, alla pressione di <code>ArrowUp</code><ul>
+<li>Solo quando è poggiato sullo fondo del canvas...</li>
+<li>O sul livello fisso del terreno (meglio!)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.7 Moon Patrol, sprite e sfondi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Cambiare il file con le icone dei personaggi</li>
+<li>Animazioni del rover, opzionali<ul>
+<li>Per il rover, visualizzare icone diverse durante il salto ed i movimenti</li>
+<li>Nel metodo <code>symbol</code>, utilizzare lo stato del personaggio per scegliere l'icona</li>
+</ul>
+</li>
+<li>Sfondo e parallasse, opzionali<ul>
+<li>Ad ogni frame, spostare verso sinistra la posizione di disegno dello sfondo</li>
+<li>Disegnare il terreno e due livelli di sfondo, con velocità diverse</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare questi file: <br/>
+<a href="https://tomamic.github.io/images/sprites/moon-patrol.png">https://tomamic.github.io/images/sprites/moon-patrol.png</a> <br/>
+<a href="https://tomamic.github.io/images/sprites/moon-patrol-bg.png">https://tomamic.github.io/images/sprites/moon-patrol-bg.png</a></p></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>

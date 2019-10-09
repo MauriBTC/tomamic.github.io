@@ -253,3 +253,99 @@ figure: images/misc/xmas-tree.png
 - Ogni cerchio ha un colore casuale
 - Aggiungere in fondo una riga con un solo cerchio
 
+---
+
+title: Esercitazione 3 (10-07)
+class: segue dark
+
+---
+
+title: 3.1 Percentuale di maiuscole
+figure: images/misc/troll-key.png
+
+- Chiedere una riga di testo all'utente
+- Mostrare la percentuale di lettere maiuscole presenti
+- Implementare il calcolo in una funzione
+    - Parametro: testo (`str`)
+    - Risultato: percentuale (`float`)
+
+>
+
+Usare un ciclo `for` sulla stringa
+
+---
+
+title: 3.2 Pallina con conteggio
+figure: images/repr/child-fingers.png
+
+- Partire dalla classe `TurningBall` dell'esercizio 2.6
+- Effettuare gli spostamenti su una traiettoria quadrata
+    - Virare la direzione in senso orario ogni `10` fotogrammi (p.es.), anzichè ai bordi del canvas
+
+---
+
+title: 3.3 Lista di palline
+figure: images/misc/bouncing-ball.jpg
+
+- Partire dalla classe `FallingBall` dell'esercizio 2.8
+- Anzichè una solo pallina, crearne diverse ed inserirle in una lista
+- Rappresentare graficamente il movimento di tutte le palline
+    - Per ogni frame, in un ciclo `for`, chiamare il metodo `move` di ogni pallina
+    - Rappresentare un cerchio o un rettangolo colorato nella posizione aggiornata di ogni pallina
+
+---
+
+title: 3.4 Stazione meteorologica
+figure: images/misc/weather.png
+
+- Scrivere classe per una stazione meteo, rappresentata così:
+    - Nome della stazione
+    - Lista dei dati di piovosità, inizialmente vuota
+- Metodo per aggiungere un nuovo dato: giorno di misurazione (es.: `"2019-10-07"`) e millimetri di pioggia
+- Metodo per ottenere la pioggia totale in mm. tra due date scelte (parametri)
+- Nella parte principale del programma
+    - Istanziare la stazione e chiedere tutti i dati di piovosità all'utente (valore negativo per terminare)
+    - In un ciclo, chiedere poi all'utente due date e calcolare la pioggia totale in mm. in quel periodo
+
+---
+
+title: 3.5 Istogramma con barre orizzontali
+figure: images/misc/histogram-rot.png
+
+- Chiedere all'utente una lista di valori positivi
+    - La lista termina quando l'utente inserisce un valore negativo
+- Su canvas `500x500`, disegnare un istogramma
+    - Spazio verticale diviso equamente tra le barre
+    - Dimensione orizzontale di una barra: proporzionale al valore corrispondente
+    - La barra più estesa occupa tutto lo spazio orizzontale disponibile
+
+---
+
+title: 3.6 Moon Patrol, rover
+figure: images/misc/moon-patrol.jpg
+
+- Ridenominare come `Rover` la classe `Turtle` dell'esempio `bounce`
+- Aggiungere al rover la gravità (vedi es. 2.7)
+- Consentire al rover di saltare, alla pressione di `ArrowUp`
+    - Solo quando è poggiato sullo fondo del canvas...
+    - O sul livello fisso del terreno (meglio!)
+
+---
+
+title: 3.7 Moon Patrol, sprite e sfondi
+figure: images/misc/moon-patrol.jpg
+
+- Cambiare il file con le icone dei personaggi
+- Animazioni del rover, opzionali
+    - Per il rover, visualizzare icone diverse durante il salto ed i movimenti
+    - Nel metodo `symbol`, utilizzare lo stato del personaggio per scegliere l'icona
+- Sfondo e parallasse, opzionali
+    - Ad ogni frame, spostare verso sinistra la posizione di disegno dello sfondo
+    - Disegnare il terreno e due livelli di sfondo, con velocità diverse
+
+>
+
+Usare questi file: <br/>
+<https://tomamic.github.io/images/sprites/moon-patrol.png> <br/>
+<https://tomamic.github.io/images/sprites/moon-patrol-bg.png>
+
