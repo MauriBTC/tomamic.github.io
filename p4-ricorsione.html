@@ -199,10 +199,9 @@ def fibonacci(n: int) -&gt; int:
 
 @lru_cache()                   # function decoration
 def fibonacci(n: int) -&gt; int:
-    result = 1
-    if n &gt; 1:
-        result = fibonacci(n-1) + fibonacci(n-2)
-    return result
+    if n &lt;= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
 </code></pre></article>
  
 </slide>

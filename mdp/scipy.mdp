@@ -1818,19 +1818,22 @@ code: py
 
 ---
 
-title: Example: students' questionnaires
+title: Laboratory
 figure: images/dii/quiz.png
 class: large-figure
 
 - Students' answers to questionnaires about courses
-- Data transformation to evaluate marks
-- Distribution of marks and density plots
-- Use of multiple figures
+    - Data transform to eval marks
+    - Density plots of marks
+    - Use of multiple figures
+- Graphs of social network users
+    - Evaluate the degree of each node
+    - Evaluate and plot the distribution of degrees
+    - Compare it with a power-law function
 
 >
 
-<https://www.dropbox.com/s/w3yany4d2mzn4x0/questionario-stage-2018.xlsx?dl=1>
-
-<https://www.dropbox.com/s/9hcpjqij1vcspjx/gilet-jaunes.zip?dl=1>
-
-<https://www.dropbox.com/s/vksg7d9rjk2olvl/power-law.ipynb?dl=1>
+<https://github.com/tomamic/paradigmi/tree/master/questionari> <br/>
+<https://www.dropbox.com/s/w3yany4d2mzn4x0/questionario-stage-2018.xlsx?dl=1> <br/>
+<https://www.dropbox.com/s/9hcpjqij1vcspjx/gilet-jaunes.zip?dl=1> <br/>
+<https://www.dropbox.com/s/vksg7d9rjk2olvl/power-law.ipynb?dl=1> <br/>
