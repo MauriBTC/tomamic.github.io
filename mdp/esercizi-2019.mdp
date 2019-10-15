@@ -349,3 +349,102 @@ Usare questi file: <br/>
 <https://tomamic.github.io/images/sprites/moon-patrol.png> <br/>
 <https://tomamic.github.io/images/sprites/moon-patrol-bg.png>
 
+---
+
+title: Esercitazione 4 (10-14 *)
+class: segue dark
+
+---
+
+title: 4.1 Funzioni per cilindro
+
+- Definire una funzione per il calcolo del volume di un cilindro
+    - Parametri: raggio e altezza (`float`)
+    - Risultato: volume (`float`)
+- Definire una funzione per il calcolo della superficie di un cilindro
+    - Parametri: raggio e altezza (`float`)
+    - Risultato: superficie (`float`)
+- In una funzione `main`
+    - Chiedere all'utente raggio e altezza di un cilindro
+    - Chiamare le due funzioni e mostrare i risultati
+
+---
+
+title: 4.2 Classe per cilindro
+figure: images/misc/solids.jpg
+class: large-figure
+
+- Definire una classe dei cilindri
+    - Parametri del costruttore: raggio e altezza (`float`)
+    - Metodo che restituisce il volume
+    - Metodo che restituisce la superficie
+- In una funzione `main`
+    - Chiedere all'utente raggio e altezza di un cilindro
+    - Chiamare i due metodi e mostrare i risultati
+
+---
+
+title: 4.3 Conteggio caratteri
+
+- Definire una funzione
+    - Parametri: due stringhe
+    - Risultato: quanti caratteri della prima stringa sono presenti anche nella seconda?
+- Esempio
+    - Parametri: `"Ciao, Python!"`, `"aeiou"`
+    - Risultato: `4`
+
+---
+
+title: 4.4 Valori sopra e sotto la media
+
+- Chiedere all'utente una sequenza di interi, terminata da 0
+    - Il valore 0 non fa parte della sequenza
+- Calcolare e mostrare il valore medio
+- Elencare i valori sotto alla media
+- Elencare i valori sopra (o uguali) alla media
+
+>
+
+Aggiungere ciascun valore ad una lista inizialmente vuota, con `append`
+
+---
+
+title: 4.5 Triangolo di lettere
+
+- Leggere un numero intero positivo `n` (<=26)
+- Per ciascun valore `y` tra 1 ed `n`...
+- Stampare una riga con le ultime `y` lettere dell'alfabeto
+
+code: Output
+
+    z
+    zy
+    zyx
+    zyxw
+
+---
+
+title: 4.6 Configurazioni di simboli
+figure: images/fun/bike-lock.png
+
+- Scrivere una funzione per generare tutte le configurazioni di lunghezza 3
+    - Parametri: `str` contenente l'insieme dei simboli validi (presenti su ogni ruota)
+    - Risultato: lista di `str` (configurazioni)
+- Possibile approccio
+    - Usare 3 cicli `for` annidati
+    - Ogni `for` scorre tutto l'insieme di simboli
+    - Una configurazione è una `str`, ottenuta concatenando i 3 simboli correnti
+- Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
+    - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
+
+---
+
+title: 4.7 Moon Patrol, buche
+figure: images/misc/moon-patrol.jpg
+
+- Le buche vengono generate casualmente
+- Possono essere di due dimensioni diverse
+- Sono sempre sufficientemente separate tra loro
+- Si spostano da destra a sinistra con velocità costante
+- Se urta un buca, il rover cade e si distrugge
+
