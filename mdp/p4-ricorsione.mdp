@@ -328,23 +328,9 @@ figure: images/fun/sierpinski-carpet.png
     - Riapplicare l'algoritmo alle restanti 8 parti
     - Non disegnare però niente in meno di 1 pixel
 
-<http://www.ce.unipr.it/brython/?p4_fun_sierpinski.py>
-
----
-
-title: Albero di H
-figure: images/fun/htree.png
-
-- Disegnare ricorsivamente un *H-Tree*
-    - Dividere l'area iniziale in due parti uguali
-    - Connettere con una linea i centri delle due aree
-    - Ripetere il procedimento per ciascuna delle due aree
-    - Alternare però la divisione delle aree in orizzontale e verticale
-- Chiedere all'utente il livello di ricorsione desiderato
-
 >
 
-<http://www.ce.unipr.it/brython/?p4_fun_htree.py>
+<http://www.ce.unipr.it/brython/?p4_fun_sierpinski.py>
 
 ---
 
@@ -376,6 +362,8 @@ figure: images/misc/cubic-function.png
     - Parametri necessari: *inizio intervallo* di ricerca, *fine intervallo* di ricerca
     - Invocare ad ogni livello la funzione su un intervallo dimezzato
 
+>
+
 <http://www.ce.unipr.it/brython/?p4_fun_bisection.py>
 
 ---
@@ -383,17 +371,18 @@ figure: images/misc/cubic-function.png
 title: Configurazioni di simboli
 figure: images/fun/bike-lock.png
 
-- Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (*disposizioni con ripetizione*)
-    - Parametri: `str` contenente l'insieme dei simboli (presenti su ogni ruota)
-    - Risultato: lista di `str` (configurazioni)
-- Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
-    - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
+- Generare tutte le configurazioni di simboli (*disposizioni con ripetizione*)
+    - Parametro: numero di ruote
+    - Parametro: `str` contenente i possibili simboli
+    - Risultato: una lista di stringhe
+- Algoritmo:
+    - Zero ruote: l'unica configurazione è la stringa vuota: `['']`
+    - Altrimenti: per ogni elemento della prima ruota...
+    - Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)
 
 >
 
-Possibile approccio con 3 cicli `for` annidati <br>
-Ogni `for` scorre tutto l'insieme di simboli <br>
-Configurazione: `str` con i 3 simboli correnti
+Saranno accettate esclusivamente le soluzioni ricorsive
 
 <http://www.ce.unipr.it/brython/?p4_fun_combine.py>
 
