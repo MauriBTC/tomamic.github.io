@@ -816,6 +816,174 @@ zyxw
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 5 (10-21)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.1 Stringhe rovesciate, con ricorsione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/matryoshka.png">
+        
+      </figure><ul>
+<li>Rovesciare una stringa, sfruttando la ricorsione</li>
+<li>Qualsiasi stringa di lunghezza <code>0</code> o <code>1</code> rimane uguale quando rovesciata</li>
+<li>Alrimenti, la stringa rovesciata è la concatenazione di:<ul>
+<li>Ultimo carattere della stringa originale</li>
+<li>Risultato del rovesciamento della stringa originale, con l'esclusione dell'ultimo carattere</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Saranno accettate esclusivamente le soluzioni ricorsive</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.2 Maiuscole tra asterischi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/troll-key.png">
+        
+      </figure><ul>
+<li>Scrivere una funzione che:<ul>
+<li>Riceve in input una stringa di testo</li>
+<li>Produce in output un testo analogo, ma...</li>
+<li>Trasforma in maiuscolo tutto il testo compreso tra asterischi</li>
+</ul>
+</li>
+<li>Es. “<code>I want *this text* to be uppercase</code>” <br>
+  → “<code>I want THIS TEXT to be uppercase</code>”</li>
+<li>Applicare la funzione ad ogni riga di un file di testo</li>
+<li>Generare un file di output con il testo modificato</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.3 Albero di H</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/htree.png">
+        
+      </figure><ul>
+<li>Disegnare ricorsivamente un <em>H-Tree</em><ul>
+<li>Dividere l'area iniziale in due parti uguali</li>
+<li>Connettere con una linea i centri delle due aree</li>
+<li>Ripetere il procedimento per ciascuna delle due aree</li>
+<li>Alternare però la divisione delle aree in orizzontale e verticale</li>
+</ul>
+</li>
+<li>Chiedere all'utente il livello di ricorsione desiderato</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.4 Scrittura di risultati casuali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/dice.png">
+        
+      </figure><ul>
+<li>Simulare <code>n</code> lanci di una terna di dadi<ul>
+<li><code>n</code> scelto dall'utente</li>
+</ul>
+</li>
+<li>Scrivere il risultato dei lanci in un file<ul>
+<li>In ogni riga, inserire i tre valori separati da spazio</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.5 Analisi di risultati casuali</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/dice.png">
+        
+      </figure><ul>
+<li>Leggere i dati dal file generato nell'esercizio 5.4</li>
+<li>Per ogni terna di valori letta, mostrare all'utente la loro somma</li>
+<li>Contare quante volte, in tutto, si presenta ciascun risultato<ul>
+<li>Risultati possibili: da 3 a 18</li>
+<li>Somma dei tre dadi</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Per conteggiare i vari risultati, usare una lista di (almeno) 16 valori</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.6 Moon Patrol, rocce</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Le rocce vengono generate casualmente</li>
+<li>Possono essere di due dimensioni diverse</li>
+<li>Sono sempre sufficientemente separate tra loro</li>
+<li>Si spostano da destra a sinistra con velocità costante</li>
+<li>Se urta una roccia, il rover si distrugge</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>5.7 Moon Patrol, proiettili</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Il rover, a comando, spara proiettili</li>
+<li>Ad ogni comando, viene sparato un proiettile verso destra ed uno verso l'alto</li>
+<li>Le rocce possono essere distrutte dai proiettili del rover</li>
+<li>Le rocce più grandi devono essere colpite due volte</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>

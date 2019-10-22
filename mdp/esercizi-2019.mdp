@@ -448,3 +448,95 @@ figure: images/misc/moon-patrol.jpg
 - Si spostano da destra a sinistra con velocità costante
 - Se urta un buca, il rover cade e si distrugge
 
+---
+
+title: Esercitazione 5 (10-21)
+class: segue dark
+
+---
+
+title: 5.1 Stringhe rovesciate, con ricorsione
+figure: images/fun/matryoshka.png
+
+- Rovesciare una stringa, sfruttando la ricorsione
+- Qualsiasi stringa di lunghezza `0` o `1` rimane uguale quando rovesciata
+- Alrimenti, la stringa rovesciata è la concatenazione di:
+    - Ultimo carattere della stringa originale
+    - Risultato del rovesciamento della stringa originale, con l'esclusione dell'ultimo carattere
+
+>
+
+Saranno accettate esclusivamente le soluzioni ricorsive
+
+---
+
+title: 5.2 Maiuscole tra asterischi
+figure: images/misc/troll-key.png
+
+- Scrivere una funzione che:
+    - Riceve in input una stringa di testo
+    - Produce in output un testo analogo, ma...
+    - Trasforma in maiuscolo tutto il testo compreso tra asterischi
+- Es. “`I want *this text* to be uppercase`” <br>
+  → “`I want THIS TEXT to be uppercase`”
+- Applicare la funzione ad ogni riga di un file di testo
+- Generare un file di output con il testo modificato
+
+---
+
+title: 5.3 Albero di H
+figure: images/fun/htree.png
+
+- Disegnare ricorsivamente un *H-Tree*
+    - Dividere l'area iniziale in due parti uguali
+    - Connettere con una linea i centri delle due aree
+    - Ripetere il procedimento per ciascuna delle due aree
+    - Alternare però la divisione delle aree in orizzontale e verticale
+- Chiedere all'utente il livello di ricorsione desiderato
+
+---
+
+title: 5.4 Scrittura di risultati casuali
+figure: images/misc/dice.png
+
+- Simulare `n` lanci di una terna di dadi
+    - `n` scelto dall'utente
+- Scrivere il risultato dei lanci in un file
+    - In ogni riga, inserire i tre valori separati da spazio
+
+---
+
+title: 5.5 Analisi di risultati casuali
+figure: images/misc/dice.png
+
+- Leggere i dati dal file generato nell'esercizio 5.4
+- Per ogni terna di valori letta, mostrare all'utente la loro somma
+- Contare quante volte, in tutto, si presenta ciascun risultato
+    - Risultati possibili: da 3 a 18
+    - Somma dei tre dadi
+
+>
+
+Per conteggiare i vari risultati, usare una lista di (almeno) 16 valori
+
+---
+
+title: 5.6 Moon Patrol, rocce
+figure: images/misc/moon-patrol.jpg
+
+- Le rocce vengono generate casualmente
+- Possono essere di due dimensioni diverse
+- Sono sempre sufficientemente separate tra loro
+- Si spostano da destra a sinistra con velocità costante
+- Se urta una roccia, il rover si distrugge
+
+---
+
+title: 5.7 Moon Patrol, proiettili
+figure: images/misc/moon-patrol.jpg
+
+- Il rover, a comando, spara proiettili
+- Ad ogni comando, viene sparato un proiettile verso destra ed uno verso l'alto
+- Le rocce possono essere distrutte dai proiettili del rover
+- Le rocce più grandi devono essere colpite due volte
+
