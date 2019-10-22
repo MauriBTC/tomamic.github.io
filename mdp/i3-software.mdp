@@ -118,7 +118,7 @@ title: Responsabilità e contratti
 
 title: Esempio di contratto
 
-code: Python
+code: py
 
     def sqrt(x: float) -> float
 
@@ -185,7 +185,7 @@ title: Asserzioni Python
 - Utili per collaudo e debugging, ma anche documentazione
 - Violazione → **AssertionError** (e normalmente *abort*, terminazione programma)
 
-code: Python
+code: py
 
     assert age > 0
 
@@ -205,7 +205,7 @@ title: Asserzioni e contratti
 
 title: Pre- e post-condizioni
 
-code: Python
+code: py
 
     def sqrt(x: float) -> float:
         '''
@@ -354,7 +354,7 @@ title: Diagramma di flusso
 figure: images/dev/flow-chart.png
 class: large-figure
 
-code: Python
+code: py
 
     def f():
         // entry
@@ -413,7 +413,7 @@ title: Partizioni d’equivalenza
     - Si includono casi limite e valori non validi
     - Precondizioni: riducono il numero di casi di test
 
-code: Python
+code: py
 
     def swap_elements(v: list, i: int, j: int):
         '''
@@ -472,7 +472,7 @@ title: Esempio di test
 
 - Controllare che una pallina rimbalzi correttamente all'angolo
 
-code: Python
+code: py
 
     import unittest
 
@@ -522,7 +522,7 @@ title: Test parametrizzati
 
 title: Test parametrizzato, semplicistico
 
-code: Python
+code: py
 
     class ParamBallTest(unittest.TestCase):
 
@@ -545,7 +545,7 @@ title: Sotto-test, Python 3.4
 
 - Eseguiti tutti i sottotest, anche se uno fallisce
 
-code: Python
+code: py
 
     class ParamBallTest(unittest.TestCase):
 
@@ -571,7 +571,7 @@ title: Controllare le eccezioni 🤔
     - Oppure creare un *contesto* con `with`
 - Esempio: `Ball` solleva effettivamente una eccezione attesa?
 
-code: Python
+code: py
 
     def test_out_of_arena(self):
         with self.assertRaises(ValueError):
@@ -598,7 +598,7 @@ title: Esempio di fixture 🤔
 - Numerosi metodi di test che operano su stessi dati iniziali
     - Esempio, una configurazione di palline in posizioni predefinite
 
-code: Python
+code: py
 
     class SimpleBallTest(unittest.TestCase):
 
@@ -618,7 +618,7 @@ title: Test suite 🤔
 - La classe `TestRunner` rappresenta un esecutore di test
     - Per la console, si usa `TextTestRunner`, già inclusa nel framework
 
-code: Python
+code: py
 
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(SimpleBallTest))

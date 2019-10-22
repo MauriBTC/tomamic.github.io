@@ -129,6 +129,12 @@ figcaption: Rosso, verde, blu + Ciano, magenta, giallo
     - TV a colori (compat. B&W)
 - **HSL**: tonalità, saturazione e luminosità
 
+>
+
+<https://en.wikipedia.org/wiki/RGB_color_model> <br/>
+<https://en.wikipedia.org/wiki/YUV> <br/>
+<https://en.wikipedia.org/wiki/HSL_and_HSV>
+
 ---
 
 title: Formati di file grafici

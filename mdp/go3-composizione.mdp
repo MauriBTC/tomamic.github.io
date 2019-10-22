@@ -426,16 +426,9 @@ code: python
 
     func tick() {
         if KeyPressed("ArrowUp") {
-            hero.GoUp()
-        } else if KeyPressed("ArrowRight") {
-            hero.GoRight()
-        } else if KeyPressed("ArrowDown") {
-            hero.GoDown()
-        } else if KeyPressed("ArrowLeft") {
-            hero.GoLeft()
-        } else if KeyReleased("ArrowUp") || KeyReleased("ArrowRight") ||
-                KeyReleased("ArrowDown") || KeyReleased("ArrowLeft") {
-            hero.Stay()
+            hero.GoUp(true)
+        } else if KeyReleased("ArrowUp") {
+            hero.GoUp(false)
         }
         // ...
     }

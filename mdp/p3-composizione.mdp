@@ -469,18 +469,10 @@ code: py
 
     def tick():
         if g2d.key_pressed("ArrowUp"):
-            turtle.go_up()
-        elif g2d.key_pressed("ArrowRight"):
-            turtle.go_right()
-        elif g2d.key_pressed("ArrowDown"):
-            turtle.go_down()
-        elif g2d.key_pressed("ArrowLeft"):
-            turtle.go_left()
-        elif (g2d.key_released("ArrowUp") or
-              g2d.key_released("ArrowRight") or
-              g2d.key_released("ArrowDown") or
-              g2d.key_released("ArrowLeft")):
-            turtle.stay()
+            turtle.go_up(True)
+        elif g2d.key_released("ArrowUp"):
+            turtle.go_up(False)
+        # ...
 
 >
 

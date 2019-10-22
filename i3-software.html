@@ -245,7 +245,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>def sqrt(x: float) -&gt; float
+      <pre class="prettyprint lang-py" data-lang="py"><code>def sqrt(x: float) -&gt; float
 </code></pre>
 <ul>
 <li>Precondizioni: <code>x &gt;= 0</code></li>
@@ -356,7 +356,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Utili per collaudo e debugging, ma anche documentazione</li>
 <li>Violazione → <strong>AssertionError</strong> (e normalmente <em>abort</em>, terminazione programma)</li>
 </ul>
-<pre class="" data-lang="Python"><code>assert age &gt; 0
+<pre class="prettyprint lang-py" data-lang="py"><code>assert age &gt; 0
 </code></pre></article>
  
 </slide>
@@ -393,7 +393,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>def sqrt(x: float) -&gt; float:
+      <pre class="prettyprint lang-py" data-lang="py"><code>def sqrt(x: float) -&gt; float:
     '''
     Precondition: x &gt;= 0
     Postcondition: abs(result * result - x) &lt;= 0.00001
@@ -649,7 +649,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/dev/flow-chart.png">
         
-      </figure><pre class="" data-lang="Python"><code>def f():
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def f():
     // entry
     while a:
         x()
@@ -741,7 +741,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="Python"><code>def swap_elements(v: list, i: int, j: int):
+<pre class="prettyprint lang-py" data-lang="py"><code>def swap_elements(v: list, i: int, j: int):
     '''
     Exchange element i and j in list v
     v: empty, one element, more elements
@@ -845,7 +845,7 @@ URL: https://code.google.com/p/io-2012-slides
       <ul>
 <li>Controllare che una pallina rimbalzi correttamente all'angolo</li>
 </ul>
-<pre class="" data-lang="Python"><code>import unittest
+<pre class="prettyprint lang-py" data-lang="py"><code>import unittest
 
 class SimpleBallTest(unittest.TestCase):
 
@@ -920,7 +920,7 @@ python -m unittest discover
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>class ParamBallTest(unittest.TestCase):
+      <pre class="prettyprint lang-py" data-lang="py"><code>class ParamBallTest(unittest.TestCase):
 
     def test_move(self):
         test_values = ( (40, 80, 45, 85),
@@ -947,7 +947,7 @@ python -m unittest discover
       <ul>
 <li>Eseguiti tutti i sottotest, anche se uno fallisce</li>
 </ul>
-<pre class="" data-lang="Python"><code>class ParamBallTest(unittest.TestCase):
+<pre class="prettyprint lang-py" data-lang="py"><code>class ParamBallTest(unittest.TestCase):
 
     def test_move(self):
         test_values = ()  # same values...
@@ -982,7 +982,7 @@ python -m unittest discover
 </li>
 <li>Esempio: <code>Ball</code> solleva effettivamente una eccezione attesa?</li>
 </ul>
-<pre class="" data-lang="Python"><code>def test_out_of_arena(self):
+<pre class="prettyprint lang-py" data-lang="py"><code>def test_out_of_arena(self):
     with self.assertRaises(ValueError):
         b = Ball(-1, -1)
 </code></pre></article>
@@ -1029,7 +1029,7 @@ python -m unittest discover
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="Python"><code>class SimpleBallTest(unittest.TestCase):
+<pre class="prettyprint lang-py" data-lang="py"><code>class SimpleBallTest(unittest.TestCase):
 
     def setUp(self):
         self.b1 = Ball(80, 40)
@@ -1057,7 +1057,7 @@ python -m unittest discover
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="Python"><code>suite = unittest.TestSuite()
+<pre class="prettyprint lang-py" data-lang="py"><code>suite = unittest.TestSuite()
 suite.addTest(unittest.makeSuite(SimpleBallTest))
 runner = unittest.TextTestRunner()
 runner.run(suit)
