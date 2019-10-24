@@ -1,0 +1,915 @@
+title: Algoritmi in Go
+subtitle: Introduzione alla programmazione
+figure: images/algo/rubik-cube.png
+
+---
+
+title: Less is exponentially more
+
+- Progetto avviato nel ~2007 presso Google, partendo dal C
+    - Pionieri di Unix: Rob *Pike* e Ken *Thompson*, con Robert Griesemer
+    - Libro: “The Go Programming Language” by Brian W. *Kernighan*, Alan Donovan
+- Pochi concetti, tra loro ortogonali
+    - Senza *eccezioni*, né *template*, né *ereditarietà*
+    - *Interfacce* e *duck typing*, *Type inference*
+    - *Garbage collection*, ma codice *nativo* (senza macchina virtuale)
+    - *Communicating sequential processes*
+
+>
+
+Dopo una presentazione di 35 nuove caratteristiche del C++11, durante le pause per compilare codice C++...
+<https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html>
+
+---
+
+title: Hello, browser!
+figure: images/algo/helloworld.png
+
+- Esecuzione parte da funzione **`main`** in modulo `main`
+- Modulo speciale **`g2d`** per disegno ecc.
+- **`g2d.Alert`**: *messaggio in finestra di dialogo*
+
+code: go
+
+    package main
+
+    import . "g2d"
+
+    func main() {
+        Alert("Hello, browser!")
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs>
+
+---
+
+title: Variabile
+figure: images/algo/my-shoes.png
+
+- Le comuni variabili sono *contenitori* di dati
+- Occorrono **dichiarazioni** di tipo
+    - Valore iniziale `0` o `""`, quando non specificato
+- Possibile *type inference* (`:=`)
+    - *Tipo* inferito dal valore di inizializzazione
+    - Operatore `=` per normale (ri)assegnamento
+
+code: go
+
+    var i, j int = 1, 2  // no type inference
+
+    k := 3.2
+    ans, txt := true, "no!"
+
+    Println(i, j, k, ans, txt)
+
+---
+
+title: Strutture per grafica
+figure: images/repr/additive-color.svg
+
+- Strutture e funzioni definite nel modulo `g2d`
+
+code: go
+
+    type Point struct{ X, Y int }
+    type Rect struct{ X, Y, W, H int }
+    type Color struct{ R, G, B int }
+
+code: go
+
+    center := Point{150, 100}
+    rectangle := Rect{150, 100, 200, 200}  // square
+    myBlue := Color{10, 10, 200}  // each component in 0..255
+
+---
+
+title: Disegno nel browser
+figure: images/oop/raster-coord.png
+
+code: go
+
+    // width, height
+    InitCanvas(Point{640, 480})
+
+    // red + green = yellow
+    SetColor(Color{255, 255, 0})
+    // left, top, width, height
+    FillRect(Rect{150, 100, 250, 200})
+
+    SetColor(Color{0, 0, 255})
+    // center, radius
+    FillCircle(Point{400, 300}, 20)
+
+    // manage the window/canvas
+    MainLoop()
+
+---
+
+title: Linee e testi
+figure: images/oop/raster-coord.png
+
+code: go
+
+    SetColor(Color{0, 255, 0})
+    // from, to
+    DrawLine(Point{150, 100}, Point{400, 300})
+
+    SetColor(Color{255, 0, 0})
+    // text, left-top corner, font-size
+    DrawText("Hello", Point{150, 100}, 40)
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p1_draw.go>
+
+---
+
+title: Selezione: if ... else
+figure: images/algo/if-else.svg
+
+- Corpo di `if` o `else` tra graffe
+- Clausola `else`: opzionale
+
+code: go
+
+    radius := ToInt(Prompt("Radius? [50-99]"))
+
+    if 50 <= radius && radius <= 99 {
+        SetColor(Color{0, 0, 255})
+        FillCircle(Point{200, 200}, radius)
+    } else {
+        Alert("Out of range!")
+    }
+
+    SetColor(Color{255, 255, 0})
+    FillCircle(Point{200, 200}, 25)
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p1_if_else.go>
+
+---
+
+title: Iterazione: for
+figure: images/algo/count.svg
+
+- Condizione di *permanenza* nel ciclo
+- Controllo *preliminare*: possibile che il corpo non sia mai eseguito
+- *Problem solving*: sommare tutti i numeri da 1 ad `n`
+    - Devo almeno saper contare fino ad `n`
+
+code: go
+
+    n := ToInt(Prompt("n?"))
+    count := 1
+
+    for count <= n {
+        Alert(count)
+        count = count + 1
+    }
+
+---
+
+title: Sequenza di quadrati
+figure: images/misc/red-squares.png
+
+code: go
+
+    InitCanvas(Point{300, 300})
+
+    for i := 0; i < 5; i++ {
+        x := i * 40
+        y := x
+        red := i * 60
+        SetColor(Color{red, 0, 0})
+        FillRect(Rect{x, y, 140, 140})
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p1_red_squares.go>
+
+---
+
+title: Moduli
+
+code: go
+
+    package main
+
+    import "math"   // Math functions, use prefix
+    import . "g2d"  // Import everything, skip prefix
+
+    func main() {
+        y := math.Sin(math.Pi / 4.0)
+        Println(y)
+    }
+
+code: shell
+
+    go run hello.go
+
+>
+
+Sono esportati dai moduli solo i nomi con la prima lettera **maiuscola** <br>
+
+<https://golang.org/pkg/fmt> - <https://golang.org/pkg/math>
+
+---
+
+title: Funzioni e oggetti
+class: segue dark
+
+---
+
+title: Definizione di funzioni
+figure: images/fun/function.png
+
+- **Funzione**: operatore, applicato a operandi, per ottenere un risultato
+    - **`func`** per definire una funzione
+    - **`return`** per terminare la funzione e restituire un risultato
+
+code: go
+
+    func Hypotenuse(a, b float64) float64 {
+        c := math.Sqrt(a*a + b*b)
+        return c
+    }
+
+---
+
+title: Parametri di funzioni
+
+- **Parametri formali**: nomi usati nella *definizione*
+- **Parametri effettivi**: valori passati alla funz.
+- Parametri passati “*per copia*”
+    - Variabili e valori all'esterno: non vengono modificati
+    - (Slice e oggetti passati per puntatore: modifiche *permanenti*)
+- Si possono restituire più valori, come *tupla*
+    - `return 7, 5, "black"`
+
+---
+
+title: Animazione
+
+code: go
+
+    var image = LoadImage("ball.png")
+    var x, y, dx = 50, 50, 5
+    var screen = Point{480, 360}
+
+    func tick() {
+        //if KeyPressed("Enter") { ... }
+        //if x + dx > screen.W { ... }
+        ClearCanvas()                  // Draw background
+        DrawImage(image, Point{x, y})  // Draw foreground
+        x += dx                        // Update ball's position
+    }
+    func main() {
+        InitCanvas(screen)
+        MainLoop(tick)  // Call tick 30 times/second
+    }
+
+<http://www.ce.unipr.it/gopherjs/?p2_fun_anim.go>
+
+---
+
+title: Tick, tastiera e mouse
+
+- **`g2d.MainLoop`**: *ciclo di gestione degli eventi*
+    - Parametro opzionale: funzione che sarà chiamata periodicamente
+- **`g2d.KeyPressed`**: *controllo se un tasto è stato premuto*
+    - Risultato: `bool`
+    - Parametro: `string` nome del tasto
+    - Es.: `"q", "1", "ArrowLeft", "Enter", "Spacebar", "LeftButton"`
+- **`g2d.KeyReleased`**: *controllo se un tasto è stato rilasciato*
+    - Stessi parametri e risultato
+- **`g2d.MousePosition`**: *posizione del mouse*
+    - Risultato: `Point`
+
+>
+
+<https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values>
+
+---
+
+title: Funzione per rimbalzi
+figure: images/oop/anim-bounce.png
+
+- Le funzioni forniscono limitata astrazione
+    - Incapsulano il comportamento
+    - Ma espongono i dati
+
+code: go
+
+    func moveBall(x, y, dx, dy int) (int, int, int, int) {
+        if x + dx < 0 || x + dx + size.X > screen.X {
+            dx = -dx
+        }
+        if y + dy < 0 || y + dy + size.Y > screen.Y {
+            dy = -dy
+        }
+        return x + dx, y + dy, dx, dy
+    }
+
+<http://www.ce.unipr.it/gopherjs/?p2_fun_ball.go>
+
+---
+
+title: Oggetti
+class: segue dark
+
+---
+
+title: Puntatori
+figure: images/oop/pointer.png
+
+- Ogni dato in memoria ha un indirizzo
+- Variabile puntatore per memorizzarlo
+- *Referenziazione*: `&` per indirizzo di un dato
+- *Dereferenziazione*: `*` per accesso a dato puntato
+
+code: go
+
+    var i int8 = 56  // one byte
+    var p *int8      // a ptr to some byte (uninitialized)
+    p = &i           // now p points to i
+    *p = *p + 1      // i++
+    Println(*p, i)
+    p = nil          // ptr to nothing
+
+>
+
+Come in *C*, ma *senza* “aritmetica”
+
+---
+
+title: Oggetto
+figure: images/oop/basic-object.svg
+
+- Rappresenta un *oggetto fisico* o un *concetto* del dominio
+- Memorizza il suo **stato** interno in *campi privati*
+    - *Incapsulamento (black box)*
+- Offre un insieme di **servizi**, come *metodi pubblici*
+    - Realizza un *tipo di dato astratto (ADT)*
+
+---
+
+title: Classi ed oggetti
+figure: images/oop/cookie-cutter.png
+
+- Ogni *oggetto* ha una **classe** di origine
+    - La classe dà la stessa forma iniziale (campi e metodi) a tutti i suoi oggetti
+- Ma ogni *oggetto* ha la sua **identità**
+    - Stato e locazione in memoria distinti da quelli di altri oggetti
+    - Sia instanze di classi diverse che della stessa classe
+
+---
+
+title: Definizione della classe
+figure: images/oop/ball-object.svg images/oop/ball-uml.svg
+figcaption: Class diagram UML
+
+- **Incapsulamento** dei dati
+    - Campi in minuscolo: visibilità limitata al modulo
+    - Funzione costruttore in maiuscolo: esportata
+
+code: go
+
+    type Ball struct {
+        x, y    int
+        w, h    int
+        dx, dy  int
+    }
+
+    func NewBall(pos Point) *Ball {
+        b := &Ball{pos.X, pos.Y, 20, 20, 5, 5}
+        return b
+    }
+
+---
+
+title: Costruzione oggetti
+figure: images/oop/bob-builder.jpg
+
+- **`NewBall`**: funzione *costruttore*
+    - Invocata per creare un oggetto
+    - *Instantiation is initialization*
+    - Restituisce un puntatore all'oggetto
+
+code: go
+
+    ball := NewBall(Point{40, 80})  // Allocation and initialization
+
+---
+
+title: Metodi
+
+- Espongono *servizi* ad altri oggetti
+- Bisogna indicare l'*oggetto ricevitore*, come puntatore
+
+code: go
+
+    var arenaW, arenaH = 480, 360
+
+    func (b *Ball) Move() {
+        if !(0 <= b.x+b.dx && b.x+b.dx <= arenaW-b.w) {
+            b.dx = -b.dx
+        }
+        if !(0 <= b.y+b.dy && b.y+b.dy <= arenaH-b.h) {
+            b.dy = -b.dy
+        }
+        b.x += b.dx
+        b.y += b.dy
+    }
+
+---
+
+title: Applicazione
+
+code: go
+
+    func (b *Ball) Position() Rect {
+        return Rect{b.x, b.y, b.w, b.h}
+    }
+
+    func main() {
+        b1 := NewBall(Point{40, 80})  // Create two objects,
+        b2 := NewBall(Point{80, 40})  // instances of the Ball class
+
+        for i := 0; i < 25; i++ {
+            b1.Move()
+            b2.Move()
+            Println("Ball 1 @", b1.Position())
+            Println("Ball 2 @", b2.Position())
+        }
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p2_oop_ball.go>
+
+---
+
+title: Animazione di due palline
+
+code: go
+
+    var b1 = NewBall(Point{40, 80})
+    var b2 = NewBall(Point{80, 40})
+
+    func tick() {
+        ClearCanvas()            // BG
+        b1.Move()
+        b2.Move()
+        FillRect(b1.Position())  // FG
+        FillRect(b2.Position())  // FG
+    }
+
+    func main() {
+        InitCanvas(Point{arenaW, arenaH})
+        //SetFrameRate(30)  // default
+        MainLoop(tick)
+    }
+
+---
+
+title: Liste e composizione
+class: segue dark
+
+---
+
+title: Slice
+figure: images/fun/shopping-list.png
+
+- Sequenza di elementi, dello stesso **tipo**
+    - L'intera lista (*slice*) può essere assegnata ad una variabile, così diamo un **nome** alla lista
+- I singoli elementi sono **numerati**
+    - Gli indici partono da 0!
+
+code: go
+
+    grocery := []string{"spam", "eggs", "beans"}
+
+code: go
+
+    rainfallData := []int{13, 24, 18, 15}
+
+code: go
+
+    resultsByMonth := make([]int, 12)  // 12 times 0
+
+---
+
+title: Accesso agli elementi
+figure: images/fun/wile-coyote.png
+
+- **Attenzione ad usare indici validi!**
+    - *Lunghezza* attuale di una lista `s`: `len(s)`
+    - Elementi *numerati* da `0` a `len(s)-1`
+
+code: go
+
+    grocery := []string{"spam", "eggs", "beans"}
+    n := len(grocery)      // 3
+    grocery[1] = "bacon"   // replace a value, len is still 3
+
+    Println(grocery[0])    // "spam"
+    Println(grocery[1])    // "bacon"
+    Println(grocery[n-1])  // "beans"
+
+
+    grocery = append(grocery, "sausage")  // add to the end, len is 4
+    Println(grocery)                      // guess!
+
+---
+
+title: Cicli su liste: for
+figure: images/fun/shopping-list.jpg
+
+code: go
+
+    grocery := []string{"spam", "eggs", "beans"}
+
+    Println("Your grocery list contains:")
+
+    for _, value := range grocery {
+        Println(value)
+    }
+    // for index, value := range grocery {
+    //    Println(index, value)
+    // }
+
+- Ad ogni iterazione, a `value` è assegnato un diverso elemento della lista `grocery`
+- `index` e/o `value` possono essere omessi (sostituiti con `_`)
+
+---
+
+title: Cicli su stringhe: for 🤔
+
+- Si può usare un ciclo `for` su qualsiasi sequenza
+- Anche su *stringa*: sequenza *immutabile* di caratteri (UTF-8)
+
+code: go
+
+    for index, value := range "Hello, 🌐!" {
+        Println(index, value)
+    }
+
+    for _, x := range "Hello, 🌐!" {
+        Printf("%c  ", x)
+        Printf("%d\n", x)
+    }
+
+---
+
+title: Porzioni di lista 🤔
+figure: images/fun/month-list.svg
+
+- Selezione degli elementi tra...
+    - il primo indice (*compreso*)...
+    - ed il secondo indice (*escluso*)
+
+code: go
+
+    months := []string{"Jan", "Feb", "Mar",
+                       "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep",
+                       "Oct", "Nov", "Dec"}
+
+    spring := months[2:5]       // [Mar Apr May]
+    quart1 := months[:3]        // [Jan Feb Mar]
+    quart4 := months[9:]        // [Oct Nov Dec]
+    wholeYear := months[:]      // The whole list
+
+>
+
+Funzioni `strings.Join` e `strings.Split`
+
+---
+
+title: Composizione
+class: segue dark
+
+---
+
+title: Lista di palline
+
+code: go
+
+    var balls = []*Ball{NewBall(Point{40, 80}),
+                        NewBall(Point{80, 40})}
+
+    func tick() {
+        ClearCanvas() // BG
+        for _, b := range balls {
+            b.Move()
+            FillRect(b.Position()) // FG
+        }
+    }
+    func main() {
+        InitCanvas(screen)
+        MainLoop(tick)
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_oop_balls.go>
+
+---
+
+title: Composizione
+figure: images/oop/ball-arena.svg
+
+- Associazione **has-a**, **part-of** tra oggetti
+    - Una arena *contiene* diverse palline
+
+code: go
+
+    type BallArena struct { balls []*Ball }
+    func (a *BallArena) Add(b *Ball) {
+        a.balls = append(a.balls, b)
+    }
+    func (a *BallArena) MoveAll() {
+        for i, b := range a.balls { b.Move() }
+    }
+    func main() {
+        arena := &BallArena{}
+        arena.Add(NewBall(Point{40, 80})) // ...
+        arena.MoveAll() // ...
+    }
+
+---
+
+title: Interfacce
+class: segue dark
+
+---
+
+title: Livelli di astrazione
+figure: images/oop/inheritance.png
+
+- Relazione **is-a** tra classi
+    - Specializzazione, sotto-insieme
+- Es. classificazioni in biologia
+    - *Vertebrati* sottoclasse degli *animali*
+    - *Mammiferi* sottoclasse dei *vertebrati*
+    - *Felini* sottoclasse dei *mammiferi*
+    - *Gatti* sottoclasse dei *felini*
+- Ogni sottoclasse...
+    - Eredita le caratteristiche della classe base
+    - Ma introduce delle specializzazioni
+- In **Go** non c'è *ereditarietà*, ma **interfacce**
+
+---
+
+title: Fattoria parlante
+figure: images/oop/animals.png
+
+- Noi definiremo una **interfaccia** come astrazione di base
+- Es. `Animal`:
+    - Tutti gli animali fanno un verso (*interfaccia*)
+    - Ogni animale fa un verso diverso (*polimorfismo*)
+
+code: go
+
+    type Animal interface {
+        Say()
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_oop_animals.go>
+
+---
+
+title: Classi concrete
+figure: images/oop/polymorphism.png
+
+code: go
+
+    type Dog struct { name string }
+    func NewDog(name string) *Dog { return &Dog{name} }
+    func (d *Dog) Say() {
+        Println("I'm " + d.name + " Dog. I say: WOOF!")
+    }
+
+    type Cat struct { name string }
+    func NewCat(name string) *Cat { return &Cat{name} }
+    func (c *Cat) Say() {
+        Println("I'm " + c.name + " Cat. I say: MEOW!")
+    }
+
+---
+
+title: Lista di oggetti
+figure: images/oop/peppa.png
+
+code: py
+
+    d := NewDog("Danny")
+    c := NewCat("Candy")
+    p1 := NewPig("Peppa")
+    p2 := NewPig("George")
+    animals := []Animal{d, c, p1, p2}
+
+    for _, a := range animals {
+        a.Say()
+    }
+
+code: output
+
+    I am Danny Dog. I say: WOOF!
+    I am Candy Cat. I say: MEOW!
+    I am Peppa Pig. I say: OINK!
+    I am George Pig. I say: OINK!
+
+---
+
+title: Interfacce
+figure: images/oop/actors.svg
+
+- `Actor`: *interfaccia*
+    - Dichiara un metodo `move` ecc.
+- Vari attori: *classi implementazione*
+    - Implementano caratteristiche di `Actor`
+    - Definiscono comportamenti specifici
+
+code: go
+
+    type Actor interface {
+        Move()
+    }
+
+---
+
+title: Generalizzazione e riuso
+
+code: go
+
+    type Arena struct { actors []Actor }
+    func (a *Arena) Add(c Actor) {
+        a.actors = append(a.actors, c)
+    }
+    func (a *Arena) MoveAll() {
+        for i, c := range a.actors {
+            c.Move()
+        }
+    }
+
+- Codice dipendente dalle classi più astratte, più in alto nella gerarchia
+    - `Arena` riutilizzabile creando nuove classi derivate di `Actor`
+
+---
+
+title: Sostituzione
+figure: images/oop/actor.svg
+
+code: go
+
+    arena.Add(NewBall(Point{40, 80}))
+    arena.Add(NewGhost(Point{120, 40})) // ...
+    arena.MoveAll()
+
+- Principio di **sostituzione** di Liskov
+    - Si può sempre usare un oggetto di una *classe implementazione*, al posto di uno della *interfaccia*
+- Relazione *has-a* tra un oggetto `Arena` e gli oggetti `Actor` che contiene
+- Relazione *is-a* tra classi implementazione (`Ball` e `Ghost`) e interfaccia (`Actor`)
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?g2d/actor.go>
+
+---
+
+title: Ereditarietà e polimorfismo
+
+- **Classe implementazione**
+    - Implementa le caratteristiche della interfaccia
+    - Può definire nuove caratteristiche specifiche
+- **Metodo polimorfo**
+    - Definito in modo diverso nelle classi implementazione
+    - Attori diversi possono muoversi in modo diverso
+
+code: go
+
+    type Ghost struct { x, y int }  // ...
+    func (g *Ghost) Move() {
+        dx := 5 * RandInt(-1, 1)
+        dy := 5 * RandInt(-1, 1)
+        g.x = (g.x + dx + screen.W) % screen.W
+        g.y = (g.y + dy + screen.H) % screen.H
+    }
+
+---
+
+title: Attori e arena
+
+code: go
+
+    type Ghost struct {
+        arena *Arena
+        x, y  int
+    }
+    func NewGhost(arena *Arena, x, y int) *Ghost {
+        g := &Ghost{arena, x, y}  // save a ref to the arena
+        arena.Add(g)              // register yourself into the arena
+        return g
+    }
+    func (g *Ghost) Move() {
+        dx, dy := 5 * RandInt(-1, 1), 5 * RandInt(-1, 1)
+        as := g.arena.Size()      // ref to arena
+        g.x = (g.x + dx + as.X) % as.X
+        g.y = (g.y + dy + as.Y) % as.Y
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go>
+
+---
+
+title: Animazione dei personaggi
+class: segue dark
+
+---
+
+title:  Rimbalzi nel browser
+
+code: go
+
+    var sprites = LoadImage("sprites.png")
+    var arena = NewArena(Point{480, 360})
+    var hero = NewTurtle(arena, Point{80, 80})  // actor knows the arena
+    func tick() {
+        // ...
+        arena.MoveAll()  // Game logic
+        ClearCanvas()
+        for _, a := range arena.Actors() {
+            // Cut an area from a larger image
+            DrawImageClip(sprites, a.Symbol(), a.Position())
+        }
+    }
+    func main() {
+        NewGhost(arena, Point{120, 80}); NewBall(arena, Point{40, 80}) // ...
+        InitCanvas(arena.Size())
+        MainLoop(tick)
+    }
+
+---
+
+title:  Controllo da tastiera
+figure: images/oop/bounce.png
+
+code: python
+
+    func tick() {
+        if KeyPressed("ArrowUp") {
+            hero.GoUp(true)
+        } else if KeyReleased("ArrowUp") {
+            hero.GoUp(false)
+        }
+        // ...
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go>
+
+---
+
+title: Collisioni
+figure: images/oop/collision.svg images/oop/reflection.png
+
+- Molti algoritmi di *collision detection*
+    - Casi semplici: intersezione di rettangoli
+- In caso di collisione, `Arena`...
+    - Invoca il metodo `collide` di entrambi gli oggetti
+    - Collisione tra personaggio `self` e personaggio `other` (secondo parametro)
+- Possibili errori nel calcolo del rimbalzo
+    - Di solito accettabili
+    - Altrimenti, applicare correzioni
+
+---
+
+title: Urti delle palline
+
+code: python
+
+    func (b *Ball) Collide(other Actor) {
+        _, ok := other.(*Ghost)
+        if !ok {
+            op := other.Position()
+            if op.X < b.x { b.dx = b.speed }
+            else { b.dx = -b.speed }
+            if op.Y < b.y { b.dy = b.speed }
+            else { b.dy = -b.speed }
+        }
+    }
+
+- *Downcast*: `other.(*Ghost)`
+    - Converte l'oggetto `other` come istanza di `Ghost`
+    - Restituisce un riferimento a `Ghost` ed un `bool`
+
