@@ -215,7 +215,8 @@ code: py
     def print_game(game: BoardGame):
         for y in range(game.rows()):
             for x in range(game.cols()):
-                print('{:3}'.format(game.get_val(x, y)), end='')
+                val = game.get_val(x, y)
+                print(f"{val:3}", end='')
             print()
 
     def console_play(game: BoardGame):
@@ -228,7 +229,7 @@ code: py
 
 >
 
-*Gui*: <http://www.ce.unipr.it/brython/?boardgame_g2d.py>
+*Gui*: <http://www.ce.unipr.it/brython/?boardgamegui.py>
 
 ---
 
@@ -247,7 +248,7 @@ code: py
             self._solved = self._board[:]
 
             # then, random walk of the blank tile
-            self._board[-1] != 1:
+            while self._board[-1] != 1:
                 dx, dy = choice([(0, -1), (+1, 0), (0, +1), (-1, 0)])
                 self.play_at(self._x0 + dx, self._y0 + dy)
 
