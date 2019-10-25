@@ -9,7 +9,7 @@ URL: https://code.google.com/p/io-2012-slides
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Go - Linux Day 2019</title>
+  <title>Il linguaggio Go</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -27,13 +27,46 @@ URL: https://code.google.com/p/io-2012-slides
   <aside class="gdbar"><img src="theme/logo.png"></aside>
   <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
   <h1 data-config-title><!-- populated from slide_config.json --></h1>
-  <figure><img src="images/algo/rubik-cube.png"></figure>
+  <figure><img src="images/dev/golang.svg"></figure>
   <hgroup>
-    <h2>Introduzione al linguaggio con lo sviluppo di giochi 2D</h2>
+    <h2>Introduzione al linguaggio con lo sviluppo di giochi 2D <br> Parma, Linux Day 2019</h2>
     <p>Michele Tomaiuolo<br>Ingegneria dell'Informazione, UniPR</p>
   </hgroup>
 </slide>
 
+
+<slide  >
+  
+    <hgroup>
+      <h2>Dal C al Cloud</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/gopher.jpg">
+        
+      </figure><ul>
+<li>Avvio in Google ~2007, radici nel <em>C</em><ul>
+<li>Rob <em>Pike</em> e Ken <em>Thompson</em> (pionieri Unix), con Robert Griesemer</li>
+<li>“The Go Programming Language”, libro di Brian W. <em>Kernighan</em>, Alan Donovan</li>
+</ul>
+</li>
+<li>Avversione per il <em>C++</em><ul>
+<li>Dopo presentazione di 35 caratteristiche del C++11</li>
+<li>Durante le pause per compilare codice C++</li>
+</ul>
+</li>
+<li>Open source, licenza BSD-style<ul>
+<li>Docker, Kubernetes, Golang</li>
+<li>Google, Facebook, Netflix , Dropbox etc.</li>
+<li>Sviluppo di applicazioni distribuite, web e cloud</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html">https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html</a></p></article>
+ 
+</slide>
 
 <slide  >
   
@@ -43,46 +76,19 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <ul>
-<li>Progetto avviato nel ~2007 presso Google, partendo dal C<ul>
-<li>Pionieri di Unix: Rob <em>Pike</em> e Ken <em>Thompson</em>, con Robert Griesemer</li>
-<li>Libro: “The Go Programming Language” by Brian W. <em>Kernighan</em>, Alan Donovan</li>
-</ul>
-</li>
 <li>Pochi concetti, tra loro ortogonali<ul>
 <li>Senza <em>eccezioni</em>, né <em>template</em>, né <em>ereditarietà</em></li>
-<li><em>Interfacce</em> e <em>duck typing</em>, <em>Type inference</em></li>
+<li><em>Interfacce</em> e <em>duck typing</em></li>
+<li><em>Type inference</em>: inizializzazione con operatore <code>:=</code></li>
 <li><em>Garbage collection</em>, ma codice <em>nativo</em> (senza macchina virtuale)</li>
 <li><em>Communicating sequential processes</em></li>
 </ul>
 </li>
+<li>Sintassi semplice e compilazione immediata<ul>
+<li><em>Static, but feels dynamic</em></li>
 </ul>
-<blockquote></blockquote>
-<p>Dopo una presentazione di 35 nuove caratteristiche del C++11, durante le pause per compilare codice C++...
-<a href="https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html">https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html</a></p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Static, but feels dynamic</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/algo/my-shoes.png">
-        
-      </figure><ul>
-<li>Sintassi semplice e compilazione immediata</li>
-<li>Operatore <code>:=</code> per <em>type inference</em></li>
-<li><em>Tipo</em> inferito dal valore di inizializzazione</li>
-<li>Operatore <code>=</code> per normale (ri)assegnamento</li>
-</ul>
-<pre class="prettyprint lang-go" data-lang="go"><code>var i, j int = 1, 2  // no type inference, globals
-
-k, txt := 3.2, "some text"
-txt = "some other text"
-</code></pre></article>
+</li>
+</ul></article>
  
 </slide>
 
@@ -112,7 +118,7 @@ func main() {
 go run hello.go
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/gopherjs">http://www.ce.unipr.it/gopherjs</a></p></article>
+<p><em>Playground:</em> <a href="http://www.ce.unipr.it/gopherjs">http://www.ce.unipr.it/gopherjs</a></p></article>
  
 </slide>
 
@@ -138,6 +144,7 @@ rectangle := Rect{150, 100, 200, 200}  // square
 myBlue := Color{10, 10, 200}  // each component in 0..255
 </code></pre>
 <blockquote></blockquote>
+<p><em>Documentazione del modulo g2d:</em></p>
 <p><a href="https://github.com/tomamic/fondinfo/tree/master/go/g2d">https://github.com/tomamic/fondinfo/tree/master/go/g2d</a></p></article>
  
 </slide>
@@ -309,7 +316,7 @@ var x, y, dx = 50, 50, 5
 var screen = Point{480, 360}
 
 func tick() {
-    //if KeyPressed("Enter") { ... }
+    //if KeyPressed("LeftButton") { ... }
     //if x + dx &gt; screen.W { ... }
     ClearCanvas()                  // Draw background
     DrawImage(image, Point{x, y})  // Draw foreground

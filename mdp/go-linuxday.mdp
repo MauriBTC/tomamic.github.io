@@ -1,41 +1,39 @@
-title: Go - Linux Day 2019
-subtitle: Introduzione al linguaggio con lo sviluppo di giochi 2D
-figure: images/algo/rubik-cube.png
+title: Il linguaggio Go
+subtitle: Introduzione al linguaggio con lo sviluppo di giochi 2D <br> Parma, Linux Day 2019
+figure: images/dev/golang.svg
+
+---
+
+title: Dal C al Cloud
+figure: images/dev/gopher.jpg
+
+- Avvio in Google ~2007, radici nel *C*
+    - Rob *Pike* e Ken *Thompson* (pionieri Unix), con Robert Griesemer
+    - “The Go Programming Language”, libro di Brian W. *Kernighan*, Alan Donovan
+- Avversione per il *C++*
+    - Dopo presentazione di 35 caratteristiche del C++11
+    - Durante le pause per compilare codice C++
+- Open source, licenza BSD-style
+    - Docker, Kubernetes, Golang
+    - Google, Facebook, Netflix , Dropbox etc.
+    - Sviluppo di applicazioni distribuite, web e cloud
+
+>
+
+<https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html>
 
 ---
 
 title: Less is exponentially more
 
-- Progetto avviato nel ~2007 presso Google, partendo dal C
-    - Pionieri di Unix: Rob *Pike* e Ken *Thompson*, con Robert Griesemer
-    - Libro: “The Go Programming Language” by Brian W. *Kernighan*, Alan Donovan
 - Pochi concetti, tra loro ortogonali
     - Senza *eccezioni*, né *template*, né *ereditarietà*
-    - *Interfacce* e *duck typing*, *Type inference*
+    - *Interfacce* e *duck typing*
+    - *Type inference*: inizializzazione con operatore `:=`
     - *Garbage collection*, ma codice *nativo* (senza macchina virtuale)
     - *Communicating sequential processes*
-
->
-
-Dopo una presentazione di 35 nuove caratteristiche del C++11, durante le pause per compilare codice C++...
-<https://commandcenter.blogspot.it/2012/06/less-is-exponentially-more.html>
-
----
-
-title: Static, but feels dynamic
-figure: images/algo/my-shoes.png
-
 - Sintassi semplice e compilazione immediata
-- Operatore `:=` per *type inference*
-- *Tipo* inferito dal valore di inizializzazione
-- Operatore `=` per normale (ri)assegnamento
-
-code: go
-
-    var i, j int = 1, 2  // no type inference, globals
-
-    k, txt := 3.2, "some text"
-    txt = "some other text"
+    - *Static, but feels dynamic*
 
 ---
 
@@ -62,7 +60,7 @@ code: cmd
 
 >
 
-<http://www.ce.unipr.it/gopherjs>
+*Playground:* <http://www.ce.unipr.it/gopherjs>
 
 ---
 
@@ -84,6 +82,8 @@ code: go
     myBlue := Color{10, 10, 200}  // each component in 0..255
 
 >
+
+*Documentazione del modulo g2d:*
 
 <https://github.com/tomamic/fondinfo/tree/master/go/g2d>
 
@@ -221,7 +221,7 @@ code: go
     var screen = Point{480, 360}
 
     func tick() {
-        //if KeyPressed("Enter") { ... }
+        //if KeyPressed("LeftButton") { ... }
         //if x + dx > screen.W { ... }
         ClearCanvas()                  // Draw background
         DrawImage(image, Point{x, y})  // Draw foreground
