@@ -116,7 +116,7 @@ code: go
 
 ---
 
-title: Selezione: if ... else
+title: ⏩ Selezione: if ... else
 figure: images/algo/if-else.svg
 
 - Corpo di `if` o `else` tra graffe
@@ -142,7 +142,8 @@ code: go
 
 ---
 
-title: Iterazione: for
+title: ⏩ Iterazione: for
+figure: images/misc/red-squares.png
 
 - Versione più semplice: sostituisce `while`, assente
 - Condizione di *permanenza* nel ciclo
@@ -160,7 +161,7 @@ code: go
 
 ---
 
-title: Sequenza di quadrati
+title: ⏩ Sequenza di quadrati
 figure: images/misc/red-squares.png
 
 code: go
@@ -177,7 +178,7 @@ code: go
 
 ---
 
-title: Griglia di colori
+title: ⏩ Griglia di colori
 figure: images/misc/color-grid.png images/oop/raster-tile.png
 
 code: go
@@ -195,7 +196,7 @@ code: go
 
 ---
 
-title: Definizione di funzioni
+title: ⏩ Definizione di funzioni
 figure: images/fun/function.png
 
 - **`func`** per definire una funzione
@@ -236,7 +237,7 @@ code: go
 
 ---
 
-title: Tick, tastiera e mouse
+title: ⏩ Tick, tastiera e mouse
 
 - **`g2d.MainLoop`**: *ciclo di gestione degli eventi*
     - Parametro opzionale: funzione che sarà chiamata periodicamente
@@ -255,7 +256,7 @@ title: Tick, tastiera e mouse
 
 ---
 
-title: Funzione per rimbalzi
+title: ⏩ Funzione per rimbalzi
 figure: images/oop/anim-bounce.png
 
 - Le funzioni forniscono limitata astrazione
@@ -283,7 +284,7 @@ class: segue dark
 
 ---
 
-title: Puntatori
+title: ⏩ Puntatori
 figure: images/oop/pointer.png
 
 - Ogni dato in memoria ha un indirizzo
@@ -464,7 +465,7 @@ code: go
 
 ---
 
-title: Cicli su liste: range loop
+title: Range loop su liste
 figure: images/fun/shopping-list.jpg
 
 code: go
@@ -485,7 +486,7 @@ code: go
 
 ---
 
-title: Cicli su stringhe: for 🤔
+title: ⏩ Range loop su stringhe
 
 - Si può usare un ciclo `for` su qualsiasi sequenza
 - Anche su *stringa*: sequenza *immutabile* di caratteri (UTF-8)
@@ -503,7 +504,7 @@ code: go
 
 ---
 
-title: Porzioni di lista 🤔
+title: ⏩ Porzioni di lista
 figure: images/fun/month-list.svg
 
 - Selezione degli elementi tra...
@@ -674,7 +675,7 @@ code: go
 
 ---
 
-title: Implementazioni e polimorfismo
+title: ⏩ Implementazioni e polimorfismo
 
 - **Tipo concreto, implementazione**
     - Implementa le caratteristiche della interfaccia
@@ -692,7 +693,7 @@ code: go
 
 ---
 
-title: Sostituzione
+title: ⏩ Sostituzione
 figure: images/oop/actor.svg
 
 code: go
@@ -780,11 +781,6 @@ code: go
 - *Downcast*: `other.(*Ghost)`
     - Converte l'oggetto `other` come istanza di `Ghost`
     - Restituisce un riferimento a `Ghost` ed un `bool`
-
----
-
-title: Animazione dei personaggi
-class: segue dark
 
 ---
 
