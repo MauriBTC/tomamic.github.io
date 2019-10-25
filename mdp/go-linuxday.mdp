@@ -12,7 +12,7 @@ figure: images/dev/gopher.jpg
     - “The Go Programming Language”, libro di Brian W. *Kernighan*, Alan Donovan
 - Avversione per il *C++*
     - Dopo presentazione di 35 caratteristiche del C++11
-    - Durante le pause per compilare codice C++
+    - Durante lunghe pause per compilare codice C++
 - Open source, licenza BSD-style
     - Docker, Kubernetes, Golang
     - Google, Facebook, Netflix , Dropbox etc.
