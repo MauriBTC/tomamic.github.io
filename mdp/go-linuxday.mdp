@@ -1,5 +1,5 @@
-title: Algoritmi in Go
-subtitle: Introduzione alla programmazione
+title: Go - Linux Day 2019
+subtitle: Introduzione al linguaggio con lo sviluppo di giochi 2D
 figure: images/algo/rubik-cube.png
 
 ---
@@ -22,47 +22,47 @@ Dopo una presentazione di 35 nuove caratteristiche del C++11, durante le pause p
 
 ---
 
+title: Static, but feels dynamic
+figure: images/algo/my-shoes.png
+
+- Sintassi semplice e compilazione immediata
+- Operatore `:=` per *type inference*
+- *Tipo* inferito dal valore di inizializzazione
+- Operatore `=` per normale (ri)assegnamento
+
+code: go
+
+    var i, j int = 1, 2  // no type inference, globals
+
+    k, txt := 3.2, "some text"
+    txt = "some other text"
+
+---
+
 title: Hello, browser!
 figure: images/algo/helloworld.png
 
-- Esecuzione parte da funzione **`main`** in modulo `main`
+- Avvio da funzione **`main`** in modulo `main`
 - Modulo speciale **`g2d`** per disegno ecc.
-- **`g2d.Alert`**: *messaggio in finestra di dialogo*
 
 code: go
 
     package main
 
-    import . "g2d"
+    import "g2d"  // import . "g2d" -- to skip the prefix
 
     func main() {
-        Alert("Hello, browser!")
+        g2d.Alert("Hello, browser!")      // msg in a dialog
     }
+
+code: cmd
+
+    go get -u github.com/tomamic/fondinfo/go/g2d
+    go run hello.go
 
 >
 
 <http://www.ce.unipr.it/gopherjs>
-
----
-
-title: Variabile
-figure: images/algo/my-shoes.png
-
-- Le comuni variabili sono *contenitori* di dati
-- Occorrono **dichiarazioni** di tipo
-    - Valore iniziale `0` o `""`, quando non specificato
-- Possibile *type inference* (`:=`)
-    - *Tipo* inferito dal valore di inizializzazione
-    - Operatore `=` per normale (ri)assegnamento
-
-code: go
-
-    var i, j int = 1, 2  // no type inference
-
-    k := 3.2
-    ans, txt := true, "no!"
-
-    Println(i, j, k, ans, txt)
 
 ---
 
@@ -83,10 +83,15 @@ code: go
     rectangle := Rect{150, 100, 200, 200}  // square
     myBlue := Color{10, 10, 200}  // each component in 0..255
 
+>
+
+<https://github.com/tomamic/fondinfo/tree/master/go/g2d>
+
 ---
 
 title: Disegno nel browser
 figure: images/oop/raster-coord.png
+class: large-figure
 
 code: go
 
@@ -105,21 +110,6 @@ code: go
     // manage the window/canvas
     MainLoop()
 
----
-
-title: Linee e testi
-figure: images/oop/raster-coord.png
-
-code: go
-
-    SetColor(Color{0, 255, 0})
-    // from, to
-    DrawLine(Point{150, 100}, Point{400, 300})
-
-    SetColor(Color{255, 0, 0})
-    // text, left-top corner, font-size
-    DrawText("Hello", Point{150, 100}, 40)
-
 >
 
 <http://www.ce.unipr.it/gopherjs/?p1_draw.go>
@@ -136,9 +126,9 @@ code: go
 
     radius := ToInt(Prompt("Radius? [50-99]"))
 
-    if 50 <= radius && radius <= 99 {
+    if r := radius; 50 <= r && r <= 99 {
         SetColor(Color{0, 0, 255})
-        FillCircle(Point{200, 200}, radius)
+        FillCircle(Point{200, 200}, r)
     } else {
         Alert("Out of range!")
     }
@@ -153,21 +143,19 @@ code: go
 ---
 
 title: Iterazione: for
-figure: images/algo/count.svg
 
+- Versione più semplice: sostituisce `while`, assente
 - Condizione di *permanenza* nel ciclo
-- Controllo *preliminare*: possibile che il corpo non sia mai eseguito
-- *Problem solving*: sommare tutti i numeri da 1 ad `n`
-    - Devo almeno saper contare fino ad `n`
+- Controllo *preliminare*
 
 code: go
 
-    n := ToInt(Prompt("n?"))
-    count := 1
-
-    for count <= n {
-        Alert(count)
-        count = count + 1
+    i := 0
+    for i < 5 {
+        x, y, red := i * 40, i * 40, i * 60
+        SetColor(Color{red, 0, 0})
+        FillRect(Rect{x, y, 140, 140})
+        i++
     }
 
 ---
@@ -177,12 +165,8 @@ figure: images/misc/red-squares.png
 
 code: go
 
-    InitCanvas(Point{300, 300})
-
     for i := 0; i < 5; i++ {
-        x := i * 40
-        y := x
-        red := i * 60
+        x, y, red := i * 40, i * 40, i * 60
         SetColor(Color{red, 0, 0})
         FillRect(Rect{x, y, 140, 140})
     }
@@ -193,43 +177,31 @@ code: go
 
 ---
 
-title: Moduli
+title: Griglia di colori
+figure: images/misc/color-grid.png images/oop/raster-tile.png
 
 code: go
 
-    package main
-
-    import "math"   // Math functions, use prefix
-    import . "g2d"  // Import everything, skip prefix
-
-    func main() {
-        y := math.Sin(math.Pi / 4.0)
-        Println(y)
+    for y := 0; y < rows; y++ {
+        for x := 0; x < cols; x++ {
+            SetColor(Color{0, y * dgreen, x * dblue})
+            FillRect(Rect{x * w, y * h, w - 1, h - 1})
+        }
     }
-
-code: shell
-
-    go run hello.go
 
 >
 
-Sono esportati dai moduli solo i nomi con la prima lettera **maiuscola** <br>
-
-<https://golang.org/pkg/fmt> - <https://golang.org/pkg/math>
-
----
-
-title: Funzioni e oggetti
-class: segue dark
+<http://www.ce.unipr.it/gopherjs/?x2_color_grid.go>
 
 ---
 
 title: Definizione di funzioni
 figure: images/fun/function.png
 
-- **Funzione**: operatore, applicato a operandi, per ottenere un risultato
-    - **`func`** per definire una funzione
-    - **`return`** per terminare la funzione e restituire un risultato
+- **`func`** per definire una funzione
+    - Parametri passati “*per copia*”
+- **`return`** per terminare la funzione e restituire un risultato
+    - Possibile restituire più risultati, come tupla
 
 code: go
 
@@ -237,18 +209,6 @@ code: go
         c := math.Sqrt(a*a + b*b)
         return c
     }
-
----
-
-title: Parametri di funzioni
-
-- **Parametri formali**: nomi usati nella *definizione*
-- **Parametri effettivi**: valori passati alla funz.
-- Parametri passati “*per copia*”
-    - Variabili e valori all'esterno: non vengono modificati
-    - (Slice e oggetti passati per puntatore: modifiche *permanenti*)
-- Si possono restituire più valori, come *tupla*
-    - `return 7, 5, "black"`
 
 ---
 
@@ -283,7 +243,7 @@ title: Tick, tastiera e mouse
 - **`g2d.KeyPressed`**: *controllo se un tasto è stato premuto*
     - Risultato: `bool`
     - Parametro: `string` nome del tasto
-    - Es.: `"q", "1", "ArrowLeft", "Enter", "Spacebar", "LeftButton"`
+    - Es.: `"q", "1", "ArrowLeft", "Enter", "LeftButton"`
 - **`g2d.KeyReleased`**: *controllo se un tasto è stato rilasciato*
     - Stessi parametri e risultato
 - **`g2d.MousePosition`**: *posizione del mouse*
@@ -357,24 +317,24 @@ figure: images/oop/basic-object.svg
 
 ---
 
-title: Classi ed oggetti
+title: Tipi ed oggetti
 figure: images/oop/cookie-cutter.png
 
-- Ogni *oggetto* ha una **classe** di origine
-    - La classe dà la stessa forma iniziale (campi e metodi) a tutti i suoi oggetti
+- Ogni *oggetto* ha un tipo *`struct`* di origine ~~ *classe*
+    - Stessa forma iniziale (campi e metodi) a tutti i suoi oggetti
 - Ma ogni *oggetto* ha la sua **identità**
     - Stato e locazione in memoria distinti da quelli di altri oggetti
-    - Sia instanze di classi diverse che della stessa classe
+    - Sia instanze di tipi diversi che dello stesso tipo
 
 ---
 
-title: Definizione della classe
+title: Definizione del tipo
 figure: images/oop/ball-object.svg images/oop/ball-uml.svg
 figcaption: Class diagram UML
 
 - **Incapsulamento** dei dati
-    - Campi in minuscolo: visibilità limitata al modulo
-    - Funzione costruttore in maiuscolo: esportata
+    - Campi in *minuscolo*: visibilità limitata al modulo
+    - Funzione costruttore in *maiuscolo*: esportata
 
 code: go
 
@@ -412,8 +372,6 @@ title: Metodi
 
 code: go
 
-    var arenaW, arenaH = 480, 360
-
     func (b *Ball) Move() {
         if !(0 <= b.x+b.dx && b.x+b.dx <= arenaW-b.w) {
             b.dx = -b.dx
@@ -424,32 +382,9 @@ code: go
         b.x += b.dx
         b.y += b.dy
     }
-
----
-
-title: Applicazione
-
-code: go
-
     func (b *Ball) Position() Rect {
         return Rect{b.x, b.y, b.w, b.h}
     }
-
-    func main() {
-        b1 := NewBall(Point{40, 80})  // Create two objects,
-        b2 := NewBall(Point{80, 40})  // instances of the Ball class
-
-        for i := 0; i < 25; i++ {
-            b1.Move()
-            b2.Move()
-            Println("Ball 1 @", b1.Position())
-            Println("Ball 2 @", b2.Position())
-        }
-    }
-
->
-
-<http://www.ce.unipr.it/gopherjs/?p2_oop_ball.go>
 
 ---
 
@@ -470,9 +405,12 @@ code: go
 
     func main() {
         InitCanvas(Point{arenaW, arenaH})
-        //SetFrameRate(30)  // default
         MainLoop(tick)
     }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?p2_oop_ball_anim.go>
 
 ---
 
@@ -526,7 +464,7 @@ code: go
 
 ---
 
-title: Cicli su liste: for
+title: Cicli su liste: range loop
 figure: images/fun/shopping-list.jpg
 
 code: go
@@ -591,36 +529,6 @@ Funzioni `strings.Join` e `strings.Split`
 ---
 
 title: Composizione
-class: segue dark
-
----
-
-title: Lista di palline
-
-code: go
-
-    var balls = []*Ball{NewBall(Point{40, 80}),
-                        NewBall(Point{80, 40})}
-
-    func tick() {
-        ClearCanvas() // BG
-        for _, b := range balls {
-            b.Move()
-            FillRect(b.Position()) // FG
-        }
-    }
-    func main() {
-        InitCanvas(screen)
-        MainLoop(tick)
-    }
-
->
-
-<http://www.ce.unipr.it/gopherjs/?p3_oop_balls.go>
-
----
-
-title: Composizione
 figure: images/oop/ball-arena.svg
 
 - Associazione **has-a**, **part-of** tra oggetti
@@ -633,7 +541,7 @@ code: go
         a.balls = append(a.balls, b)
     }
     func (a *BallArena) MoveAll() {
-        for i, b := range a.balls { b.Move() }
+        for _, b := range a.balls { b.Move() }
     }
     func main() {
         arena := &BallArena{}
@@ -679,14 +587,12 @@ code: go
         Say()
     }
 
->
-
-<http://www.ce.unipr.it/gopherjs/?p3_oop_animals.go>
-
 ---
 
-title: Classi concrete
+title: Duck typing
 figure: images/oop/polymorphism.png
+
+- Basta che i *tipi concreti* implementino i metodi dell'interfaccia!
 
 code: go
 
@@ -711,8 +617,7 @@ code: py
 
     d := NewDog("Danny")
     c := NewCat("Candy")
-    p1 := NewPig("Peppa")
-    p2 := NewPig("George")
+    p1, p2 := NewPig("Peppa"), NewPig("George")
     animals := []Animal{d, c, p1, p2}
 
     for _, a := range animals {
@@ -726,14 +631,18 @@ code: output
     I am Peppa Pig. I say: OINK!
     I am George Pig. I say: OINK!
 
+>
+
+<http://www.ce.unipr.it/gopherjs/?p3_oop_animals.go>
+
 ---
 
-title: Interfacce
+title: Interfaccia dei personaggi
 figure: images/oop/actors.svg
 
 - `Actor`: *interfaccia*
     - Dichiara un metodo `move` ecc.
-- Vari attori: *classi implementazione*
+- Vari attori: *tipi concreti, implementazione*
     - Implementano caratteristiche di `Actor`
     - Definiscono comportamenti specifici
 
@@ -741,6 +650,7 @@ code: go
 
     type Actor interface {
         Move()
+        // ...
     }
 
 ---
@@ -750,17 +660,35 @@ title: Generalizzazione e riuso
 code: go
 
     type Arena struct { actors []Actor }
-    func (a *Arena) Add(c Actor) {
-        a.actors = append(a.actors, c)
+    func (a *Arena) Add(actor Actor) {
+        a.actors = append(a.actors, actor)
     }
     func (a *Arena) MoveAll() {
-        for i, c := range a.actors {
-            c.Move()
+        for _, actor := range a.actors {
+            actor.Move()
         }
     }
 
-- Codice dipendente dalle classi più astratte, più in alto nella gerarchia
-    - `Arena` riutilizzabile creando nuove classi derivate di `Actor`
+- Codice dipendente dal tipo più astratto, più in alto nella gerarchia
+    - `Arena` riutilizzabile creando nuovi tipi, implementazioni di `Actor`
+
+---
+
+title: Implementazioni e polimorfismo
+
+- **Tipo concreto, implementazione**
+    - Implementa le caratteristiche della interfaccia
+    - Può definire nuove caratteristiche specifiche
+- **Metodo polimorfo**
+    - Definito in modo diverso nei vari tipi concreti
+    - Attori diversi possono muoversi in modo diverso
+
+code: go
+
+    type Ghost struct { x, y int }  // ...
+    func (g *Ghost) Move() {
+        // ...
+    }
 
 ---
 
@@ -774,34 +702,13 @@ code: go
     arena.MoveAll()
 
 - Principio di **sostituzione** di Liskov
-    - Si può sempre usare un oggetto di una *classe implementazione*, al posto di uno della *interfaccia*
+    - Si può sempre usare un oggetto di un *tipo concreto*, quando è richiesta una *interfaccia*
 - Relazione *has-a* tra un oggetto `Arena` e gli oggetti `Actor` che contiene
-- Relazione *is-a* tra classi implementazione (`Ball` e `Ghost`) e interfaccia (`Actor`)
+- Relazione *is-a* tra tipi concreti (`Ball` e `Ghost`) e interfaccia (`Actor`)
 
 >
 
 <http://www.ce.unipr.it/gopherjs/?g2d/actor.go>
-
----
-
-title: Ereditarietà e polimorfismo
-
-- **Classe implementazione**
-    - Implementa le caratteristiche della interfaccia
-    - Può definire nuove caratteristiche specifiche
-- **Metodo polimorfo**
-    - Definito in modo diverso nelle classi implementazione
-    - Attori diversi possono muoversi in modo diverso
-
-code: go
-
-    type Ghost struct { x, y int }  // ...
-    func (g *Ghost) Move() {
-        dx := 5 * RandInt(-1, 1)
-        dy := 5 * RandInt(-1, 1)
-        g.x = (g.x + dx + screen.W) % screen.W
-        g.y = (g.y + dy + screen.H) % screen.H
-    }
 
 ---
 
@@ -828,6 +735,51 @@ code: go
 >
 
 <http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go>
+
+---
+
+title: Collisioni
+figure: images/oop/collision.svg images/oop/reflection.png
+
+- Molti algoritmi di *collision detection*
+    - Casi semplici: intersezione di rettangoli
+- In caso di collisione, `Arena`...
+    - Invoca il metodo `collide` di entrambi gli oggetti
+    - Collisione tra personaggio e `other` (parametro)
+
+code: go
+
+    type Actor interface {
+        Move()
+        Collide(other Actor)
+        Position() Rect
+        Symbol() Rect
+    }
+
+>
+
+<http://www.ce.unipr.it/gopherjs/?g2d/actor.go>
+
+---
+
+title: Urti delle palline
+
+code: go
+
+    func (b *Ball) Collide(other Actor) {
+        _, ok := other.(*Ghost)
+        if !ok {
+            op := other.Position()
+            if op.X < b.x { b.dx = b.speed }
+            else { b.dx = -b.speed }
+            if op.Y < b.y { b.dy = b.speed }
+            else { b.dy = -b.speed }
+        }
+    }
+
+- *Downcast*: `other.(*Ghost)`
+    - Converte l'oggetto `other` come istanza di `Ghost`
+    - Restituisce un riferimento a `Ghost` ed un `bool`
 
 ---
 
@@ -863,7 +815,7 @@ code: go
 title:  Controllo da tastiera
 figure: images/oop/bounce.png
 
-code: python
+code: go
 
     func tick() {
         if KeyPressed("ArrowUp") {
@@ -878,38 +830,4 @@ code: python
 
 <http://www.ce.unipr.it/gopherjs/?p3_oop_bounce.go>
 
----
-
-title: Collisioni
-figure: images/oop/collision.svg images/oop/reflection.png
-
-- Molti algoritmi di *collision detection*
-    - Casi semplici: intersezione di rettangoli
-- In caso di collisione, `Arena`...
-    - Invoca il metodo `collide` di entrambi gli oggetti
-    - Collisione tra personaggio `self` e personaggio `other` (secondo parametro)
-- Possibili errori nel calcolo del rimbalzo
-    - Di solito accettabili
-    - Altrimenti, applicare correzioni
-
----
-
-title: Urti delle palline
-
-code: python
-
-    func (b *Ball) Collide(other Actor) {
-        _, ok := other.(*Ghost)
-        if !ok {
-            op := other.Position()
-            if op.X < b.x { b.dx = b.speed }
-            else { b.dx = -b.speed }
-            if op.Y < b.y { b.dy = b.speed }
-            else { b.dy = -b.speed }
-        }
-    }
-
-- *Downcast*: `other.(*Ghost)`
-    - Converte l'oggetto `other` come istanza di `Ghost`
-    - Restituisce un riferimento a `Ghost` ed un `bool`
-
+[**Esempi di progetti**](intro.html#21)

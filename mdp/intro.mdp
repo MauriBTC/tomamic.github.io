@@ -364,6 +364,17 @@ figure: images/misc/bubble-bobble.png
 
 ---
 
+title: Moon Patrol
+figure: images/misc/moon-patrol.jpg
+
+- Animazione in parallasse degli sfondi
+- `Rover`: si muove sul terreno, salta, spara verso destra e verso l'alto
+- `Buche`: il rover ci può cadere dentro
+- `Rocce`: ostacoli, che possono essere colpiti
+- `Alieni`: sparano in basso e possono essere colpiti
+
+---
+
 title: Hitori
 figure: images/misc/hitori.svg images/misc/hitori-completed.svg
 

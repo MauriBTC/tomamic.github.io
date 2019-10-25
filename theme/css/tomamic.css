@@ -82,7 +82,7 @@ figcaption, pre ~ p, blockquote ~ p {
 }
 
 slides > slide:not(.nobackground):before {
-    content: "tomamic.github.io/fondinfo ⌫";
+    content: "tomamic.github.io ⌫";
     background: url(../logo-tiny.png) no-repeat 0 50%;
     background-size: 30px 30px;
 }
