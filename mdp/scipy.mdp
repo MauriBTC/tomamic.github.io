@@ -179,7 +179,7 @@ code: py
 
 ---
 
-title: Cycles on sequences: for
+title: Loops on sequences: for
 
 code: py
 
@@ -193,7 +193,7 @@ code: py
         print(val * val, end=" ")  # 0 1 4 9 16
 
 - At each iteration, a different element of `grocery` is assigned to `product`
-- A `for` cycle can be used on any kind of sequence: list, string, tuple, range...
+- A `for` loop can be used on any kind of sequence: list, string, tuple, range...
 - **`range`**: range of consecutive values
     - Lower end *included* (defaults to 0)
     - Upper end *excluded*

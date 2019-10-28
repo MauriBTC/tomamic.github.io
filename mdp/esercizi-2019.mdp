@@ -540,3 +540,120 @@ figure: images/misc/moon-patrol.jpg
 - Le rocce possono essere distrutte dai proiettili del rover
 - Le rocce più grandi devono essere colpite due volte
 
+---
+
+title: Esercitazione 6 (10-28)
+class: segue dark
+
+---
+
+title: 6.1 Lunghezza media
+
+- Leggere per intero un file
+- Calcolare la lunghezza media delle parole, raggruppate in base alla loro prima lettera
+- Ad esempio:
+    - Le parole che iniziano con `a` hanno lunghezza media 4.6
+    - Le parole che iniziano con `b` hanno lunghezza media 5.4 ...
+
+code: py
+
+    import re
+    txt = txt.lower()  # make all lowercase
+    txt = re.sub(r"[^a-z]+", " ", txt)  # keep only letters
+
+---
+
+title: 6.2 Valori in file CSV
+
+- Leggere una matrice di interi da un file testuale CSV
+    - *Comma Separated Values*: in ogni riga, valori separati da virgola
+    - Usare una lista semplice di dimensione `rows×cols`
+    - Num. righe del file; num. valori nella prima riga
+- Riscrivere in un altro file tutti i valori della matrice
+    - Raddoppiare però i valori sulla diagonale che parte dall'angolo in basso a destra (`cols - x == rows - y`)
+
+code: File
+
+    5,7,2,11
+    1,3,12,9
+    4,6,10,8
+
+>
+
+Nell'esempio, i valori da raddoppiare in scrittura sono i seguenti: `8, 12, 7`
+
+---
+
+title: 6.3 Configurazioni
+figure: images/fun/bike-lock.png
+
+- Generare tutte le configurazioni di simboli
+    - Parametro: numero di ruote
+    - Parametro: `str` contenente i possibili simboli
+    - Risultato: una lista di stringhe
+- Algoritmo:
+    - Zero ruote: l'unica configurazione è la stringa vuota: `['']`
+    - Altrimenti: per ogni elemento della prima ruota...
+    - Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)
+
+>
+
+Saranno accettate esclusivamente le soluzioni ricorsive
+
+---
+
+title: 6.4 Profondità albero
+figure: images/misc/sample-file-system.png
+
+- Partire dall'esempio del file system (es. 4.5 del 2014)
+- Aggiungere a tutti i *nodi* un metodo `depth`, che riporta la profondità della struttura
+- Astratto nella classe base
+- Per un *documento*: 0
+- Per una *cartella*: 1 + profondità massima dei sottonodi
+- Rispetto alla struttura raffigurata a fianco
+    - Calcolare la profondità della cartella radice (chiamare il metodo `depth`)
+
+>
+
+<https://github.com/tomamic/fondinfo/blob/master/examples/p4_tree_nodes.py>
+
+---
+
+title: 6.5 Moon Patrol, alieni
+figure: images/misc/moon-patrol.jpg
+
+- Le navi aliene sono avversari che si muovono casualmente nel cielo
+- Sparano priettili verso il basso, che possono distruggere il rover
+- Alcuni proiettili alieni possono generare delle buche
+- I proiettili del rover distruggono le navi aliene
+
+---
+
+title: 6.6 Hitori, regole
+figure: images/misc/hitori.svg images/misc/hitori-completed.svg
+
+- Regole
+    - Color cells so no number appears more than once in a row or column
+    - The sides of black cells never touch
+    - White cells form a continuous network
+- Ad ogni mossa, l'utente può:
+    - Annerire un numero, oppure
+    - Cerchiarlo
+
+>
+
+<http://www.nikoli.com/en/puzzles/hitori>
+
+---
+
+title: 6.7 Hitori, inizio
+figure: images/misc/hitori.svg
+
+- Classe che incapsula lo stato del gioco in due matrici
+    - Matrice con numeri iniziali
+    - Matrice con annotazioni dell'utente: `CLEAR`, `BLACK`, `CIRCLE`
+- Implementare l'interfaccia `BoardGame`
+    - Metodo `play_at` per annerire una cella
+    - Metodo `flag_at` per cerchiare una cella
+    - Metodo `value_at` per conoscere il contenuto di una cella <br>
+      (p.es., mostrare un `#` dopo i numeri anneriti, un `!` dopo i numeri cerchiati)

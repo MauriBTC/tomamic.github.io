@@ -984,6 +984,196 @@ zyxw
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 6 (10-28)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.1 Lunghezza media</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Leggere per intero un file</li>
+<li>Calcolare la lunghezza media delle parole, raggruppate in base alla loro prima lettera</li>
+<li>Ad esempio:<ul>
+<li>Le parole che iniziano con <code>a</code> hanno lunghezza media 4.6</li>
+<li>Le parole che iniziano con <code>b</code> hanno lunghezza media 5.4 ...</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>import re
+txt = txt.lower()  # make all lowercase
+txt = re.sub(r"[^a-z]+", " ", txt)  # keep only letters
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.2 Valori in file CSV</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Leggere una matrice di interi da un file testuale CSV<ul>
+<li><em>Comma Separated Values</em>: in ogni riga, valori separati da virgola</li>
+<li>Usare una lista semplice di dimensione <code>rows×cols</code></li>
+<li>Num. righe del file; num. valori nella prima riga</li>
+</ul>
+</li>
+<li>Riscrivere in un altro file tutti i valori della matrice<ul>
+<li>Raddoppiare però i valori sulla diagonale che parte dall'angolo in basso a destra (<code>cols - x == rows - y</code>)</li>
+</ul>
+</li>
+</ul>
+<pre class="" data-lang="File"><code>5,7,2,11
+1,3,12,9
+4,6,10,8
+</code></pre>
+<blockquote></blockquote>
+<p>Nell'esempio, i valori da raddoppiare in scrittura sono i seguenti: <code>8, 12, 7</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.3 Configurazioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/bike-lock.png">
+        
+      </figure><ul>
+<li>Generare tutte le configurazioni di simboli<ul>
+<li>Parametro: numero di ruote</li>
+<li>Parametro: <code>str</code> contenente i possibili simboli</li>
+<li>Risultato: una lista di stringhe</li>
+</ul>
+</li>
+<li>Algoritmo:<ul>
+<li>Zero ruote: l'unica configurazione è la stringa vuota: <code>['']</code></li>
+<li>Altrimenti: per ogni elemento della prima ruota...</li>
+<li>Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Saranno accettate esclusivamente le soluzioni ricorsive</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.4 Profondità albero</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/sample-file-system.png">
+        
+      </figure><ul>
+<li>Partire dall'esempio del file system (es. 4.5 del 2014)</li>
+<li>Aggiungere a tutti i <em>nodi</em> un metodo <code>depth</code>, che riporta la profondità della struttura</li>
+<li>Astratto nella classe base</li>
+<li>Per un <em>documento</em>: 0</li>
+<li>Per una <em>cartella</em>: 1 + profondità massima dei sottonodi</li>
+<li>Rispetto alla struttura raffigurata a fianco<ul>
+<li>Calcolare la profondità della cartella radice (chiamare il metodo <code>depth</code>)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/examples/p4_tree_nodes.py">https://github.com/tomamic/fondinfo/blob/master/examples/p4_tree_nodes.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.5 Moon Patrol, alieni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Le navi aliene sono avversari che si muovono casualmente nel cielo</li>
+<li>Sparano priettili verso il basso, che possono distruggere il rover</li>
+<li>Alcuni proiettili alieni possono generare delle buche</li>
+<li>I proiettili del rover distruggono le navi aliene</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.6 Hitori, regole</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/hitori.svg"><img src="images/misc/hitori-completed.svg">
+        
+      </figure><ul>
+<li>Regole<ul>
+<li>Color cells so no number appears more than once in a row or column</li>
+<li>The sides of black cells never touch</li>
+<li>White cells form a continuous network</li>
+</ul>
+</li>
+<li>Ad ogni mossa, l'utente può:<ul>
+<li>Annerire un numero, oppure</li>
+<li>Cerchiarlo</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.nikoli.com/en/puzzles/hitori">http://www.nikoli.com/en/puzzles/hitori</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>6.7 Hitori, inizio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/hitori.svg">
+        
+      </figure><ul>
+<li>Classe che incapsula lo stato del gioco in due matrici<ul>
+<li>Matrice con numeri iniziali</li>
+<li>Matrice con annotazioni dell'utente: <code>CLEAR</code>, <code>BLACK</code>, <code>CIRCLE</code></li>
+</ul>
+</li>
+<li>Implementare l'interfaccia <code>BoardGame</code><ul>
+<li>Metodo <code>play_at</code> per annerire una cella</li>
+<li>Metodo <code>flag_at</code> per cerchiare una cella</li>
+<li>Metodo <code>value_at</code> per conoscere il contenuto di una cella <br>
+  (p.es., mostrare un <code>#</code> dopo i numeri anneriti, un <code>!</code> dopo i numeri cerchiati)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
