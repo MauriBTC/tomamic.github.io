@@ -258,7 +258,7 @@ class: large-figure
 
 ---
 
-title: Prove formali
+title: 🤔 Prove formali
 
 - Dimostrazione matematica di un programma: alternativa (~ accademica) al testing
     - Annotazione del programma con asserzioni matematiche: comportamento atteso
@@ -543,10 +543,9 @@ code: py
                 b.move()
                 self.assertTrue(b.position() == (x1, y1, 20, 20))
 
-
 ---
 
-title: Sotto-test, Python 3.4
+title: Sottotest, Python 3.4
 
 - Eseguiti tutti i sottotest, anche se uno fallisce
 
@@ -566,7 +565,7 @@ code: py
 
 ---
 
-title: Controllare le eccezioni 🤔
+title: 🤔 Controllare le eccezioni
 
 - Mestiere del programmatore
     - Codice che completa correttamente l'esecuzione nei casi normali...
@@ -584,7 +583,7 @@ code: py
 
 ---
 
-title: Fixture 🤔
+title: 🤔 Fixture
 
 - Due o più test operano su insiemi di oggetti uguali o simili
     - Questa configurazione iniziale comune si definisce *fixture*
@@ -598,7 +597,7 @@ title: Fixture 🤔
 
 ---
 
-title: Esempio di fixture 🤔
+title: 🤔 Esempio di fixture
 
 - Numerosi metodi di test che operano su stessi dati iniziali
     - Esempio, una configurazione di palline in posizioni predefinite
@@ -615,7 +614,7 @@ code: py
 
 ---
 
-title: Test suite 🤔
+title: 🤔 Test suite
 
 - Meccanismo per *raggruppare* logicamente dei test ed *eseguirli assieme*
 - La classe `TestSuite` rappresenta una test suite
