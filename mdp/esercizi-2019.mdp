@@ -650,7 +650,7 @@ title: 6.7 Hitori, inizio
 figure: images/misc/hitori.svg
 
 - Classe che incapsula lo stato del gioco in due matrici
-    - Matrice con numeri iniziali
+    - Matrice con numeri iniziali (come da figura)
     - Matrice con annotazioni dell'utente: `CLEAR`, `BLACK`, `CIRCLE`
 - Implementare l'interfaccia `BoardGame`
     - Metodo `play_at` per annerire una cella
