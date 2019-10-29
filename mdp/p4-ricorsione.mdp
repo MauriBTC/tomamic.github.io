@@ -315,7 +315,7 @@ Stringa palindroma: se ha lunghezza 0 o 1, oppure... <br>
 Prima lettera == ultima lettera e... <br>
 Stringa rimanente (senza prima e ultima lettera) palindroma
 
-<http://www.ce.unipr.it/brython/?p4_fun_palindrome.py>
+<http://www.ce.unipr.it/brython/?x4_fun_palindrome.py>
 
 ---
 
@@ -330,7 +330,23 @@ figure: images/fun/sierpinski-carpet.png
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_fun_sierpinski.py>
+<http://www.ce.unipr.it/brython/?x4_fun_sierpinski.py>
+
+---
+
+title: Albero di H
+figure: images/fun/htree.png
+
+- Disegnare ricorsivamente un *H-Tree*
+    - Dividere l'area iniziale in due parti uguali
+    - Connettere con una linea i centri delle due aree
+    - Ripetere il procedimento per ciascuna delle due aree
+    - Alternare però la divisione delle aree in orizzontale e verticale
+- Chiedere all'utente il livello di ricorsione desiderato
+
+>
+
+<http://www.ce.unipr.it/brython/?x4_fun_htree.py>
 
 ---
 
@@ -348,7 +364,7 @@ Provare ad usare sia l'iterazione che la ricorsione
 Euclide: MCD(a, b) = a, se b = 0; <br>
 MCD(a, b) = MCD(b, a mod b), se b > 0
 
-<http://www.ce.unipr.it/brython/?p4_fun_gcd.py>
+<http://www.ce.unipr.it/brython/?x4_fun_gcd.py>
 
 ---
 
@@ -364,7 +380,7 @@ figure: images/misc/cubic-function.png
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_fun_bisection.py>
+<http://www.ce.unipr.it/brython/?x4_fun_bisection.py>
 
 ---
 
@@ -384,7 +400,7 @@ figure: images/fun/bike-lock.png
 
 Saranno accettate esclusivamente le soluzioni ricorsive
 
-<http://www.ce.unipr.it/brython/?p4_fun_combine.py>
+<http://www.ce.unipr.it/brython/?x4_fun_combine.py>
 
 ---
 
@@ -400,7 +416,7 @@ figure: images/fun/anagram.jpg
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_fun_anagram.py>
+<http://www.ce.unipr.it/brython/?x4_fun_anagram.py>
 
 ---
 
@@ -420,7 +436,7 @@ N dischi: spostarne N-1 sul piolo né origine né dest., <br>
 spostare l'ultimo disco sul piolo giusto, <br>
 spostare ancora gli altri N-1 dischi.
 
-<http://www.ce.unipr.it/brython/?p4_fun_hanoi.py>
+<http://www.ce.unipr.it/brython/?x4_fun_hanoi.py>
 
 ---
 
@@ -439,7 +455,7 @@ title: Notazione polacca
 
 Supporre che i “token” siano tutti separati da spazio e che gli operatori abbiano tutti cardinalità fissa
 
-<http://www.ce.unipr.it/brython/?p4_fun_polish.py>
+<http://www.ce.unipr.it/brython/?x4_fun_polish.py>
 
 ---
 
@@ -456,7 +472,7 @@ figure: images/misc/sample-file-system.png
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_tree_nodes.py>
+<http://www.ce.unipr.it/brython/?x4_tree_nodes.py>
 
 ---
 
@@ -474,7 +490,7 @@ title: Dimensione delle cartelle
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_tree_nodes.py>
+<http://www.ce.unipr.it/brython/?x4_tree_nodes.py>
 
 ---
 
@@ -493,7 +509,7 @@ title: Espressioni
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_tree_expression.py>
+<http://www.ce.unipr.it/brython/?x4_tree_expression.py>
 
 ---
 
@@ -517,6 +533,6 @@ code: py
 
 <https://it.wikipedia.org/wiki/Notazione_polacca>
 
-<http://www.ce.unipr.it/brython/?p4_tree_expression.py>
+<http://www.ce.unipr.it/brython/?x4_tree_expression.py>
 
 
