@@ -659,3 +659,92 @@ figure: images/misc/hitori.svg
     - Metodo `flag_at` per cerchiare una cella
     - Metodo `value_at` per conoscere il contenuto di una cella <br>
       (p.es., mostrare un `#` dopo i numeri anneriti, un `!` dopo i numeri cerchiati)
+
+---
+
+title: Esercitazione 7 (11-04)
+class: segue dark
+
+---
+
+title: 7.1 Moon Patrol, test
+figure: images/misc/moon-patrol.jpg
+
+- Creare degli *unit test* per il gioco Moon Patrol
+    - Sono consigliati *test parametrizzati*
+- Cercare di testare ciascun personaggio separatamente
+    - Chiamare direttamente `move`, `collide` ecc., in varie situazioni
+- Es. testare il rover simulando varie sequenze di comandi
+    - Percorre la traiettoria prevista? (Non può saltare se non è a terra...)
+    - Sceglie sempre il simbolo corretto?
+    - Reagisce correttamente alle diverse collisioni?
+
+---
+
+title: 7.2 Moon Patrol, estensioni
+figure: images/misc/moon-patrol.jpg
+
+- Estensioni *opzionali* del gioco
+    - Secondo rover, per giocare in coppia, con l'uso di tasti diversi
+    - Cannoni ed altri avversari sul percorso
+    - Punteggio, livelli, bonus ed estensioni *a fantasia*
+
+---
+
+title: 7.3 Moon Patrol, gioco e GUI
+
+- Classe `MoonPatrolGame`, per gestire il gioco *Moon Patrol*
+    - Inizializzare i personaggi, prendendo i dati da un file di configurazione
+    - Incapsulare personaggi ed arena
+    - Controllare la conclusione della partita, positiva o negativa
+    - Guardare l'esempio nei commenti in `bounce`
+- Classe `MoonPatrolGui` per la rappresentazione del gioco
+    - Disegno immagini e funzionalità legate a `g2d`
+    - Metodi `tick` etc.
+    - Prendere spunto da `BoardGameGui`
+
+---
+
+title: 7.4 Hitori, righe e colonne
+figure: images/misc/hitori-completed.svg
+
+- Nell'inizializzazione, leggere la matrice di numeri da un file (*parametro*)
+- Nel metodo `finished`, controllare ogni riga e colonna
+    - Nessun valore ripetuto, tra quelli non anneriti
+    - Celle annerite non adiacenti
+- Trascurare per ora il controllo di contiguità tra tutte le celle bianche
+
+---
+
+title: 7.5 Hitori, test
+
+- Creare degli *unit test* per il gioco Hitori
+- Verificare il gioco dopo varie chiamate a `play_at` e `flag_at`
+    - Usare `value_at` per osservare lo stato
+- Verificare il funzionamento di `finished` rispetto alle seguenti due regole
+    - Nessun valore ripetuto, tra quelli non anneriti
+    - Celle annerite non adiacenti
+- Trascurare per ora il controllo di contiguità tra tutte le celle bianche
+
+---
+
+title: 7.6 Hitori, GUI
+figure: images/misc/hitori-completed.svg
+
+- Utilizzare il gioco tramite la GUI fornita con gli esempi
+
+---
+
+title: 7.7 Progetti in bella copia
+figure: images/misc/fair-copy.png
+
+- **Codice leggibile**
+    - *Costanti*, anzichè numeri “*magici*” sparsi nel codice
+    - *Nomi esplicativi* e semplici
+    - *Regole di stile*: `variable_name`, `function_name`, `ClassName`, `CONSTANT_NAME`
+    - *Commenti*, quando utili: *function annotation*, *docstring*
+- **Codice ben organizzato**
+    - *No copia&incolla* del codice: funzioni parametrizzate e/o cicli
+    - *Programmazione strutturata*: preferibilmente `return` a fine funzione, cicli senza `break`
+    - *OOP*: *incapsulamento*, *ereditarietà*, *polimorfismo*
+

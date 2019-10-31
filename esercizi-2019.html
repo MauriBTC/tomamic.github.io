@@ -1175,6 +1175,180 @@ txt = re.sub(r"[^a-z]+", " ", txt)  # keep only letters
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 7 (11-04)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.1 Moon Patrol, test</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Creare degli <em>unit test</em> per il gioco Moon Patrol<ul>
+<li>Sono consigliati <em>test parametrizzati</em></li>
+</ul>
+</li>
+<li>Cercare di testare ciascun personaggio separatamente<ul>
+<li>Chiamare direttamente <code>move</code>, <code>collide</code> ecc., in varie situazioni</li>
+</ul>
+</li>
+<li>Es. testare il rover simulando varie sequenze di comandi<ul>
+<li>Percorre la traiettoria prevista? (Non può saltare se non è a terra...)</li>
+<li>Sceglie sempre il simbolo corretto?</li>
+<li>Reagisce correttamente alle diverse collisioni?</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.2 Moon Patrol, estensioni</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/moon-patrol.jpg">
+        
+      </figure><ul>
+<li>Estensioni <em>opzionali</em> del gioco<ul>
+<li>Secondo rover, per giocare in coppia, con l'uso di tasti diversi</li>
+<li>Cannoni ed altri avversari sul percorso</li>
+<li>Punteggio, livelli, bonus ed estensioni <em>a fantasia</em></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.3 Moon Patrol, gioco e GUI</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Classe <code>MoonPatrolGame</code>, per gestire il gioco <em>Moon Patrol</em><ul>
+<li>Inizializzare i personaggi, prendendo i dati da un file di configurazione</li>
+<li>Incapsulare personaggi ed arena</li>
+<li>Controllare la conclusione della partita, positiva o negativa</li>
+<li>Guardare l'esempio nei commenti in <code>bounce</code></li>
+</ul>
+</li>
+<li>Classe <code>MoonPatrolGui</code> per la rappresentazione del gioco<ul>
+<li>Disegno immagini e funzionalità legate a <code>g2d</code></li>
+<li>Metodi <code>tick</code> etc.</li>
+<li>Prendere spunto da <code>BoardGameGui</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.4 Hitori, righe e colonne</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/hitori-completed.svg">
+        
+      </figure><ul>
+<li>Nell'inizializzazione, leggere la matrice di numeri da un file (<em>parametro</em>)</li>
+<li>Nel metodo <code>finished</code>, controllare ogni riga e colonna<ul>
+<li>Nessun valore ripetuto, tra quelli non anneriti</li>
+<li>Celle annerite non adiacenti</li>
+</ul>
+</li>
+<li>Trascurare per ora il controllo di contiguità tra tutte le celle bianche</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.5 Hitori, test</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Creare degli <em>unit test</em> per il gioco Hitori</li>
+<li>Verificare il gioco dopo varie chiamate a <code>play_at</code> e <code>flag_at</code><ul>
+<li>Usare <code>value_at</code> per osservare lo stato</li>
+</ul>
+</li>
+<li>Verificare il funzionamento di <code>finished</code> rispetto alle seguenti due regole<ul>
+<li>Nessun valore ripetuto, tra quelli non anneriti</li>
+<li>Celle annerite non adiacenti</li>
+</ul>
+</li>
+<li>Trascurare per ora il controllo di contiguità tra tutte le celle bianche</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.6 Hitori, GUI</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/hitori-completed.svg">
+        
+      </figure><ul>
+<li>Utilizzare il gioco tramite la GUI fornita con gli esempi</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>7.7 Progetti in bella copia</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/fair-copy.png">
+        
+      </figure><ul>
+<li><strong>Codice leggibile</strong><ul>
+<li><em>Costanti</em>, anzichè numeri “<em>magici</em>” sparsi nel codice</li>
+<li><em>Nomi esplicativi</em> e semplici</li>
+<li><em>Regole di stile</em>: <code>variable_name</code>, <code>function_name</code>, <code>ClassName</code>, <code>CONSTANT_NAME</code></li>
+<li><em>Commenti</em>, quando utili: <em>function annotation</em>, <em>docstring</em></li>
+</ul>
+</li>
+<li><strong>Codice ben organizzato</strong><ul>
+<li><em>No copia&amp;incolla</em> del codice: funzioni parametrizzate e/o cicli</li>
+<li><em>Programmazione strutturata</em>: preferibilmente <code>return</code> a fine funzione, cicli senza <code>break</code></li>
+<li><em>OOP</em>: <em>incapsulamento</em>, <em>ereditarietà</em>, <em>polimorfismo</em></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
