@@ -63,7 +63,7 @@ code: py
 
 ---
 
-title: Elementi e slice 🤔
+title: 🤔 Elementi e slice
 figure: images/fun/month-list.svg
 
 - Indici *negativi* contano dalla fine
@@ -86,7 +86,7 @@ code: py
 
 ---
 
-title: Inserimento e rimozione 🤔
+title: 🤔 Inserimento e rimozione
 
 code: py
 
@@ -105,7 +105,7 @@ code: py
 
 ---
 
-title: Uguaglianza e identità 🤔
+title: 🤔 Uguaglianza e identità
 
 code: py
 
@@ -127,7 +127,7 @@ code: py
 
 ---
 
-title: Funzioni su liste 🤔
+title: 🤔 Funzioni su liste
 
 code: py
 
@@ -148,7 +148,7 @@ code: py
 
 ---
 
-title: Stringhe e liste 🤔
+title: 🤔 Stringhe e liste
 
 - **Stringa**: sequenza *immutabile* di caratteri
 - **`join`** e **`split`**: da lista a stringa e viceversa
@@ -608,7 +608,7 @@ figure: images/misc/invaders-path.jpg
 
 ---
 
-title: 3.8 Mario 🤔
+title: 🤔 3.8 Mario
 
 - Modificare l'esempio `Turtle`
 - Cosiderare l'accelerazione *costante* `g` di gravità (es. `0.5`)
@@ -617,7 +617,7 @@ title: 3.8 Mario 🤔
 
 ---
 
-title: 3.9 Piattaforme 🤔
+title: 🤔 3.9 Piattaforme
 
 - Aggiungere all'esercizio 3.8 un classe `Wall`
     - Rettangolo immobile

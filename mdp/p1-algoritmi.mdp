@@ -126,7 +126,7 @@ code: py
 
 ---
 
-title: Tabella ASCII ⏩
+title: ⏩ Tabella ASCII
 class: large-image
 
 ![](images/repr/ascii.png)
@@ -323,7 +323,7 @@ code: py
 
 ---
 
-title: Operazioni aritmetiche ⏩
+title: ⏩ Operazioni aritmetiche
 figure: images/algo/calc.svg
 
 code: py
@@ -426,7 +426,7 @@ code: py
 
 ---
 
-title: Quadrato perfetto 🤔
+title: 🤔 Quadrato perfetto
 figure: images/algo/perfect-square.svg
 
 code: py
@@ -608,7 +608,7 @@ figure: images/misc/bingo-balls.png
 
 ---
 
-title: 1.7 Resistenze, ciclo 🤔
+title: 🤔 1.7 Resistenze, ciclo
 figure: images/misc/resistors.png
 
 - Leggere, attraverso un ciclo, una sequenza di valori di resistenze elettriche
@@ -625,7 +625,7 @@ R~~s~~ = ∑ R~~i~~
 
 ---
 
-title: 1.8 Orologio classico 🤔
+title: 🤔 1.8 Orologio classico
 figure: images/misc/classical-watch.jpg
 
 - Disegnare 12 tacche a raggiera, come in un orologio classico
@@ -637,7 +637,7 @@ Usare `math.Sin` e `math.Cos` per determinare le posizioni in cui disegnare
 
 ---
 
-title: 1.9 La stanza del mostro 🤔
+title: 🤔 1.9 La stanza del mostro
 figure: images/misc/monster.png
 
 - Il giocatore si muove su una scacchiera di 5x5 celle, partendo da un angolo

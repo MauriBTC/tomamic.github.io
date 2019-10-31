@@ -9,7 +9,7 @@ class: segue dark
 
 ---
 
-title: Grafica con PyGame 🤔
+title: 🤔 Grafica con PyGame
 figure: images/oop/pygame-logo.png images/oop/pygame-loop.png
 
 - Libreria per giochi 2D
@@ -25,7 +25,7 @@ figure: images/oop/pygame-logo.png images/oop/pygame-loop.png
 
 ---
 
-title:  Disegno con PyGame 🤔
+title: 🤔  Disegno con PyGame
 figure: images/oop/pygame-logo.png images/oop/raster-coord.png
 figcaption: → pygame.org/docs
 
@@ -49,7 +49,7 @@ code: python
 
 ---
 
-title: Animazione con PyGame 🤔
+title: 🤔 Animazione con PyGame
 
 code: python
 
@@ -72,7 +72,7 @@ code: python
 
 ---
 
-title: Ciclo di animazione 🤔
+title: 🤔 Ciclo di animazione
 
 code: python
 
@@ -95,7 +95,7 @@ code: python
 
 ---
 
-title:  Rimbalzi in PyGame 🤔
+title: 🤔  Rimbalzi in PyGame
 figure: images/oop/bounce.png
 
 code: python
@@ -120,7 +120,7 @@ code: python
 
 ---
 
-title:  Tastiera e mouse 🤔
+title: 🤔  Tastiera e mouse
 
 code: python
 
@@ -142,7 +142,7 @@ code: python
 
 ---
 
-title: Testo e suoni 🤔
+title: 🤔 Testo e suoni
 
 code: python
 

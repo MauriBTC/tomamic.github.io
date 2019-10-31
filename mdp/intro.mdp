@@ -235,7 +235,7 @@ class: large-image
 
 ---
 
-title: Indovina la parola 🤔
+title: 🤔 Indovina la parola
 figure: images/comp/haystack.png
 
 - L'utente sceglie una parola segreta dal dizionario
@@ -255,7 +255,7 @@ In un dizionario di 100k parole, alla peggio si provano tutte
 
 ---
 
-title: Ricerca binaria 🤔
+title: 🤔 Ricerca binaria
 figure: images/comp/binary-search.png
 class: large-figure
 
@@ -280,7 +280,7 @@ In un dizionario di 100k parole, bastano 17 tentativi
 
 ---
 
-title: Complessità e calcolabilità 🤔
+title: 🤔 Complessità e calcolabilità
 
 - **Complessità**: classificare algoritmi (e problemi)
     - **Trattabili**: costo accettabile, “polinomiale”

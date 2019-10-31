@@ -83,7 +83,7 @@ code: py
 
 ---
 
-title: Documentazione di funzioni ⏩
+title: ⏩ Documentazione di funzioni
 
 - **Annotazioni**: utili per documentare il tipo di param. e valore di ritorno (ma non c'è verifica!)
 - **Docstring**: descrizione testuale di una funzione
@@ -222,7 +222,7 @@ code: py
 
 ---
 
-title: Effetti collaterali 🤔
+title: 🤔 Effetti collaterali
 
 - Modifica di oggetti passati come parametri o variabili globali, operazioni di lettura/scrittura...
 - Annullano la **trasparenza referenziale**
@@ -235,7 +235,7 @@ title: Effetti collaterali 🤔
 
 ---
 
-title: Funzioni non idempotenti 🤔
+title: 🤔 Funzioni non idempotenti
 
 - Esempio di semplificazione
     - `p = rq(x) + rq(y) * (rq(x) – rq(x))`
@@ -430,7 +430,7 @@ title: Variabili locali, parametri, campi
 
 ---
 
-title: Proprietà 🤔
+title: 🤔 Proprietà
 
 - Permettono un accesso controllato allo stato
 
@@ -570,7 +570,7 @@ figure: images/misc/science-of-spaceships.jpg
 
 ---
 
-title: 2.9 Spirale ad oggetti 🤔
+title: 🤔 2.9 Spirale ad oggetti
 figure: images/misc/spiral-circles.png
 
 - Mostrare l'*animazione* di un cerchio lungo una spirale
@@ -581,7 +581,7 @@ figure: images/misc/spiral-circles.png
 
 ---
 
-title: Modulo main 🤔
+title: 🤔 Modulo main
 class: break
 
 - Nome del modulo in esecuzione: `__name__`
@@ -604,7 +604,7 @@ code: py
 
 ---
 
-title: Ciclo di vita di un oggetto 🤔
+title: 🤔 Ciclo di vita di un oggetto
 figure: images/dev/garbage-truck.jpg
 
 - Creazione di un oggetto: allocata memoria per tenere lo stato dell’oggetto
@@ -616,7 +616,7 @@ figure: images/dev/garbage-truck.jpg
 
 ---
 
-title: Garbage collection 🤔
+title: 🤔 Garbage collection
 
 - Vantaggi
     - Non è possibile dimenticare di liberare la memoria (*memory leak*)

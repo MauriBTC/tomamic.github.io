@@ -156,7 +156,7 @@ class: segue dark
 
 ---
 
-title: List comprehension 🤔
+title: 🤔 List comprehension
 figure: images/dev/computer-ninja.png
 
 - Modo conciso per creare una lista
@@ -177,7 +177,7 @@ code: py
 
 ---
 
-title: Enumerate 🤔
+title: 🤔 Enumerate
 figure: images/repr/child-fingers.png
 /home/mic/Documents/didattica/fondinfo/images/misc/finger-counting.png
 
@@ -204,7 +204,7 @@ Altrimenti, Python non genera immediatamente i risultati (*lazy*)
 
 ---
 
-title: Zip 🤔
+title: 🤔 Zip
 figure: images/fun/zip.jpg
 
 - Accoppia gli elementi di due sequenze
@@ -224,7 +224,7 @@ Risultati in lista, solo (!) per visualizzarli
 
 ---
 
-title: Map 🤔
+title: 🤔 Map
 figure: images/fun/legomap.png
 
 - Prende come parametri una funzione ed una sequenza
@@ -251,7 +251,7 @@ Risultati in lista, solo (!) per visualizzarli
 
 ---
 
-title: Liste ordinate o rovesciate 🤔
+title: 🤔 Liste ordinate o rovesciate
 
 code: py
 
@@ -274,7 +274,7 @@ code: py
 
 ---
 
-title: Dizionario 🤔
+title: 🤔 Dizionario
 figure: images/fun/dictionary.png
 
 - A volte chiamato *mappa* o *array associativo*

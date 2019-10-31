@@ -69,7 +69,7 @@ code: go
 
 ---
 
-title: Documentazione di funzioni ⏩
+title: ⏩ Documentazione di funzioni
 
 - Solo le funzioni denominate con la maiuscola sono pubbliche
 - Altrimenti, usabili solo all'interno dello stesso modulo
@@ -115,7 +115,7 @@ code: go
 
 ---
 
-title: Scrittura con formattazione 🤔
+title: 🤔 Scrittura con formattazione
 
 - **`g2d.Printf`**: *scrittura con formattazione*
     - Primo parametro: *stringa di formato*
@@ -224,7 +224,7 @@ code: go
 
 ---
 
-title: Effetti collaterali 🤔
+title: 🤔 Effetti collaterali
 
 - Operazioni di lettura/scrittura, modifica di variabili globali o oggetti passati per puntatore...
 - Annullano la **trasparenza referenziale**
@@ -237,7 +237,7 @@ title: Effetti collaterali 🤔
 
 ---
 
-title: Funzioni non idempotenti 🤔
+title: 🤔 Funzioni non idempotenti
 
 - Esempio di semplificazione
     - `p := rq(x) + rq(y) * (rq(x) – rq(x))`
@@ -546,7 +546,7 @@ figure: images/misc/science-of-spaceships.jpg
 
 ---
 
-title: 2.9 Spirale ad oggetti 🤔
+title: 🤔 2.9 Spirale ad oggetti
 figure: images/misc/spiral-circles.png
 
 - Mostrare l'*animazione* di un cerchio lungo una spirale

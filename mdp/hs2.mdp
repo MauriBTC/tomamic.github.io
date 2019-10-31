@@ -1192,7 +1192,7 @@ Reducing with a non-associative f. is considered bad style, in Python
 
 ---
 
-title: Scans 🤔
+title: 🤔 Scans
 
 - `scanl` and `scanr` are like `foldl` and `foldr`
     - Only they report all the intermediate accumulator states in a list
@@ -1213,7 +1213,7 @@ code: haskell
 
 ---
 
-title: Example of scans 🤔
+title: 🤔 Example of scans
 
 - How many elements does it take for the sum of the roots of all natural numbers to exceed 1000?
     - Squares of all natural numbers: `map sqrt [1..]`

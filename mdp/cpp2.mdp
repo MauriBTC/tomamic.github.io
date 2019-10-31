@@ -19,21 +19,21 @@ title: Incapsulamento
     - Un insieme di *valori*
     - Un insieme di *operazioni*
 - Tipo di dato **astratto** (ADT)
-	- L’utilizzo è *indipendente dall’implementazione*
-	- I tipi di dati predefiniti sono ADT
-	- Le classi devono essere ADT
+    - L’utilizzo è *indipendente dall’implementazione*
+    - I tipi di dati predefiniti sono ADT
+    - Le classi devono essere ADT
 
 ---
 
 title: Membri privati e pubblici
 
 - Membri *privati*
-	- Possono essere referenziati solo all’interno delle definizioni delle funzioni membro
-	- Buona norma rendere private tutte le variabili membro
+    - Possono essere referenziati solo all’interno delle definizioni delle funzioni membro
+    - Buona norma rendere private tutte le variabili membro
 - Membri *pubblici*
-	- Possono essere referenziati ovunque
-	- Buona norma rendere pubbliche le sole funzioni membro necessarie
-	- Quelle che espongono le funzionalità della classe
+    - Possono essere referenziati ovunque
+    - Buona norma rendere pubbliche le sole funzioni membro necessarie
+    - Quelle che espongono le funzionalità della classe
 
 ---
 
@@ -41,9 +41,9 @@ title: Sezioni pubblica e privata
 
 - Generalmente si definisce una sola sezione pubblica e una sola sezione privata
 - Generalmente la sezione pubblica compare prima
-	- Maggior chiarezza verso chi legge il codice
+    - Maggior chiarezza verso chi legge il codice
 - In assenza di specificazione, C++ considera i membri privati
-	- Indicativo della necessità di nascondere il maggior numero possibile di dettagli
+    - Indicativo della necessità di nascondere il maggior numero possibile di dettagli
 
 ---
 
@@ -63,14 +63,14 @@ code: C++
 title: Funzioni accessor e mutator
 
 - Funzioni che forniscono un accesso controllato ai dati
-	- Le funzioni *accessor* consentono di leggere i dati dell’oggetto
-	- Le funzioni *mutator* consentono di modificare i dati dell’oggetto
-	- Generalmente si definiscono funzioni *setter/getter*
+    - Le funzioni *accessor* consentono di leggere i dati dell’oggetto
+    - Le funzioni *mutator* consentono di modificare i dati dell’oggetto
+    - Generalmente si definiscono funzioni *setter/getter*
 - Buona norma mantenere private le variabili membro
-	- Dotarle di funzioni accessor e mutator solo se necessario
+    - Dotarle di funzioni accessor e mutator solo se necessario
 - *Validation*
-	- Una funzione che setta il valore di un dato dovrebbe anche controllarne la validità
-	- Dovrebbe comunque lasciare il dato in uno stato consistente (oppure lanciare un’eccezione...)
+    - Una funzione che setta il valore di un dato dovrebbe anche controllarne la validità
+    - Dovrebbe comunque lasciare il dato in uno stato consistente (oppure lanciare un’eccezione...)
 
 ---
 
@@ -93,10 +93,10 @@ title: Programmazione orientata agli oggetti
 
 - Un programmatore deve poter usare la classe conoscendo solo l’*interfaccia*
 - Vantaggio: è possibile cambiare l’implementazione
-	- Senza cambiare altro codice che usa la classe
+    - Senza cambiare altro codice che usa la classe
 - Filosofia: descrivere il problema in termini di *oggetti che interagiscono*
-	- Piuttosto che algoritmi che operano su dati
-	- Anche algoritmi e dati possono cambiare
+    - Piuttosto che algoritmi che operano su dati
+    - Anche algoritmi e dati possono cambiare
 
 ---
 
@@ -188,7 +188,7 @@ title: Costruttore senza argomenti
 
 ---
 
-title: Chiamata esplicita del costruttore 🤔
+title: 🤔 Chiamata esplicita del costruttore
 
 - Il costruttore può essere chiamato esplicitamente per modificare le variabili membro di un oggetto
 - Crea un oggetto anonimo e lo inizializza con i valori degli argomenti
@@ -197,7 +197,7 @@ title: Chiamata esplicita del costruttore 🤔
     - `date = DayOfYear(10, 14);`
     - Può essere più efficiente usare le mutator functions
 - Se sono disponibili funzioni *mutator*
-	- Chiamarle anche dal costruttore, per non ripetere codice
+    - Chiamarle anche dal costruttore, per non ripetere codice
 
 ---
 
@@ -235,10 +235,10 @@ code: C++
 title: Membri di tipo classe
 
 - **Composizione**
-	- Una classe può avere una variabile membro di tipo classe
+    - Una classe può avere una variabile membro di tipo classe
 - *Lista di inizializzazione*
-	- Notazione speciale per invocare il costruttore della variabile membro nel costruttore della classe più esterna
-	- I parametri del costruttore della classe più esterna possono essere usati nella chiamata del costruttore della variabile membro
+    - Notazione speciale per invocare il costruttore della variabile membro nel costruttore della classe più esterna
+    - I parametri del costruttore della classe più esterna possono essere usati nella chiamata del costruttore della variabile membro
 
 ---
 

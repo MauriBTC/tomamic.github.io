@@ -59,7 +59,7 @@ code: py
 
 ---
 
-title: I/O su stringhe e console 🤔
+title: 🤔 I/O su stringhe e console
 
 - Stringhe come stream: `io.StringIO`
 - Console come stream: `sys.stdin`, `sys.stdout`, `sys.stderr`
@@ -82,7 +82,7 @@ code: py
 
 ---
 
-title: Errori da file 🤔
+title: 🤔 Errori da file
 figure: images/fun/garbled-tape.png
 
 - **Eccezioni**: per gestire separatamente i casi inattesi

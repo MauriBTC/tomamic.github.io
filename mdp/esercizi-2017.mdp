@@ -987,7 +987,7 @@ figure: images/misc/dead-end.jpg
 
 ---
 
-title: 11.2 Ulteriori suggerimenti 🤔
+title: 🤔 11.2 Ulteriori suggerimenti
 figure: images/misc/artificial-intelligence.png
 
 - Provare tutte le possibili permutazioni su una riga o colonna
@@ -1003,7 +1003,7 @@ code: C++
 
 ---
 
-title: 11.3 Ulteriori suggerimenti 🤔
+title: 🤔 11.3 Ulteriori suggerimenti
 figure: images/misc/artificial-intelligence.png
 
 - Provare tutte le possibili permutazioni su una riga o colonna
@@ -1013,7 +1013,7 @@ figure: images/misc/artificial-intelligence.png
 
 ---
 
-title: 11.4 Soluzione ricorsiva 🤔
+title: 🤔 11.4 Soluzione ricorsiva
 figure: images/misc/artificial-intelligence.png
 
 code: C++

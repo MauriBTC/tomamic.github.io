@@ -204,7 +204,7 @@ code: c++
 
 ---
 
-title: Parametri per riferimento 🤔
+title: 🤔 Parametri per riferimento
 
 - Parametri per riferimento (`&`) sono *alias*
     - Le modifiche riguardano anche le variabili esterne
@@ -651,7 +651,7 @@ code: C++
 
 ---
 
-title: Compilazione separata 🤔
+title: 🤔 Compilazione separata
 
 - C++: definizione della classe separata dalla implementazione dei metodi
     - Definizione fornita agli utenti
@@ -664,7 +664,7 @@ title: Compilazione separata 🤔
 
 ---
 
-title: Definizione: ball.h 🤔
+title: 🤔 Definizione: ball.h
 figure: images/oop/ball-object.svg images/oop/ball-uml.svg
 figcaption: Class diagram UML
 
@@ -687,7 +687,7 @@ code: c++
 
 ---
 
-title: Implementazione: ball.cpp 🤔
+title: 🤔 Implementazione: ball.cpp
 figure: images/oop/anim-bounce.png
 
 code: c++
@@ -709,7 +709,7 @@ code: c++
 
 ---
 
-title: Applicazione: main.cpp 🤔
+title: 🤔 Applicazione: main.cpp
 figure: images/oop/balls.png
 
 code: c++
@@ -734,7 +734,7 @@ code: shell
 
 ---
 
-title: Swig: C++ per moduli Python 🤔
+title: 🤔 Swig: C++ per moduli Python
 
 code: file: ball.i
 
@@ -760,7 +760,7 @@ code: py
 
 ---
 
-title: Do-while 🤔
+title: 🤔 Do-while
 class: break
 
 code: c++
@@ -780,7 +780,7 @@ code: c++
 
 ---
 
-title: Switch 🤔
+title: 🤔 Switch
 
 code: c++
 

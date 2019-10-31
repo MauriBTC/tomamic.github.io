@@ -187,8 +187,8 @@ figure: images/misc/green-squares.png
 - Chiedere all'utente il numero di quadrati da disegnare
 - Disegnare i quadrati con lato decrescente, tutti allineati in alto e a sinistra
 - Far variare il colore dei quadrati
-	- Dal nero del quadrato più grande
-	- Fino al verde del quadrato più piccolo
+    - Dal nero del quadrato più grande
+    - Fino al verde del quadrato più piccolo
 
 >
 
@@ -744,7 +744,7 @@ code: python
 
 ---
 
-title: 5.9 Dominating knights 🤔
+title: 🤔 5.9 Dominating knights
 figure: images/misc/dom-knights.png
 
 - Problemi di dominio (o copertura)
