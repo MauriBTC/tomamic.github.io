@@ -214,7 +214,7 @@ code: html
 
 title: Regex in Python
 
-code: python
+code: py
 
     >>> import re
     >>> text = "Though not quickly, he run the 5th lap steadily."
