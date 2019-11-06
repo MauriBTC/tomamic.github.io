@@ -732,6 +732,7 @@ title: 7.6 Hitori, GUI
 figure: images/misc/hitori-completed.svg
 
 - Utilizzare il gioco tramite la GUI fornita con gli esempi
+- Opzionalmente, modificare la GUI per mostrare le celle annerite o cerchiate
 
 ---
 

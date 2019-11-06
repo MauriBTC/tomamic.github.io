@@ -29,8 +29,20 @@ title: Alfabeti e stringhe
 - Linguaggio `L ⊆ Σ*`
     - Sottoinsieme di tutte le stringhe possibili
     - Grammatica: regole formali per definire le “*stringhe ben formate*” di L
-- Esempio: numeri romani da 1 a 1000
-    - Alfabeto `{I, V, X, L, C, D, M}` + regole...
+
+---
+
+title: Numeri romani
+figure: images/comp/roman-nums-clock.jpg images/comp/roman-nums-table.png
+
+- Alfabeto
+    - `{I, V, X, L, C, D, M}`
+    - *1, 5, 10, 50, 100, 500, 1000*
+- Regole
+    - Massimo 3 ripetizioni di un simbolo...
+    - Ma `V, L, D` non possono essere ripetuti
+    - Numeri inferiori seguono numeri superiori...
+    - Ma `IV, IX, XL, XC, CD, CM` fanno eccezione
 
 ---
 

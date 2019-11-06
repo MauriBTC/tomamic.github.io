@@ -49,89 +49,35 @@ title: How much data?
 
 title: Bounded Dataset vs Unbounded Dataset
 
-Bounded Dataset:
--- Un insieme finito di dati disponibili tutti qui ed ora
-Unbounded Dataset:
--- Dati in continuo arrivo
--- Spesso associati alla parola "streaming"
+- Bounded Dataset
+	- A finite set of data, already available at the start
+- Unbounded Dataset
+	- Data arriving continuously
+	- Often in a “streaming” scenario
 
 ---
 
 title: Unbounded Dataset -- 2 domini temporali
 
-Un unbounded dataset è caratterizzato da due domini temporali:
--- Tempo dell'evento: istante in cui l'evento descritto da un dato è
-effettivamente occorso
--- Tempo dell'elaborazione: istante in cui il dato entra all'interno del
-sistema di elaborazione
-Spesso c'è una differenza non costante tra i due, chiamata skew.
-Quando si è interessati a ragionare sul tempo dell'evento, lo skew
-può complicare la generazione di risultati corretti.
+- Unbounded dataset characterized by two temporal domains
+	- Event time: when the event occurs
+	- Computation time: when data enter the processing system
+- Often, non-constant difference between them: skew
+- When the event time is important, skew can complicate the generation of correct results
 
 ---
 
-title: Elaborazione di bounded dataset
+title: Processing of bounded / unbounded dataset
 
-I bounded dataset sono generalmente elaborati con
-sistemi di tipo batch:
--- MapReduce ne è un esempio
-
----
-
-title: Elaborazione di unbounded dataset
-
-Un dataset unbound può essere elaborato in vari modi:
--- Batch
--- Streaming
-
----
-
-title: Elaborazione di unbounded dataset - batch
-
-I dati sono bufferizzati (secondo una logica di
-windowing) creando una sorta di bounded dataset, che
-può essere elaborato con un sistema di tipo batch:
--- Se l'event time è rilevante, allora abbiamo possibili
-problemi di incompletezza
--- L'analisi di una sessione utente potrebbe essere suddivisa
-tra più batch (se la sessione dura più della finestra)
-
----
-
-title: Elaborazione di unbounded dataset -
-
-streaming
-Ci sono diversi approcci di elaborazione streaming:
-- Time-agnostic
-- Approximation
-- Windowing by processing time
-- Windowing by event time
-
----
-
-title: Elaborazione di unbounded dataset -- streaming -- time agnostic
-
-L'elaborazione di stream quando il tempo non
-interessa:
--- Filtrare i dati
--- Calcolare la join di due dataset. Un dato è bufferizzato
-finché non arriva un messaggio corrispondente. Tuttavia,
-se questo messaggio potesse non esistere, occorrerebbe
-inserire un timeout, quindi una nozione di tempo
-
----
-
-title: Elaborazione di unbounded dataset -- streaming -- widowing
-
-Posso suddividere i dati in ingresso in finestre (fisse,
-scorrevoli o sessioni) secondo il processing time o l'event
-time:
-Nel secondo caso è difficile giudicare la completezza di una
-finestra:
-- Ci si può basare su delle euristiche
-- Oppure, chiedere all'"esterno" quando i dati vanno materializzati
-- Procedure per raffinare i dati nel tempo
-
+- Bounded datasets
+	- Often processed with batch systems; e.g. MapReduce
+- Unbounded datasets
+	- Processed in either batch or streaming mode
+	- Data buffered in a windowing logic
+	- Sort of bounded dataset, processed as batch
+	- Incomplete data, if event time is important
+	- A user session can be divided in multiple batches, if longer than a window
+	
 ---
 
 title: Free lunch is over
@@ -201,26 +147,46 @@ title: MapReduce basics
 
 ---
 
-title: MapReduce example
+title: MapReduce, pseudo-code
 
 code: py
 
-    def map(key: str, value: str):
-        # key: document name
-        # value: document contents
-        counts = dict()
-        for w in value.split():
-            counts[w] = 1 + counts.get(w, 0)
-        emit_intermediate(counts)
+	def map_f(filename: str) -> [(str, int)]:
+    	counts = {}
+    	with open(filename) as f:
+        	for word in f.read().split():
+            	counts[word] = 1 + counts.get(word, 0)
+    	return list(counts.items())
+	
+	def reduce_f(item: (str, [int])) -> (str, int):
+    	key, values = item  # key: a word; values: a list of counts
+    	return key, sum(values)
+	
+---
 
-    reduce(key: str, values: list):
-        # key: a word
-        # values: a list of counts
-        result = 0
-        for v in values:
-            result += v
-        emit(result)
+title: MapReduce, simplistic framework
 
+code: py
+
+	def partition(interm: [(str, int)]) -> [(str, [int])]:
+    	# interm: results of map phase, chained together
+    	counts = {}
+    	for key, val in interm:
+        	if key in counts:
+            	counts[key].append(val)
+        	else:
+            	counts[key] = [val]
+    	return list(counts.items())
+	
+	def main():
+    	pool = multiprocessing.Pool(8)  # num_workers
+    	input_list = glob.glob("*.txt")
+    	map_responses = pool.map(map_f, input_list)
+    	chained = sum(map_responses, [])
+    	partitioned_data = partition(chained)
+    	reduced_values = pool.map(reduce_f, partitioned_data)
+    	print(list(reduced_values))
+	
 ---
 
 title: MapReduce -- esempio (2/2) [26]
@@ -251,55 +217,41 @@ a dog
 
 title: MapReduce -- map task
 
-Se map è una funzione pura, può essere eseguita in
-parallelo su porzioni differenti dell'input.
-Da ciò l'idea di suddividere l'input in tanti blocchi (di
-64MB)
-ciascuno dei quali è un map task, che può essere
-assegnato (scheduled) su uno dei nodi worker.
-Solitamente il numero di map task viene indicato con
-M.
+- If `map` is a pure function, it can run in parallel on multiple parts of the input
+- Input is divided into many blocks (e.g. of 64MB)
+- Each assigned to a worker node
+- Number of map tasks usually called `M`
 
 ---
 
 title: MapReduce -- reduce task
 
-Per quanto riguarda la funzione reduce, lo spazio delle
-chiavi intermedie viene partizionato.
-Ciascuna partizione diventa un reduce task, che può
-essere assegnato (scheduled) su uno dei nodi worker.
-Se R è il numero di reduce task, una funzione di
-partizionamento può essere: hash(k 2 ) mod R
+- The space of intermediate keys is partitioned, before applying `reduce`
+- Each part is a `reduce` task, assigned to a worker node
+- Numer of reduce tasks: `R`
+- E.g. partitioning policy: `hash(k2) mod R`
 
 ---
 
 title: MapReduce -- DFS (1)
 
-Il computing model MapReduce è abbinato ad un filesystem
-distribuito (DFS):
--- Ciascun file di input è suddiviso in blocchi di dimensione fissa
--- Ciascun blocco viene immagazzinato su un data node e la
-posizione dei diversi blocchi è immagazzinata su un name node
-(responsabile del namespace)
--- Fault tolerance (rispetto ai guasti dei data node) ottenuta
-replicando ciascun blocco su un numero (stabilito) di data node
-(secondo varie policy)
+- Computing model of MapReduce associated with distributed filesystem (DFS)
+- Each input file divided into blocks of fixed size
+- Each block stored on (more than) a data node
+	- Their position stored on a name node (responsible for the namespace)
+- Various replication policies of blocks on data nodes
+	- Fault tolerance (wrt failures of data nodes) and efficiency
 
 ---
 
 title: MapReduce -- DFS (2)
 
-Come si combinano MapReduce e DFS?
--- Si cerca di assegnare a ciascun worker map task relativi a blocchi
-che sono replicati su quella macchina (località)
--- Il woker responsabile di un map task scriverà le chiavi
-intermedie su tanti file nel proprio file system locale quanti
-sono i reduce task
--- Ciascun reduce task chieve legge (tramite RPC) il contenuto del
-filesystem locale di ciascun mapper, e produce un file nel DFS
-(ordinato per chiave) con
-11/12/2018
-il risultato del proprio lavoro.
+- How do MapReduce and DFS combine?
+- Each worker is assigned a map task for blocks replicated on that machine (locality)
+- Assigned worker writes intermediate keys in its own local node of the DFS
+- As many intermediate files, as reduce tasks
+- Each reduce task reads from the DFS of each mapper
+- It produces a file in local node of DFS, with its own results
 
 ---
 

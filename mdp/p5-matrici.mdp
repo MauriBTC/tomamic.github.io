@@ -310,7 +310,7 @@ figure: images/fun/generate-and-test.png
 ---
 
 title: 8 regine: G&T
-figure: images/fun/8-queens.svg
+figure: images/fun/8-queens.svg images/fun/k-comb.svg
 
 - *Generate*
     - Inserire `8` regine in tutte le possibili combinazioni in una scacchiera `8x8`
@@ -354,6 +354,8 @@ class: large-figure
 - Altrimenti si verifica se la variabile appena assegnata ha ancora valori da provare
     - Se sì, si prova con un nuovo valore
     - Altrimenti, si torna indietro e si modifica una variabile già assegnata
+- Per le *8 regine* (`92` soluzioni)
+    - `15720` celle controllate, `2056` posizionamenti tentati
 
 ---
 
