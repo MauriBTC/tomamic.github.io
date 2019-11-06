@@ -116,9 +116,19 @@ title: Espressioni regolari
     - (con `s` e `t` espressioni regolari; simbolo `•` spesso implicito)
 - *Linguaggi regolari*: rappresentabili con espressioni regolari (*“regex”*)
 
->
+---
 
-Esempio, con `Σ = {a, b}`: <br> `a • (a + b)* • b`
+title: Espressioni e linguaggi
+
+- `Σ = {a, b}`
+- *`(a + b • b)`*
+    - `{"a", "bb"}`
+- *`(a + b • b)*`*
+    - `{"", "a", "bb", "aa", "abb", "bba", "bbbb", "aaa", ...}`
+- *`(a + b)*`*
+    - `{"", "a", "b", "aa", "ab", "ba", "bb", "aaa", ...}`
+- *`a • (a + b)* • b`*
+    - `{"ab", "aab", "abb", "aaab", "aabb", "abab", ...}`
 
 ---
 

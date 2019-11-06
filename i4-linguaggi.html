@@ -240,9 +240,36 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 <li><em>Linguaggi regolari</em>: rappresentabili con espressioni regolari (<em>“regex”</em>)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Espressioni e linguaggi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><code>Σ = {a, b}</code></li>
+<li><em><code>(a + b • b)</code></em><ul>
+<li><code>{"a", "bb"}</code></li>
 </ul>
-<blockquote></blockquote>
-<p>Esempio, con <code>Σ = {a, b}</code>: <br> <code>a • (a + b)* • b</code></p></article>
+</li>
+<li><em><code>(a + b • b)*</code></em><ul>
+<li><code>{"", "a", "bb", "aa", "abb", "bba", "bbbb", "aaa", ...}</code></li>
+</ul>
+</li>
+<li><em><code>(a + b)*</code></em><ul>
+<li><code>{"", "a", "b", "aa", "ab", "ba", "bb", "aaa", ...}</code></li>
+</ul>
+</li>
+<li><em><code>a • (a + b)* • b</code></em><ul>
+<li><code>{"ab", "aab", "abb", "aaab", "aabb", "abab", ...}</code></li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 
