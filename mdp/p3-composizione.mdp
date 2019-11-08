@@ -633,8 +633,8 @@ title: Bounce, gioco e GUI
     - Inizializzare i personaggi
     - Incapsulare personaggi ed arena
 - Controllare la conclusione della partita, positiva o negativa
-    - Se tartaruga collide 1 volta con fantasma, partita persa
-    - Se tartaruga collide 3 volte con pallina, partita persa
+    - Se tartaruga collide 1 volta con fantasma: partita persa
+    - Se tartaruga collide 3 volte con pallina: partita persa
     - Se gioco dura più di 2 minuti: partita vinta
 - Classe `BounceGui` per la rappresentazione del gioco
     - Disegno immagini e funzionalità legate a `g2d`
