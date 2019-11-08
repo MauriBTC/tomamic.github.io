@@ -638,8 +638,12 @@ title: Bounce, gioco e GUI
     - Se gioco dura più di 2 minuti: partita vinta
 - Classe `BounceGui` per la rappresentazione del gioco
     - Disegno immagini e funzionalità legate a `g2d`
-    - Gestione della tastiera e dell'input
-    - Metodo `tick` etc.
+    - Gestione della tastiera e dell'input, metodo `tick` etc.
+
+>
+
+<http://www.ce.unipr.it/brython/?p3_oop_bounce_game.py> <br/>
+<http://www.ce.unipr.it/brython/?p3_oop_bounce_gui.py>
 
 ---
 
