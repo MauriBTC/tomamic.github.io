@@ -384,23 +384,23 @@ figure: images/misc/cubic-function.png
 
 ---
 
-title: Configurazioni di simboli
+title: Generazione di password
 figure: images/fun/bike-lock.png
 
-- Generare tutte le configurazioni di simboli (*disposizioni con ripetizione*)
-    - Parametro: numero di ruote
+- Generare tutte le password di una data lunghezza (*disposizioni con ripetizione*)
+    - Parametro: lunghezza `n` delle password
     - Parametro: `str` contenente i possibili simboli
     - Risultato: una lista di stringhe
 - Algoritmo:
-    - Zero ruote: l'unica configurazione è la stringa vuota: `['']`
-    - Altrimenti: per ogni elemento della prima ruota...
-    - Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)
+    - Lunghezza `0`: l'unica password è la stringa vuota: `['']`
+    - Altrimenti: per ogni simbolo scelto come primo carattere...
+    - Concatenarlo con tutte le password di lunghezza `n - 1` (ricorsione)
 
 >
 
 Saranno accettate esclusivamente le soluzioni ricorsive
 
-<http://www.ce.unipr.it/brython/?x4_fun_combine.py>
+<http://www.ce.unipr.it/brython/?x4_fun_gen_words.py>
 
 ---
 

@@ -560,7 +560,7 @@ MCD(a, b) = MCD(b, a mod b), se b &gt; 0</p>
 <slide  >
   
     <hgroup>
-      <h2>Configurazioni di simboli</h2>
+      <h2>Generazione di password</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -568,22 +568,22 @@ MCD(a, b) = MCD(b, a mod b), se b &gt; 0</p>
         <img src="images/fun/bike-lock.png">
         
       </figure><ul>
-<li>Generare tutte le configurazioni di simboli (<em>disposizioni con ripetizione</em>)<ul>
-<li>Parametro: numero di ruote</li>
+<li>Generare tutte le password di una data lunghezza (<em>disposizioni con ripetizione</em>)<ul>
+<li>Parametro: lunghezza <code>n</code> delle password</li>
 <li>Parametro: <code>str</code> contenente i possibili simboli</li>
 <li>Risultato: una lista di stringhe</li>
 </ul>
 </li>
 <li>Algoritmo:<ul>
-<li>Zero ruote: l'unica configurazione è la stringa vuota: <code>['']</code></li>
-<li>Altrimenti: per ogni elemento della prima ruota...</li>
-<li>Concatenarlo con tutte le configurazioni sulle ruote rimanenti (ricorsione)</li>
+<li>Lunghezza <code>0</code>: l'unica password è la stringa vuota: <code>['']</code></li>
+<li>Altrimenti: per ogni simbolo scelto come primo carattere...</li>
+<li>Concatenarlo con tutte le password di lunghezza <code>n - 1</code> (ricorsione)</li>
 </ul>
 </li>
 </ul>
 <blockquote></blockquote>
 <p>Saranno accettate esclusivamente le soluzioni ricorsive</p>
-<p><a href="http://www.ce.unipr.it/brython/?x4_fun_combine.py">http://www.ce.unipr.it/brython/?x4_fun_combine.py</a></p></article>
+<p><a href="http://www.ce.unipr.it/brython/?x4_fun_gen_words.py">http://www.ce.unipr.it/brython/?x4_fun_gen_words.py</a></p></article>
  
 </slide>
 
