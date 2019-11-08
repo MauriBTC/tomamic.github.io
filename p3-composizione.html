@@ -731,7 +731,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.1 Istogramma con barre orizzontali</h2>
+      <h2>Istogramma con barre orizzontali</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -755,7 +755,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.2 Risultati casuali</h2>
+      <h2>Risultati casuali</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -781,7 +781,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.3 Veicoli nell'arena</h2>
+      <h2>Veicoli nell'arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -809,7 +809,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.4 Rana in arena</h2>
+      <h2>Rana in arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -834,7 +834,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.5 Rana investita</h2>
+      <h2>Rana investita</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -855,7 +855,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.6 Alieni nell'arena</h2>
+      <h2>Alieni nell'arena</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -883,7 +883,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>3.7 Pallottole</h2>
+      <h2>Pallottole</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -909,7 +909,7 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>🤔 3.8 Mario</h2>
+      <h2>Super Mario</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -925,18 +925,47 @@ g2d.main_loop(tick)
 <slide  >
   
     <hgroup>
-      <h2>🤔 3.9 Piattaforme</h2>
+      <h2>Piattaforme</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>Aggiungere all'esercizio 3.8 un classe <code>Wall</code><ul>
+<li>Aggiungere all'esercizio su Super Mario un classe <code>Wall</code><ul>
 <li>Rettangolo immobile</li>
 </ul>
 </li>
 <li>Quando Mario collide con una piattaforma...<ul>
 <li>Si sposta al bordo della piattaforma più vicino</li>
 <li>Se atterra sul bordo superiore, da lì può saltare</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Bounce, gioco e GUI</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Classe <code>BounceGame</code>, per gestire il gioco <em>Bounce</em><ul>
+<li>Inizializzare i personaggi</li>
+<li>Incapsulare personaggi ed arena</li>
+</ul>
+</li>
+<li>Controllare la conclusione della partita, positiva o negativa<ul>
+<li>Se la tartaruga collide 1 volta con il fantasma, la partita è persa</li>
+<li>Se la tartaruga collide 3 volte con una pallina, la partita è persa</li>
+<li>Se il gioco dura più di 2 minuti, la partita è vinta</li>
+</ul>
+</li>
+<li>Classe <code>BounceGui</code> per la rappresentazione del gioco<ul>
+<li>Disegno immagini e funzionalità legate a <code>g2d</code></li>
+<li>Gestione della tastiera e dell'input</li>
+<li>Metodo <code>tick</code> etc.</li>
 </ul>
 </li>
 </ul></article>

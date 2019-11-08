@@ -521,7 +521,7 @@ class: segue dark
 
 ---
 
-title: 3.1 Istogramma con barre orizzontali
+title: Istogramma con barre orizzontali
 figure: images/misc/histogram-rot.png
 
 - Chiedere all'utente una lista di valori positivi
@@ -532,7 +532,7 @@ figure: images/misc/histogram-rot.png
 
 ---
 
-title: 3.2 Risultati casuali
+title: Risultati casuali
 figure: images/misc/dice.png
 
 - Simulare `n` lanci di una coppia di dadi
@@ -547,7 +547,7 @@ Per conteggiare i vari risultati, usare una lista di (almeno) 11 valori
 
 ---
 
-title: 3.3 Veicoli nell'arena
+title: Veicoli nell'arena
 figure: images/misc/frogger.png
 
 - Partire dalla classe `Vehicle`
@@ -560,7 +560,7 @@ figure: images/misc/frogger.png
 
 ---
 
-title: 3.4 Rana in arena
+title: Rana in arena
 figure: images/misc/frogger.png
 
 - Partire dalla classe `Turtle`, per creare un personaggio `Frog`
@@ -572,7 +572,7 @@ figure: images/misc/frogger.png
 
 ---
 
-title: 3.5 Rana investita
+title: Rana investita
 figure: images/misc/frogger.png
 
 - Scrivere il metodo `collide` della rana
@@ -582,7 +582,7 @@ figure: images/misc/frogger.png
 
 ---
 
-title: 3.6 Alieni nell'arena
+title: Alieni nell'arena
 figure: images/misc/invaders-path.jpg
 
 - Partire dalla classe `Alien`
@@ -595,7 +595,7 @@ figure: images/misc/invaders-path.jpg
 
 ---
 
-title: 3.7 Pallottole
+title: Pallottole
 figure: images/misc/invaders-path.jpg
 
 - Continuare l'es. precedente
@@ -608,7 +608,7 @@ figure: images/misc/invaders-path.jpg
 
 ---
 
-title: 🤔 3.8 Mario
+title: Super Mario
 
 - Modificare l'esempio `Turtle`
 - Cosiderare l'accelerazione *costante* `g` di gravità (es. `0.5`)
@@ -617,13 +617,29 @@ title: 🤔 3.8 Mario
 
 ---
 
-title: 🤔 3.9 Piattaforme
+title: Piattaforme
 
-- Aggiungere all'esercizio 3.8 un classe `Wall`
+- Aggiungere all'esercizio su Super Mario un classe `Wall`
     - Rettangolo immobile
 - Quando Mario collide con una piattaforma...
     - Si sposta al bordo della piattaforma più vicino
     - Se atterra sul bordo superiore, da lì può saltare
+
+---
+
+title: Bounce, gioco e GUI
+
+- Classe `BounceGame`, per gestire il gioco *Bounce*
+    - Inizializzare i personaggi
+    - Incapsulare personaggi ed arena
+- Controllare la conclusione della partita, positiva o negativa
+    - Se la tartaruga collide 1 volta con il fantasma, la partita è persa
+    - Se la tartaruga collide 3 volte con una pallina, la partita è persa
+    - Se il gioco dura più di 2 minuti, la partita è vinta
+- Classe `BounceGui` per la rappresentazione del gioco
+    - Disegno immagini e funzionalità legate a `g2d`
+    - Gestione della tastiera e dell'input
+    - Metodo `tick` etc.
 
 ---
 
@@ -657,7 +673,7 @@ Segnare in un bool se si è letta una parentesi aperta, ma non ancora una parent
 
 ---
 
-title: 3.1 Array, precalcolo
+title: Array, precalcolo
 figure: images/misc/sin-cos.png
 
 - Riempire una lista con i valori di `sin`
@@ -676,7 +692,7 @@ Calcolare `math.sin(x * math.pi / 180)`, anzichè `math.sin(x)`
 
 ---
 
-title: 3.4 Conteggio caratteri
+title: Conteggio caratteri
 figure: images/misc/characters.png
 
 - Chiedere una riga di testo all'utente
@@ -692,7 +708,7 @@ L'indice del contatore corrispondente ad una lettera `val` può essere ottenuto 
 
 ---
 
-title: 3.5 Fattori primi
+title: Fattori primi
 
 - Funzione che trova tutti i fattori primi di un numero `n`
     - Parametro: `n`
@@ -711,7 +727,7 @@ Valutare l'uso di un ciclo `while`, anzichè `for`
 
 ---
 
-title: 3.6 Memory
+title: Memory
 figure: images/misc/memory.png
 
 - L'utente sceglie `rows` e `cols`
