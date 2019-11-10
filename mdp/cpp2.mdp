@@ -1,4 +1,4 @@
-title: Linguaggio C++11
+title: Linguaggio C++
 subtitle: Classi e oggetti
 figure: images/misc/cpp-logo.jpg
 
@@ -181,7 +181,7 @@ title: Costruttore senza argomenti
 - Quando si vuole invocare il **costruttore senza argomenti**, non si usano le parentesi
     - Esempio: `DayOfYear date;`
     - Altrimenti, il compilatore intende una *dichiarazione di funzione*
-- *Uniform initialization*, C++11: chiamata al costruttore con parentesi *graffe*
+- *Uniform initialization*, Modern C++: chiamata al costruttore con parentesi *graffe*
 - In assenza di costruttore, creato un **costruttore di default** senza aromenti
     - Se definito almeno un costruttore, non creato il costruttore di default
 - Meglio includere un costruttore senza parametri, se possibile

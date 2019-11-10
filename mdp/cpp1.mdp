@@ -1,4 +1,4 @@
-title: Linguaggio C++11
+title: Linguaggio C++
 subtitle: Programmazione strutturata
 figure: images/misc/cpp-logo.jpg
 
@@ -478,15 +478,15 @@ title: Dimensioni e capacità
 
 ---
 
-title: C++11
+title: Modern C++
 class: segue dark
 
 ---
 
-title: C++11
+title: Modern C++
 figure: images/dev/cpp.png
 
-- Nuona versione dello linguaggio, approvata da ISO il 2011-08-12
+- Nuova versione dello linguaggio, approvata da ISO il 2011-08-12
     - Initializer lists
     - Uniform initialization
     - Type inference
@@ -515,7 +515,7 @@ code: c++
 
     auto y = 5;        // type inference
     auto k = 2.2;
-    auto t = "hola"s;  // compiler settings: -std=c++14
+    auto t = "hola"s;  // recent compiler
 
 ---
 

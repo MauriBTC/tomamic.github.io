@@ -1,4 +1,4 @@
-title: Linguaggio C++11
+title: Linguaggio C++
 subtitle: Ereditarietà
 figure: images/misc/cpp-logo.jpg
 
@@ -202,12 +202,12 @@ code: c++
     class A  { /* ... */ };
     class B  { /* ... */ };
 
-    class C: public B, public A  // Note the order  { 
-    public: 
-      C()  { cout << "C's constructor called" << endl; } 
-    };       
+    class C: public B, public A  // Note the order  {
+    public:
+      C()  { cout << "C's constructor called" << endl; }
+    };
 
-    int main()  {  C c; } 
+    int main()  {  C c; }
 
 ---
 

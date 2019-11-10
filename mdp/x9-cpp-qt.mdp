@@ -155,7 +155,7 @@ code: C++
 - Da *Qt Creator*:
     - *Create Project →  Applications →  Qt Gui Application*
     - *Base class*: `QWidget` -- *Generate form*: `no`
-- **C++11**: aggiungere al file `.pro` (di progetto): `CONFIG += C++11`
+- **C++17**: aggiungere al file `.pro` (di progetto): `CONFIG += C++17`
 
 ---
 
@@ -640,7 +640,7 @@ code: C++
 code: Project
 
     QT += widgets
-    CONFIG += console c++11
+    CONFIG += console c++17
 
 >
 
