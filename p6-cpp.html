@@ -149,7 +149,7 @@ cout &lt;&lt; (3 &lt; 5 &amp;&amp; 5 &lt; 4) &lt;&lt; endl;  // 0
     </hgroup>
     <article >
       <ul>
-<li><code>string</code>: sequenza <em>mutevole</em> di byte (tipo <code>char</code>)</li>
+<li><code>string</code>: sequenza <em>mutabile</em> di byte (tipo <code>char</code>)</li>
 <li>Operazioni di confronto; concatenazione: <code>+</code></li>
 <li><em>Attenzione</em>: apici doppi per valori <code>string</code>, singoli per <code>char</code></li>
 </ul>
@@ -177,6 +177,7 @@ int val = stoi(txt);  // see also `stod`, `stof`...
         
       </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>string a, b;
 cin &gt;&gt; a &gt;&gt; b;
+
 if (a &lt; b) {
     cout &lt;&lt; "The words are ordered" &lt;&lt; endl;
 } else if (a &gt; b) {
@@ -186,7 +187,7 @@ if (a &lt; b) {
 }
 </code></pre>
 <blockquote></blockquote>
-<p><a href="p1-algoritmi.html#17">Selezioni in Python</a></p>
+<p><a href="p1-algoritmi.html#19">Selezioni in Python</a></p>
 <p><a href="https://cppguide.readthedocs.io/en/latest/cpp/control.html">Strutture di controllo in C++</a></p></article>
  
 </slide>
@@ -199,7 +200,7 @@ if (a &lt; b) {
     </hgroup>
     <article >
       <figure>
-        <img src="images/algo/average.svg">
+        <img src="images/algo/sentinel.svg">
         
       </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>int val, total = 0, count = 0;
 cout &lt;&lt; "Val (0 to finish)? ";

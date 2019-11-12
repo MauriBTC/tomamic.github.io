@@ -90,7 +90,7 @@ code: c++
 
 title: Stringhe
 
-- `string`: sequenza *mutevole* di byte (tipo `char`)
+- `string`: sequenza *mutabile* di byte (tipo `char`)
 - Operazioni di confronto; concatenazione: `+`
 - *Attenzione*: apici doppi per valori `string`, singoli per `char`
 
@@ -114,6 +114,7 @@ code: c++
 
     string a, b;
     cin >> a >> b;
+
     if (a < b) {
         cout << "The words are ordered" << endl;
     } else if (a > b) {
@@ -124,14 +125,14 @@ code: c++
 
 >
 
-[Selezioni in Python](p1-algoritmi.html#17)
+[Selezioni in Python](p1-algoritmi.html#19)
 
 [Strutture di controllo in C++](https://cppguide.readthedocs.io/en/latest/cpp/control.html)
 
 ---
 
 title: Iterazioni
-figure: images/algo/average.svg
+figure: images/algo/sentinel.svg
 
 code: c++
 
