@@ -385,7 +385,7 @@ code: c++
 
 ---
 
-title: Iteratori ed algoritmi
+title: 🤔 Iteratori ed algoritmi
 figure: images/fun/iterator.png
 class: large-figure
 
@@ -415,6 +415,90 @@ code: c++
 
 ---
 
+title: Oggetti
+class: segue dark
+
+---
+
+title: Definizione di una classe
+figure: images/oop/ball-object.svg images/oop/ball-uml.svg
+figcaption: Class diagram UML
+
+code: c++
+
+    class Ball {
+        int x_, y_, w_ = 20, h_ = 20;  // private stuff
+        int dx_ = 5, dy_ = 5;
+    public:
+        Ball(int x0, int y0) {  // constructor
+            x_ = x0; y_ = y0;
+        }
+        void move() {
+            if (x_+dx_ < 0 || x_+dx_+w_ > ARENA_W) { dx_ = -dx_; }
+            if (y_+dy_ < 0 || y_+dy_+h_ > ARENA_H) { dy_ = -dy_; }
+            x_ += dx_; y_ += dy_;
+        }
+        int pos_x() { return x_; }
+        int pos_y() { return y_; }
+    };
+
+---
+
+title: Creazione ed uso degli oggetti
+figure: images/oop/balls.png
+
+code: c++
+
+    int main() {
+        auto b1 = Ball{40, 80};
+        auto b2 = Ball{80, 40};
+
+        for (auto i = 0; i < 25; ++i) {
+            b1.move();
+            b2.move();
+            cout << b1.pos_x() << " " << b1.pos_y() << endl;
+            cout << b2.pos_x() << " " << b2.pos_y() << endl << endl;
+        }
+    }
+
+>
+
+[ball.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp)
+
+---
+
+title: Cppyy: Chiamare C++ da Python
+
+code: shell
+
+    pip3 install cppyy
+
+code: py
+
+    import cppyy
+    cppyy.include("ball.cpp")
+    from cppyy.gbl import Ball
+
+    b1 = Ball(40, 80)
+    b2 = Ball(80, 40)
+
+    for i in range(25):
+        b1.move()
+        b2.move()
+        print(b1.pos_x(), b1.pos_y())
+        print(b2.pos_x(), b2.pos_y())
+
+>
+
+[ball.py](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py)
+
+---
+
+title: Livelli di astrazione
+class: segue dark
+
+---
+
 title: Puntatori
 figure: images/oop/pointer.png
 
@@ -429,58 +513,6 @@ code: c++
     p = &i;       // now p points to i
     *p = *p + 1;  // ++i
     p = nullptr;  // ptr to nothing
-
----
-
-title: Oggetti
-class: segue dark
-
----
-
-title: Definizione di una classe
-figure: images/oop/ball-object.svg images/oop/ball-uml.svg
-figcaption: Class diagram UML
-
-code: c++
-
-    class Ball {
-        int x_, y_;             // private stuff
-        int dx_ = 5, dy_ = 5;
-    public:
-        Ball(int x0, int y0) {  // constructor
-            x_ = x0; y_ = y0;
-        }
-        void Ball::move() {
-            if (x_+dx_<0 || x_+dx_>ARENA_W) dx_ = -dx_;
-            if (y_+dy_<0 || y_+dy_>ARENA_H) dy_ = -dy_;
-            x_ += dx_; y_ += dy_;
-        }
-        int Ball::pos_x() { return x_; }
-        int Ball::pos_y() { return y_; }
-    };
-
----
-
-title: Creazione ed uso degli oggetti
-figure: images/oop/balls.png
-
-code: c++
-
-    int main() {
-        Ball b1{40, 80};
-        Ball b2{80, 40};
-
-        for (auto i = 0; i < 25; ++i) {
-            b1.move();
-            b2.move();
-            cout << b1.pos_x() << ", " << b1.pos_y() << endl;
-            cout << b2.pos_x() << ", " << b2.pos_y() << endl << endl;
-        }
-    }
-
->
-
-[ball.cpp](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp)
 
 ---
 
@@ -502,34 +534,6 @@ code: c++
     delete b2;
 
 - No *garbage collection*: a `new` deve corrispondere `delete`
-
----
-
-title: Cppyy: Chiamare C++ da Python
-
-code: shell
-
-    pip3 install cppyy
-
-code: py
-
-    import cppyy
-    cppyy.include("ball.cpp")
-    from cppyy.gbl import Ball
-
-    b = Ball(150, 200)
-    for i in range(10):
-        b.move()
-        print(b.pos_x(), b.pos_y())
-
->
-
-[ball.py](https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py)
-
----
-
-title: Livelli di astrazione
-class: segue dark
 
 ---
 

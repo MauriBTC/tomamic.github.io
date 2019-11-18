@@ -489,7 +489,7 @@ cout &lt;&lt; some_matrix[y][x] &lt;&lt; endl;
 <slide class="large-figure" >
   
     <hgroup>
-      <h2>Iteratori ed algoritmi</h2>
+      <h2>🤔 Iteratori ed algoritmi</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -513,6 +513,109 @@ if (pos != grocery.end()) {
 <blockquote></blockquote>
 <p><a href="p3-composizione.html#6">Liste in Python</a></p></article>
  
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Oggetti</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Definizione di una classe</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
+        <figcaption>Class diagram UML</figcaption>
+      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>class Ball {
+    int x_, y_, w_ = 20, h_ = 20;  // private stuff
+    int dx_ = 5, dy_ = 5;
+public:
+    Ball(int x0, int y0) {  // constructor
+        x_ = x0; y_ = y0;
+    }
+    void move() {
+        if (x_+dx_ &lt; 0 || x_+dx_+w_ &gt; ARENA_W) { dx_ = -dx_; }
+        if (y_+dy_ &lt; 0 || y_+dy_+h_ &gt; ARENA_H) { dy_ = -dy_; }
+        x_ += dx_; y_ += dy_;
+    }
+    int pos_x() { return x_; }
+    int pos_y() { return y_; }
+};
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Creazione ed uso degli oggetti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/balls.png">
+        
+      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>int main() {
+    auto b1 = Ball{40, 80};
+    auto b2 = Ball{80, 40};
+
+    for (auto i = 0; i &lt; 25; ++i) {
+        b1.move();
+        b2.move();
+        cout &lt;&lt; b1.pos_x() &lt;&lt; " " &lt;&lt; b1.pos_y() &lt;&lt; endl;
+        cout &lt;&lt; b2.pos_x() &lt;&lt; " " &lt;&lt; b2.pos_y() &lt;&lt; endl &lt;&lt; endl;
+    }
+}
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp">ball.cpp</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Cppyy: Chiamare C++ da Python</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="" data-lang="shell"><code>pip3 install cppyy
+</code></pre>
+<pre class="prettyprint lang-py" data-lang="py"><code>import cppyy
+cppyy.include("ball.cpp")
+from cppyy.gbl import Ball
+
+b1 = Ball(40, 80)
+b2 = Ball(80, 40)
+
+for i in range(25):
+    b1.move()
+    b2.move()
+    print(b1.pos_x(), b1.pos_y())
+    print(b2.pos_x(), b2.pos_y())
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py">ball.py</a></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Livelli di astrazione</h2>
+      <h3></h3>
+    </hgroup>
+  
 </slide>
 
 <slide  >
@@ -541,72 +644,6 @@ p = nullptr;  // ptr to nothing
  
 </slide>
 
-<slide class="segue dark" >
-  
-    <aside class="gdbar"><img src="theme/logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Oggetti</h2>
-      <h3></h3>
-    </hgroup>
-  
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Definizione di una classe</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
-        <figcaption>Class diagram UML</figcaption>
-      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>class Ball {
-    int x_, y_;             // private stuff
-    int dx_ = 5, dy_ = 5;
-public:
-    Ball(int x0, int y0) {  // constructor
-        x_ = x0; y_ = y0;
-    }
-    void Ball::move() {
-        if (x_+dx_&lt;0 || x_+dx_&gt;ARENA_W) dx_ = -dx_;
-        if (y_+dy_&lt;0 || y_+dy_&gt;ARENA_H) dy_ = -dy_;
-        x_ += dx_; y_ += dy_;
-    }
-    int Ball::pos_x() { return x_; }
-    int Ball::pos_y() { return y_; }
-};
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Creazione ed uso degli oggetti</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/oop/balls.png">
-        
-      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>int main() {
-    Ball b1{40, 80};
-    Ball b2{80, 40};
-
-    for (auto i = 0; i &lt; 25; ++i) {
-        b1.move();
-        b2.move();
-        cout &lt;&lt; b1.pos_x() &lt;&lt; ", " &lt;&lt; b1.pos_y() &lt;&lt; endl;
-        cout &lt;&lt; b2.pos_x() &lt;&lt; ", " &lt;&lt; b2.pos_y() &lt;&lt; endl &lt;&lt; endl;
-    }
-}
-</code></pre>
-<blockquote></blockquote>
-<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.cpp">ball.cpp</a></p></article>
- 
-</slide>
-
 <slide  >
   
     <hgroup>
@@ -631,39 +668,6 @@ delete b2;
 <li>No <em>garbage collection</em>: a <code>new</code> deve corrispondere <code>delete</code></li>
 </ul></article>
  
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Cppyy: Chiamare C++ da Python</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="" data-lang="shell"><code>pip3 install cppyy
-</code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>import cppyy
-cppyy.include("ball.cpp")
-from cppyy.gbl import Ball
-
-b = Ball(150, 200)
-for i in range(10):
-    b.move()
-    print(b.pos_x(), b.pos_y())
-</code></pre>
-<blockquote></blockquote>
-<p><a href="https://github.com/tomamic/fondinfo/blob/master/cpp/ball.py">ball.py</a></p></article>
- 
-</slide>
-
-<slide class="segue dark" >
-  
-    <aside class="gdbar"><img src="theme/logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Livelli di astrazione</h2>
-      <h3></h3>
-    </hgroup>
-  
 </slide>
 
 <slide  >

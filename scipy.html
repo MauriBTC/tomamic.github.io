@@ -1905,11 +1905,11 @@ sidewinder          7       8
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df.loc[[False, False, True]]
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; df[[False, False, True]]
             max_speed  shield
 sidewinder          7       8
 
-&gt;&gt;&gt; df.loc[df['shield'] &gt; 6]
+&gt;&gt;&gt; df[df['shield'] &gt; 6]
             max_speed  shield
 sidewinder          7       8
 

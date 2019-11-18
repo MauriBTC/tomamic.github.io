@@ -1404,11 +1404,11 @@ title: Boolean filtering
 
 code: py
 
-    >>> df.loc[[False, False, True]]
+    >>> df[[False, False, True]]
                 max_speed  shield
     sidewinder          7       8
 
-    >>> df.loc[df['shield'] > 6]
+    >>> df[df['shield'] > 6]
                 max_speed  shield
     sidewinder          7       8
 
