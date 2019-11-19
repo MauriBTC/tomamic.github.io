@@ -749,3 +749,203 @@ figure: images/misc/fair-copy.png
     - *Programmazione strutturata*: preferibilmente `return` a fine funzione, cicli senza `break`
     - *OOP*: *incapsulamento*, *ereditarietà*, *polimorfismo*
 
+---
+
+title: Esercitazione 8 (11-11 *)
+class: segue dark
+
+---
+
+title: 8.1 Potenze con ricorsione
+figure: images/fun/matryoshka.png
+
+- Calcolare la potenza intera di un numero, sfruttando la ricorsione
+- Qualsiasi numero `x`, elevato a potenza `0`, dà come risultato `1`
+- La potenza `n`-esima di un numero `x` si può calcolare come:
+    - `pow(x, n) = x * pow(x, n - 1)`, per `n > 0`
+
+>
+
+IEEE definisce `pow(0, 0) = 1`, anzichè indeterminato
+
+Saranno accettate esclusivamente le soluzioni ricorsive
+
+---
+
+title: 8.2 Cifre in ogni riga
+
+- Leggere un file riga per riga
+- Calcolare la percentuale di caratteri che rappresentano cifre in ogni riga
+- Calcolare la percentuale di caratteri che rappresentano cifre in tutto il file
+- Non considerare caratteri bianchi a inizio e fine riga (spazi, newline ecc.)
+
+---
+
+title: 8.3 Matrice casuale
+
+- Chiedere all'utente le dimensioni `w, h` di una matrice
+- Riempire la matrice con i numeri da `1` a `w*h`, in ordine
+- Mescolare la matrice
+    - In un ciclo, scambiare coppie di celle scelte a caso
+- Salvare la matrice in un file di testo (*CSV*)
+    - Ogni riga della matrice in una riga del file
+    - Valori separati tra loro da una virgola
+
+---
+
+title: 8.4 Matrice da file
+
+- Leggere da file i dati salvati nell'esercizio 8.3
+- Riempire una matrice con i dati letti
+    - La matrice ha lo stesso numero di righe del file
+    - Le colonne della matrice dipendono dal numero di dati letti nella prima riga
+- In un ciclo
+    - Chiedere un valore all'utente
+    - Contare quante volte quel valore è presente nelle celle di bordo
+
+---
+
+title: 8.5 Gioco dei dispari
+
+- Creare una sottoclasse di `BoardGame`
+- Nel costruttore
+    - Riempire una matrice con i numeri da `1` a `w*h`, in ordine
+    - Mescolare la matrice: in un ciclo, scambiare coppie di celle scelte a caso
+- Nel metodo `play_at`
+    - Segnare in memoria come “*marcate*” le celle scelte dall'utente
+- Nel metodo `value_at`
+    - Restituire il numero presente nella cella
+    - Aggiungere “`!`” dopo il numero, se la cella è stata marcata dall'utente
+
+---
+
+title: 8.6 Gioco dei dispari, conclusione
+
+- Continuare l'esercizio 8.5
+- Nel metodo `finished`
+    - Controllare che l'utente abbia marcato tutte e sole le celle con valore dispari
+- Utilizzare il gioco da terminale
+- Utilizzare il gioco con la GUI degli esempi
+
+---
+
+title: 8.7 Puzzle di Cindy
+figure: images/misc/cindy1.png images/misc/cindy2.png
+
+- Piano di gioco: `2n+1` celle allineate
+    - Si parte con `n` pedine rosse tutte a sinistra, `n` pedine verdi tutte a destra, ed una cella libera in mezzo
+    - Le pedine rosse si possono spostare solo a destra, quelle verdi solo a sinistra (senza poter tornare indietro)
+- Ad ogni mossa, una qualsiasi pedina può:
+    - Avanzare di una posizione, se davanti ha una cella libera
+    - Oppure scavalcare esattamente una pedina dell'altro colore, se c'è una cella libera subito dopo
+- L'applicazione deve trovare *automaticamente* le mosse per invertire la posizione di tutte le pedine
+
+>
+
+<http://www.cis.upenn.edu/~matuszek/cit594-2012/Pages/backtracking.html>
+
+---
+
+title: 8.8 Hitori, connessione
+
+- Nel metodo `finished`
+    - Verificare che le celle bianche siano tutte connesse
+    - Celle bianche: quelle non annerite dall'utente
+- *Suggerimento*
+    - Creare una matrice booleana temporanea
+    - Trovare la prima cella bianca e segnare a `True` la sua posizione nella matrice
+    - Segnare anche le celle bianche ad essa adiacenti
+    - Proseguire a segnare le celle adiacenti in maniera ricorsiva
+    - Infine contare tutte le celle segnate
+
+---
+
+title: Esercitazione 9 (11-18)
+class: segue dark
+
+---
+
+title: 9.1 Hello, user! (C++)
+figure: images/misc/handshake.png
+
+- Compilare ed eseguire il programma “`Hello world`”
+- In una versione successiva del programma...
+- Chiedere il nome all'utente e aggiungere tale nome al messaggio di saluto
+- Se il nome dell'utente è “`admin`”, mostrare inoltre il messaggio speciale “`At your command`”
+
+---
+
+title: 9.2 Media dei dispari (C++)
+figure: images/misc/data-sequence.png
+
+- Leggere, attraverso un ciclo, una sequenza di numeri naturali
+- La sequenza termina quando l'utente inserisce un valore negativo
+- Calcolare il valore medio, considerando solo i valori dispari tra quelli inseriti
+
+---
+
+title: 9.3 Funzione, Fahrenheit (C++)
+figure: images/misc/thermometer.png
+
+- Definire una funzione `cels_to_fahr`
+    - Parametro: temperatura in gradi Celsius, in `float`
+    - Risultato: temperatura in gradi Fahrenheit, in `float`
+- Definire poi una funzione `main`
+    - Chiedere all'utente la temperatura in gradi Celsius
+    - Poi chiamare `cels_to_fahr` con questo parametro
+    - Infine mostrare all'utente il risultato
+
+>
+
+Partire dalla formula `fahr = cels * 1.8 + 32`
+
+---
+
+title: 9.4 Valori sopra e sotto la media (C++)
+
+- Chiedere all'utente una sequenza di interi, terminata da 0
+    - Il valore 0 non fa parte della sequenza
+- Calcolare e mostrare il valore medio
+- Elencare i valori sotto alla media
+- Elencare i valori sopra (o uguali) alla media
+
+>
+
+Aggiungere ciascun valore ad una lista inizialmente vuota, con `push_back`
+
+---
+
+title: 9.5 Istogramma con barre orizzontali (C++)
+figure: images/misc/histogram-rot.png
+
+- Chiedere all'utente una lista di valori positivi
+    - La lista termina quando l'utente inserisce il valore `0`
+- Mostrare un istogramma
+    - Larghezza di ciascuna barra proporzionale al valore corrispondente
+    - La barra più lunga occupa tutto lo spazio disponibile
+
+---
+
+title: 9.6 Triangolo di lettere (C++)
+
+- Leggere un numero intero positivo `n` (<=26)
+- Per ciascun valore `y` tra 1 ed `n`...
+- Stampare una riga con le ultime `y` lettere dell'alfabeto
+
+code: Output
+
+    z
+    zy
+    zyx
+    zyxw
+
+---
+
+title: 9.7 Hitori, automatismi (Py)
+
+- Metodo per cerchiare automaticamente i numeri attorno alle celle nere
+- Metodo per annerire automaticamente le celle con un numero già cerchiato nella stessa riga o colonna
+
+>
+
+Con la GUI, attivare queste funzionalità alla pressione di qualche tasto specifico (`key_pressed`)

@@ -240,8 +240,8 @@ code: c++
     struct Color { int r, g, b; };
 
 - Compilare un programma `g2d`
-    - *Linux*: `g++ -pthread ...`
-    - *Windows*: `g++ -lws2_32 -lwsock32 ...`
+    - *Linux*: `g++ -pthread anim.cpp -o anim`
+    - *Windows*: `g++ anim.cpp -o anim.exe -lws2_32 -lwsock32`
 
 ---
 
@@ -427,7 +427,7 @@ figcaption: Class diagram UML
 code: c++
 
     class Ball {
-        int x_, y_, w_ = 20, h_ = 20;  // private stuff
+        int x_, y_, w_ = 20, h_ = 20;  // private data
         int dx_ = 5, dy_ = 5;
     public:
         Ball(int x0, int y0) {  // constructor

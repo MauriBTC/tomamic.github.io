@@ -325,8 +325,8 @@ struct Color { int r, g, b; };
 </code></pre>
 <ul>
 <li>Compilare un programma <code>g2d</code><ul>
-<li><em>Linux</em>: <code>g++ -pthread ...</code></li>
-<li><em>Windows</em>: <code>g++ -lws2_32 -lwsock32 ...</code></li>
+<li><em>Linux</em>: <code>g++ -pthread anim.cpp -o anim</code></li>
+<li><em>Windows</em>: <code>g++ anim.cpp -o anim.exe -lws2_32 -lwsock32</code></li>
 </ul>
 </li>
 </ul></article>
@@ -536,7 +536,7 @@ if (pos != grocery.end()) {
         <img src="images/oop/ball-object.svg"><img src="images/oop/ball-uml.svg">
         <figcaption>Class diagram UML</figcaption>
       </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>class Ball {
-    int x_, y_, w_ = 20, h_ = 20;  // private stuff
+    int x_, y_, w_ = 20, h_ = 20;  // private data
     int dx_ = 5, dy_ = 5;
 public:
     Ball(int x0, int y0) {  // constructor
