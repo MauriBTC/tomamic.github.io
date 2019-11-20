@@ -42,8 +42,9 @@ code: c++
 
 code: c++
 
+    string line;
     // for each line in file1...
-    for (string line; getline(file1, line);) {
+    while (getline(file1, line)) {
         cout << line << endl;
     }
 

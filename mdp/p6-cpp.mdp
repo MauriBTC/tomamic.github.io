@@ -415,6 +415,32 @@ code: c++
 
 ---
 
+title: 🤔 Scrittura e lettura di file
+figure: images/fun/magnetic-tape.png
+
+code: c++
+
+    #include <fstream>
+    // ifstream, ofstream etc.
+
+code: c++
+
+    // file output stream, ~ cout
+    ofstream file1{"output.txt"};
+
+    file1 << "Hello, file!" << endl;
+
+code: c++
+
+    // file input stream, ~ cin
+    ifstream file2{"input.txt"};
+
+    string word, line;
+    file2 >> word;
+    getline(file2, line);
+
+---
+
 title: Oggetti
 class: segue dark
 

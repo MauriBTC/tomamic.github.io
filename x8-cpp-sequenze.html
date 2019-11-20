@@ -72,8 +72,9 @@ getline(file1, second_line);  // no newline at end
 <pre class="prettyprint lang-c++" data-lang="c++"><code>string whole_text;
 getline(file1, whole_text, '\0');  // read whole file
 </code></pre>
-<pre class="prettyprint lang-c++" data-lang="c++"><code>// for each line in file1...
-for (string line; getline(file1, line);) {
+<pre class="prettyprint lang-c++" data-lang="c++"><code>string line;
+// for each line in file1...
+while (getline(file1, line)) {
     cout &lt;&lt; line &lt;&lt; endl;
 }
 </code></pre>

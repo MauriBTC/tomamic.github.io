@@ -515,6 +515,34 @@ if (pos != grocery.end()) {
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>🤔 Scrittura e lettura di file</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/magnetic-tape.png">
+        
+      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>#include &lt;fstream&gt;
+// ifstream, ofstream etc.
+</code></pre>
+<pre class="prettyprint lang-c++" data-lang="c++"><code>// file output stream, ~ cout
+ofstream file1{"output.txt"};
+
+file1 &lt;&lt; "Hello, file!" &lt;&lt; endl;
+</code></pre>
+<pre class="prettyprint lang-c++" data-lang="c++"><code>// file input stream, ~ cin
+ifstream file2{"input.txt"};
+
+string word, line;
+file2 &gt;&gt; word;
+getline(file2, line);
+</code></pre></article>
+ 
+</slide>
+
 <slide class="segue dark" >
   
     <aside class="gdbar"><img src="theme/logo.png"></aside>
