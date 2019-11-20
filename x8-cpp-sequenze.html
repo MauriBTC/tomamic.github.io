@@ -138,6 +138,35 @@ for (char val; file1 &gt;&gt; val;) {      // for each char in file1
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>🤔 Parametri per riferimento</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Parametri per riferimento (<code>&amp;</code>) sono <em>alias</em><ul>
+<li>Le modifiche riguardano anche le variabili esterne</li>
+<li>Limitarne l'uso!</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-c++" data-lang="c++"><code>// pass by reference: external vars can be modified
+void swap(int&amp; m, int&amp; n) {
+    int tmp = m;
+    m = n; n = tmp;
+}
+
+int main() {
+    int a = 5, b = 7;
+    swap(a, b);
+    cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;
+}
+</code></pre></article>
+ 
+</slide>
+
 <slide class="segue dark" >
   
     <aside class="gdbar"><img src="theme/logo.png"></aside>

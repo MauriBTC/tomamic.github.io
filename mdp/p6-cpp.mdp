@@ -205,28 +205,6 @@ code: c++
 
 ---
 
-title: 🤔 Parametri per riferimento
-
-- Parametri per riferimento (`&`) sono *alias*
-    - Le modifiche riguardano anche le variabili esterne
-    - Limitarne l'uso!
-
-code: c++
-
-    // pass by reference: external vars can be modified
-    void swap(int& m, int& n) {
-        int tmp = m;
-        m = n; n = tmp;
-    }
-
-    int main() {
-        int a = 5, b = 7;
-        swap(a, b);
-        cout << a << " " << b << endl;
-    }
-
----
-
 title: Strutture in g2d
 
 - Composizione di tipi elementari in strutture composte
@@ -425,14 +403,14 @@ code: c++
 
 code: c++
 
-    // file output stream, ~ cout
+    // output file stream, ~ cout
     ofstream file1{"output.txt"};
 
     file1 << "Hello, file!" << endl;
 
 code: c++
 
-    // file input stream, ~ cin
+    // input file stream, ~ cin
     ifstream file2{"input.txt"};
 
     string word, line;
@@ -659,7 +637,7 @@ code: c++
 title: Fifteen – Gioco astratto
 figure: images/qt/fifteen-puzzle.jpg
 
-code: C++
+code: c++
 
     class BoardGame {
     public:

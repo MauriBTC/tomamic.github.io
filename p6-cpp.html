@@ -279,35 +279,6 @@ int main() {
 <slide  >
   
     <hgroup>
-      <h2>🤔 Parametri per riferimento</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Parametri per riferimento (<code>&amp;</code>) sono <em>alias</em><ul>
-<li>Le modifiche riguardano anche le variabili esterne</li>
-<li>Limitarne l'uso!</li>
-</ul>
-</li>
-</ul>
-<pre class="prettyprint lang-c++" data-lang="c++"><code>// pass by reference: external vars can be modified
-void swap(int&amp; m, int&amp; n) {
-    int tmp = m;
-    m = n; n = tmp;
-}
-
-int main() {
-    int a = 5, b = 7;
-    swap(a, b);
-    cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;
-}
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Strutture in g2d</h2>
       <h3></h3>
     </hgroup>
@@ -528,12 +499,12 @@ if (pos != grocery.end()) {
       </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>#include &lt;fstream&gt;
 // ifstream, ofstream etc.
 </code></pre>
-<pre class="prettyprint lang-c++" data-lang="c++"><code>// file output stream, ~ cout
+<pre class="prettyprint lang-c++" data-lang="c++"><code>// output file stream, ~ cout
 ofstream file1{"output.txt"};
 
 file1 &lt;&lt; "Hello, file!" &lt;&lt; endl;
 </code></pre>
-<pre class="prettyprint lang-c++" data-lang="c++"><code>// file input stream, ~ cin
+<pre class="prettyprint lang-c++" data-lang="c++"><code>// input file stream, ~ cin
 ifstream file2{"input.txt"};
 
 string word, line;
@@ -826,7 +797,7 @@ I am George Pig. I say: OINK!
       <figure>
         <img src="images/qt/fifteen-puzzle.jpg">
         
-      </figure><pre class="" data-lang="C++"><code>class BoardGame {
+      </figure><pre class="prettyprint lang-c++" data-lang="c++"><code>class BoardGame {
 public:
     virtual void play_at(int x, int y) = 0;
     virtual void flag_at(int x, int y) = 0;

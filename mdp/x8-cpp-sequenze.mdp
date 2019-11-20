@@ -106,6 +106,28 @@ code: c++
 
 ---
 
+title: 🤔 Parametri per riferimento
+
+- Parametri per riferimento (`&`) sono *alias*
+    - Le modifiche riguardano anche le variabili esterne
+    - Limitarne l'uso!
+
+code: c++
+
+    // pass by reference: external vars can be modified
+    void swap(int& m, int& n) {
+        int tmp = m;
+        m = n; n = tmp;
+    }
+
+    int main() {
+        int a = 5, b = 7;
+        swap(a, b);
+        cout << a << " " << b << endl;
+    }
+
+---
+
 title: Strutture dati lineari
 class: segue dark
 
