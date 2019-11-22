@@ -83,14 +83,29 @@ q~~C~~ | q~~B~~ | q~~A~~
 ---
 
 title: FSM non deterministica
+figure: images/comp/nfa-compute.png
+class: large-figure
 
 - `M = <Σ, Q, δ~~N~~, q~~0~~, F>`
 - `Σ = {σ~~1~~, ..., σ~~n~~}`: alfabeto di input
 - `Q = {q~~0~~, ..., q~~m~~}`: insieme finito non vuoto di stati
-- `F ⊆ Q`: insieme di stati finali
+- `F ⊆ Q`: insieme di stati finali accettanti
 - `q~~0~~ ∈ Q`: stato iniziale
 - `δ~~N~~: Q x Σ → P(Q)`: funzione di transizione, determina insieme di stati successivi
     - `P(Q)` è l'insieme delle parti di `Q`, ossia l'insieme di tutti i possibili sottoinsiemi di `Q`
+
+---
+
+title: Computazione non deterministica
+figure: images/comp/nfa-tree.png
+class: large-figure
+
+![](images/comp/nfa.svg)
+
+- Quando c'è una scelta...
+- Cioè quando un simbolo può attivare più transizioni...
+- L'automa sviluppa *tutti* i possibili rami di computazione
+- La stringa è accettata se *almeno una* delle computazioni termina in uno stato finale accettante
 
 ---
 
