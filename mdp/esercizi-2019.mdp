@@ -949,3 +949,129 @@ title: 9.7 Hitori, automatismi (Py)
 >
 
 Con la GUI, attivare queste funzionalità alla pressione di qualche tasto specifico (`key_pressed`)
+
+---
+
+title: Esercitazione 10 (11-25)
+class: segue dark break
+
+---
+
+title: 10.1 Funzioni per cilindro (C++)
+
+- Definire una funzione per il calcolo del volume di un cilindro
+    - Parametri: raggio e altezza (`float`)
+    - Risultato: volume (`float`)
+- Definire una funzione per il calcolo della superficie di un cilindro
+    - Parametri: raggio e altezza (`float`)
+    - Risultato: superficie (`float`)
+- In una funzione `main`
+    - Chiedere all'utente raggio e altezza di un cilindro
+    - Chiamare le due funzioni e mostrare i risultati
+
+---
+
+title: 10.2 Classe per cilindro (C++)
+figure: images/misc/solids.jpg
+class: large-figure
+
+- Definire una classe dei cilindri
+    - Parametri del costruttore: raggio e altezza (`float`)
+    - Metodo che restituisce il volume
+    - Metodo che restituisce la superficie
+- In una funzione `main`
+    - Chiedere all'utente raggio e altezza di un cilindro
+    - Chiamare i due metodi e mostrare i risultati
+
+---
+
+title: 10.3 Conteggio caratteri (C++)
+
+- Definire una funzione
+    - Parametri: due stringhe
+    - Risultato: quanti caratteri della prima stringa sono presenti anche nella seconda?
+- Esempio
+    - Parametri: `"Ciao, Python!"`, `"aeiou"`
+    - Risultato: `4`
+
+>
+
+Si può definire prima una funzione ausiliaria booleana `char_in_string`, per controllare se una stringa contiene un certo carattere
+
+---
+
+title: 10.4 Configurazioni di simboli (C++)
+figure: images/fun/bike-lock.png
+
+- Scrivere una funzione per generare tutte le configurazioni di lunghezza 3
+    - Parametri: `string` contenente l'insieme dei simboli validi (presenti su ogni ruota)
+    - Risultato: `vector` di `string` (configurazioni)
+- Possibile approccio
+    - Usare 3 cicli `for` annidati
+    - Ogni `for` scorre tutto l'insieme di simboli
+    - Una configurazione è una `string`, ottenuta concatenando i 3 simboli correnti
+- Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
+    - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
+
+---
+
+title: 10.5 Crivello di Eratostene (C++)
+figure: images/hist/eratostenes.jpg
+
+- Trovare tutti i numeri primi fino ad `n`, scelto dall'utente
+- Algoritmo
+    - Creare un `vector` di `bool`, tutti inizialmente a `true`
+    - Per ciascun numero `x` tra `2` ed `n` (ancora a `true` nella lista)...
+    - Mettere a `false` i multipli di `x` (escluso `x` stesso)
+    - Gli elementi rimasti a `true` sono i numeri primi cercati
+
+>
+
+Usare un `vector` di `int` è problematico ed inefficiente
+
+---
+
+title: 10.6 Hitori, vicolo cieco (Py)
+figure: images/misc/dead-end.jpg
+
+- Metodo booleano `wrong`, senza parametri
+- Controlla se una delle annotazioni inserite impedisce la soluzione del gioco
+    - Non si può risolvere il gioco senza rimuovere una annotazione
+    - Es. Due celle annerite contigue
+    - Es. Due numeri cerchiati uguali e allineati
+    - Es. Una regione bianca isolata
+- Può restituire `False` anche se la partita non è finita
+    - Non ci sono violazioni evidenti, dovute ai simboli già inseriti
+    - Ci sono però delle celle ancora non marcate
+
+---
+
+title: 10.7 Hitori, suggerimenti (Py)
+figure: images/misc/artificial-intelligence.png
+
+- Cercare automaticamente la prossima mossa
+- *Provare* ad annerire una cella non annotata
+    - Applicare gli automatismi dell'es. 9.7
+    - Se le regole sono violate (`wrong`), cerchiare la cella
+- *Provare* a cerchiare una cella non annotata
+    - Applicare gli automatismi dell'es. 9.7
+    - Se le regole sono violate (`wrong`), annerire la cella
+
+>
+
+Se invece una ipotesi non risulta `wrong`, non è detto che sia giusta; non si possono trarre conclusioni!
+
+---
+
+title: 10.8 Hitori, suggerimenti opzionali (Py)
+figure: images/misc/artificial-intelligence.png
+
+- Considerare un singola cella non annotata
+    - (Ma ripetere poi i controlli su ogni cella)
+- *Provare ad annerirla*
+    - Applicare gli automatismi dell'es. 9.7
+- *Provare a cerchiarla*
+    - Applicare gli automatismi dell'es. 9.7
+- *Confrontare* tutte le nuove annotazioni, nei due casi
+    - Se una qualsiasi cella è annerita in entrambe le ipotesi, annerirla nel gioco
+    - Se una qualsiasi cella è cerchiata in entrambe le ipotesi, cerchiarla nel gioco

@@ -124,7 +124,7 @@ figure: images/dev/python-logo-notext.svg images/dev/cpp.png
 - Strumenti open source, multi-piattaforma
     - [**Python.org**](https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe), v3.7, *battery included*
     - [Playground Python](http://www.ce.unipr.it/brython/)
-    - [**MinGW**](https://nuwen.net/files/mingw/mingw-16.1-without-git.exe), Compilatore C++, con *librerie*
+    - [**MinGW**](https://nuwen.net/mingw.html), Compilatore C++, con *librerie*
 - Installare [Ubuntu](http://releases.ubuntu.com/19.04/) in una [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
     - [WikiHow.com](https://www.wikihow.com/Install-Ubuntu-on-VirtualBox)
 

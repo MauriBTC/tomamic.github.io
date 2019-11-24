@@ -220,6 +220,8 @@ code: c++
 - Compilare un programma `g2d`
     - *Linux*: `g++ -pthread anim.cpp -o anim`
     - *Windows*: `g++ anim.cpp -o anim.exe -lws2_32 -lwsock32`
+    - [Compilare un programma g2d](https://github.com/tomamic/fondinfo/blob/master/cpp/README.md)
+
 
 ---
 
@@ -245,7 +247,7 @@ code: c++
 
 >
 
-[Compilare un programma g2d](https://github.com/tomamic/fondinfo/blob/master/cpp/README.md)
+Una procedura senza un valore di ritorno è di tipo `void`
 
 ---
 
