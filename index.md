@@ -6,7 +6,7 @@
 
 Stage formativo per studenti delle scuole superiori, 10-14 giugno 2019
 
-- [Locandina in PDF](https://www.dropbox.com/s/tjh1qtybm28gyq1/stage.pdf?dl=1)
+- [Locandina in PDF](https://www.dropbox.com/s/yqfo08rctq78i8b/stage.pdf?dl=1)
 - [Presentazione dello stage](http://tomamic.github.io/fondinfo/stage.html)
 - [Modulo richiesta di iscrizione](https://www.dropbox.com/s/31xnvgpowos349c/stage-iscrizione.docx?dl=1)
 - [Organizzazione dello stage](http://tomamic.github.io/fondinfo/stage-logistica.html)
