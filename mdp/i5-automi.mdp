@@ -202,6 +202,7 @@ q~~2~~ |                |           |                 |           |            |
 ---
 
 title: PDA non deterministico (NPDA)
+figure: images/comp/nfa-compute.png
 
 - `A = <Σ, Γ, z~~0~~, Q, q~~0~~, F, δ~~N~~>`
 - `δ~~N~~: Q x Σ~~ε~~ x Γ → P(Q x Γ*)`: funzione di transizione, determina gli stati e i simboli di pila successivi
@@ -234,7 +235,7 @@ figure: images/hist/turing.jpg
 
 >
 
-A. Turing (1937). On Computable Numbers, with an Application to the Entscheidungsproblem. *Proceedings of the London Mathematical Society*, s2-42 (1): 230–265.
+[A. Turing (1937). “On Computable Numbers, with an Application to the Entscheidungsproblem.” Proceedings of the London Mathematical Society, s2-42 (1): 230–265.](https://www.dropbox.com/s/w5zmu8s0vhuo75q/Turing_Paper_1936.pdf?dl=1)
 
 ---
 
@@ -251,7 +252,23 @@ figure: images/comp/tm.png
 
 ---
 
+title: TM per aaabbbccc ...
+figure: images/comp/tm-aaabbbccc.png
+class: large-figure
+
+- **(1)** Avanza verso destra fino alla prima `a`; marcala con `X`
+    - Se invece di `a` trovi `b` o `c`: *errore*
+    - Se non ci sono `a`, `b`, `c`: *fine*
+- **(2)** Avanza verso destra fino alla prima `b`; marcala con `Y`
+    - Se non c'è nessuna `b`: *errore*
+- **(3)** Avanza verso destra fino alla prima `c`; marcala con `Z`
+    - Se non c'è nessuna `c`: *errore*
+- **(4)** Torna a sinistra fino alla prima `X` incontrata; ritorna allo stato **(1)**
+
+---
+
 title: TM non deterministica (NTM)
+figure: images/comp/nfa-compute.png
 
 - `M = <Σ, Q, q~~0~~, F, δ~~N~~>`
 - `δ~~N~~: Q x Σ → P(Q x Σ x {L, R, N})`: f. di transizione

@@ -466,7 +466,10 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
+      <figure>
+        <img src="images/comp/nfa-compute.png">
+        
+      </figure><ul>
 <li><code>A = &lt;Σ, Γ, z<sub>0</sub>, Q, q<sub>0</sub>, F, δ<sub>N</sub>&gt;</code></li>
 <li><code>δ<sub>N</sub>: Q x Σ<sub>ε</sub> x Γ → P(Q x Γ*)</code>: funzione di transizione, determina gli stati e i simboli di pila successivi<ul>
 <li>Es. <code>δ(p, a, A) = {(q, BA), (r, ε)}</code>   (due transizioni)</li>
@@ -519,7 +522,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Può simulare ogni altro modello di calcolo noto!</li>
 </ul>
 <blockquote></blockquote>
-<p>A. Turing (1937). On Computable Numbers, with an Application to the Entscheidungsproblem. <em>Proceedings of the London Mathematical Society</em>, s2-42 (1): 230–265.</p></article>
+<p><a href="https://www.dropbox.com/s/w5zmu8s0vhuo75q/Turing_Paper_1936.pdf?dl=1">A. Turing (1937). “On Computable Numbers, with an Application to the Entscheidungsproblem.” Proceedings of the London Mathematical Society, s2-42 (1): 230–265.</a></p></article>
  
 </slide>
 
@@ -547,6 +550,35 @@ URL: https://code.google.com/p/io-2012-slides
  
 </slide>
 
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>TM per aaabbbccc ...</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/comp/tm-aaabbbccc.png">
+        
+      </figure><ul>
+<li><strong>(1)</strong> Avanza verso destra fino alla prima <code>a</code>; marcala con <code>X</code><ul>
+<li>Se invece di <code>a</code> trovi <code>b</code> o <code>c</code>: <em>errore</em></li>
+<li>Se non ci sono <code>a</code>, <code>b</code>, <code>c</code>: <em>fine</em></li>
+</ul>
+</li>
+<li><strong>(2)</strong> Avanza verso destra fino alla prima <code>b</code>; marcala con <code>Y</code><ul>
+<li>Se non c'è nessuna <code>b</code>: <em>errore</em></li>
+</ul>
+</li>
+<li><strong>(3)</strong> Avanza verso destra fino alla prima <code>c</code>; marcala con <code>Z</code><ul>
+<li>Se non c'è nessuna <code>c</code>: <em>errore</em></li>
+</ul>
+</li>
+<li><strong>(4)</strong> Torna a sinistra fino alla prima <code>X</code> incontrata; ritorna allo stato <strong>(1)</strong></li>
+</ul></article>
+ 
+</slide>
+
 <slide  >
   
     <hgroup>
@@ -554,7 +586,10 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
+      <figure>
+        <img src="images/comp/nfa-compute.png">
+        
+      </figure><ul>
 <li><code>M = &lt;Σ, Q, q<sub>0</sub>, F, δ<sub>N</sub>&gt;</code></li>
 <li><code>δ<sub>N</sub>: Q x Σ → P(Q x Σ x {L, R, N})</code>: f. di transizione<ul>
 <li>Determina una o più configurazioni successive</li>

@@ -600,17 +600,48 @@ function validate(val) {
       <ul>
 <li>Esempio di grammatica <strong>ambigua</strong>: due interpretazioni valide per <code>a + a * a</code><ul>
 <li><code>V<sub>T</sub> = {a, +, *, (, )};  V<sub>N</sub> = {E};</code></li>
-<li><code>E → E+E | E*E | (E) | a</code></li>
+<li><code>E → E + E | E * E | ( E ) | a</code></li>
 </ul>
 </li>
 </ul>
 <p><img alt="" src="images/comp/ambiguity.svg" /></p>
 <ul>
 <li>Grammatica non ambigua (con precedenza tra operatori)<ul>
-<li><code>E → E+T | T</code> <br> <code>T → T∗F | F</code> <br> <code>F → (E) | a</code></li>
+<li><code>E → T + E | T</code> <br> <code>T → F * T | F</code> <br> <code>F → ( E ) | a</code></li>
 </ul>
 </li>
 </ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Espressioni infisse e prefisse</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Notazione <strong>infissa</strong>, con precedenza<ul>
+<li>Es.: <code>2 + 3 * 3</code></li>
+</ul>
+</li>
+<li><em>Grammatica</em> per notazione infissa<ul>
+<li><code>E → T + E | T</code> <br> <code>T → F * T | F</code> <br> <code>F → ( E ) | N</code></li>
+<li><code>N -&gt; D N | D</code> <br> <code>D -&gt; 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9</code></li>
+</ul>
+</li>
+<li>Notazione <strong>prefissa</strong>, o <em>polacca</em><ul>
+<li>Es.: <code>* + 1 2 - 3 2</code> ⇒ Infissa: <code>(1 + 2) * (3 - 2)</code></li>
+</ul>
+</li>
+<li><em>Grammatica</em> per notazione prefissa<ul>
+<li><code>E -&gt; N | + E E | - E E | * E E | / E E</code></li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="http://www.ce.unipr.it/brython/?x4_fun_polish.py">http://www.ce.unipr.it/brython/?x4_fun_polish.py</a></p></article>
  
 </slide>
 
@@ -648,16 +679,6 @@ function validate(val) {
  
 </slide>
 
-<slide class="segue dark" >
-  
-    <aside class="gdbar"><img src="theme/logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Linguaggi non contestuali</h2>
-      <h3></h3>
-    </hgroup>
-  
-</slide>
-
 <slide  >
   
     <hgroup>
@@ -685,7 +706,7 @@ function validate(val) {
 <slide  >
   
     <hgroup>
-      <h2>Extended Backus-Naur Form (EBNF)</h2>
+      <h2>🤔 Extended Backus-Naur Form (EBNF)</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -713,7 +734,7 @@ P = {
 <slide  >
   
     <hgroup>
-      <h2>Espressioni infisse e prefisse</h2>
+      <h2>🤔 EBNF per espressioni</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -739,7 +760,7 @@ number = digit {digit}
 digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/brython/?p4_fun_polish.py">http://www.ce.unipr.it/brython/?p4_fun_polish.py</a></p></article>
+<p><a href="http://www.ce.unipr.it/brython/?x4_fun_polish.py">http://www.ce.unipr.it/brython/?x4_fun_polish.py</a></p></article>
  
 </slide>
 

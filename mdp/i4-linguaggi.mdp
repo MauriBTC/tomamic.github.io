@@ -332,12 +332,30 @@ title: Alberi di derivazione (sintattici)
 
 - Esempio di grammatica **ambigua**: due interpretazioni valide per `a + a * a`
     - `V~~T~~ = {a, +, *, (, )};  V~~N~~ = {E};`
-    - `E → E+E | E*E | (E) | a`
+    - `E → E + E | E * E | ( E ) | a`
 
 ![](images/comp/ambiguity.svg)
 
 - Grammatica non ambigua (con precedenza tra operatori)
-    - `E → E+T | T` <br> `T → T∗F | F` <br> `F → (E) | a`
+    - `E → T + E | T` <br> `T → F * T | F` <br> `F → ( E ) | a`
+
+---
+
+title: Espressioni infisse e prefisse
+
+- Notazione **infissa**, con precedenza
+    - Es.: `2 + 3 * 3`
+- *Grammatica* per notazione infissa
+    - `E → T + E | T` <br> `T → F * T | F` <br> `F → ( E ) | N`
+    - `N -> D N | D` <br> `D -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9`
+- Notazione **prefissa**, o *polacca*
+    - Es.: `* + 1 2 - 3 2` ⇒ Infissa: `(1 + 2) * (3 - 2)`
+- *Grammatica* per notazione prefissa
+    - `E -> N | + E E | - E E | * E E | / E E`
+
+>
+
+<http://www.ce.unipr.it/brython/?x4_fun_polish.py>
 
 ---
 
@@ -361,11 +379,6 @@ figure: images/comp/hierarchy.svg
 ---
 
 title: Linguaggi non contestuali
-class: segue dark
-
----
-
-title: Linguaggi non contestuali
 
 - Controllo di *palindromi*, *bilanciamento di parentesi* e varie *simmetrie*
     - Es.: `{a^^n^^b^^n^^ : n≥1}` gen. da `S → aSb | ab` (CF)
@@ -380,7 +393,7 @@ title: Linguaggi non contestuali
 
 ---
 
-title: Extended Backus-Naur Form (EBNF)
+title: 🤔 Extended Backus-Naur Form (EBNF)
 
 - Terminali tra virgolette
 - `{...}`: parte ripetibile (0+), `[...]`: parte opzionale,
@@ -402,7 +415,7 @@ code: EBNF
 
 ---
 
-title: Espressioni infisse e prefisse
+title: 🤔 EBNF per espressioni
 
 - *Notazione infissa*, con precedenza
     - Es.: `2 + 3 * 3`
@@ -425,7 +438,7 @@ code: ebnf
 
 >
 
-<http://www.ce.unipr.it/brython/?p4_fun_polish.py>
+<http://www.ce.unipr.it/brython/?x4_fun_polish.py>
 
 ---
 
