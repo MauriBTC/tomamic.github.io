@@ -969,6 +969,10 @@ title: 10.1 Funzioni per cilindro (C++)
     - Chiedere all'utente raggio e altezza di un cilindro
     - Chiamare le due funzioni e mostrare i risultati
 
+>
+
+Definire `PI = 3.14159`, oppure usare `acos(-1)`, dalla libreria `<cmath>`
+
 ---
 
 title: 10.2 Classe per cilindro (C++)
@@ -1006,10 +1010,7 @@ figure: images/fun/bike-lock.png
 - Scrivere una funzione per generare tutte le configurazioni di lunghezza 3
     - Parametri: `string` contenente l'insieme dei simboli validi (presenti su ogni ruota)
     - Risultato: `vector` di `string` (configurazioni)
-- Possibile approccio
-    - Usare 3 cicli `for` annidati
-    - Ogni `for` scorre tutto l'insieme di simboli
-    - Una configurazione è una `string`, ottenuta concatenando i 3 simboli correnti
+- Possibile approccio: 3 cicli `for` annidati
 - Per test, fornire in input le vocali `"AEIOU"`, per ottenere:
     - `["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...`
 
@@ -1020,14 +1021,14 @@ figure: images/hist/eratostenes.jpg
 
 - Trovare tutti i numeri primi fino ad `n`, scelto dall'utente
 - Algoritmo
-    - Creare un `vector` di `bool`, tutti inizialmente a `true`
+    - Inizializzare un `vector<bool>` con `n` valori `true`
     - Per ciascun numero `x` tra `2` ed `n` (ancora a `true` nella lista)...
     - Mettere a `false` i multipli di `x` (escluso `x` stesso)
-    - Gli elementi rimasti a `true` sono i numeri primi cercati
+    - Alla fine, gli elementi rimasti a `true` corrisponderanno ai numeri primi cercati
 
 >
 
-Usare un `vector` di `int` è problematico ed inefficiente
+Usare un `vector<int>` è problematico ed inefficiente
 
 ---
 
@@ -1036,7 +1037,7 @@ figure: images/misc/dead-end.jpg
 
 - Metodo booleano `wrong`, senza parametri
 - Controlla se una delle annotazioni inserite impedisce la soluzione del gioco
-    - Non si può risolvere il gioco senza rimuovere una annotazione
+    - *Non si può risolvere il gioco senza rimuovere una annotazione*
     - Es. Due celle annerite contigue
     - Es. Due numeri cerchiati uguali e allineati
     - Es. Una regione bianca isolata
@@ -1050,6 +1051,7 @@ title: 10.7 Hitori, suggerimenti (Py)
 figure: images/misc/artificial-intelligence.png
 
 - Cercare automaticamente la prossima mossa
+    - Senza backtracking, senza ricorsione
 - *Provare* ad annerire una cella non annotata
     - Applicare gli automatismi dell'es. 9.7
     - Se le regole sono violate (`wrong`), cerchiare la cella
@@ -1063,15 +1065,15 @@ Se invece una ipotesi non risulta `wrong`, non è detto che sia giusta; non si p
 
 ---
 
-title: 10.8 Hitori, suggerimenti opzionali (Py)
+title: 10.8 Hitori, altri suggerimenti (Py)
 figure: images/misc/artificial-intelligence.png
 
-- Considerare un singola cella non annotata
-    - (Ma ripetere poi i controlli su ogni cella)
+- Considerare ogni cella non annotata, singolarmente
+    - Senza backtracking, senza ricorsione
 - *Provare ad annerirla*
     - Applicare gli automatismi dell'es. 9.7
 - *Provare a cerchiarla*
     - Applicare gli automatismi dell'es. 9.7
-- *Confrontare* tutte le nuove annotazioni, nei due casi
+- *Confrontare* tutte le annotazioni, aggiunte nei due casi
     - Se una qualsiasi cella è annerita in entrambe le ipotesi, annerirla nel gioco
     - Se una qualsiasi cella è cerchiata in entrambe le ipotesi, cerchiarla nel gioco
