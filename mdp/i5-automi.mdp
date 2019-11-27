@@ -139,7 +139,7 @@ title: Equivalenza FSM / NFSM
     - Calcolo = albero di computazioni autonome
     - Anziché traiettoria in uno spazio di stati
 - Nel caso di FSM, non-determinismo non aggiunge potere computazionale
-- FSM / NFSM: formalismi *equivalenti*
+- FSM / NFSM: formalismi **equivalenti**
     - FSM è un caso particolare di NFSM
     - Viceversa, ogni elemento di `P(Q)` di NFSM diventa uno stato di FSM
     - `P(Q)` contiene `2^^|Q|^^` elementi: FSM può avere num. stati **esponenzialmente maggiore** dell'equivalente NFSM
@@ -209,7 +209,7 @@ figure: images/comp/nfa-compute.png
     - Es. `δ(p, a, A) = {(q, BA), (r, ε)}`   (due transizioni)
     - Simbolo `A` in cima alla pila sostituito dalla stringa di caratteri `BA`, nuovo stato interno `q`
     - Simbolo `A` in cima alla rimosso (sostituito da `ε`), nuovo stato interno `r`
-- NPDA: maggiore potere computazionale di PDA
+- NPDA: **maggiore potere computazionale** di PDA
     - `L = {a^^n^^b^^n^^} ∪ {a^^n^^b^^2n^^},  n ≥ 0`
     - `S → A|B, A → aAb|ε, B → aBbb|ε`
 

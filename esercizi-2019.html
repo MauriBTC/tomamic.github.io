@@ -1701,6 +1701,236 @@ zyxw
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 10 (11-25)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.1 Funzioni per cilindro (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Definire una funzione per il calcolo del volume di un cilindro<ul>
+<li>Parametri: raggio e altezza (<code>float</code>)</li>
+<li>Risultato: volume (<code>float</code>)</li>
+</ul>
+</li>
+<li>Definire una funzione per il calcolo della superficie di un cilindro<ul>
+<li>Parametri: raggio e altezza (<code>float</code>)</li>
+<li>Risultato: superficie (<code>float</code>)</li>
+</ul>
+</li>
+<li>In una funzione <code>main</code><ul>
+<li>Chiedere all'utente raggio e altezza di un cilindro</li>
+<li>Chiamare le due funzioni e mostrare i risultati</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Definire <code>PI = 3.14159</code>, oppure usare <code>acos(-1)</code>, dalla libreria <code>&lt;cmath&gt;</code></p></article>
+ 
+</slide>
+
+<slide class="large-figure" >
+  
+    <hgroup>
+      <h2>10.2 Classe per cilindro (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/solids.jpg">
+        
+      </figure><ul>
+<li>Definire una classe dei cilindri<ul>
+<li>Parametri del costruttore: raggio e altezza (<code>float</code>)</li>
+<li>Metodo che restituisce il volume</li>
+<li>Metodo che restituisce la superficie</li>
+</ul>
+</li>
+<li>In una funzione <code>main</code><ul>
+<li>Chiedere all'utente raggio e altezza di un cilindro</li>
+<li>Chiamare i due metodi e mostrare i risultati</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.3 Conteggio caratteri (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Definire una funzione<ul>
+<li>Parametri: due stringhe</li>
+<li>Risultato: quanti caratteri della prima stringa sono presenti anche nella seconda?</li>
+</ul>
+</li>
+<li>Esempio<ul>
+<li>Parametri: <code>"Ciao, Python!"</code>, <code>"aeiou"</code></li>
+<li>Risultato: <code>4</code></li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Si può definire prima una funzione ausiliaria booleana <code>char_in_string</code>, per controllare se una stringa contiene un certo carattere</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.4 Configurazioni di simboli (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/bike-lock.png">
+        
+      </figure><ul>
+<li>Scrivere una funzione per generare tutte le configurazioni di lunghezza 3<ul>
+<li>Parametri: <code>string</code> contenente l'insieme dei simboli validi (presenti su ogni ruota)</li>
+<li>Risultato: <code>vector</code> di <code>string</code> (configurazioni)</li>
+</ul>
+</li>
+<li>Possibile approccio: 3 cicli <code>for</code> annidati</li>
+<li>Per test, fornire in input le vocali <code>"AEIOU"</code>, per ottenere:<ul>
+<li><code>["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.5 Crivello di Eratostene (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/hist/eratostenes.jpg">
+        
+      </figure><ul>
+<li>Trovare tutti i numeri primi fino ad <code>n</code>, scelto dall'utente</li>
+<li>Algoritmo<ul>
+<li>Inizializzare un <code>vector&lt;bool&gt;</code> con <code>n</code> valori <code>true</code></li>
+<li>Per ciascun numero <code>x</code> tra <code>2</code> ed <code>n</code> (ancora a <code>true</code> nella lista)...</li>
+<li>Mettere a <code>false</code> i multipli di <code>x</code> (escluso <code>x</code> stesso)</li>
+<li>Alla fine, gli elementi rimasti a <code>true</code> corrisponderanno ai numeri primi cercati</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare un <code>vector&lt;int&gt;</code> è problematico ed inefficiente</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.6 Hitori, vicolo cieco (Py)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/dead-end.jpg">
+        
+      </figure><ul>
+<li>Metodo booleano <code>wrong</code>, senza parametri</li>
+<li>Controlla se una delle annotazioni inserite impedisce la soluzione del gioco<ul>
+<li><em>Non si può risolvere il gioco senza rimuovere una annotazione</em></li>
+<li>Es. Due celle annerite contigue</li>
+<li>Es. Due numeri cerchiati uguali e allineati</li>
+<li>Es. Una regione bianca isolata</li>
+</ul>
+</li>
+<li>Può restituire <code>False</code> anche se la partita non è finita<ul>
+<li>Non ci sono violazioni evidenti, dovute ai simboli già inseriti</li>
+<li>Ci sono però delle celle ancora non marcate</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.7 Hitori, suggerimenti (Py)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/artificial-intelligence.png">
+        
+      </figure><ul>
+<li>Cercare automaticamente la prossima mossa<ul>
+<li>Senza backtracking, senza ricorsione</li>
+</ul>
+</li>
+<li><em>Provare</em> ad annerire una cella non annotata<ul>
+<li>Applicare gli automatismi dell'es. 9.7</li>
+<li>Se le regole sono violate (<code>wrong</code>), cerchiare la cella</li>
+</ul>
+</li>
+<li><em>Provare</em> a cerchiare una cella non annotata<ul>
+<li>Applicare gli automatismi dell'es. 9.7</li>
+<li>Se le regole sono violate (<code>wrong</code>), annerire la cella</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Se invece una ipotesi non risulta <code>wrong</code>, non è detto che sia giusta; non si possono trarre conclusioni!</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>10.8 Hitori, altri suggerimenti (Py)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/artificial-intelligence.png">
+        
+      </figure><ul>
+<li>Considerare ogni cella non annotata, singolarmente<ul>
+<li>Senza backtracking, senza ricorsione</li>
+</ul>
+</li>
+<li><em>Provare ad annerirla</em><ul>
+<li>Applicare gli automatismi dell'es. 9.7</li>
+</ul>
+</li>
+<li><em>Provare a cerchiarla</em><ul>
+<li>Applicare gli automatismi dell'es. 9.7</li>
+</ul>
+</li>
+<li><em>Confrontare</em> tutte le annotazioni, aggiunte nei due casi<ul>
+<li>Se una qualsiasi cella è annerita in entrambe le ipotesi, annerirla nel gioco</li>
+<li>Se una qualsiasi cella è cerchiata in entrambe le ipotesi, cerchiarla nel gioco</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
