@@ -126,7 +126,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>Bounded Dataset vs Unbounded Dataset</h2>
+      <h2>Bounded vs Unbounded Dataset</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -147,7 +147,7 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>Unbounded Dataset -- 2 domini temporali</h2>
+      <h2>Unbounded Dataset - Temporal domain</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -201,7 +201,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Heat dissipation make it hard to increase frequency</li>
 </ul>
 </li>
-<li>The free lunch is over (Sutter, 2004)<ul>
+<li><em>“The free lunch is over” (Sutter, 2004)</em><ul>
 <li>Multi-core processors</li>
 <li>Multi-threaded programs to exploit hardware parallelism</li>
 </ul>
@@ -319,7 +319,7 @@ URL: https://code.google.com/p/io-2012-slides
       <pre class="prettyprint lang-py" data-lang="py"><code>def map_f(filename: str) -&gt; [(str, int)]:
     counts = {}
     with open(filename) as f:
-        for word in f.read().split():
+            for word in f.read().split():
             counts[word] = 1 + counts.get(word, 0)
     return list(counts.items())
 
@@ -341,9 +341,9 @@ def reduce_f(item: (str, [int])) -&gt; (str, int):
     # interm: results of map phase, chained together
     counts = {}
     for key, val in interm:
-        if key in counts:
+            if key in counts:
             counts[key].append(val)
-        else:
+            else:
             counts[key] = [val]
     return list(counts.items())
 
@@ -362,37 +362,18 @@ def main():
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- esempio (2/2) [26]</h2>
+      <h2>MapReduce - Example [26]</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <p>(the, 1)
-the cat
-the dog
-a cat
-a dog
-(cat, 1) (a, 1)
-(the, 1) (cat, 1)
-(dog, 1) (cat, 1)
-(a, 1) (dog, 1)
-(cat, 1)
-(a, 1)
-(dog, 1)</p>
-<p>(a, 1)
-(a, 2)
-(cat, 2)
-(dog, 2)
-(dog, 1)
-(the, 1)
-(the, 2)
-(the, 1)</p></article>
+      <p><img alt="" src="images/scipy/mapreduce-example.png" /></p></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- map task</h2>
+      <h2>MapReduce - map task</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -408,7 +389,7 @@ a dog
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- reduce task</h2>
+      <h2>MapReduce - reduce task</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -424,7 +405,7 @@ a dog
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- DFS (1)</h2>
+      <h2>MapReduce - DFS (1)</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -446,7 +427,7 @@ a dog
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- DFS (2)</h2>
+      <h2>MapReduce - DFS (2)</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -464,18 +445,18 @@ a dog
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- esecuzione [31]</h2>
+      <h2>MapReduce - Execution [31]</h2>
       <h3></h3>
     </hgroup>
     <article >
-      </article>
+      <p><img alt="" src="images/scipy/mapreduce-exec.png" /></p></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>MapReduce -- fault tolerance</h2>
+      <h2>MapReduce - Fault tolerance</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -607,213 +588,6 @@ effettivamente immagazzinati
     </hgroup>
     <article >
       <p>https://developer.ibm.com/tutorials/bd-yarn-intro/</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>HDFS -- Assunzioni</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
-Hadoop.
-Principali assunzioni:
-- Hardware failure: tolleranza ai guasti implementata al livello applicativo
-(principalmente attraverso la replicazione dei blocchi di dati)
-- Streaming Data Access: orientato alle applicazioni batch, piuttosto che l'uso
-interattivo. Favorisce il throughput alla latency
-- Large Data Sets: decine di milioni di file da GB a TB. Scalabilità a centinaia di nodi
-- Simple Coherency Model: una volta che un file è stato chiuso, è solo possibile
-appendervi del contenuto oppure troncarlo
-- "Moving Computation is Cheaper than Moving Data": HDFS fornisce delle
-interfacce che permettono alle applicazioni di spostarsi vicino a dove i dati sono
-effettivamente immagazzinati
-- Portability across Heterogeneous Hardware and Software Platforms</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop -- Modailità d'uso</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Modalità locale (standalone) [default]
--- Eseguito come un singolo processo Java
--- Utile per il debugging</li>
-<li>Modalità pseudodistribuita
--- Eseguito come un insieme di processi (NameNode, DataNode,
-Secondary NameNode, ResourceManager, NodeManager,
-WebAppProxy and Map Reduce Job History Server) su una singola
-macchina</li>
-<li>Modalità pienamente distribuita
--- I vari processi elencati in precedenza sono distribuiti su più macchine</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- InputFormat</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Un InputFormat describe la specifica di input per un job
-MapReduce.
-Il framework MapReduce si affida all'InputFormat del job per:
-- Validare la specifica del'input del job.
-- Suddividere i file di in istanze di InputSplit, ciascuna delle
-quali è assegnato ad un Mapper invididuale.
-- Fornire l'implementazione del RecordReader per estrarre
-dall'InputSplit i record che saranno elaborate dal Mapper.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- InputSplit</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>InputSplit rappresenta i dati che devono essere elaborati da un
-certo Mapper.
-Tipicamente InputSplit presenta un visione dell'input orientata ai
-byte, ed è responsabilità del RecordReader elaborarla e
-presentare una visione a record.
-FileSplit è l'InputSplit predefinito. Esso setta
-mapreduce.map.input.file al path del file di input dello split logico.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- RecordReader</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Un RecordReader legge coppie <key, value> da un InputSplit.
-Tipicamente un RecordReader converte la visione dell'input
-orientata ai byte, fornita da un InputSplit, e presenta una
-visione a record alle implementazioni di Mapper per
-l'elaborazione. Il RecordReader assume pertanto la
-responsabilità di elaborare i confini dei record e presentare
-ai task chiavi e valori.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- OutputFormat</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>OutputFormat descrive la specifica di output per un job
-MapReduce.
-Il framework MapReduce si affida all'OutputFormat del job per:
-- Validare la specifica di output del job; per esempio,
-controllare la cartella di output non esista già.
-- Fornire l'implementazione di RecordWriter usata per scrivere i
-file di output del job. I file di output solo immagazzinati in un
-FileSystem.
-TextOutputFormat è l'OutputFormat predefinito.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- Counter</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>I counters rappresentano contatori globali, definiti dal
-framework MapReduce o dalle applicazioni. Ogni
-Counter può essere di qualunque tipo Enum. Contatori
-di un particolare Enum sono messi insieme in gruppi di
-tipo Counters.Group.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- SkipBadRecords</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Hadoop fornisce un'opzione dove un certo insieme di
-input record cattivi può essere saltato durante la fase di
-map. Le applicazioni possono controllare questa feature
-attraverso la classe SkipBadRecords.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- input/output multipli</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>La classe MultipleInputs supporta job MapReduce con più
-input path aventi ciascuno un InputFormat e Mapper diversi.
-https://hadoop.apache.org/docs/r2.9.2/api/org/apache/hadoo
-p/mapreduce/lib/input/MultipleInputs.html
-La classe MultipleOutputs semplifica la scrittura su più file di
-output.
-https://hadoop.apache.org/docs/r2.9.2/api/org/apache/hadoo
-p/mapreduce/lib/output/MultipleOutputs.html</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop MapReduce -- lib</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>--</p>
-<p>title: Hadoop MapReduce -- scrivere soltanto i valori</p>
-<p>Per scrivere soltanto I valori si può usare NullWritable
-come tipo di output.</p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Hadoop -- Modalità locale (default)</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <p>Comandi per shell Unix. Per la PowerShell di Windows è sufficiente usare il
-backslash
-Esegue un JAR.
-$ mkdir input
-$ cp etc/hadoop/<em>.xml input
-$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-
-2.9.2.jar grep input output 'dfs[a-z.]+'
-$ cat output/</em></p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      </article>
  
 </slide>
 

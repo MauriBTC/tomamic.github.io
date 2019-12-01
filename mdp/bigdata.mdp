@@ -47,21 +47,21 @@ title: How much data?
 
 ---
 
-title: Bounded Dataset vs Unbounded Dataset
+title: Bounded vs Unbounded Dataset
 
 - Bounded Dataset
-	- A finite set of data, already available at the start
+    - A finite set of data, already available at the start
 - Unbounded Dataset
-	- Data arriving continuously
-	- Often in a “streaming” scenario
+    - Data arriving continuously
+    - Often in a “streaming” scenario
 
 ---
 
-title: Unbounded Dataset -- 2 domini temporali
+title: Unbounded Dataset - Temporal domain
 
 - Unbounded dataset characterized by two temporal domains
-	- Event time: when the event occurs
-	- Computation time: when data enter the processing system
+    - Event time: when the event occurs
+    - Computation time: when data enter the processing system
 - Often, non-constant difference between them: skew
 - When the event time is important, skew can complicate the generation of correct results
 
@@ -70,14 +70,14 @@ title: Unbounded Dataset -- 2 domini temporali
 title: Processing of bounded / unbounded dataset
 
 - Bounded datasets
-	- Often processed with batch systems; e.g. MapReduce
+    - Often processed with batch systems; e.g. MapReduce
 - Unbounded datasets
-	- Processed in either batch or streaming mode
-	- Data buffered in a windowing logic
-	- Sort of bounded dataset, processed as batch
-	- Incomplete data, if event time is important
-	- A user session can be divided in multiple batches, if longer than a window
-	
+    - Processed in either batch or streaming mode
+    - Data buffered in a windowing logic
+    - Sort of bounded dataset, processed as batch
+    - Incomplete data, if event time is important
+    - A user session can be divided in multiple batches, if longer than a window
+
 ---
 
 title: Free lunch is over
@@ -86,7 +86,7 @@ title: Free lunch is over
 - Limits to Moore's law
     - Physical limits make it hard to increase the transistor density
     - Heat dissipation make it hard to increase frequency
-- The free lunch is over (Sutter, 2004)
+- *“The free lunch is over” (Sutter, 2004)*
     - Multi-core processors
     - Multi-threaded programs to exploit hardware parallelism
 - Concurrent programming is hard
@@ -151,71 +151,51 @@ title: MapReduce, pseudo-code
 
 code: py
 
-	def map_f(filename: str) -> [(str, int)]:
-    	counts = {}
-    	with open(filename) as f:
-        	for word in f.read().split():
-            	counts[word] = 1 + counts.get(word, 0)
-    	return list(counts.items())
-	
-	def reduce_f(item: (str, [int])) -> (str, int):
-    	key, values = item  # key: a word; values: a list of counts
-    	return key, sum(values)
-	
+    def map_f(filename: str) -> [(str, int)]:
+        counts = {}
+        with open(filename) as f:
+                for word in f.read().split():
+                counts[word] = 1 + counts.get(word, 0)
+        return list(counts.items())
+
+    def reduce_f(item: (str, [int])) -> (str, int):
+        key, values = item  # key: a word; values: a list of counts
+        return key, sum(values)
+
 ---
 
 title: MapReduce, simplistic framework
 
 code: py
 
-	def partition(interm: [(str, int)]) -> [(str, [int])]:
-    	# interm: results of map phase, chained together
-    	counts = {}
-    	for key, val in interm:
-        	if key in counts:
-            	counts[key].append(val)
-        	else:
-            	counts[key] = [val]
-    	return list(counts.items())
-	
-	def main():
-    	pool = multiprocessing.Pool(8)  # num_workers
-    	input_list = glob.glob("*.txt")
-    	map_responses = pool.map(map_f, input_list)
-    	chained = sum(map_responses, [])
-    	partitioned_data = partition(chained)
-    	reduced_values = pool.map(reduce_f, partitioned_data)
-    	print(list(reduced_values))
-	
----
+    def partition(interm: [(str, int)]) -> [(str, [int])]:
+        # interm: results of map phase, chained together
+        counts = {}
+        for key, val in interm:
+                if key in counts:
+                counts[key].append(val)
+                else:
+                counts[key] = [val]
+        return list(counts.items())
 
-title: MapReduce -- esempio (2/2) [26]
-
-(the, 1)
-the cat
-the dog
-a cat
-a dog
-(cat, 1) (a, 1)
-(the, 1) (cat, 1)
-(dog, 1) (cat, 1)
-(a, 1) (dog, 1)
-(cat, 1)
-(a, 1)
-(dog, 1)
-
-(a, 1)
-(a, 2)
-(cat, 2)
-(dog, 2)
-(dog, 1)
-(the, 1)
-(the, 2)
-(the, 1)
+    def main():
+        pool = multiprocessing.Pool(8)  # num_workers
+        input_list = glob.glob("*.txt")
+        map_responses = pool.map(map_f, input_list)
+        chained = sum(map_responses, [])
+        partitioned_data = partition(chained)
+        reduced_values = pool.map(reduce_f, partitioned_data)
+        print(list(reduced_values))
 
 ---
 
-title: MapReduce -- map task
+title: MapReduce - Example [26]
+
+![](images/scipy/mapreduce-example.png)
+
+---
+
+title: MapReduce - map task
 
 - If `map` is a pure function, it can run in parallel on multiple parts of the input
 - Input is divided into many blocks (e.g. of 64MB)
@@ -224,7 +204,7 @@ title: MapReduce -- map task
 
 ---
 
-title: MapReduce -- reduce task
+title: MapReduce - reduce task
 
 - The space of intermediate keys is partitioned, before applying `reduce`
 - Each part is a `reduce` task, assigned to a worker node
@@ -233,18 +213,18 @@ title: MapReduce -- reduce task
 
 ---
 
-title: MapReduce -- DFS (1)
+title: MapReduce - DFS (1)
 
 - Computing model of MapReduce associated with distributed filesystem (DFS)
 - Each input file divided into blocks of fixed size
 - Each block stored on (more than) a data node
-	- Their position stored on a name node (responsible for the namespace)
+    - Their position stored on a name node (responsible for the namespace)
 - Various replication policies of blocks on data nodes
-	- Fault tolerance (wrt failures of data nodes) and efficiency
+    - Fault tolerance (wrt failures of data nodes) and efficiency
 
 ---
 
-title: MapReduce -- DFS (2)
+title: MapReduce - DFS (2)
 
 - How do MapReduce and DFS combine?
 - Each worker is assigned a map task for blocks replicated on that machine (locality)
@@ -255,11 +235,13 @@ title: MapReduce -- DFS (2)
 
 ---
 
-title: MapReduce -- esecuzione [31]
+title: MapReduce - Execution [31]
+
+![](images/scipy/mapreduce-exec.png)
 
 ---
 
-title: MapReduce -- fault tolerance
+title: MapReduce - Fault tolerance
 
 Se un worker fallisce:
 - map task completati sono rieseguiti, perché il loro
@@ -353,6 +335,7 @@ https://developer.ibm.com/tutorials/bd-yarn-intro/
 ---
 
 title: HDFS -- Assunzioni
+class: break
 
 Hadoop Distributed Filesystem (HDFS) è il filesystem distribuito alla base di Apache
 Hadoop.
