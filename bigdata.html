@@ -591,6 +591,433 @@ effettivamente immagazzinati
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>Apache Spark</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Cluster computing framework that uses in-memory primitives</li>
+<li>Enable programs to run up to a hundred times faster than Hadoop MapReduce applications</li>
+<li>Spark applications<ul>
+<li>Driver program, controlling ...</li>
+<li>Execution of parallel operations across a cluster</li>
+</ul>
+</li>
+<li>Main programming abstraction: Resilient Distributed Datasets (RDDs)<ul>
+<li>Collections of elements partitioned across the nodes of the cluster</li>
+<li>Can be operated on in parallel</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>PySpark</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>PySpark is Spark’s Python API. PySpark allows Spark applications to
+be created from an interactive shell or from Python programs.
+Before executing any code within Spark, the application must create
+a SparkContext object. The SparkContext object tells Spark how and
+where to access a cluster. The master property is a cluster URL that
+determines where the Spark appliction will run. The most common
+values for master are:
+local
+Run Spark with one worker thread.
+local[n]
+Run Spark with n worker threads.
+spark://HOST:PORT
+Connect to a Spark standalone cluster.
+mesos://HOST:PORT
+Connect to a Mesos cluster.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Interactive Shell</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>In the Spark shell, the SparkContext is created when the shell
+launches. The SparkContext is held in the variable sc . The master
+PySpark
+|
+43for the interactive shell can be set by using the --master argument
+when the shell is launched. To start an interactive shell, run the
+pyspark command:
+$ pyspark --master local[4]
+...
+Welcome to</p>
+<hr />
+<p><strong>
+/ </strong>/<strong> <strong><em> </em></strong></strong>/ /<strong>
+_\ \/ _ \/ _ `/ </strong>/ '<em>/
+/<strong> / .</strong>/_,</em>/<em>/ /</em>/_\
+version 1.5.0
+/_/
+Using Python version 2.7.10 (default, Jul 13 2015 12:05:58)
+SparkContext available as sc, HiveContext available as sqlCon-
+text.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>For a complete list of options, run pyspark --help .</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Self-Contained Applications</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Self-contained applications must first create a SparkContext object
+before using any Spark methods. The master can be set when the
+SparkContext() method is called:
+sc = SparkContext(master='local[4]')
+To execute self-contained applications, they must be submitted to
+the spark-submit script. The spark-submit script contains many
+options; to see a complete listing, run spark-submit --help from
+the command line:
+$ spark-submit --master local spark_app.py</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Resilient Distributed Datasets (RDDs)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Resilient Distributed Datasets (RDDs) are the fundamental pro‐
+gramming abstraction in Spark. RDDs are immutable collections of
+data, partitioned across machines, that enable operations to be per‐
+formed on elements in parallel. RDDs can be constructed in multi‐
+ple ways: by parallelizing existing Python collections, by referencing
+files in an external storage system such as HDFS, or by applying
+transformations to existing RDDs.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Creating RDDs from Collections</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>RDDs can be created from a Python collection by calling the Spark
+Context.parallelize() method. The elements of the collection are
+copied to form a distributed dataset that can be operated on in par‐
+allel. The following example creates a parallelized collection from a
+Python list:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>data = [1, 2, 3, 4, 5]
+rdd = sc.parallelize(data)
+rdd.glom().collect()
+...
+[[1, 2, 3, 4, 5]]
+The RDD.glom() method returns a list of all of the elements within
+each partition, and the RDD.collect() method brings all the ele‐
+ments to the driver node. The result, [[1, 2, 3, 4, 5]] , is the
+original collection within a list.
+To specify the number of partitions an RDD should be created with,
+a second argument can be passed to the parallelize() method.
+The following example creates an RDD from the same Python col‐
+lection in the previous example, except this time four partitions are
+created:
+rdd = sc.parallelize(data, 4)
+rdd.glom().collect()
+...
+[[1], [2], [3], [4, 5]]
+Using the glom() and collect() methods, the RDD created in this
+example contains four inner lists: [1] , [2] , [3] , and [4, 5] . The
+number of inner lists represents the number of partitions within the
+RDD.</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Creating RDDs from External Sources</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>RDDs can also be created from files using the SparkContext.text
+File() method. Spark can read files residing on the local filesystem,
+any storage source supported by Hadoop, Amazon S3, and so on.
+Spark supports text files, SequenceFiles, any other Hadoop Input‐
+Format, directories, compressed files, and wildcards, e.g., my/direc‐
+tory/*.txt. The following example creates a distributed dataset from a
+file located on the local filesystem:
+Resilient Distributed Datasets (RDDs)
+|
+45&gt;&gt;&gt; distFile = sc.textFile('data.txt')</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>distFile.glom().collect()
+...
+[[u'jack be nimble', u'jack be quick', u'jack jumped over the
+candlestick']]
+As before, the glom() and collect() methods allow the RDD to be
+displayed in its partitions. This result shows that distFile only has
+a single partition.
+Similar to the parallelize() method, the textFile() method
+takes a second parameter that specifies the number of partitions to
+create. The following example creates an RDD with three partitions
+from the input file:
+distFile = sc.textFile('data.txt', 3)
+distFile.glom().collect()
+...
+[[u'jack be nimble', u'jack be quick'], [u'jack jumped over
+the candlestick'], []]</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>RDD Operations</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>RDDs support two types of operations: transformations and actions.
+Transformations create new datasets from existing ones, and actions
+run a computation on the dataset and return results to the driver
+program.
+Transformations are lazy: that is, their results are not computed
+immediately. Instead, Spark remembers all of the transformations
+applied to a base dataset. Transformations are computed when an
+action requires a result to be returned to the driver program. This
+allows Spark to operate efficiently and only transfer the results of the
+transformations before an action.
+By default, transformations may be recomputed each time an action
+is performed on it. This allows Spark to efficiently utilize memory,
+but it may utilize more processing resources if the same transforma‐
+tions are constantly being processed. To ensure a transformation is
+only computed once, the resulting RDD can be persisted in memory
+using the RDD.cache() method.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>RDD Workflow</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>The general workflow for working with RDDs is as follows:
+1. Create an RDD from a data source.
+2. Apply transformations to an RDD.
+3. Apply actions to an RDD.
+The following example uses this workflow to calculate the number
+of characters in a file:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>59
+lines = sc.textFile('data.txt')
+line_lengths = lines.map(lambda x: len(x))
+document_length = line_lengths.reduce(lambda x,y: x+y)
+print document_length
+The first statement creates an RDD from the external file data.txt.
+This file is not loaded at this point; the variable lines is just a
+pointer to the external source. The second statement performs a
+transformation on the base RDD by using the map() function to cal‐
+culate the number of characters in each line. The variable
+line_lengths is not immediately computed due to the laziness of
+transformations. Finally, the reduce() method is called, which is an
+action. At this point, Spark divides the computations into tasks to
+run on separate machines. Each machine runs both the map and
+reduction on its local data, returning only the results to the driver
+program.
+If the application were to use line_lengths again, it would be best
+to persist the result of the map transformation to ensure that the
+map would not be recomputed. The following line will save
+line_lengths into memory after the first time it is computed:
+line_lengths.persist()</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Transformations</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Transformations create new datasets from existing ones. Lazy evalu‐
+ation of transformation allows Spark to remember the set of trans‐
+formations applied to the base RDD. This enables Spark to optimize
+the required calculations.
+This section describes some of Spark’s most common transforma‐
+tions. For a full listing of transformations, refer to Spark’s Python
+RDD API doc.
+map. The map(func) function returns a new RDD by applying a
+function, func, to each element of the source. The following example
+multiplies each element of the source RDD by two:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>[2,
+data = [1, 2, 3, 4, 5, 6]
+rdd = sc.parallelize(data)
+map_result = rdd.map(lambda x: x * 2)
+map_result.collect()
+4, 6, 8, 10, 12]
+filter. The filter(func) function returns a new RDD containing
+only the elements of the source that the supplied function returns as
+true. The following example returns only the even numbers from
+the source RDD:</p>
+<p>[2,
+48
+|
+data = [1, 2, 3, 4, 5, 6]
+filter_result = rdd.filter(lambda x: x % 2 == 0)
+filter_result.collect()
+4, 6]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>distinct. The distinct() method returns a new RDD containing
+only the distinct elements from the source RDD. The following
+example returns the unique elements in a list:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>[4,
+data = [1, 2, 3, 2, 4, 1]
+rdd = sc.parallelize(data)
+distinct_result = rdd.distinct()
+distinct_result.collect()
+1, 2, 3]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>flatMap. The flatMap(func) function is similar to the map() func‐
+tion, except it returns a flattened version of the results. For compari‐
+son, the following examples return the original element from the
+source RDD and its square. The example using the map() function
+returns the pairs as a list within a list:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>data = [1, 2, 3, 4]
+rdd = sc.parallelize(data)
+map = rdd.map(lambda x: [x, pow(x,2)])
+map.collect()
+[[1, 1], [2, 4], [3, 9], [4, 16]]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>While the flatMap() function concatenates the results, returning a
+single list:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>[1,
+rdd = sc.parallelize()
+flat_map = rdd.flatMap(lambda x: [x, pow(x,2)])
+flat_map.collect()
+1, 2, 4, 3, 9, 4, 16]</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Actions</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p>Actions cause Spark to compute transformations. After transforms
+are computed on the cluster, the result is returned to the driver pro‐
+gram.
+The following section describes some of Spark’s most common
+actions. For a full listing of actions, refer to Spark’s Python RDD API
+doc.
+reduce. The reduce() method aggregates elements in an RDD
+using a function, which takes two arguments and returns one. The
+function used in the reduce method is commutative and associative,
+ensuring that it can be correctly computed in parallel. The following
+example returns the product of all of the elements in the RDD:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>data = [1, 2, 3]
+rdd = sc.parallelize(data)
+Resilient Distributed Datasets (RDDs)
+|
+49&gt;&gt;&gt; rdd.reduce(lambda a, b: a * b)
+6
+take. The take(n) method returns an array with the first n ele‐
+ments of the RDD. The following example returns the first two ele‐
+ments of an RDD:</p>
+<p>[1,
+data = [1, 2, 3]
+rdd = sc.parallelize(data)
+rdd.take(2)
+2]
+collect. The collect() method returns all of the elements of the
+RDD as an array. The following example returns all of the elements
+from an RDD:</p>
+<p>[1,
+data = [1, 2, 3, 4, 5]
+rdd = sc.parallelize(data)
+rdd.collect()
+2, 3, 4, 5]
+It is important to note that calling collect() on large datasets could
+cause the driver to run out of memory. To inspect large RDDs, the
+take() and collect() methods can be used to inspect the top n ele‐
+ments of a large RDD. The following example will return the first
+100 elements of the RDD to the driver:
+rdd.take(100).collect()
+takeOrdered. The takeOrdered(n, key=func) method returns the
+first n elements of the RDD, in their natural order, or as specified by
+the function func. The following example returns the first four ele‐
+ments of the RDD in descending order:</p>
+<p>[6,
+data = [6,1,5,2,4,3]
+rdd = sc.parallelize(data)
+rdd.takeOrdered(4, lambda s: -s)
+5, 4, 3]</p>
+</blockquote>
+</blockquote>
+</blockquote></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
