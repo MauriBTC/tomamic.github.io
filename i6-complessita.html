@@ -69,7 +69,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/catalogue.png">
         
-      </figure><pre class="" data-lang="Python"><code>def linear_search(v: list, value) -&gt; int:
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def linear_search(v: list, value) -&gt; int:
     '''v: not necessarily sorted'''
 
     for i in range(len(v)):
@@ -91,7 +91,7 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/binary-search.png">
         
-      </figure><pre class="" data-lang="Python"><code>def binary_search(v: list, value) -&gt; int:
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def binary_search(v: list, value) -&gt; int:
     '''v: sorted list'''
 
     first, last = 0, len(v) - 1
@@ -128,7 +128,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Test e misure empiriche</li>
 </ul>
 <blockquote></blockquote>
-<p><a href="http://www.stroustrup.com/Software-for-infrastructure.pdf#5">http://www.stroustrup.com/Software-for-infrastructure.pdf#5</a></p>
+<p><a href="http://www.stroustrup.com/Software-for-infrastructure.pdf#page=5">http://www.stroustrup.com/Software-for-infrastructure.pdf#page=5</a></p>
 <p><a href="https://www.youtube.com/watch?v=YQs6IC-vgmo">https://www.youtube.com/watch?v=YQs6IC-vgmo</a></p></article>
  
 </slide>
@@ -143,10 +143,10 @@ URL: https://code.google.com/p/io-2012-slides
       <ul>
 <li>Caso peggiore negli algoritmi di ricerca: elemento non presente</li>
 <li>Ricerca lineare: <code>n</code> confronti</li>
-<li>Ricerca binaria: <code>⌈log<sub>2</sub>(n)⌉</code> confronti<ul>
+<li>Ricerca binaria: <code>⌊log<sub>2</sub>(n)+1⌋</code> confronti<ul>
 <li>A ogni iterazione l'insieme è dimezzato</li>
 <li>Quante volte <code>n</code> dev'essere diviso per <code>2</code>, per arrivare a <code>0</code>?</li>
-<li><code>2<sup>k</sup> ≥ n → k ≥ log<sub>2</sub>(n)</code></li>
+<li><code>2<sup>k</sup> &gt; n</code> → <code>k &gt; log<sub>2</sub>(n)</code></li>
 </ul>
 </li>
 </ul></article>
@@ -189,7 +189,7 @@ URL: https://code.google.com/p/io-2012-slides
       </figure><ul>
 <li>Per <code>n</code> abbastanza grande, a meno di una costante moltiplicativa, <code>f(n)</code> non supera in modulo <code>g(n)</code></li>
 <li>Comportamento dell'algoritmo al limite, per dimensione delle istanze tendente all'infinito</li>
-<li>Es. n = 1 000 000<ul>
+<li>Es. <code>n</code> = 1'000'000<ul>
 <li>Ricerca lineare: 1'000'000 cicli</li>
 <li>Ricerca binaria: 20 cicli</li>
 </ul>
@@ -236,7 +236,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 </li>
 <li>Es. L'algoritmo della ricerca binaria è ottimale<ul>
-<li>È dimostrato che <code>log<sub>2</sub>(n)</code> è la complessità intrinseca della ricerca</li>
+<li>È dimostrato che <code>log<sub>2</sub>(n)</code> è la complessità intrinseca della ricerca in liste ordinate</li>
 <li>Ma ricerca lineare funziona anche per liste non ordinate!</li>
 </ul>
 </li>
@@ -266,13 +266,18 @@ URL: https://code.google.com/p/io-2012-slides
 <li><em>“Ordinateur”, “ordenador”</em></li>
 </ul>
 </li>
-<li>Algoritmi di ordinamento più semplici hanno complessità <code>n<sup>2</sup></code><ul>
+<li>Algoritmi di ordinamento <em>semplici</em>, iterativi<ul>
+<li>Complessità <code>n<sup>2</sup></code></li>
 <li>Confronto tra ciascun elemento e gli altri</li>
 </ul>
 </li>
-<li>Algoritmi di ordinamento <em>divide et impera</em><ul>
+<li>Algoritmi di ordinamento <em>divide et impera</em>, ricorsivi<ul>
 <li>Complessità <code>n·log<sub>2</sub>(n)</code></li>
-<li>Complessità instrinseca</li>
+<li>Complessità instrinseca del problema</li>
+</ul>
+</li>
+<li>Ricordarsi che <code>log<sub>b</sub>(x) = log<sub>a</sub>(x) / log<sub>a</sub>(b)</code><ul>
+<li>La base del <code>log</code> non cambia la complessità</li>
 </ul>
 </li>
 </ul></article>
@@ -289,17 +294,19 @@ URL: https://code.google.com/p/io-2012-slides
       <figure>
         <img src="images/comp/bubble-sort.png">
         
-      </figure><pre class="" data-lang="Python"><code>def swap(v: list, i: int, j: int):
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def swap(v: list, i: int, j: int):
     v[i], v[j] = v[j], v[i]
-
 
 def bubble_sort(v: list):
     last = len(v) - 1
     while last &gt; 0:
+        ##swapped = False
         for i in range(last):
             if v[i] &gt; v[i + 1]:
-                swap(v, i, i + 1)
+                swap(v, i, i+1)
+                ##swapped = True
         last -= 1
+        ##if not swapped: return
 </code></pre>
 <blockquote></blockquote>
 <p><a href="https://www.youtube.com/watch?v=lyZQPjUT5B4">https://www.youtube.com/watch?v=lyZQPjUT5B4</a></p>
@@ -320,7 +327,7 @@ def bubble_sort(v: list):
 <li>Numero di confronti e scambi: <code>n<sup>2</sup>/2</code></li>
 <li><code>(n-1)+(n-2)+...+2+1 = n(n-1)/2 = n<sup>2</sup>/2 - n/2 ≈ n<sup>2</sup>/2</code></li>
 <li>(Applicata la formula di Gauss per la somma dei primi numeri)</li>
-<li>Complessità <code>n<sup>2</sup></code></li>
+<li>Complessità <code>O(n<sup>2</sup>)</code></li>
 </ul>
 </li>
 <li>Anche in media, circa stessi valori</li>
@@ -338,7 +345,7 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/selection-sort.png">
         
-      </figure><pre class="" data-lang="Python"><code>def selection_sort(v: list):
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def selection_sort(v: list):
     for i in range(len(v) - 1):
         min_pos = i
 
@@ -363,7 +370,8 @@ def bubble_sort(v: list):
       <ul>
 <li>Ad ogni ciclo principale, si seleziona il valore minore</li>
 <li>Caso peggiore: lista rovesciata<ul>
-<li>Numero di confronti <code>n·(n-1)/2</code>; complessità <code>n<sup>2</sup></code></li>
+<li>Numero di confronti <code>n·(n-1)/2</code></li>
+<li>Complessità <code>O(n<sup>2</sup>)</code></li>
 <li>Numero di scambi: <code>n-1</code> scambi</li>
 </ul>
 </li>
@@ -384,7 +392,7 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/insertion-sort.png">
         
-      </figure><pre class="" data-lang="Python"><code>def insertion_sort(v: list):
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def insertion_sort(v: list):
     for i in range(1, n):
         value = v[i]
 
@@ -410,7 +418,8 @@ def bubble_sort(v: list):
       <ul>
 <li>La prima parte è ordinata, vi si inserisce un elemento alla volta, più facile trovare il posto</li>
 <li>Caso peggiore: lista rovesciata<ul>
-<li>Cicli: <code>1+2+...+(n-1) = n·(n-1)/2</code>; compl: <code>O(n<sup>2</sup>)</code></li>
+<li>Cicli: <code>1+2+...+(n-1) = n·(n-1)/2</code></li>
+<li>Complessità <code>O(n<sup>2</sup>)</code></li>
 </ul>
 </li>
 <li>In media si scorre solo 1/2 della prima parte<ul>
@@ -436,8 +445,8 @@ def bubble_sort(v: list):
       <figure>
         <img src="images/comp/quick-sort.png">
         
-      </figure><pre class="" data-lang="Python"><code>def quick_sort(v: list, first=0, last=len(v)-1):
-    '''In v, sort elements between first and last'''
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>def quick_sort(v: list, first=0, last=n-1):
+    '''Sort v, between indexes first and last'''
     if last - first &gt; 0:
         pivot = v[last]
         j = first
@@ -450,6 +459,7 @@ def bubble_sort(v: list):
         quick_sort(v, j + 1, last)
 </code></pre>
 <blockquote></blockquote>
+<p><a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">https://www.youtube.com/watch?v=ywWBy6J5gz8</a></p>
 <p><a href="https://visualgo.net/en/sorting?slide=11">https://visualgo.net/en/sorting?slide=11</a></p></article>
  
 </slide>
@@ -465,13 +475,15 @@ def bubble_sort(v: list):
 <li>Dato un insieme, sceglie un valore <code>pivot</code></li>
 <li>Crea due sottoinsiemi: <code>x ≤ pivot</code>, <code>x &gt; pivot</code></li>
 <li>Stesso algoritmo sui 2 insiemi (ricorsione)</li>
-<li>Caso peggiore: lista rovesciata, <code>n<sup>2</sup></code><ul>
-<li>Dipende da scelta pivot, ma esiste sempre</li>
+<li><em>Complessità caso peggiore</em>: <code>O(n<sup>2</sup>)</code><ul>
+<li>Lista rovesciata</li>
+<li>(Dipende da scelta pivot, ma esiste sempre)</li>
 </ul>
 </li>
-<li>Caso medio: <code>n·log<sub>2</sub>(n)</code><ul>
+<li><em>Complessità caso medio</em>: <code>O(n·log<sub>2</sub>(n))</code><ul>
 <li><code>t(n) = α·n + 2·t(n/2)</code></li>
 <li>Sostituzione <code>k</code> volte: <code>t(n) = α·k·n + 2<sup>k</sup>t(n/2<sup>k</sup>)</code> …</li>
+<li>Finchè arriviamo a <code>n/2<sup>k</sup> = 1</code></li>
 </ul>
 </li>
 </ul></article>
@@ -485,7 +497,7 @@ def bubble_sort(v: list):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def merge_sort(v, first=0, last=len(v)-1):
     '''In v, sort elements between first and last'''
     if last - first &gt; 0:
         middle = (first + last) // 2
@@ -504,7 +516,7 @@ def bubble_sort(v: list):
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>def merge(v, first, middle, last):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def merge(v, first, middle, last):
     '''Merge two sorted portions of a single list'''
     i1, i2, n = first, middle, 1 + last - first
     result = []

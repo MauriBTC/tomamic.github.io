@@ -20,7 +20,7 @@ title: Problemi e complessità
 title: Ricerca lineare
 figure: images/comp/catalogue.png
 
-code: Python
+code: py
 
     def linear_search(v: list, value) -> int:
         '''v: not necessarily sorted'''
@@ -37,7 +37,7 @@ title: Ricerca binaria
 figure: images/comp/binary-search.png
 class: large-figure
 
-code: Python
+code: py
 
     def binary_search(v: list, value) -> int:
         '''v: sorted list'''
@@ -68,7 +68,7 @@ title: Costo di un algoritmo
 
 >
 
-<http://www.stroustrup.com/Software-for-infrastructure.pdf#5>
+<http://www.stroustrup.com/Software-for-infrastructure.pdf#page=5>
 
 <https://www.youtube.com/watch?v=YQs6IC-vgmo>
 
@@ -78,10 +78,10 @@ title: Confronto tra algoritmi
 
 - Caso peggiore negli algoritmi di ricerca: elemento non presente
 - Ricerca lineare: `n` confronti
-- Ricerca binaria: `⌈log~~2~~(n)⌉` confronti
+- Ricerca binaria: `⌊log~~2~~(n)+1⌋` confronti
     - A ogni iterazione l'insieme è dimezzato
     - Quante volte `n` dev'essere diviso per `2`, per arrivare a `0`?
-    - `2^^k^^ ≥ n → k ≥ log~~2~~(n)`
+    - `2^^k^^ > n` → `k > log~~2~~(n)`
 
 ---
 
@@ -104,7 +104,7 @@ figure: images/comp/orders.svg
 
 - Per `n` abbastanza grande, a meno di una costante moltiplicativa, `f(n)` non supera in modulo `g(n)`
 - Comportamento dell'algoritmo al limite, per dimensione delle istanze tendente all'infinito
-- Es. n = 1 000 000
+- Es. `n` = 1'000'000
     - Ricerca lineare: 1'000'000 cicli
     - Ricerca binaria: 20 cicli
 
@@ -129,7 +129,7 @@ title: Algoritmo ottimale
     - Costo di esecuzione `O(g(n))`
     - `P` ha una delimitazione inferiore `Ω(g(n))`
 - Es. L'algoritmo della ricerca binaria è ottimale
-    - È dimostrato che `log~~2~~(n)` è la complessità intrinseca della ricerca
+    - È dimostrato che `log~~2~~(n)` è la complessità intrinseca della ricerca in liste ordinate
     - Ma ricerca lineare funziona anche per liste non ordinate!
 
 ---
@@ -143,11 +143,14 @@ title: Algoritmi di ordinamento
 
 - Ricerca binaria: importante avere dati ordinati
     - *“Ordinateur”, “ordenador”*
-- Algoritmi di ordinamento più semplici hanno complessità `n^^2^^`
+- Algoritmi di ordinamento *semplici*, iterativi
+    - Complessità `n^^2^^`
     - Confronto tra ciascun elemento e gli altri
-- Algoritmi di ordinamento *divide et impera*
+- Algoritmi di ordinamento *divide et impera*, ricorsivi
     - Complessità `n·log~~2~~(n)`
-    - Complessità instrinseca
+    - Complessità instrinseca del problema
+- Ricordarsi che `log~~b~~(x) = log~~a~~(x) / log~~a~~(b)`
+    - La base del `log` non cambia la complessità
 
 ---
 
@@ -155,19 +158,21 @@ title: Bubble sort
 figure: images/comp/bubble-sort.png
 class: large-figure
 
-code: Python
+code: py
 
     def swap(v: list, i: int, j: int):
         v[i], v[j] = v[j], v[i]
 
-
     def bubble_sort(v: list):
         last = len(v) - 1
         while last > 0:
+            ##swapped = False
             for i in range(last):
                 if v[i] > v[i + 1]:
-                    swap(v, i, i + 1)
+                    swap(v, i, i+1)
+                    ##swapped = True
             last -= 1
+            ##if not swapped: return
 
 >
 
@@ -184,7 +189,7 @@ title: Analisi Bubble Sort
     - Numero di confronti e scambi: `n^^2^^/2`
     - `(n-1)+(n-2)+...+2+1 = n(n-1)/2 = n^^2^^/2 - n/2 ≈ n^^2^^/2`
     - (Applicata la formula di Gauss per la somma dei primi numeri)
-    - Complessità `n^^2^^`
+    - Complessità `O(n^^2^^)`
 - Anche in media, circa stessi valori
 
 ---
@@ -193,7 +198,7 @@ title: Selection Sort
 figure: images/comp/selection-sort.png
 class: large-figure
 
-code: Python
+code: py
 
     def selection_sort(v: list):
         for i in range(len(v) - 1):
@@ -215,7 +220,8 @@ title: Analisi Selection Sort
 
 - Ad ogni ciclo principale, si seleziona il valore minore
 - Caso peggiore: lista rovesciata
-    - Numero di confronti `n·(n-1)/2`; complessità `n^^2^^`
+    - Numero di confronti `n·(n-1)/2`
+    - Complessità `O(n^^2^^)`
     - Numero di scambi: `n-1` scambi
 - Anche in media, circa stessi valori
 
@@ -229,7 +235,7 @@ title: Insertion sort
 figure: images/comp/insertion-sort.png
 class: large-figure
 
-code: Python
+code: py
 
     def insertion_sort(v: list):
         for i in range(1, n):
@@ -252,7 +258,8 @@ title: Analisi Insertion Sort
 
 - La prima parte è ordinata, vi si inserisce un elemento alla volta, più facile trovare il posto
 - Caso peggiore: lista rovesciata
-    - Cicli: `1+2+...+(n-1) = n·(n-1)/2`; compl: `O(n^^2^^)`
+    - Cicli: `1+2+...+(n-1) = n·(n-1)/2`
+    - Complessità `O(n^^2^^)`
 - In media si scorre solo 1/2 della prima parte
     - In media `n^^2^^/4` confronti e `n^^2^^/4` scambi
 - Ottimizzazioni
@@ -265,10 +272,10 @@ title: Quick Sort
 figure: images/comp/quick-sort.png
 class: large-figure
 
-code: Python
+code: py
 
-    def quick_sort(v: list, first=0, last=len(v)-1):
-        '''In v, sort elements between first and last'''
+    def quick_sort(v: list, first=0, last=n-1):
+        '''Sort v, between indexes first and last'''
         if last - first > 0:
             pivot = v[last]
             j = first
@@ -282,6 +289,8 @@ code: Python
 
 >
 
+<https://www.youtube.com/watch?v=ywWBy6J5gz8>
+
 <https://visualgo.net/en/sorting?slide=11>
 
 ---
@@ -291,17 +300,19 @@ title: Analisi Quick Sort
 - Dato un insieme, sceglie un valore `pivot`
 - Crea due sottoinsiemi: `x ≤ pivot`, `x > pivot`
 - Stesso algoritmo sui 2 insiemi (ricorsione)
-- Caso peggiore: lista rovesciata, `n^^2^^`
-    - Dipende da scelta pivot, ma esiste sempre
-- Caso medio: `n·log~~2~~(n)`
+- *Complessità caso peggiore*: `O(n^^2^^)`
+    - Lista rovesciata
+    - (Dipende da scelta pivot, ma esiste sempre)
+- *Complessità caso medio*: `O(n·log~~2~~(n))`
     - `t(n) = α·n + 2·t(n/2)`
     - Sostituzione `k` volte: `t(n) = α·k·n + 2^^k^^t(n/2^^k^^)` …
+    - Finchè arriviamo a `n/2^^k^^ = 1`
 
 ---
 
 title: Merge Sort
 
-code: Python
+code: py
 
     def merge_sort(v, first=0, last=len(v)-1):
         '''In v, sort elements between first and last'''
@@ -317,7 +328,7 @@ code: Python
 
 title: Merge, con appoggio
 
-code: Python
+code: py
 
     def merge(v, first, middle, last):
         '''Merge two sorted portions of a single list'''
