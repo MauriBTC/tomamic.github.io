@@ -482,7 +482,7 @@ class: large-table
 
 title: 🤔 Operazioni bit a bit in Python
 
-code: Python
+code: py
 
     x, y, z, shift = 0, 0, 0, 0  # some int values
     x << shift  # x = x * (2^shift)
