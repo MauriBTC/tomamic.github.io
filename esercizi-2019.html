@@ -1931,6 +1931,228 @@ zyxw
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 11 (12-02 *)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.1 Massimo e minimo (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/data-sequence.png">
+        
+      </figure><ul>
+<li>Leggere, attraverso un ciclo, una sequenza di numeri interi positivi</li>
+<li>La sequenza termina quando l'utente inserisce il valore 0</li>
+<li>Visualizzare il valore massimo e quello minimo tra i numeri inseriti</li>
+</ul>
+<blockquote></blockquote>
+<p>Basta un ciclo, senza <code>vector</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.2 Funzione, Erone (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/triangle-notations.svg">
+        
+      </figure><ul>
+<li>Definire una funzione <code>heron</code> per il calcolo dell'area di un triangolo<ul>
+<li>Parametri: tre lati come <code>float</code></li>
+<li>Risultato: area come <code>float</code></li>
+</ul>
+</li>
+<li>Definire poi una funzione <code>main</code><ul>
+<li>Chiedere all'utente tre valori</li>
+<li>Poi chiamare <code>heron</code> con questi parametri</li>
+<li>Infine mostrare all'utente il risultato</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Formula di Erone: <code>area = sqrt(s * (s - a) * (s - b) * (s - c))</code> <br>
+Con <code>s = (a + b + c) / 2</code>, semiperimetro</p>
+<p><code>sqrt</code> definita in libreria <code>&lt;cmath&gt;</code></p>
+<p><a href="http://en.wikipedia.org/wiki/Heron%27s_formula">http://en.wikipedia.org/wiki/Heron%27s_formula</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.3 Ellisse (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/ellipse.svg">
+        
+      </figure><ul>
+<li>Classe che modella un'ellisse</li>
+<li>Campi privati (parametri del costruttore)<ul>
+<li>Semiassi: <code>a, b</code></li>
+</ul>
+</li>
+<li>Metodi pubblici per ottenere...<ul>
+<li>Area: <code>π*a*b</code></li>
+<li>Distanza focale: <code>2*√|a<sup>2</sup> - b<sup>2</sup>|</code></li>
+</ul>
+</li>
+<li>Nel corpo principale del programma...<ul>
+<li>Creare un oggetto con dati forniti dall'utente</li>
+<li>Visualizzare area e distanza focale dell'ellisse</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Definire <code>PI = 3.14159</code>, oppure usare <code>acos(-1)</code>, dalla libreria <code>&lt;cmath&gt;</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.4 Testo, lettere (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Leggere una riga di testo</li>
+<li>Contare quante lettere maiuscole ci sono in tutto</li>
+<li>Contare quante lettere minuscole ci sono in tutto</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.5 Risultati casuali (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/dice.png">
+        
+      </figure><ul>
+<li>Simulare <code>n</code> lanci di una terna di dadi<ul>
+<li><code>n</code> scelto dall'utente</li>
+</ul>
+</li>
+<li>Contare quante volte, in tutto, si presenta ciascun risultato<ul>
+<li>Risultati possibili: da 3 a 18</li>
+<li>Somma dei tre dadi</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Per conteggiare i vari risultati, usare un <code>vector</code> di (almeno) 16 valori</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.6 Funzione di smooth (C++)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/neighborhood4.png">
+        
+      </figure><ul>
+<li>Scrivere una funzione <code>smooth</code><ul>
+<li>Parametro: matrice iniziale, di <code>float</code></li>
+<li>Risultato: nuova matrice con <em>smooth</em></li>
+</ul>
+</li>
+<li><strong>Smooth</strong>: per ogni cella in matrice iniziale<ul>
+<li>Il risultato è la <em>media</em> dell'intorno</li>
+<li>5 valori: cella stessa e 4 adiacenti</li>
+</ul>
+</li>
+<li>Attenzione alle celle esterne<ul>
+<li>Sommare e contare solo i valori disponibili</li>
+<li>4 valori ai bordi, 3 valori agli angoli</li>
+</ul>
+</li>
+<li>Verificare la funzione con alcune matrici di test</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.7 Hitori, backtracking (Py)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/artificial-intelligence.png">
+        
+      </figure><pre class="prettyprint lang-py" data-lang="py"><code>Hitori::solve_recursive(i: int) -&gt; bool:
+    ## self.mark_auto()  # mark all obvious cells
+    ## if self.wrong(): return False  # unsolvable
+    # find first undecided cell, starting from i
+    while i &lt; len(self._annots) and self._annots[i] != CLEAR:
+        i += 1
+    if i &lt; len(self._annots):
+        saved = self._annots[:]  # save current status
+        for a in (BLACK, CIRCLE):
+            self._annots[i] = a
+            if self.solve_recursive(i + 1):
+                return True
+            self._annots = saved  # backtracking
+    return self.finished()
+</code></pre>
+<blockquote></blockquote>
+<p>Suggerita l'implementazione di <code>mark_auto</code> (es. 9.7) e <code>wrong</code> (10.6)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>11.8 Hitori, test soluzione (Py)</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Provare a risolvere con i soli <em>suggerimenti</em> singoli<ul>
+<li><a href="http://www.menneske.no/hitori/5x5/eng/solve.html?number=15266">Easy 5x5</a></li>
+<li><a href="http://www.menneske.no/hitori/6x6/eng/utskrift.html?number=16075">Medium 6x6</a></li>
+<li><a href="http://www.menneske.no/hitori/8x8/eng/solve.html?number=21330">Hard 8x8</a></li>
+<li><a href="http://www.menneske.no/hitori/eng/solve.html?number=186838">Very hard 9x9</a></li>
+<li><a href="http://www.menneske.no/hitori/12x12/eng/solve.html?number=29512">Super hard 12x12</a></li>
+<li><a href="http://www.menneske.no/hitori/15x15/eng/solve.html?number=2564">Impossible 15x15</a></li>
+</ul>
+</li>
+<li>Altrimenti, quando serve usare il <em>backtracking</em></li>
+<li>Ricordarsi...<ul>
+<li>Inizializzare la partita da un <em>file</em> (parametro)</li>
+<li>Preparare vari <em>unit test</em>, per le principali funzionalità</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>

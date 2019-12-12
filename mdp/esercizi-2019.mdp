@@ -1077,3 +1077,143 @@ figure: images/misc/artificial-intelligence.png
 - *Confrontare* tutte le annotazioni, aggiunte nei due casi
     - Se una qualsiasi cella è annerita in entrambe le ipotesi, annerirla nel gioco
     - Se una qualsiasi cella è cerchiata in entrambe le ipotesi, cerchiarla nel gioco
+
+---
+
+title: Esercitazione 11 (12-02 *)
+class: segue dark
+
+---
+
+title: 11.1 Massimo e minimo (C++)
+figure: images/misc/data-sequence.png
+
+- Leggere, attraverso un ciclo, una sequenza di numeri interi positivi
+- La sequenza termina quando l'utente inserisce il valore 0
+- Visualizzare il valore massimo e quello minimo tra i numeri inseriti
+
+>
+
+Basta un ciclo, senza `vector`
+
+---
+
+title: 11.2 Funzione, Erone (C++)
+figure: images/misc/triangle-notations.svg
+
+- Definire una funzione `heron` per il calcolo dell'area di un triangolo
+    - Parametri: tre lati come `float`
+    - Risultato: area come `float`
+- Definire poi una funzione `main`
+    - Chiedere all'utente tre valori
+    - Poi chiamare `heron` con questi parametri
+    - Infine mostrare all'utente il risultato
+
+>
+
+Formula di Erone: `area = sqrt(s * (s - a) * (s - b) * (s - c))` <br>
+Con `s = (a + b + c) / 2`, semiperimetro
+
+`sqrt` definita in libreria `<cmath>`
+
+<http://en.wikipedia.org/wiki/Heron%27s_formula>
+
+---
+
+title: 11.3 Ellisse (C++)
+figure: images/misc/ellipse.svg
+
+- Classe che modella un'ellisse
+- Campi privati (parametri del costruttore)
+    - Semiassi: `a, b`
+- Metodi pubblici per ottenere...
+    - Area: `π*a*b`
+    - Distanza focale: `2*√|a^^2^^ - b^^2^^|`
+- Nel corpo principale del programma...
+    - Creare un oggetto con dati forniti dall'utente
+    - Visualizzare area e distanza focale dell'ellisse
+
+>
+
+Definire `PI = 3.14159`, oppure usare `acos(-1)`, dalla libreria `<cmath>`
+
+---
+
+title: 11.4 Testo, lettere (C++)
+
+- Leggere una riga di testo
+- Contare quante lettere maiuscole ci sono in tutto
+- Contare quante lettere minuscole ci sono in tutto
+
+---
+
+title: 11.5 Risultati casuali (C++)
+figure: images/misc/dice.png
+
+- Simulare `n` lanci di una terna di dadi
+    - `n` scelto dall'utente
+- Contare quante volte, in tutto, si presenta ciascun risultato
+    - Risultati possibili: da 3 a 18
+    - Somma dei tre dadi
+
+>
+
+Per conteggiare i vari risultati, usare un `vector` di (almeno) 16 valori
+
+---
+
+title: 11.6 Funzione di smooth (C++)
+figure: images/fun/neighborhood4.png
+
+- Scrivere una funzione `smooth`
+    - Parametro: matrice iniziale, di `float`
+    - Risultato: nuova matrice con *smooth*
+- **Smooth**: per ogni cella in matrice iniziale
+    - Il risultato è la *media* dell'intorno
+    - 5 valori: cella stessa e 4 adiacenti
+- Attenzione alle celle esterne
+    - Sommare e contare solo i valori disponibili
+    - 4 valori ai bordi, 3 valori agli angoli
+- Verificare la funzione con alcune matrici di test
+
+---
+
+title: 11.7 Hitori, backtracking (Py)
+figure: images/misc/artificial-intelligence.png
+
+code: py
+
+    Hitori::solve_recursive(i: int) -> bool:
+        ## self.mark_auto()  # mark all obvious cells
+        ## if self.wrong(): return False  # unsolvable
+        # find first undecided cell, starting from i
+        while i < len(self._annots) and self._annots[i] != CLEAR:
+            i += 1
+        if i < len(self._annots):
+            saved = self._annots[:]  # save current status
+            for a in (BLACK, CIRCLE):
+                self._annots[i] = a
+                if self.solve_recursive(i + 1):
+                    return True
+                self._annots = saved  # backtracking
+        return self.finished()
+
+>
+
+Suggerita l'implementazione di `mark_auto` (es. 9.7) e `wrong` (10.6)
+
+---
+
+title: 11.8 Hitori, test soluzione (Py)
+
+- Provare a risolvere con i soli *suggerimenti* singoli
+    - [Easy 5x5](http://www.menneske.no/hitori/5x5/eng/solve.html?number=15266)
+    - [Medium 6x6](http://www.menneske.no/hitori/6x6/eng/utskrift.html?number=16075)
+    - [Hard 8x8](http://www.menneske.no/hitori/8x8/eng/solve.html?number=21330)
+    - [Very hard 9x9](http://www.menneske.no/hitori/eng/solve.html?number=186838)
+    - [Super hard 12x12](http://www.menneske.no/hitori/12x12/eng/solve.html?number=29512)
+    - [Impossible 15x15](http://www.menneske.no/hitori/15x15/eng/solve.html?number=2564)
+- Altrimenti, quando serve usare il *backtracking*
+- Ricordarsi...
+    - Inizializzare la partita da un *file* (parametro)
+    - Preparare vari *unit test*, per le principali funzionalità
