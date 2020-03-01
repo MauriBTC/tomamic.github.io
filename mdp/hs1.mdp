@@ -54,7 +54,7 @@ title: Non-idempotent functions
     - `p = rq(x)`
 - But if `rq` has side effects, you can't!
 
-code: python
+code: py
 
     base_value = 0  # global variable
 
@@ -278,6 +278,26 @@ code: haskell
     "A SMALL CAT"
     Prelude> 5:[1,2,3,4,5]
     [5,1,2,3,4,5]
+
+---
+
+title: Multiple concatenations
+
+![](images/fun/list-concat.svg)
+
+>
+
+Remember: values are immutable, cannot change last pointer
+
+---
+
+title: Multiple prependings
+
+![](images/fun/list-prepend.svg)
+
+>
+
+The previous list stays unchanged, can be reused
 
 ---
 
@@ -565,15 +585,15 @@ figure: images/fun/month-list.svg
     - The whole list can be assigned to a varible, to have a **name**
 - Single elements are **numbered**, from 0
 
-code: python
+code: py
 
     to_buy = ["spam", "eggs", "beans"]
 
-code: python
+code: py
 
     rainfall_data = [13, 24, 18, 15]
 
-code: python
+code: py
 
     months = ["Jan", "Feb", "Mar",
               "Apr", "May", "Jun",
@@ -590,13 +610,13 @@ figure: images/fun/wile-coyote.png
     - Elements *numbered* from `0` to `len(x)-1`
     - *Negative* indices count from the end of the list
 
-code: python
+code: py
 
     n = len(months)            # 12
     months[3]                  # "Apr"
     months[-2]                 # "Nov", same as n - 2
 
-code: python
+code: py
 
     to_buy = ["spam", "eggs", "beans"]
 
@@ -606,13 +626,13 @@ code: python
 
 title: Membership and modification
 
-code: python
+code: py
 
     to_buy = ["spam", "eggs", "beans"]
 
     "eggs" in to_buy           # True, to_buy contains "eggs"
 
-code: python
+code: py
 
     to_buy.append("bacon")     # add an element to the end
     to_buy.pop()               # remove (and return) last element
@@ -626,20 +646,20 @@ code: python
 
 title: Slice: part of a list
 
-code: python
+code: py
 
     spring = months[2:5]       # ["Mar", "Apr", "May"]
     quart1 = months[:3]        # ["Jan", "Feb", "Mar"]
     quart4 = months[-3:]       # ["Oct", "Nov", "Dec"]
     whole_year = months[:]     # Copy the whole list
 
-code: python
+code: py
 
     list1 = ["spam", "eggs", "beans"]
     list2 = ["sausage", "mushrooms"]
     to_buy = list1 + list2     # List concatenation
 
-code: python
+code: py
 
     so_boring = [1, 2] * 3     # List repetition:
                                # [1, 2, 1, 2, 1, 2]
@@ -649,7 +669,7 @@ code: python
 
 title: Equality and identity
 
-code: python
+code: py
 
     a = [3, 4, 5]
     b = a[:]       # b = [3, 4, 5] -- a new list!
@@ -670,7 +690,7 @@ title: Python ranges
     - Optional step
 - Pyhton ranges are *lazy*, too
 
-code: python
+code: py
 
     >>> range(5, 15, 2)
     range(5, 15, 2)
@@ -695,7 +715,7 @@ fib(0) = 0; fib(1) = 1;  fib(n) = fib(n-1) + fib(n-2);
 
 title: Fibonacci list
 
-code: python
+code: py
 
     def fib_list(max):
         '''fill a list with Fibonacci numbers'''
@@ -729,7 +749,7 @@ title: Iterables and iterators
 
 title: Fibonacci iterator
 
-code: python
+code: py
 
     class Fib:
         '''iterator that yields Fibonacci numbers'''
@@ -753,7 +773,7 @@ code: python
 
 title: Using an iterator
 
-code: python
+code: py
 
     >>> f = Fib(13)
     >>> f
@@ -770,7 +790,7 @@ code: python
 
 title: Fibonacci generator
 
-code: python
+code: py
 
     def fib(max):
         '''generator that yields Fibonacci numbers'''
@@ -780,7 +800,7 @@ code: python
             yield(a)  # ~ append in fib_list, but lazy
             a, b = b, a + b
 
-code: python
+code: py
 
     >>> f = fib(13)
     >>> f
@@ -796,7 +816,7 @@ code: python
 
 title: Unbounded sequences
 
-code: python
+code: py
 
     def fib2():
         '''generator that yields Fibonacci numbers'''
@@ -806,7 +826,7 @@ code: python
             yield(a)
             a, b = b, a + b
 
-code: python
+code: py
 
     >>> f = fib2()
     >>> f
@@ -876,7 +896,7 @@ code: haskell
 
 - *Python* also has comprehensions
 
-code: python
+code: py
 
     >>> [x for x in range(50, 101) if  x % 7 == 3]
     [52, 59, 66, 73, 80, 87, 94]
@@ -921,7 +941,7 @@ code: haskell
 
 - In *Python* too
 
-code: python
+code: py
 
     >>> [x * y for x in (2, 5, 10) for y in (8, 10, 11)]
     [16, 20, 22, 40, 50, 55, 80, 100, 110]
@@ -994,7 +1014,7 @@ title: Zipping in Python
 - Python's `zip` is *lazy*, too
 - It can work on infinite sequences
 
-code: python
+code: py
 
     >>> list(zip([0, 1, 2, 3], ['A', 'B', 'C', 'D']))
     [(0, 'A'), (1, 'B'), (2, 'C'), (3, 'D')]

@@ -126,7 +126,7 @@ URL: https://code.google.com/p/io-2012-slides
 </li>
 <li>But if <code>rq</code> has side effects, you can't!</li>
 </ul>
-<pre class="" data-lang="python"><code>base_value = 0  # global variable
+<pre class="prettyprint lang-py" data-lang="py"><code>base_value = 0  # global variable
 
 def rq(x: int) -&gt; int:
     global base_value
@@ -439,6 +439,32 @@ Prelude&gt; ['w','o'] ++ ['o','t']
 Prelude&gt; 5:[1,2,3,4,5]
 [5,1,2,3,4,5]
 </code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Multiple concatenations</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/fun/list-concat.svg" /></p>
+<blockquote></blockquote>
+<p>Remember: values are immutable, cannot change last pointer</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Multiple prependings</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p><img alt="" src="images/fun/list-prepend.svg" /></p>
+<blockquote></blockquote>
+<p>The previous list stays unchanged, can be reused</p></article>
  
 </slide>
 
@@ -852,11 +878,11 @@ Prelude&gt; concat (replicate 3 "LOL ")
 </li>
 <li>Single elements are <strong>numbered</strong>, from 0</li>
 </ul>
-<pre class="" data-lang="python"><code>to_buy = ["spam", "eggs", "beans"]
+<pre class="prettyprint lang-py" data-lang="py"><code>to_buy = ["spam", "eggs", "beans"]
 </code></pre>
-<pre class="" data-lang="python"><code>rainfall_data = [13, 24, 18, 15]
+<pre class="prettyprint lang-py" data-lang="py"><code>rainfall_data = [13, 24, 18, 15]
 </code></pre>
-<pre class="" data-lang="python"><code>months = ["Jan", "Feb", "Mar",
+<pre class="prettyprint lang-py" data-lang="py"><code>months = ["Jan", "Feb", "Mar",
           "Apr", "May", "Jun",
           "Jul", "Aug", "Sep",
           "Oct", "Nov", "Dec"]
@@ -882,11 +908,11 @@ Prelude&gt; concat (replicate 3 "LOL ")
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>n = len(months)            # 12
+<pre class="prettyprint lang-py" data-lang="py"><code>n = len(months)            # 12
 months[3]                  # "Apr"
 months[-2]                 # "Nov", same as n - 2
 </code></pre>
-<pre class="" data-lang="python"><code>to_buy = ["spam", "eggs", "beans"]
+<pre class="prettyprint lang-py" data-lang="py"><code>to_buy = ["spam", "eggs", "beans"]
 
 to_buy[1] = "ketchup"      # replace an element
 </code></pre></article>
@@ -900,11 +926,11 @@ to_buy[1] = "ketchup"      # replace an element
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>to_buy = ["spam", "eggs", "beans"]
+      <pre class="prettyprint lang-py" data-lang="py"><code>to_buy = ["spam", "eggs", "beans"]
 
 "eggs" in to_buy           # True, to_buy contains "eggs"
 </code></pre>
-<pre class="" data-lang="python"><code>to_buy.append("bacon")     # add an element to the end
+<pre class="prettyprint lang-py" data-lang="py"><code>to_buy.append("bacon")     # add an element to the end
 to_buy.pop()               # remove (and return) last element
 
 to_buy.insert(1, "bacon")  # other elements shift
@@ -922,16 +948,16 @@ to_buy.remove("eggs")      # remove an element by value
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>spring = months[2:5]       # ["Mar", "Apr", "May"]
+      <pre class="prettyprint lang-py" data-lang="py"><code>spring = months[2:5]       # ["Mar", "Apr", "May"]
 quart1 = months[:3]        # ["Jan", "Feb", "Mar"]
 quart4 = months[-3:]       # ["Oct", "Nov", "Dec"]
 whole_year = months[:]     # Copy the whole list
 </code></pre>
-<pre class="" data-lang="python"><code>list1 = ["spam", "eggs", "beans"]
+<pre class="prettyprint lang-py" data-lang="py"><code>list1 = ["spam", "eggs", "beans"]
 list2 = ["sausage", "mushrooms"]
 to_buy = list1 + list2     # List concatenation
 </code></pre>
-<pre class="" data-lang="python"><code>so_boring = [1, 2] * 3     # List repetition:
+<pre class="prettyprint lang-py" data-lang="py"><code>so_boring = [1, 2] * 3     # List repetition:
                            # [1, 2, 1, 2, 1, 2]
 results_by_month = [0] * 12
 </code></pre></article>
@@ -945,7 +971,7 @@ results_by_month = [0] * 12
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>a = [3, 4, 5]
+      <pre class="prettyprint lang-py" data-lang="py"><code>a = [3, 4, 5]
 b = a[:]       # b = [3, 4, 5] -- a new list!
 b == a         # True, they contain the same values
 b is a         # False, they are two objects in memory
@@ -973,7 +999,7 @@ c is a         # True, same object in memory
 </li>
 <li>Pyhton ranges are <em>lazy</em>, too</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; range(5, 15, 2)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; range(5, 15, 2)
 range(5, 15, 2)
 &gt;&gt;&gt; for v in range(5, 15, 2): print(v, end=' ')
 
@@ -1004,7 +1030,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>def fib_list(max):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def fib_list(max):
     '''fill a list with Fibonacci numbers'''
     result = []
 
@@ -1055,7 +1081,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>class Fib:
+      <pre class="prettyprint lang-py" data-lang="py"><code>class Fib:
     '''iterator that yields Fibonacci numbers'''
 
     def __init__(self, max):
@@ -1083,7 +1109,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>&gt;&gt;&gt; f = Fib(13)
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; f = Fib(13)
 &gt;&gt;&gt; f
 &lt;__main__.Fib object at 0x7fc31dbbdbe0&gt;
 &gt;&gt;&gt; for v in f: print(v, end=' ')
@@ -1105,7 +1131,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>def fib(max):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def fib(max):
     '''generator that yields Fibonacci numbers'''
 
     a, b = 0, 1
@@ -1113,7 +1139,7 @@ range(5, 15, 2)
         yield(a)  # ~ append in fib_list, but lazy
         a, b = b, a + b
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; f = fib(13)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; f = fib(13)
 &gt;&gt;&gt; f
 &lt;generator object fib at 0x7fc31db9b308&gt;
 &gt;&gt;&gt; list(f)
@@ -1133,7 +1159,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>def fib2():
+      <pre class="prettyprint lang-py" data-lang="py"><code>def fib2():
     '''generator that yields Fibonacci numbers'''
 
     a, b = 0, 1
@@ -1141,7 +1167,7 @@ range(5, 15, 2)
         yield(a)
         a, b = b, a + b
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; f = fib2()
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; f = fib2()
 &gt;&gt;&gt; f
 &lt;generator object fib2 at 0x7f5946caf4c0&gt;
 &gt;&gt;&gt; from itertools import islice
@@ -1244,7 +1270,7 @@ range(5, 15, 2)
 <ul>
 <li><em>Python</em> also has comprehensions</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; [x for x in range(50, 101) if  x % 7 == 3]
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; [x for x in range(50, 101) if  x % 7 == 3]
 [52, 59, 66, 73, 80, 87, 94]
 </code></pre></article>
  
@@ -1296,7 +1322,7 @@ Prelude&gt; removeNonUppercase "IdontLIKEFROGS"
 <ul>
 <li>In <em>Python</em> too</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; [x * y for x in (2, 5, 10) for y in (8, 10, 11)]
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; [x * y for x in (2, 5, 10) for y in (8, 10, 11)]
 [16, 20, 22, 40, 50, 55, 80, 100, 110]
 </code></pre></article>
  
@@ -1410,7 +1436,7 @@ Prelude&gt; zip [1 .. 5] ["one", "two", "three", "four", "five"]
 <li>Python's <code>zip</code> is <em>lazy</em>, too</li>
 <li>It can work on infinite sequences</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; list(zip([0, 1, 2, 3], ['A', 'B', 'C', 'D']))
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; list(zip([0, 1, 2, 3], ['A', 'B', 'C', 'D']))
 [(0, 'A'), (1, 'B'), (2, 'C'), (3, 'D')]
 &gt;&gt;&gt; list(zip(count(0), "ABCD"))
 [(0, 'A'), (1, 'B'), (2, 'C'), (3, 'D')]
