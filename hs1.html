@@ -1103,12 +1103,12 @@ c is a         # True, same object in memory
 </li>
 <li>Pyhton ranges are <em>lazy</em>, too</li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; range(5, 15, 2)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; r = range(5, 15, 2)
+&gt;&gt;&gt; r
 range(5, 15, 2)
-&gt;&gt;&gt; for v in range(5, 15, 2): print(v, end=' ')
-
+&gt;&gt;&gt; for v in r: print(v, end=' ')
 5 7 9 11 13
-&gt;&gt;&gt; list(range(5, 15, 2))
+&gt;&gt;&gt; list(r)
 [5, 7, 9, 11, 13]
 </code></pre></article>
  
@@ -1174,7 +1174,12 @@ range(5, 15, 2)
 </ul>
 </li>
 <li><em>Simplest case</em>: iterable implements <code>__next__</code> itself and returns <code>self</code> in <code>__iter__</code></li>
-</ul></article>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; r = range(1, 4)  # dir(r)
+&gt;&gt;&gt; it = r.__iter__()  # dir(it)
+&gt;&gt;&gt; it.__next__()  # ...
+1
+</code></pre></article>
  
 </slide>
 

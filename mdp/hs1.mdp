@@ -772,12 +772,12 @@ title: Python ranges
 
 code: py
 
-    >>> range(5, 15, 2)
+    >>> r = range(5, 15, 2)
+    >>> r
     range(5, 15, 2)
-    >>> for v in range(5, 15, 2): print(v, end=' ')
-
+    >>> for v in r: print(v, end=' ')
     5 7 9 11 13
-    >>> list(range(5, 15, 2))
+    >>> list(r)
     [5, 7, 9, 11, 13]
 
 ---
@@ -824,6 +824,13 @@ title: Iterables and iterators
     - `__next__` returns the next element of the iterable
     - Raises a `StopIteration` exception when no more elements are available
 - *Simplest case*: iterable implements `__next__` itself and returns `self` in `__iter__`
+
+code: py
+
+    >>> r = range(1, 4)  # dir(r)
+    >>> it = r.__iter__()  # dir(it)
+    >>> it.__next__()  # ...
+    1
 
 ---
 
