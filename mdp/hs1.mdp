@@ -898,7 +898,7 @@ title: Unbounded sequences
 
 code: py
 
-    def fib2():
+    def fib_unb():
         '''generator that yields Fibonacci numbers'''
 
         a, b = 0, 1
@@ -908,9 +908,9 @@ code: py
 
 code: py
 
-    >>> f = fib2()
+    >>> f = fib_unb()
     >>> f
-    <generator object fib2 at 0x7f5946caf4c0>
+    <generator object fib_unb at 0x7f5946caf4c0>
     >>> from itertools import islice
     >>> islice(f, 8)
     <itertools.islice object at 0x7f594a2f7ea8>

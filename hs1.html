@@ -1263,7 +1263,7 @@ range(5, 15, 2)
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>def fib2():
+      <pre class="prettyprint lang-py" data-lang="py"><code>def fib_unb():
     '''generator that yields Fibonacci numbers'''
 
     a, b = 0, 1
@@ -1271,9 +1271,9 @@ range(5, 15, 2)
         yield(a)
         a, b = b, a + b
 </code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; f = fib2()
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; f = fib_unb()
 &gt;&gt;&gt; f
-&lt;generator object fib2 at 0x7f5946caf4c0&gt;
+&lt;generator object fib_unb at 0x7f5946caf4c0&gt;
 &gt;&gt;&gt; from itertools import islice
 &gt;&gt;&gt; islice(f, 8)
 &lt;itertools.islice object at 0x7f594a2f7ea8&gt;
