@@ -65,6 +65,78 @@ code: py
 
 ---
 
+title: Integral approximation
+
+code: py
+
+    def some_func(x: float) -> float:
+        return x * x + x
+
+    def integral(a: float, b: float, n: int) -> float:
+        """Estimate the area beneath the curve some_func, between the
+        abscissas a and b; the region is approximated as n rectangles.
+        """
+        total = 0.0
+        dx = (b - a) / n
+        for i in range(n):
+            total += dx * some_func(a + dx * i)
+        return total
+
+    area = integral(1, 10, 1_000_000)
+    print(area)
+
+---
+
+title: Function as parameter
+
+code: py
+
+    def integral(f, a: float, b: float, n: int) -> float:
+        """Estimate the area beneath the curve f, between a and b.
+        """
+        ## added new param f: 'types.Callable[[float], float]'
+
+        total = 0.0
+        dx = (b - a) / n
+        for i in range(n):
+            total += dx * f(a + dx * i)
+        return total
+
+    area_func = integral(some_func, 1, 10, 1_000_000)
+    print(area_func)
+
+    area_sin = integral(math.sin, 0, math.pi, 1_000_000)
+    print(area_sin)
+
+---
+
+title: Function as result
+
+code: py
+
+    def create_pow(exponent: float):
+        """Create and return a function, which calculates a power.
+        """
+        def result(base: float):
+            return base ** exponent
+        return result
+
+    root = create_pow(0.5)
+    cube = create_pow(3)
+
+    print(root(3))
+    print(root(4))
+
+    print(cube(3))
+    print(cube(4))
+
+---
+
+title: Haskell
+class: segue dark
+
+---
+
 title: Haskell
 figure: images/fun/haskell-xkcd.png
 
@@ -76,6 +148,7 @@ figure: images/fun/haskell-xkcd.png
     - Type variables, typeclasses, type constaints
 - Lazy evaluation
 - Pattern matching
+- **Very large influence on many other languages**
 
 >
 
@@ -121,9 +194,11 @@ title: Haskell in industry
 
 title: Interactive shell
 figure: images/fun/learn-haskell.png
+figcaption: The textbook, free, online
 
-- Install the “*Glasgow Haskell Compiler*”
+- Install or try the “*Glasgow Haskell Compiler*”
     - `sudo apt install ghc`
+    - <https://repl.it/languages/haskell>
 - REPL: Read-Eval-Print Loop
     - `ghci`
 - Expressions and operators
@@ -138,9 +213,7 @@ code: haskell
 
 >
 
-<http://learnyouahaskell.com/>
-
-<http://www.haskell.org/>
+<http://learnyouahaskell.com/> - <http://www.haskell.org/>
 
 ---
 
@@ -207,6 +280,11 @@ code: haskell
     Prelude> let doubleMe x = x + x
     Prelude> doubleMe 5
     10
+
+---
+
+title: Lists
+class: segue dark
 
 ---
 
@@ -524,13 +602,15 @@ code: haskell
 
 ---
 
-title: Unbounded ranges
+title: Laziness
 
-- By not specifying an upper limit in a range, you create an infinite list
-    - Haskell is *lazy*, it won't try to evaluate the infinite list immediately...
+- By not specifying an upper limit, you create an **unbounded range**
+    - `[13,26..]`
+    - If you just try to display the result, it will go on forever
+    - So you have to slice it off somewhere
+- Haskell is **lazy**, it won't try to evaluate the *infinite list* immediately...
     - Otherwise it would never finish
-    - It'll wait to see what you want to get out of that infinite list
-    - If you just try to display the result, it will go on forever so you have to slice it off somewhere
+    - It'll wait to see what you *really* want to get out of that infinite list
 - Ex.: get the first 24 multiples of 13
     - `[13,26..24*13]`
     - `take 24 [13,26..]`

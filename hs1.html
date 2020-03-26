@@ -139,6 +139,95 @@ def rq(x: int) -&gt; int:
 <slide  >
   
     <hgroup>
+      <h2>Integral approximation</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>def some_func(x: float) -&gt; float:
+    return x * x + x
+
+def integral(a: float, b: float, n: int) -&gt; float:
+    """Estimate the area beneath the curve some_func, between the
+    abscissas a and b; the region is approximated as n rectangles.
+    """
+    total = 0.0
+    dx = (b - a) / n
+    for i in range(n):
+        total += dx * some_func(a + dx * i)
+    return total
+
+area = integral(1, 10, 1_000_000)
+print(area)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Function as parameter</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>def integral(f, a: float, b: float, n: int) -&gt; float:
+    """Estimate the area beneath the curve f, between a and b.
+    """
+    ## added new param f: 'types.Callable[[float], float]'
+
+    total = 0.0
+    dx = (b - a) / n
+    for i in range(n):
+        total += dx * f(a + dx * i)
+    return total
+
+area_func = integral(some_func, 1, 10, 1_000_000)
+print(area_func)
+
+area_sin = integral(math.sin, 0, math.pi, 1_000_000)
+print(area_sin)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Function as result</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>def create_pow(exponent: float):
+    """Create and return a function, which calculates a power.
+    """
+    def result(base: float):
+        return base ** exponent
+    return result
+
+root = create_pow(0.5)
+cube = create_pow(3)
+
+print(root(3))
+print(root(4))
+
+print(cube(3))
+print(cube(4))
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Haskell</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Haskell</h2>
       <h3></h3>
     </hgroup>
@@ -161,6 +250,7 @@ def rq(x: int) -&gt; int:
 </li>
 <li>Lazy evaluation</li>
 <li>Pattern matching</li>
+<li><strong>Very large influence on many other languages</strong></li>
 </ul>
 <blockquote></blockquote>
 <p><a href="http://haskell.cs.yale.edu/wp-content/uploads/2011/02/history.pdf">http://haskell.cs.yale.edu/wp-content/uploads/2011/02/history.pdf</a></p></article>
@@ -231,10 +321,11 @@ def rq(x: int) -&gt; int:
     <article >
       <figure>
         <img src="images/fun/learn-haskell.png">
-        
+        <figcaption>The textbook, free, online</figcaption>
       </figure><ul>
-<li>Install the “<em>Glasgow Haskell Compiler</em>”<ul>
+<li>Install or try the “<em>Glasgow Haskell Compiler</em>”<ul>
 <li><code>sudo apt install ghc</code></li>
+<li><a href="https://repl.it/languages/haskell">https://repl.it/languages/haskell</a></li>
 </ul>
 </li>
 <li>REPL: Read-Eval-Print Loop<ul>
@@ -252,8 +343,7 @@ def rq(x: int) -&gt; int:
 8
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://learnyouahaskell.com/">http://learnyouahaskell.com/</a></p>
-<p><a href="http://www.haskell.org/">http://www.haskell.org/</a></p></article>
+<p><a href="http://learnyouahaskell.com/">http://learnyouahaskell.com/</a> - <a href="http://www.haskell.org/">http://www.haskell.org/</a></p></article>
  
 </slide>
 
@@ -342,6 +432,16 @@ Prelude&gt; doubleMe 5
 10
 </code></pre></article>
  
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Lists</h2>
+      <h3></h3>
+    </hgroup>
+  
 </slide>
 
 <slide  >
@@ -783,16 +883,20 @@ Prelude&gt; [5,4..1]   -- Negative step: you can't just do `[5..1]`
 <slide  >
   
     <hgroup>
-      <h2>Unbounded ranges</h2>
+      <h2>Laziness</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>By not specifying an upper limit in a range, you create an infinite list<ul>
-<li>Haskell is <em>lazy</em>, it won't try to evaluate the infinite list immediately...</li>
+<li>By not specifying an upper limit, you create an <strong>unbounded range</strong><ul>
+<li><code>[13,26..]</code></li>
+<li>If you just try to display the result, it will go on forever</li>
+<li>So you have to slice it off somewhere</li>
+</ul>
+</li>
+<li>Haskell is <strong>lazy</strong>, it won't try to evaluate the <em>infinite list</em> immediately...<ul>
 <li>Otherwise it would never finish</li>
-<li>It'll wait to see what you want to get out of that infinite list</li>
-<li>If you just try to display the result, it will go on forever so you have to slice it off somewhere</li>
+<li>It'll wait to see what you <em>really</em> want to get out of that infinite list</li>
 </ul>
 </li>
 <li>Ex.: get the first 24 multiples of 13<ul>
