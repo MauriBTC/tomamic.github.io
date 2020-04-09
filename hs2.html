@@ -138,30 +138,6 @@ maximum' (x:xs) = max x (maximum' xs)
 <slide  >
   
     <hgroup>
-      <h2>Replicate with recursion</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li><code>replicate</code> takes an <code>Int</code> and some element</li>
-<li>Returns a list with repetitions of same element</li>
-<li>For instance, <code>replicate 3 5</code> returns <code>[5,5,5]</code></li>
-<li>Edge condition: replicate something zero times (or less) → empty list</li>
-</ul>
-<pre class="" data-lang="haskell"><code>replicate' :: Int -&gt; a -&gt; [a]
-replicate' n x
-    | n &lt;= 0    = []
-    | otherwise = x:replicate' (n-1) x
-</code></pre>
-<ul>
-<li>Guards instead of patterns: testing for a boolean condition</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Take with recursion</h2>
       <h3></h3>
     </hgroup>
@@ -207,30 +183,6 @@ reverse' (x:xs) = reverse' xs ++ [x]
 <slide  >
   
     <hgroup>
-      <h2>Infinite recursion</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Haskell is <em>lazy</em> and supports infinite lists</li>
-<li>Recursion without edge condition</li>
-<li><code>repeat</code> takes an element and returns an infinite list...</li>
-</ul>
-<pre class="" data-lang="haskell"><code>repeat' :: a -&gt; [a]
-repeat' x = x:repeat' x
-</code></pre>
-<ul>
-<li><code>repeat 3</code> evaluates like <code>3:repeat 3</code>, which is <code>3:(3:repeat 3)</code>...</li>
-<li><code>repeat 3</code> gives us a list that starts with 3, and then has an infinite amount of 3's as a tail</li>
-<li><code>take 5 (repeat 3)</code> will give us a list of five 3's</li>
-<li>Essentially it's like doing <code>replicate 5 3</code></li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Zip with recursion</h2>
       <h3></h3>
     </hgroup>
@@ -270,6 +222,54 @@ elem' a (x:xs)
     | a == x    = True
     | otherwise = a `elem'` xs
 </code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Replicate with recursion</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><code>replicate</code> takes an <code>Int</code> and some element</li>
+<li>Returns a list with repetitions of same element</li>
+<li>For instance, <code>replicate 3 5</code> returns <code>[5,5,5]</code></li>
+<li>Edge condition: replicate something zero times (or less) → empty list</li>
+</ul>
+<pre class="" data-lang="haskell"><code>replicate' :: Int -&gt; a -&gt; [a]
+replicate' n x
+    | n &lt;= 0    = []
+    | otherwise = x:replicate' (n-1) x
+</code></pre>
+<ul>
+<li>Guards instead of patterns: testing for a boolean condition</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Infinite recursion</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Haskell is <em>lazy</em> and supports infinite lists</li>
+<li>Recursion without edge condition</li>
+<li><code>repeat</code> takes an element and returns an infinite list...</li>
+</ul>
+<pre class="" data-lang="haskell"><code>repeat' :: a -&gt; [a]
+repeat' x = x:repeat' x
+</code></pre>
+<ul>
+<li><code>repeat 3</code> evaluates like <code>3:repeat 3</code>, which is <code>3:(3:repeat 3)</code>...</li>
+<li><code>repeat 3</code> gives us a list that starts with 3, and then has an infinite amount of 3's as a tail</li>
+<li><code>take 5 (repeat 3)</code> will give us a list of five 3's</li>
+<li>Essentially it's like doing <code>replicate 5 3</code></li>
+</ul></article>
  
 </slide>
 
@@ -358,7 +358,7 @@ Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="Python"><code>def merge_sort(v, first=0, last=len(v)-1):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def merge_sort(v, first=0, last=len(v)-1):
     '''In v, sort elements between first and last'''
     if last - first &gt; 0:
         middle = (first + last) // 2
@@ -373,17 +373,45 @@ Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
 <slide  >
   
     <hgroup>
+      <h2>Merge, con appoggio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>def merge(v, first, middle, last):
+    '''Merge two sorted portions of a single list'''
+    i1, i2, n = first, middle, 1 + last - first
+    result = []
+
+    for k in range(n):
+        if i1 &lt; middle and (i2 &gt; last or v[i1] &lt;= v[i2]):
+            result.append(v[i1])
+            i1 += 1
+        else:
+            result.append(v[i2])
+            i2 += 1
+
+    for k in range(n):
+        v[first + k] = result[k]
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://visualgo.net/en/sorting?slide=10">https://visualgo.net/en/sorting?slide=10</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Ex.: Merge sort</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>Define a <code>merge</code> function<ul>
+<li>Define a <code>merge</code> function in Haskell<ul>
 <li>Takes two sorted lists</li>
 <li>Returns a sorted list, with all the elems</li>
 </ul>
 </li>
-<li>Define a <code>mergeSort</code> function<ul>
+<li>Define a <code>mergeSort</code> function in Haskell<ul>
 <li>Takes a list</li>
 <li>Splits it at half</li>
 <li>Sorts each part, recursively</li>
