@@ -373,34 +373,6 @@ Prelude&gt; quicksort "the quick brown fox jumps over the lazy dog"
 <slide  >
   
     <hgroup>
-      <h2>Merge, con appoggio</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>def merge(v, first, middle, last):
-    '''Merge two sorted portions of a single list'''
-    i1, i2, n = first, middle, 1 + last - first
-    result = []
-
-    for k in range(n):
-        if i1 &lt; middle and (i2 &gt; last or v[i1] &lt;= v[i2]):
-            result.append(v[i1])
-            i1 += 1
-        else:
-            result.append(v[i2])
-            i2 += 1
-
-    for k in range(n):
-        v[first + k] = result[k]
-</code></pre>
-<blockquote></blockquote>
-<p><a href="https://visualgo.net/en/sorting?slide=10">https://visualgo.net/en/sorting?slide=10</a></p></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>Ex.: Merge sort</h2>
       <h3></h3>
     </hgroup>
