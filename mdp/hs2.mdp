@@ -250,7 +250,7 @@ code: py
 title: Ex.: Merge sort
 
 - Define a `merge` function in Haskell
-    - Takes two sorted lists
+    - Takes two *sorted* lists
     - Returns a sorted list, with all the elems
 - Define a `mergeSort` function in Haskell
     - Takes a list
