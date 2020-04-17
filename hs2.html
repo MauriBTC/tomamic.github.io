@@ -1144,7 +1144,7 @@ f' a b = \c -&gt; a * b + c
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; from functools import partial
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from functools import partial
 &gt;&gt;&gt; pow(2, 5)
 32
 &gt;&gt;&gt; pow2 = partial(pow, 2)
@@ -1168,14 +1168,14 @@ f' a b = \c -&gt; a * b + c
 <li>Callable: any object with <code>__call__</code> method</li>
 <li><code>foo()</code> is interpreted as <code>foo.__call__()</code></li>
 </ul>
-<pre class="" data-lang="python"><code>class Multiplier:
+<pre class="prettyprint lang-py" data-lang="py"><code>class Multiplier:
     def __init__(self, to_mul):
         self._to_mul = to_mul
 
     def __call__(self, val):
         return self._to_mul * val
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; triple = Multiplier(3)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; triple = Multiplier(3)
 &gt;&gt;&gt; triple(5)
 15
 </code></pre>
@@ -1196,12 +1196,12 @@ f' a b = \c -&gt; a * b + c
 <li>Applies the f. to each value in the sequence</li>
 <li>Returns the (<em>lazy</em>) sequence of results</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from math import sqrt
 &gt;&gt;&gt; values = [0, 1, 2, 3, 4]
 &gt;&gt;&gt; list(map(sqrt, values))
 [0.0, 1.0, 1.4142, 1.7320, 2.0]
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; from math import sqrt
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from math import sqrt
 &gt;&gt;&gt; list(map(sqrt, range(5)))
 [0.0, 1.0, 1.4142, 1.7320, 2.0]
 </code></pre></article>
@@ -1225,7 +1225,7 @@ f' a b = \c -&gt; a * b + c
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>from multiprocessing import Pool
+<pre class="prettyprint lang-py" data-lang="py"><code>from multiprocessing import Pool
 
 with Pool(5) as p:
     print(p.map(sqrt, [1, 2, 3]))
@@ -1246,7 +1246,7 @@ with Pool(5) as p:
       <ul>
 <li>The <code>operator</code> module defines f.s representing operators</li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from operator import add, mul
 &gt;&gt;&gt; add(2, 3)
 5
 &gt;&gt;&gt; list(map(add, [3, 5, 2, 1], [2, 5, 3]))
@@ -1278,7 +1278,7 @@ with Pool(5) as p:
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; sorted([3, -4, 5, -2])
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; sorted([3, -4, 5, -2])
 [-4, -2, 3, 5]
 &gt;&gt;&gt; sorted([3, -4, 5, -2], key=abs)
 [-2, 3, -4, 5]
@@ -1305,7 +1305,7 @@ with Pool(5) as p:
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; def mypow(x, y): return x ** y  # or a lambda...
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; def mypow(x, y): return x ** y  # or a lambda...
 &gt;&gt;&gt; cube = partial(mypow, y=3)
 &gt;&gt;&gt; cube(2)
 8
@@ -1324,7 +1324,7 @@ TypeError: pow() takes no keyword arguments
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>def func(required_arg, *args, **kwargs):
+      <pre class="prettyprint lang-py" data-lang="py"><code>def func(required_arg, *args, **kwargs):
     print(required_arg)
     # args is a tuple of positional arguments,
     if args: # if not empty.
@@ -1333,7 +1333,7 @@ TypeError: pow() takes no keyword arguments
     if kwargs: # if not empty.
         print(kwargs)
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; func()
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; func()
 TypeError: func() takes at least 1 argument (0 given)
 &gt;&gt;&gt; func("required argument", 1, 2, '3', key1=4, key2="foo")
 required argument
@@ -1354,14 +1354,14 @@ required argument
 <li>Call with <code>*</code> to unpack params out of a sequence</li>
 <li>Dictionaries can deliver keyword params with <code>**</code></li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; int("14", 16)    # int(x, base=10)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; int("14", 16)    # int(x, base=10)
 20
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; values = ["14", 16]
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; values = ["14", 16]
 &gt;&gt;&gt; int(*values)
 20
 </code></pre>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; d = {"x":"14", "base":16}
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; d = {"x":"14", "base":16}
 &gt;&gt;&gt; int(**d)
 20
 </code></pre></article>
@@ -1619,7 +1619,7 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="python"><code>&gt;&gt;&gt; from functools import reduce
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from functools import reduce
 &gt;&gt;&gt; reduce(lambda a, b: a + b, [3, 5, 2, 1], 0)
 11
 </code></pre></article>
@@ -1633,7 +1633,7 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="" data-lang="python"><code>&gt;&gt;&gt; from operator import add, mul
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from operator import add, mul
 &gt;&gt;&gt; add(2, 3)
 5
 &gt;&gt;&gt; reduce(add, [3, 5, 2, 1])

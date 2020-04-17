@@ -376,7 +376,7 @@ figcaption: Class diagram UML
 - Mimic the following Python datatype, in Haskell *functional* style
 - Implement a `move` f., for advancing a step and bouncing at borders
 
-code: python
+code: py
 
     ARENA_W, ARENA_H = 320, 240
     BALL_W, BALL_H = 20, 20
@@ -1367,7 +1367,7 @@ figure: images/oop/actors.svg
     - *In Haskell: compile-time polymorphism!*
     - Cannot mix different *types* in a list, even if they are part of the same *typeclass*
 
-code: python
+code: py
 
     class Arena:  # ...
         def __init__(self):

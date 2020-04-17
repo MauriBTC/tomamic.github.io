@@ -804,7 +804,7 @@ title: Partials
     - Returns a `partial` object, which is callable
     - “Freezes” some params, f. with simpler signature
 
-code: python
+code: py
 
     >>> from functools import partial
     >>> pow(2, 5)
@@ -823,7 +823,7 @@ title: Callable objects
 - Callable: any object with `__call__` method
 - `foo()` is interpreted as `foo.__call__()`
 
-code: python
+code: py
 
     class Multiplier:
         def __init__(self, to_mul):
@@ -832,7 +832,7 @@ code: python
         def __call__(self, val):
             return self._to_mul * val
 
-code: python
+code: py
 
     >>> triple = Multiplier(3)
     >>> triple(5)
@@ -850,14 +850,14 @@ title: Map function
 - Applies the f. to each value in the sequence
 - Returns the (*lazy*) sequence of results
 
-code: python
+code: py
 
     >>> from math import sqrt
     >>> values = [0, 1, 2, 3, 4]
     >>> list(map(sqrt, values))
     [0.0, 1.0, 1.4142, 1.7320, 2.0]
 
-code: python
+code: py
 
     >>> from math import sqrt
     >>> list(map(sqrt, range(5)))
@@ -874,7 +874,7 @@ title: Multiprocessing
     - Any callable object (with `__call__` method),
     - Including a `partial` object (“freezing” some params of a f.)
 
-code: python
+code: py
 
     from multiprocessing import Pool
 
@@ -893,7 +893,7 @@ title: Python operators as functions
 
 - The `operator` module defines f.s representing operators
 
-code: python
+code: py
 
     >>> from operator import add, mul
     >>> add(2, 3)
@@ -918,7 +918,7 @@ title: Lambda functions
 - Closure for referenced variables (*by ref*)
     - To get stg *by val*, add it as a default param
 
-code: python
+code: py
 
     >>> sorted([3, -4, 5, -2])
     [-4, -2, 3, 5]
@@ -940,7 +940,7 @@ title: Partial with built-ins
     - Params have to be passed in a fixed order
     - Cannot partially apply (or even pass) params by name
 
-code: python
+code: py
 
     >>> def mypow(x, y): return x ** y  # or a lambda...
     >>> cube = partial(mypow, y=3)
@@ -955,7 +955,7 @@ code: python
 
 title: Variadic functions
 
-code: python
+code: py
 
     def func(required_arg, *args, **kwargs):
         print(required_arg)
@@ -966,7 +966,7 @@ code: python
         if kwargs: # if not empty.
             print(kwargs)
 
-code: python
+code: py
 
     >>> func()
     TypeError: func() takes at least 1 argument (0 given)
@@ -982,18 +982,18 @@ title: Parameters unpacking
 - Call with `*` to unpack params out of a sequence
 - Dictionaries can deliver keyword params with `**`
 
-code: python
+code: py
 
     >>> int("14", 16)    # int(x, base=10)
     20
 
-code: python
+code: py
 
     >>> values = ["14", 16]
     >>> int(*values)
     20
 
-code: python
+code: py
 
     >>> d = {"x":"14", "base":16}
     >>> int(**d)
@@ -1162,7 +1162,7 @@ figure: images/fun/foldl.png
     - Without initial value, f. is applied to first 2 elements
     - Similar to Haskell *folding*
 
-code: python
+code: py
 
     >>> from functools import reduce
     >>> reduce(lambda a, b: a + b, [3, 5, 2, 1], 0)
@@ -1172,7 +1172,7 @@ code: python
 
 title: Python reduce with operators
 
-code: python
+code: py
 
     >>> from operator import add, mul
     >>> add(2, 3)
