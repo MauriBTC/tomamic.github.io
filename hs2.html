@@ -1652,6 +1652,27 @@ filter' p = foldr (\x acc -&gt; if p x then x : acc else acc) []
 <slide  >
   
     <hgroup>
+      <h2>Ex. Skyscrapers in Haskell</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/histogram.png">
+        
+      </figure><ul>
+<li>Given a list of unique positive integers values...</li>
+<li>How many times does the maximum change?</li>
+<li>Can you compute it with a single fold?</li>
+<li>Then, redo the exercise in Python</li>
+</ul>
+<blockquote></blockquote>
+<p>From left to right, how many “rooftops” are visible? (In the example: 6)</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>🤔 Scans</h2>
       <h3></h3>
     </hgroup>
@@ -1701,27 +1722,6 @@ Prelude&gt; sqrtSums
 Prelude&gt; sum (map sqrt [1..131])  -- try also 130
 1005.0942035344083
 </code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Ex. Skyscrapers in Haskell</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/misc/histogram.png">
-        
-      </figure><ul>
-<li>Given a list of unique positive integers values...</li>
-<li>How many times does the maximum change?</li>
-<li>Can you compute it with a single fold?</li>
-<li>Then, redo the exercise in Python</li>
-</ul>
-<blockquote></blockquote>
-<p>From left to right, how many “rooftops” are visible? (In the example: 6)</p></article>
  
 </slide>
 

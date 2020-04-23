@@ -1192,6 +1192,20 @@ Reducing with a non-associative f. is considered bad style, in Python
 
 ---
 
+title: Ex. Skyscrapers in Haskell
+figure: images/misc/histogram.png
+
+- Given a list of unique positive integers values...
+- How many times does the maximum change?
+- Can you compute it with a single fold?
+- Then, redo the exercise in Python
+
+>
+
+From left to right, how many “rooftops” are visible? (In the example: 6)
+
+---
+
 title: 🤔 Scans
 
 - `scanl` and `scanr` are like `foldl` and `foldr`
@@ -1230,20 +1244,6 @@ code: haskell
     131
     Prelude> sum (map sqrt [1..131])  -- try also 130
     1005.0942035344083
-
----
-
-title: Ex. Skyscrapers in Haskell
-figure: images/misc/histogram.png
-
-- Given a list of unique positive integers values...
-- How many times does the maximum change?
-- Can you compute it with a single fold?
-- Then, redo the exercise in Python
-
->
-
-From left to right, how many “rooftops” are visible? (In the example: 6)
 
 ---
 
