@@ -1262,7 +1262,7 @@ code: haskell
     f $ x = f x
 
 - Normal f. application (putting a space between two things) has a really high precedence
-- The `$` f. has the *lowest precedence*
+- The `$` f. has the *lowest precedence* (and right associativity)
 - It's mostly a convenience f., to spare so many parentheses
 
 ---
