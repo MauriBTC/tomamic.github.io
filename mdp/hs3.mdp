@@ -399,6 +399,10 @@ title: Randomness
 
 - The `System.Random` module has all needed f.s, including `random`
 
+code: cmd
+
+    `cabal install random`
+
 code: haskell
 
     random :: (RandomGen g, Random a) => g -> (a, g)
@@ -409,10 +413,6 @@ code: haskell
     - `Random`: types representing random values
 - Why does it also return a new generator?
     - *Idempotence*: calling a f. with same params twice, produces same result
-
->
-
-`sudo apt install libghc-random-dev`
 
 ---
 
@@ -539,6 +539,10 @@ code: shell
     $ ./helloworld
     "hello, world"
 
+>
+
+Protip: `runhaskell` runs a program (`.hs`) on the fly
+
 ---
 
 title: I/O actions
@@ -601,7 +605,7 @@ code: haskell
 
 title: I/O results
 
-- Take a look at this piece of code. Is it valid?
+- Take a look at this piece of code. *Is it valid?*
 
 code: haskell
 
@@ -610,7 +614,7 @@ code: haskell
 - `++` requires both its params to be lists over the same type
     - The left parameter has a type of `String` (or `[Char]`)
     - `getLine` has a type of `IO String`
-    - You can't concatenate a string and an I/O action
+    - You **can't** concatenate a string and an I/O action
 
 ---
 
@@ -625,13 +629,14 @@ code: haskell
 - To get the value out of an I/O action
     - Bind it to a name with `<-`, inside another I/O action
     - Deal with impure data, in impure env
-    - *Keep the I/O parts of your code as small as possible!*
+- *Keep the I/O parts of your code as small as possible!*
 
 ---
 
 title: Lines with reversed words
 
-- Continuously read a line and print it out with the words reversed, until reading a blank line
+- Read a line and print it out with each word reversed
+- Repeat until reading a blank line
 
 code: haskell
 
@@ -642,12 +647,13 @@ code: haskell
             else do
                 print $ reverseWords line
                 main
+
     reverseWords :: String -> String
     reverseWords = unwords . map reverse . words
 
-- Protip: `runhaskell` runs a program on the fly
-    - `runhaskell helloworld.hs`
-- The `words`, `unwords` f.s are in the stdlib
+>
+
+`words` and `unwords` for splitting and joining strings; in stdlib
 
 ---
 
@@ -684,9 +690,9 @@ title: Split or join text
     - `intercalate :: String -> [String] -> String`
     - In modules `Data.List.Split` and `Data.List`
 
->
+code: cmd
 
-sudo apt install libghc-split-dev
+    cabal install split
 
 ---
 
@@ -707,26 +713,6 @@ code: haskell
 - `print` prints an instance of `Show`
 - It's basically `putStrLn . show`
 - `getChar` reads a `Char` from the input (with buffering)
-
----
-
-title: The when action
-
-- Like a control flow statement, but actually a normal f.
-- It takes a boolean value and an I/O action
-    - If value is `True`, it returns the same I/O action
-    - If it's `False`, it returns `return ()` -- void action
-- Encapsulats `if ... else return ()` pattern
-
-code: haskell
-
-    import Control.Monad
-
-    main = do
-        c <- getChar
-        when (c /= ' ') $ do
-            putChar c
-            main
 
 ---
 
@@ -756,23 +742,21 @@ code: haskell
 
 ---
 
-title: The sequence action
+title: Sequence and map
 
 - Useful when mapping f.s like `print` or `putStrLn` over lists
-- `map print [1,2,3,4]` creates a list of I/O actions
+- `map print [1,2,3]` creates a list of I/O actions
 - `sequence` transforms that list into an I/O action
 
 code: haskell
 
-    Prelude> sequence (map print [1,2,3,4,5])
+    Prelude> sequence (map print [1,2,3])
     1
     2
     3
-    4
-    5
-    [(),(),(),(),()]
+    [(),(),()]
 
-- What's with the `[(),(),(),(),()]` at the end?
+- What's with the `[(),(),()]` at the end?
 - When we evaluate an I/O action *in GHCI*, it's performed, and...
 - Then its result is printed out, unless it's `()`
 
@@ -782,7 +766,7 @@ title: The mapM action
 
 - Mapping a f. that returns an I/O action over a list and then sequencing: very common
 - `mapM` takes a f. and a list, maps the function over the list, then sequences it
-- `mapM_` does the same, only it throws away the result
+- `mapM_` does the same, only it throws away the result and returns `()`
 
 code: haskell
 
@@ -798,47 +782,31 @@ code: haskell
 
 ---
 
-title: The forever action
-
-- `forever` takes an I/O action `act` and...
-- Returns an I/O action that just repeats `act` forever
+title: For-each cycles
 
 code: haskell
-
-    import Control.Monad
-    import Data.Char
-
-    main = forever $ do
-        print "Give me some input:"
-        l <- getLine
-        print $ map toUpper l
-
----
-
-title: The forM action
-
-- `forM` is like `mapM`, with switched params
-- Useful in combination with lambdas and `do` notation
-
-code: haskell
-
-    import Control.Monad
 
     main = do
-        colors <- forM [1,2,3,4] (\a -> do
+        colors <- mapM (\a -> do
             print $ "Which color do you associate with the number "
                     ++ show a ++ "?"
             color <- getLine
-            return color)
+            return color) [1,2,3,4]
         print "The colors that you associate with 1, 2, 3 and 4 are: "
         mapM print colors
 
-- Simply `getLine`, which already contains same data
-    - `color <- getLine; return color;` is just unpacking and repackaging the result
+- `color <- getLine; return color;`
+    - It is just unpacking and repackaging the result
+    - Simply `getLine`, which already contains same data
+
+>
+
+`Control.Monad.forM` is like `mapM`, with switched params <br>
+Useful in combination with lambdas and `do` notation
 
 ---
 
-title: Interact
+title: The getContents action
 
 - `getContents`: whole stdin as a `String` (*lazy*)
 
@@ -872,7 +840,7 @@ title: Basic operations on files
 
 code:haskell
 
-    import System.IO
+    import System.IO (withFile, IOMode(ReadMode), hGetContents)
 
     main = do
         withFile "something.txt" ReadMode (\handle -> do
@@ -887,12 +855,74 @@ title: Read and write on files
 
 code:haskell
 
-    import System.IO
-    import Data.Char
+    import System.IO (readFile, writeFile)
+    import Data.Char (toUpper)
 
     main = do
         contents <- readFile "girlfriend.txt"
         writeFile "girlfriendcaps.txt" (map toUpper contents)
+
+---
+
+title: Ex.: Skyscrapers
+figure: images/misc/skyscrapers.jpg
+
+- Read one of the following files in Haskell
+    - <http://sowide.ce.unipr.it/sites/default/files/files/skyscrapers_games.zip>
+    - Represent data as a *list of lists of ints*, i.e., `[[Int]]`
+    - The numbers on the borders are the *constraints* to satisfy
+- Check if data complies with the following rules
+    - <https://www.brainbashers.com/skyscrapershelp.asp>
+    - Check also unicity and range of values
+
+>
+
+Minimize the *impure* part <br>
+Possibly, use `reverse` and `transpose`
+
+`import Data.List (transpose)` <br>
+`parseInt = read :: String -> Int`
+
+---
+
+title: The when action
+
+- Like a control flow statement, but actually a normal f.
+- It takes a boolean value and an I/O action
+    - If value is `True`, it returns the same I/O action
+    - If it's `False`, it returns `return ()` -- void action
+- Encapsulats `if ... else return ()` pattern
+
+code: haskell
+
+    import Control.Monad (when)
+
+    main = do
+        c <- getChar
+        when (c /= ' ') $ do
+            putChar c
+            main
+
+---
+
+title: The forever action
+
+- `forever` takes an I/O action `act` and...
+- Returns an I/O action that just repeats `act` forever
+
+code: haskell
+
+    import Control.Monad (forever)
+    import Data.Char (toUpper)
+
+    main = forever $ do
+        print "Give me some input:"
+        l <- getLine
+        print $ map toUpper l
+
+>
+
+In this case, close the `stdin` stream to break out
 
 ---
 
@@ -904,7 +934,7 @@ title: Getting a rnd generator
 
 code: haskell
 
-    import System.Random
+    import System.Random (getStdGen, randomRs)
 
     main = do
         gen <- getStdGen
@@ -958,20 +988,6 @@ code: haskell
     main = do
         gen <- getStdGen
         interact $ unlines . (process gen) . lines
-
----
-
-title: Ex.: Skyscrapers
-figure: images/misc/skyscrapers.jpg
-
-- Open the following files in Haskell and read the content as a matrix
-    - <http://sowide.ce.unipr.it/sites/default/files/files/games.zip>
-    - The numbers on the borders represent constraints to satisfy
-- Check if data complies with the following rules
-    - <https://www.brainbashers.com/skyscrapershelp.asp>
-    - Check also unicity and range of values
-- Possibly, use `reverse` and `transpose`
-    - From module `Data.List`
 
 ---
 

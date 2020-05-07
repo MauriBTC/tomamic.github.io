@@ -197,7 +197,7 @@ figure: images/fun/learn-haskell.png
 figcaption: The textbook, free, online
 
 - Install or try the “*Glasgow Haskell Compiler*”
-    - `sudo apt install ghc`
+    - `sudo apt install ghc cabal-install`
     - <https://repl.it/languages/haskell>
 - REPL: Read-Eval-Print Loop
     - `ghci`

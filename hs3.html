@@ -522,6 +522,8 @@ class Ball:
       <ul>
 <li>The <code>System.Random</code> module has all needed f.s, including <code>random</code></li>
 </ul>
+<pre class="" data-lang="cmd"><code>`cabal install random`
+</code></pre>
 <pre class="" data-lang="haskell"><code>random :: (RandomGen g, Random a) =&gt; g -&gt; (a, g)
 </code></pre>
 <ul>
@@ -535,9 +537,7 @@ class Ball:
 <li><em>Idempotence</em>: calling a f. with same params twice, produces same result</li>
 </ul>
 </li>
-</ul>
-<blockquote></blockquote>
-<p><code>sudo apt install libghc-random-dev</code></p></article>
+</ul></article>
  
 </slide>
 
@@ -698,7 +698,9 @@ Prelude&gt; randomR (1,6) (mkStdGen 654321)
 Linking helloworld ...
 $ ./helloworld
 "hello, world"
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p>Protip: <code>runhaskell</code> runs a program (<code>.hs</code>) on the fly</p></article>
  
 </slide>
 
@@ -800,7 +802,7 @@ getLine :: IO String
     </hgroup>
     <article >
       <ul>
-<li>Take a look at this piece of code. Is it valid?</li>
+<li>Take a look at this piece of code. <em>Is it valid?</em></li>
 </ul>
 <pre class="" data-lang="haskell"><code>nameTag = "Hello, my name is " ++ getLine
 </code></pre>
@@ -808,7 +810,7 @@ getLine :: IO String
 <li><code>++</code> requires both its params to be lists over the same type<ul>
 <li>The left parameter has a type of <code>String</code> (or <code>[Char]</code>)</li>
 <li><code>getLine</code> has a type of <code>IO String</code></li>
-<li>You can't concatenate a string and an I/O action</li>
+<li>You <strong>can't</strong> concatenate a string and an I/O action</li>
 </ul>
 </li>
 </ul></article>
@@ -832,9 +834,9 @@ getLine :: IO String
 <li>To get the value out of an I/O action<ul>
 <li>Bind it to a name with <code>&lt;-</code>, inside another I/O action</li>
 <li>Deal with impure data, in impure env</li>
-<li><em>Keep the I/O parts of your code as small as possible!</em></li>
 </ul>
 </li>
+<li><em>Keep the I/O parts of your code as small as possible!</em></li>
 </ul></article>
  
 </slide>
@@ -847,7 +849,8 @@ getLine :: IO String
     </hgroup>
     <article >
       <ul>
-<li>Continuously read a line and print it out with the words reversed, until reading a blank line</li>
+<li>Read a line and print it out with each word reversed</li>
+<li>Repeat until reading a blank line</li>
 </ul>
 <pre class="" data-lang="haskell"><code>main = do
     line &lt;- getLine
@@ -856,16 +859,12 @@ getLine :: IO String
         else do
             print $ reverseWords line
             main
+
 reverseWords :: String -&gt; String
 reverseWords = unwords . map reverse . words
 </code></pre>
-<ul>
-<li>Protip: <code>runhaskell</code> runs a program on the fly<ul>
-<li><code>runhaskell helloworld.hs</code></li>
-</ul>
-</li>
-<li>The <code>words</code>, <code>unwords</code> f.s are in the stdlib</li>
-</ul></article>
+<blockquote></blockquote>
+<p><code>words</code> and <code>unwords</code> for splitting and joining strings; in stdlib</p></article>
  
 </slide>
 
@@ -925,8 +924,8 @@ reverseWords = unwords . map reverse . words
 </ul>
 </li>
 </ul>
-<blockquote></blockquote>
-<p>sudo apt install libghc-split-dev</p></article>
+<pre class="" data-lang="cmd"><code>cabal install split
+</code></pre></article>
  
 </slide>
 
@@ -961,33 +960,6 @@ putStr (x:xs) = do
 <slide  >
   
     <hgroup>
-      <h2>The when action</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Like a control flow statement, but actually a normal f.</li>
-<li>It takes a boolean value and an I/O action<ul>
-<li>If value is <code>True</code>, it returns the same I/O action</li>
-<li>If it's <code>False</code>, it returns <code>return ()</code> -- void action</li>
-</ul>
-</li>
-<li>Encapsulats <code>if ... else return ()</code> pattern</li>
-</ul>
-<pre class="" data-lang="haskell"><code>import Control.Monad
-
-main = do
-    c &lt;- getChar
-    when (c /= ' ') $ do
-        putChar c
-        main
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
       <h2>The sequence action</h2>
       <h3></h3>
     </hgroup>
@@ -1015,25 +987,23 @@ main = do
 <slide  >
   
     <hgroup>
-      <h2>The sequence action</h2>
+      <h2>Sequence and map</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
 <li>Useful when mapping f.s like <code>print</code> or <code>putStrLn</code> over lists</li>
-<li><code>map print [1,2,3,4]</code> creates a list of I/O actions</li>
+<li><code>map print [1,2,3]</code> creates a list of I/O actions</li>
 <li><code>sequence</code> transforms that list into an I/O action</li>
 </ul>
-<pre class="" data-lang="haskell"><code>Prelude&gt; sequence (map print [1,2,3,4,5])
+<pre class="" data-lang="haskell"><code>Prelude&gt; sequence (map print [1,2,3])
 1
 2
 3
-4
-5
-[(),(),(),(),()]
+[(),(),()]
 </code></pre>
 <ul>
-<li>What's with the <code>[(),(),(),(),()]</code> at the end?</li>
+<li>What's with the <code>[(),(),()]</code> at the end?</li>
 <li>When we evaluate an I/O action <em>in GHCI</em>, it's performed, and...</li>
 <li>Then its result is printed out, unless it's <code>()</code></li>
 </ul></article>
@@ -1050,7 +1020,7 @@ main = do
       <ul>
 <li>Mapping a f. that returns an I/O action over a list and then sequencing: very common</li>
 <li><code>mapM</code> takes a f. and a list, maps the function over the list, then sequences it</li>
-<li><code>mapM_</code> does the same, only it throws away the result</li>
+<li><code>mapM_</code> does the same, only it throws away the result and returns <code>()</code></li>
 </ul>
 <pre class="" data-lang="haskell"><code>Prelude&gt; mapM print [1,2,3]
 1
@@ -1068,60 +1038,36 @@ Prelude&gt; mapM_ print [1,2,3]
 <slide  >
   
     <hgroup>
-      <h2>The forever action</h2>
+      <h2>For-each cycles</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li><code>forever</code> takes an I/O action <code>act</code> and...</li>
-<li>Returns an I/O action that just repeats <code>act</code> forever</li>
-</ul>
-<pre class="" data-lang="haskell"><code>import Control.Monad
-import Data.Char
-
-main = forever $ do
-    print "Give me some input:"
-    l &lt;- getLine
-    print $ map toUpper l
-</code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>The forM action</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li><code>forM</code> is like <code>mapM</code>, with switched params</li>
-<li>Useful in combination with lambdas and <code>do</code> notation</li>
-</ul>
-<pre class="" data-lang="haskell"><code>import Control.Monad
-
-main = do
-    colors &lt;- forM [1,2,3,4] (\a -&gt; do
+      <pre class="" data-lang="haskell"><code>main = do
+    colors &lt;- mapM (\a -&gt; do
         print $ "Which color do you associate with the number "
                 ++ show a ++ "?"
         color &lt;- getLine
-        return color)
+        return color) [1,2,3,4]
     print "The colors that you associate with 1, 2, 3 and 4 are: "
     mapM print colors
 </code></pre>
 <ul>
-<li>Simply <code>getLine</code>, which already contains same data<ul>
-<li><code>color &lt;- getLine; return color;</code> is just unpacking and repackaging the result</li>
+<li><code>color &lt;- getLine; return color;</code><ul>
+<li>It is just unpacking and repackaging the result</li>
+<li>Simply <code>getLine</code>, which already contains same data</li>
 </ul>
 </li>
-</ul></article>
+</ul>
+<blockquote></blockquote>
+<p><code>Control.Monad.forM</code> is like <code>mapM</code>, with switched params <br>
+Useful in combination with lambdas and <code>do</code> notation</p></article>
  
 </slide>
 
 <slide  >
   
     <hgroup>
-      <h2>Interact</h2>
+      <h2>The getContents action</h2>
       <h3></h3>
     </hgroup>
     <article >
@@ -1162,7 +1108,7 @@ shortLinesOnly input =
 </ul>
 </li>
 </ul>
-<pre class="" data-lang="haskell"><code>import System.IO
+<pre class="" data-lang="haskell"><code>import System.IO (withFile, IOMode(ReadMode), hGetContents)
 
 main = do
     withFile "something.txt" ReadMode (\handle -&gt; do
@@ -1182,13 +1128,95 @@ main = do
       <ul>
 <li><strong>simpler</strong> f.s: <code>readFile</code>, <code>writeFile</code>, <code>appendFile</code></li>
 </ul>
-<pre class="" data-lang="haskell"><code>import System.IO
-import Data.Char
+<pre class="" data-lang="haskell"><code>import System.IO (readFile, writeFile)
+import Data.Char (toUpper)
 
 main = do
     contents &lt;- readFile "girlfriend.txt"
     writeFile "girlfriendcaps.txt" (map toUpper contents)
 </code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Ex.: Skyscrapers</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/skyscrapers.jpg">
+        
+      </figure><ul>
+<li>Read one of the following files in Haskell<ul>
+<li><a href="http://sowide.ce.unipr.it/sites/default/files/files/skyscrapers_games.zip">http://sowide.ce.unipr.it/sites/default/files/files/skyscrapers_games.zip</a></li>
+<li>Represent data as a <em>list of lists of ints</em>, i.e., <code>[[Int]]</code></li>
+<li>The numbers on the borders are the <em>constraints</em> to satisfy</li>
+</ul>
+</li>
+<li>Check if data complies with the following rules<ul>
+<li><a href="https://www.brainbashers.com/skyscrapershelp.asp">https://www.brainbashers.com/skyscrapershelp.asp</a></li>
+<li>Check also unicity and range of values</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Minimize the <em>impure</em> part <br>
+Possibly, use <code>reverse</code> and <code>transpose</code></p>
+<p><code>import Data.List (transpose)</code> <br>
+<code>parseInt = read :: String -&gt; Int</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>The when action</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Like a control flow statement, but actually a normal f.</li>
+<li>It takes a boolean value and an I/O action<ul>
+<li>If value is <code>True</code>, it returns the same I/O action</li>
+<li>If it's <code>False</code>, it returns <code>return ()</code> -- void action</li>
+</ul>
+</li>
+<li>Encapsulats <code>if ... else return ()</code> pattern</li>
+</ul>
+<pre class="" data-lang="haskell"><code>import Control.Monad (when)
+
+main = do
+    c &lt;- getChar
+    when (c /= ' ') $ do
+        putChar c
+        main
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>The forever action</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><code>forever</code> takes an I/O action <code>act</code> and...</li>
+<li>Returns an I/O action that just repeats <code>act</code> forever</li>
+</ul>
+<pre class="" data-lang="haskell"><code>import Control.Monad (forever)
+import Data.Char (toUpper)
+
+main = forever $ do
+    print "Give me some input:"
+    l &lt;- getLine
+    print $ map toUpper l
+</code></pre>
+<blockquote></blockquote>
+<p>In this case, close the <code>stdin</code> stream to break out</p></article>
  
 </slide>
 
@@ -1206,7 +1234,7 @@ main = do
 </li>
 <li><code>newStdGen</code>, get a new generator, update the global one</li>
 </ul>
-<pre class="" data-lang="haskell"><code>import System.Random
+<pre class="" data-lang="haskell"><code>import System.Random (getStdGen, randomRs)
 
 main = do
     gen &lt;- getStdGen
@@ -1269,35 +1297,6 @@ main = do
     gen &lt;- getStdGen
     interact $ unlines . (process gen) . lines
 </code></pre></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Ex.: Skyscrapers</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <figure>
-        <img src="images/misc/skyscrapers.jpg">
-        
-      </figure><ul>
-<li>Open the following files in Haskell and read the content as a matrix<ul>
-<li><a href="http://sowide.ce.unipr.it/sites/default/files/files/games.zip">http://sowide.ce.unipr.it/sites/default/files/files/games.zip</a></li>
-<li>The numbers on the borders represent constraints to satisfy</li>
-</ul>
-</li>
-<li>Check if data complies with the following rules<ul>
-<li><a href="https://www.brainbashers.com/skyscrapershelp.asp">https://www.brainbashers.com/skyscrapershelp.asp</a></li>
-<li>Check also unicity and range of values</li>
-</ul>
-</li>
-<li>Possibly, use <code>reverse</code> and <code>transpose</code><ul>
-<li>From module <code>Data.List</code></li>
-</ul>
-</li>
-</ul></article>
  
 </slide>
 
