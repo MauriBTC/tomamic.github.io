@@ -1142,6 +1142,30 @@ URL: https://code.google.com/p/io-2012-slides
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>De Morgan</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>if x1 == x2 and y1 == y2:
+    print("the points are equal")
+</code></pre>
+<pre class="prettyprint lang-py" data-lang="py"><code>if x1 != x2 or y1 != y2:  # not (x1 == x2 and y1 == y2)
+    print("the points are different")
+</code></pre>
+<ul>
+<li>Python permette di confrontare tuple</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>pt1 = x1, y1
+pt2 = x2, y2
+if pt1 != pt2:
+    print("the points are different")
+</code></pre></article>
+ 
+</slide>
+
 <slide class="large-table" >
   
     <hgroup>
@@ -1154,7 +1178,7 @@ URL: https://code.google.com/p/io-2012-slides
 <li><code>F<sub>1</sub>(A, B, C) = (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
 </ul>
 </li>
-<li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0<ul>
+<li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0, <em>negate</em><ul>
 <li><code>F<sub>1</sub>(A, B, C) = (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)</code></li>
 </ul>
 </li>
@@ -1231,28 +1255,516 @@ URL: https://code.google.com/p/io-2012-slides
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Cenni di logica</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
 <slide  >
   
     <hgroup>
-      <h2>🤔 Operazioni bit a bit in Python</h2>
+      <h2>Proposizione</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>x, y, z, shift = 0, 0, 0, 0  # some int values
-x &lt;&lt; shift  # x = x * (2^shift)
-x &gt;&gt; shift  # x = x / (2^shift), con segno
-x &amp; y       # AND applicato bit a bit
-x | y       # OR applicato bit a bit
-x ^ y       # XOR bit a bit
-~x          # complemento di ogni bit
+      <ul>
+<li>Frase dichiarativa di senso compiuto che possa esser riconosciuta come “vera” o “falsa”<ul>
+<li><strong>Principio di non contraddizione</strong>: un enunciato non può essere contemporaneamente vero e falso</li>
+<li><strong>Principio del terzo escluso</strong>: un enunciato è vero o falso, non esiste una terza possibilità (<em>tertium non datur</em>)</li>
+</ul>
+</li>
+<li>Ad esempio, sono proposizioni:<ul>
+<li>“Il cane è un animale” - “2 = 1” - “I triangoli hanno tre lati”</li>
+</ul>
+</li>
+<li>... Mentre non lo sono:<ul>
+<li>“Il cane” - “Che ore sono?” - “Se 2 = 1” - “Non fumare!” - “Io sono bugiardo” (*)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>(*) Paradosso: non si può stabilire se la frase è vera o falsa</p>
+<p>Tarsia @ UniPI: <a href="http://people.dm.unipi.it/tarsia/dida1011/logins05.pdf">http://people.dm.unipi.it/tarsia/dida1011/logins05.pdf</a></p></article>
+ 
+</slide>
 
-z = 0x0B    # hex value (11 dec)
-z = 0b1011  # bin value (11 dec)
+<slide  >
+  
+    <hgroup>
+      <h2>Connettivi logici</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Gli operatori booleani si usano anche con le proposizioni<ul>
+<li>“e” (<em>congiunzione</em>, ∧)</li>
+<li>“o” (<em>disgiunzione</em>, ∨)</li>
+<li>“non” (<em>negazione</em>, ¬)</li>
+<li>Valgono le proprietà già viste</li>
+</ul>
+</li>
+<li>In logica, chiamati <em>connettivi</em><ul>
+<li>Servono a legare proposizioni in forma più complessa</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
 
-hex(11)     # '0x0b' (text)
-bin(0x0B)   # '0b1011' (text)
-</code></pre>
-<p>Da non confondere con operatori logici (and, or, not)</p></article>
+<slide  >
+  
+    <hgroup>
+      <h2>Connettivo condizionale o implicazione logica</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Esprime il legame “se” ... “allora”<ul>
+<li>P: “io penso” (<em>premessa</em>)</li>
+<li>Q: “io esisto” (<em>conseguenza</em>)</li>
+<li>P ⇒ Q: “se penso allora esisto”</li>
+</ul>
+</li>
+<li>P ⇒ Q si può leggere nei seguenti modi:<ul>
+<li>Se P allora Q</li>
+<li>Da P segue Q</li>
+<li>P è <em>condizione sufficiente</em> per Q (se P è vera, allora Q è vera)</li>
+<li>Q è <em>condizione necessaria</em> per P (se Q è falsa, allora P è falsa)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Verità dell'implicazione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>P ⇒ Q è falsa solo in un caso: quando P è vera e Q è falsa<ul>
+<li>¬(P ⇒ Q) = (P ∧ ¬Q)</li>
+</ul>
+</li>
+<li>Ne consegue che P ⇒ Q è vera se P è falsa o Q è vera<ul>
+<li>P ⇒ Q = ¬(P ∧ ¬Q) = <em>[De Morgan]</em> <br> ¬P ∨ ¬(¬Q) = <em>[Doppia negazione]</em> <br> ¬P ∨ Q</li>
+</ul>
+</li>
+<li>Esempi di implicazioni vere:<ul>
+<li>“Se 5 è un numero allora Roma è una città”</li>
+<li>“Se Parigi è la capitale d'Italia, allora 5 + 5 = 10”</li>
+</ul>
+</li>
+<li>L'mplicazione <strong>non</strong> soddisfa la proprietà commutativa:<ul>
+<li>(P ⇒ Q) ≠ (Q ⇒ P)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Doppia implicazione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>P ⇔ Q: valgono contemporaneamente le implicazioni P ⇒ Q e Q ⇒ P</li>
+<li>P ⇔ Q è vera quando P e Q sono entrambe vere o entrambe false<ul>
+<li>Applichiamo proprietà distributiva e proprietà dell'inverso</li>
+<li>(P ⇒ Q) ∧ (Q ⇒ P) = <br> (¬P ∨ Q) ∧ (¬Q ∨ P) = <br> ((¬P) ∧ (¬Q ∨ P)) ∨ (Q ∧ ((¬Q) ∧ P)) = <br> ((¬P) ∧ ¬Q) ∨ (¬P ∧ P) ∨ ((P ∧ Q) ∨ (¬Q ∧ Q)) = <br> (P ∧ Q) ∨ (¬P ∧ ¬Q)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Deduzione logica</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Un <em>teorema</em> si riconduce all’implicazione P ⇒ Q<ul>
+<li>P (<em>ipotesi</em>): proposizione che si assume vera</li>
+<li>Q (<em>tesi</em>): proposizione di cui si vuole dedurre la verità</li>
+</ul>
+</li>
+<li>Processo di <em>deduzione logica</em>, o <em>dimostrazione</em>, deve seguire ben precise regole di <em>inferenza</em><ul>
+<li>Dimostrazione diretta (<em>modus ponens</em>)</li>
+<li>Dimostrazione per assurdo (<em>modus tollens</em>)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Dimostrazione diretta, modus ponens</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Schema di ragionamento</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Premessa</th>
+<th>Conseguenza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(P ⇒ Q) vera <br> P vera</td>
+<td>Q vera</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Esempio<ul>
+<li>Se c'è sole, Ugo arriva in bici (implicazione)</li>
+<li>C'è sole (fatto)</li>
+<li>Ugo arriva in bici (deduzione)</li>
+</ul>
+</li>
+<li>Alla base dei sillogismi aristotelici (con quantificatori)<ul>
+<li><em>Premessa maggiore</em>: “Tutti gli uomini sono mortali”</li>
+<li><em>Premessa minore</em>: “Socrate è un uomo”</li>
+<li><em>Conclusione</em>: “Socrate è mortale”</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Osservazioni sul modus ponens</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Il solo fatto di sapere che P ⇒ Q è vera non consente di concludere niente su P e Q</li>
+<li>Sono possibili dimostrazioni con più passaggi intermedi<ul>
+<li>Se sono vere le implicazioni P ⇒ R, R ⇒ Q e se P è vera, allora è vera anche Q</li>
+<li>((P ⇒ R) ∧ (R ⇒ Q) ∧ P) ⇒ Q</li>
+</ul>
+</li>
+<li>Schema di ragionamento</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Premessa</th>
+<th>Conseguenza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(P ⇒ R) vera <br> (R ⇒ Q) vera <br> P vera</td>
+<td>Q vera</td>
+</tr>
+</tbody>
+</table></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Dimostrazione per assurdo, modus tollens</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Se è vera l’implicazione ¬Q ⇒ ¬P ed è vera P, allora è vera anche Q</li>
+<li>Schema di ragionamento</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Premessa</th>
+<th>Conseguenza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(¬Q ⇒ ¬P) vera <br> P vera</td>
+<td>Q vera</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Esempio di teorema<ul>
+<li>P: m·n ≠ 0</li>
+<li>Q: (m ≠ 0) ∧ (n ≠ 0)</li>
+<li>Dimostrazione per assurdo: ¬Q ⇒ ¬P</li>
+<li>Se (m = 0) oppure (n = 0), allora m·n = 0</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Predicato, o enunciato aperto</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Frase che contiene <em>variabili</em><ul>
+<li>La verità della frase dipende dal valore delle variabili</li>
+<li>Se variabili sostituite da valori, diventa proposizione</li>
+</ul>
+</li>
+<li>Esempio<ul>
+<li>P(x): “x è un numero dispari”</li>
+</ul>
+</li>
+<li>Occorre definire il <em>dominio</em> delle variabili</li>
+<li><em>Insieme di verità</em> del predicato<ul>
+<li>Valori delle variabili che rendono vero l'enunciato</li>
+<li>Sottoinsieme del dominio delle variabili</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Predicati con connettivi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>P(x) ∧ Q(x) -- Vero per gli x che rendono veri entrambi i pred.</li>
+<li>P(x) ∨ Q(x) -- Vero per gli x che rendono vero almeno un pred.</li>
+<li>¬P(x) -- Vero per gli x che rendono falso il pred.</li>
+<li>P(x) ⇒ Q(x) -- Vero per gli x che rendono falso P oppure vero Q</li>
+<li>P(x) ⇔ Q(x) -- Vero per gli x che rendono i pred. entrambi falsi o entrambi veri</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quantificatori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Un predicato può essere trasformato in una proposizione in due modi<ul>
+<li>Sostituendo la variabili con valori</li>
+<li><em>Quantificando</em> le sue variabili</li>
+<li>Una variabile legata ad un quantificatore si dice <em>vincolata</em>, altrimenti <em>libera</em></li>
+</ul>
+</li>
+<li>I quantificatori logici sono due<ul>
+<li>Quantificatore <strong>universale</strong></li>
+<li>Quantificatore <strong>esistenziale</strong></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quantificatore universale</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Una data proprietà vale per tutti i valori possibili delle variabili</li>
+<li><code>∀x, P(x)</code> -- “Per ogni x, P(x) è vero”</li>
+<li>Esempi<ul>
+<li>∀n ∈ N, n è multiplo di 4 ⇒ n è pari</li>
+<li>∀x ∈ R ∀y ∈ R, (x + y)<sup>2</sup> = x<sup>2</sup> + 2xy + y<sup>2</sup></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Quantificatore esistenziale</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Una data proprietà vale per almeno un valore delle variabili</li>
+<li><code>∃x : P(x)</code> -- “Esiste almeno un x tale che P(x) è vero”</li>
+<li>Esempi<ul>
+<li>∃n ∈ N: n è pari -- Esiste almeno un numero pari</li>
+<li>∃x ∈ R: 2x + 1 = 0 -- L'equazione ammette almeno una soluzione</li>
+</ul>
+</li>
+<li>Enunciati con ∄ riformulati con ∀ e negando il predicato<ul>
+<li>∄x : x<sup>2</sup> &lt; 0</li>
+<li>∀x, x<sup>2</sup> ≥ 0</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Proprietà dei quantificatori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>I quantificatori sono sostanzialmente <em>congiunzioni</em> o <em>disgiunzioni</em> allargate a tutti gli elementi di un insieme</li>
+<li>Due quantificatori dello stesso tipo <em>possono</em> essere scambiati di posto senza alterare la verità dell’enunciato</li>
+<li>Invece, due quantificatori di diverso tipo <em>non possono</em> essere scambiati di posto</li>
+<li>I seguenti enunciati sono ben diversi<ul>
+<li>∀x, ∃y : y ≥ x</li>
+<li>∃y : ∀x, y ≥ x</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Negazione con quantificatori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Per negare un enunciato che contiene quantificatori, occorrono due modifiche:<ul>
+<li>(1) Scambiare tra loro quantificatore universale ∀ e quantificatore esistenziale ∃</li>
+<li>(2) Negare il predicato</li>
+</ul>
+</li>
+<li>Esempi<ul>
+<li>¬(∀x, P(x)) ⇔ ∃x : ¬P(x)</li>
+<li>¬(∃x : P(x)) ⇔ ∀x, ¬P(x)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-table" >
+  
+    <hgroup>
+      <h2>Operazioni tra insiemi</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Siano definiti due insiemi: A = {x : P(x)}, B = {x : Q(x)}</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Proprietà</th>
+<th>Op. tra insiemi</th>
+<th>Op. tra predicati</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commutativa</td>
+<td>A ∪ B = B ∪ A</td>
+<td>P ∨ Q ⇔ Q ∨ P</td>
+</tr>
+<tr>
+<td>Commutativa</td>
+<td>A ∩ B = B ∩ A</td>
+<td>P ∧ Q ⇔ Q ∧ P</td>
+</tr>
+<tr>
+<td>Associativa</td>
+<td>(A ∪ B) ∪ C = A ∪ (B ∪ C)</td>
+<td>(P ∨ Q) ∨ R ⇔ P ∨ (Q ∨ R)</td>
+</tr>
+<tr>
+<td>Associativa</td>
+<td>(A ∩ B) ∩ C = A ∩ (B ∩ C)</td>
+<td>(P ∧ Q) ∧ R ⇔ P ∧ (Q ∧ R)</td>
+</tr>
+<tr>
+<td>Distributiva</td>
+<td>(A ∪ B) ∩ C = (A ∩ C) ∪ (B ∩ C)</td>
+<td>(P ∨ Q) ∧ R ⇔ (P ∧ R) ∨ (Q ∧ R)</td>
+</tr>
+<tr>
+<td>Distributiva</td>
+<td>(A ∩ B) ∪ C = (A ∪ C) ∩ (B ∪ C)</td>
+<td>(P ∧ Q) ∨ R ⇔ (P ∨ R) ∧ (Q ∨ R)</td>
+</tr>
+<tr>
+<td>Doppia negazione</td>
+<td>(B<sup>C</sup>)<sup>C</sup> = B</td>
+<td>¬(¬P) ⇔ P</td>
+</tr>
+<tr>
+<td>De Morgan</td>
+<td>(A ∪ B)<sup>C</sup> = A<sup>C</sup> ∩ B<sup>C</sup></td>
+<td>¬(P ∨ Q) ⇔ ¬P ∧ ¬Q</td>
+</tr>
+<tr>
+<td>De Morgan</td>
+<td>(A ∩ B)<sup>C</sup> = A<sup>C</sup> ∪ B<sup>C</sup></td>
+<td>¬(P ∧ Q) ⇔ ¬P ∨ ¬Q</td>
+</tr>
+</tbody>
+</table></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Principio di induzione</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Sia P(n) un predicato definito ∀n ≥ k, (n ∈ N, k ∈ N) tale che:<ul>
+<li>(1) P(k) è vera</li>
+<li>(2) ∀n ≥ k : supponendo P(n) vera segue che anche P(n+1) è vera</li>
+<li>Allora P(n) risulta vera per ogni n ≥ k</li>
+</ul>
+</li>
+<li>In una formula:<ul>
+<li>(P(k) ∧ (∀n ≥ k, P(n) ⇒ P(n + 1))) ⇒ (∀n ≥ k, P(n))</li>
+</ul>
+</li>
+<li>Esercizio: dimostrare la formula di Gauss<ul>
+<li>1 + 2 + 3 + ··· + n = n (n + 1) / 2</li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 

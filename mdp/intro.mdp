@@ -49,18 +49,28 @@ figure: images/dev/geek-girl.jpg
 ---
 
 title: Istruzioni per i laboratori
+figure: images/dev/lab.jpg
 
 - Verificare in anticipo il proprio account per l'accesso ai lab
     - <http://www.cedi.unipr.it/gestioneaccounts>
-- Esercitazioni ogni lunedì pomeriggio, su 2 turni distinti
-    - 13:30-15:30 matricole terminanti con *3-4-5-6-7-8-9*
-    - 15:30-17:30 matricole terminanti con *0-1-2*
-- Possibile sviluppare da soli o in coppia
-    - Ma tassativamente *non più di due!*
-    - Se si sviluppa in coppia, turno determinato dalla *matricola minore*
+- Esercitazioni ogni lunedì, su 2 turni distinti
+    - 10:00-11:55 matricole *pari*
+    - 12:00-13:55 matricole *dispari*
+- Esercizi da cominciare in lab e continuare a casa, *da soli*
 - Verifica esercitazioni
-    - Alla fine di ogni esercitazione, consegna dei programmi in una cartella denominata con la propria matricola
+    - Alla fine di ogni esercitazione, consegna dei programmi secondo le indicazioni del docente
     - Periodicamente, lavori consegnati sottoposti a *valutazioni intermedie*, non preannunciate
+
+---
+
+title: Progetti
+figure: images/misc/videogames.jpg
+class: large-figure
+
+- Più avanti, un paio di progetti a casa
+    - Contrassegnati con `P1` e `P2`
+    - Da sviluppare in alcune settimane, da soli o in coppia
+    - Ma tassativamente *non più di due!*
 
 ---
 
@@ -74,8 +84,8 @@ title: Tutor e assistenza
 - A lezione
     - *Esempi* prima delle esercitazioni
     - *Soluzioni* di esercizi delle settimane precedenti
-- Ogni mercoledì, *ricevimento* aperto a tutti, 12:30-14:30
-    - Palazzina B della sede scientifica (~ biblioteca)
+- *Ricevimento* aperto a tutti
+    - In lab, ogni venerdì, 13:00-14:55 (?)
 
 ---
 
@@ -98,10 +108,10 @@ figure: images/dii/quiz.png
 title: Testi di riferimento
 figure: images/dev/books.png
 
-- *Informatica e Laboratorio di Programmazione (A.A. 2019-2020)*, McGraw-Hill 2019. ISBN 978-13-074-5700-1 (~27€, ~300pp., nelle librerie universitarie)
+- *Informatica e Laboratorio di Programmazione (A.A. 2019-2020)*, McGraw-Hill 2019. ISBN 978-1307457001 (~26€, ~300pp., nelle librerie universitarie, su Amazon ecc.)
 - A.B. Downey: *Think Python* 2e - <https://github.com/AllenDowney/ThinkPythonItalian>
 - A.B. Downey: *How to Think Like a Computer Scientist C++ Version* - <http://greenteapress.com/thinkcpp/>
-- M. Beri: *Python*, Apogeo Pocket 2010, 978-8850329151 (~8€)
+- M. Beri: *Python 3*, Apogeo Pocket 2010, 978-8850329151 (~8€)
 
 ---
 
@@ -122,18 +132,18 @@ title: Strumenti software
 figure: images/dev/python-logo-notext.svg images/dev/cpp.png
 
 - Strumenti open source, multi-piattaforma
-    - [**Python.org**](https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe), v3.7, *battery included*
+    - [**Python.org**](https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe), v3.8, *battery included*
     - [Playground Python](http://www.ce.unipr.it/brython/)
     - [**MinGW**](https://nuwen.net/mingw.html), Compilatore C++, con *librerie*
-- Installare [Ubuntu](http://releases.ubuntu.com/19.04/) in una [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- Installare [Ubuntu](http://releases.ubuntu.com/20.04/) in una [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
     - [WikiHow.com](https://www.wikihow.com/Install-Ubuntu-on-VirtualBox)
 
 code: Shell
 
     ## Ubuntu, Debian etc.
-    sudo apt install idle3 python3-pip geany
-    sudo apt install build-essential libboost-dev
-    pip3 install pygame cppyy thonny
+    sudo apt install idle3 python3-pip python3-pygame
+    sudo apt install build-essential libboost-dev geany
+    #pip3 install cppyy thonny
 
 ---
 
@@ -165,6 +175,8 @@ figure: images/dev/problem-solving-cycle.svg images/hist/polya.jpg
     - Realizzare il sistema da sperimentare
 
 > If you can't solve a problem... then there is an easier problem you can solve: find it. *(G. Polya)*
+
+> [La risposta è dentro di te... (Quelo)](https://www.youtube.com/watch?v=WGQ7JZRZ65M)
 
 ---
 
@@ -231,7 +243,7 @@ class: large-image
 
 >
 
-<http://blockly-games.appspot.com/maze>
+<https://blockly.games/maze?lang=it>
 
 ---
 
@@ -259,24 +271,25 @@ title: 🤔 Ricerca binaria
 figure: images/comp/binary-search.png
 class: large-figure
 
-- Approccio più intelligente, sapendo che nel dizionario le parole sono ordinate
-- Ad ogni passo si dimezza lo spazio di ricerca
+- Dizionario: parole *ordinate*
+- Approccio più intelligente: ad ogni passo si dimezza lo spazio di ricerca
 
 code: pseudo
 
     SpazioDiRicerca = Intero dizionario
     Finchè non hai indovinato:
-        Prendi la parola a metà dello SpazioDiRicerca
-        Chiedi all'utente: “È questa la tua parola segreta?”
+        Prendi la parola a metà di SpazioDiRicerca
+        Chiedi: “È questa la tua parola segreta?”
         Se “Sì!”: finito!
         Altrimenti:
-            Chiedi all'utente: “Viene prima o dopo della parola segreta?”
+            Chiedi: “Viene prima o dopo della parola segreta?”
             Se “Dopo”: Scarta la 2^^a^^ metà dall'attuale SpazioDiRicerca
             Altrimenti: Scarta la 1^^a^^ metà dall'attuale SpazioDiRicerca
 
 >
 
-In un dizionario di 100k parole, bastano 17 tentativi
+In un dizionario di 100k parole, bastano 17 tentativi <br>
+2^^17^^ > 100k, dopo 17 dimezzamenti resta un solo elemento
 
 ---
 
@@ -341,7 +354,7 @@ figure: images/misc/slitherlink-solved.png
 
 >
 
-<http://www.nikoli.com/en/puzzles/slitherlink/>
+<https://www.nikoli.co.jp/en/puzzles/slitherlink.html>
 
 <https://www.brainbashers.com/slitherlinkhelp.asp>
 
@@ -388,7 +401,7 @@ figure: images/misc/hitori.svg images/misc/hitori-completed.svg
 
 >
 
-<http://www.nikoli.com/en/puzzles/hitori>
+<https://www.nikoli.co.jp/en/puzzles/hitori.html>
 
 ---
 
@@ -427,7 +440,7 @@ figure: images/misc/akari.svg
 
 >
 
-<http://www.nikoli.com/en/puzzles/bijutsukan/rule.html>
+<https://www.nikoli.co.jp/en/puzzles/akari.html>
 
 ---
 
