@@ -13,8 +13,10 @@ class: large-figure
 
 ---
 
-title: Tipi di dato
+title: Shell interattiva
 
+- Python si presenta con una interfaccia *REPL*
+    - Read-Eval-Print Loop
 - Un **tipo di dato** specifica un insieme di *valori* e le *operazioni* ammesse
     - `int, float, bool, str`
     - Operazioni aritmetiche e logiche, confronti
@@ -44,10 +46,10 @@ title: Valori numerici e booleani
 
 code: py
 
-    >>> -2 // 3    # floored integer division
-    -1
-    >>> -2 % 3     # reminder is always positive
-    1
+    >>> -7 // 3    # floored integer division
+    -3
+    >>> -7 % 3     # reminder is always positive
+    2
     >>> 2 ** 1000  # no limits (but memory)
     107150[...]069376
 
@@ -134,7 +136,8 @@ class: large-image
 ---
 
 title: Leggere e scrivere
-figure: images/algo/hello-user.svg
+figure: images/algo/holy-grail.jpg
+class: large-figure
 
 - **`input`** legge una riga di *testo*, inserita dall'utente, in una *variabile*
     - Prima mostra un messaggio
@@ -143,9 +146,14 @@ figure: images/algo/hello-user.svg
 
 code: py
 
-    user = input("What's your name? ")
+    >>> quester = input("What is your name? ")
+    What is your name? Lancelot
+    >>> print("Right. Off you go,", quester, ".")
+    Right. Off you go, Lancelot .
 
-    print("Hello,", user)
+>
+
+<https://www.youtube.com/watch?v=0D7hFHfLEyk>
 
 ---
 

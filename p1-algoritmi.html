@@ -52,11 +52,15 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>Tipi di dato</h2>
+      <h2>Shell interattiva</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
+<li>Python si presenta con una interfaccia <em>REPL</em><ul>
+<li>Read-Eval-Print Loop</li>
+</ul>
+</li>
 <li>Un <strong>tipo di dato</strong> specifica un insieme di <em>valori</em> e le <em>operazioni</em> ammesse<ul>
 <li><code>int, float, bool, str</code></li>
 <li>Operazioni aritmetiche e logiche, confronti</li>
@@ -95,10 +99,10 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; -2 // 3    # floored integer division
--1
-&gt;&gt;&gt; -2 % 3     # reminder is always positive
-1
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; -7 // 3    # floored integer division
+-3
+&gt;&gt;&gt; -7 % 3     # reminder is always positive
+2
 &gt;&gt;&gt; 2 ** 1000  # no limits (but memory)
 107150[...]069376
 </code></pre></article>
@@ -220,7 +224,7 @@ True
  
 </slide>
 
-<slide  >
+<slide class="large-figure" >
   
     <hgroup>
       <h2>Leggere e scrivere</h2>
@@ -228,7 +232,7 @@ True
     </hgroup>
     <article >
       <figure>
-        <img src="images/algo/hello-user.svg">
+        <img src="images/algo/holy-grail.jpg">
         
       </figure><ul>
 <li><strong><code>input</code></strong> legge una riga di <em>testo</em>, inserita dall'utente, in una <em>variabile</em><ul>
@@ -240,10 +244,13 @@ True
 </ul>
 </li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>user = input("What's your name? ")
-
-print("Hello,", user)
-</code></pre></article>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; quester = input("What is your name? ")
+What is your name? Lancelot
+&gt;&gt;&gt; print("Right. Off you go,", quester, ".")
+Right. Off you go, Lancelot .
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://www.youtube.com/watch?v=0D7hFHfLEyk">https://www.youtube.com/watch?v=0D7hFHfLEyk</a></p></article>
  
 </slide>
 
