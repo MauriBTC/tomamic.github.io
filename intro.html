@@ -281,7 +281,7 @@ URL: https://code.google.com/p/io-2012-slides
         
       </figure><ul>
 <li>Strumenti open source, multi-piattaforma<ul>
-<li><a href="https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe"><strong>Python.org</strong></a>, v3.8, <em>battery included</em></li>
+<li><a href="https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe"><strong>Python.org</strong></a>, v3.8, <em>battery included</em></li>
 <li><a href="http://www.ce.unipr.it/brython/">Playground Python</a></li>
 <li><a href="https://nuwen.net/mingw.html"><strong>MinGW</strong></a>, Compilatore C++, con <em>librerie</em></li>
 </ul>
@@ -292,14 +292,14 @@ URL: https://code.google.com/p/io-2012-slides
 </li>
 </ul>
 <pre class="" data-lang="Shell"><code>## Ubuntu, Debian etc.
-sudo apt install idle3 python3-pip python3-pygame
+sudo apt install idle3 python3-pip python3-pygame thonny
 sudo apt install build-essential libboost-dev geany
-#pip3 install cppyy thonny
+#pip3 install cppyy
 </code></pre></article>
  
 </slide>
 
-<slide class="large-figure" >
+<slide  >
   
     <hgroup>
       <h2>Problem solving</h2>
@@ -307,14 +307,30 @@ sudo apt install build-essential libboost-dev geany
     </hgroup>
     <article >
       <figure>
-        <img src="images/dev/problem-solving-cycle.svg">
+        <img src="images/dev/problem-solving-cycle.svg"><img src="images/hist/polya.jpg">
         
       </figure><ul>
-<li><a href="https://www.dropbox.com/s/86ua0v7mbr6tkgm/Polya_How-to-solve-it.pdf?dl=1">“How to solve it”</a><ul>
-<li>George Polya, 1945</li>
-<li>Soluzione di problemi (mat.): processo raramente lineare <br>&nbsp;</li>
+<li>George Polya, <a href="https://www.dropbox.com/s/86ua0v7mbr6tkgm/Polya_How-to-solve-it.pdf?dl=1">“How to solve it”</a>, 1945</li>
+<li>Soluzione di problemi (matematici): processo raramente lineare</li>
 </ul>
-</li>
+<blockquote>
+<p>Example. Find the diagonal of a rectangular parallelepiped of which the length, the
+width, and the height are known. <em>(Polya, pag. 23)</em></p>
+</blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Analisi del problema</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/dev/problem-solving-cycle.svg"><img src="images/dev/parallelepiped.png">
+        
+      </figure><ul>
 <li><strong>(1) See.</strong> Capire il problema<ul>
 <li>Quali dati, incognite, condizioni?</li>
 <li>Figure, notazione... <em>modello</em></li>
@@ -336,7 +352,7 @@ sudo apt install build-essential libboost-dev geany
     </hgroup>
     <article >
       <figure>
-        <img src="images/dev/problem-solving-cycle.svg"><img src="images/hist/polya.jpg">
+        <img src="images/dev/problem-solving-cycle.svg">
         
       </figure><ul>
 <li><strong>(2) Plan.</strong> Elaborare un piano<ul>
@@ -528,16 +544,20 @@ Finchè non hai indovinato:
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li><strong>Complessità</strong>: classificare algoritmi (e problemi)<ul>
-<li><strong>Trattabili</strong>: costo accettabile, “polinomiale”</li>
-<li><strong>Non trattabili</strong>: costo “esponenziale”</li>
+      <figure>
+        <img src="images/comp/orders.svg">
+        
+      </figure><ul>
+<li><strong>Complessità</strong><ul>
+<li>Relazione tra la quantità di dati in ingresso ed il <strong>costo di elaborazione</strong></li>
+<li>Costo in termini di risorse: tempo, memoria ecc.</li>
+<li>Algoritmi <em>non trattabili</em>: costo esponenziale</li>
 </ul>
 </li>
-<li><strong>Calcolabilità</strong>: distinguere i problemi <strong>non risolvibili</strong><ul>
-<li>Es. Valore di verità di <code>P</code>: <em>Questa frase è falsa</em></li>
-<li>Incompletezza Gödel; indecidibilità <em>terminazione</em></li>
-<li>∀ formalizzazione della matematica che assiomatizza ℕ <br> → ∃ proposizione né dimostrabile né confutabile</li>
+<li><strong>Calcolabilità</strong><ul>
+<li>Distinguere i problemi <strong>non risolvibili</strong></li>
+<li>Paradossi: “<em>Questa frase è falsa</em>”</li>
+<li>Indecidibilità della <em>terminazione</em></li>
 </ul>
 </li>
 </ul></article>

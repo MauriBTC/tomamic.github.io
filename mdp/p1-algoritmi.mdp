@@ -4,12 +4,16 @@ figure: images/algo/rubik-cube.png
 
 ---
 
-title: Python!
+title: Python is fun!
 figure: images/algo/python-cases.jpg
 figcaption: Web, data science, machine learning, scripting, teaching, games, hardware, multiplatform...
 class: large-figure
 
 ![](images/algo/antigravity.png)
+
+>
+
+<https://xkcd.com/353/>
 
 ---
 
@@ -46,7 +50,7 @@ title: Valori numerici e booleani
 
 code: py
 
-    >>> -7 // 3    # floored integer division
+    >>> -7 // 3    # floor division: ⌊-7/3⌋
     -3
     >>> -7 % 3     # reminder is always positive
     2
@@ -59,7 +63,7 @@ title: Assegnamento
 figure: images/algo/assign.png
 class: large-figure
 
-- Una **variabile** serve per conservare un risultato
+- Una **variabile** serve per ricordare un risultato
 - Assegnamento, operatore `=`
     - Alla sinistra una variabile
     - Alla destra un valore
@@ -96,9 +100,12 @@ code: py
 title: Stringhe di testo
 
 - **`str`** per sequenze di caratteri *Unicode*
-- Primi 128 codici *Unicode* == *ASCII*
-    - A capo: `'\n'` (10, o 13-10... ma conversione automatica)
-    - Tabulazione: `'\t'` (9)
+    - Racchiuse tra apici doppi, o singoli
+    - Primi 128 codici *Unicode* == *ASCII*
+- Sequenze con `\` (*backslash*) per *caratteri speciali*
+    - A capo: `'\n'`
+    - Apici singoli o doppi: `'\''`, `'\"'`
+    - Altri caratteri speciali: `'\\'`, `'\t'`, `'\a'`, ...
 
 code: py
 
@@ -181,9 +188,10 @@ class: large-figure
 - Useremo un modulo *ad-hoc*: `g2d`
     - Definisce funzioni di disegno
     - Coordinate *raster*: origine in alto a sinistra
-- Nel *playground*, versione integrata con Brython
+- Nel *playground*, versione integrata con *Brython*
     - <http://www.ce.unipr.it/brython>
-    - <http://brython.info/>
+- **Documentazione**:
+    - <https://github.com/tomamic/fondinfo#g2d>
 
 >
 
