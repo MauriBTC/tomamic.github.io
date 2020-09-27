@@ -167,6 +167,10 @@ code: py
     days = "mon|wed|fri".split("|")
     # ["mon", "wed", "fri"]
 
+>
+
+<https://docs.python.org/3/tutorial/inputoutput.html>
+
 ---
 
 title: Cicli su stringhe
