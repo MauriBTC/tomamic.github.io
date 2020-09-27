@@ -181,19 +181,18 @@ print(x)      # just for debug
       </figure><pre class="prettyprint lang-py" data-lang="py"><code>size = 10
 y = int(input("Insert a value: "))
 for x in range(1, size + 1):
-    print(x * y, end=" ")  # ends with blank
-                           # no newline
+    print(x * y, end="\t")  # ends with tabulation
+                            # instead of newline
 </code></pre>
 <pre class="prettyprint lang-py" data-lang="py"><code>size = 10
 for y in range(1, size + 1):
     for x in range(1, size + 1):
-        val = x * y
-        print(f"{val:3}", end=" ")  # val represented as text
-                                    # with at least 3 chars
+        print(x * y, end="\t")
     print()
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/brython/?p2_for_tables.py">http://www.ce.unipr.it/brython/?p2_for_tables.py</a></p></article>
+<p><a href="http://www.ce.unipr.it/brython/?p2_for_tables.py">http://www.ce.unipr.it/brython/?p2_for_tables.py</a></p>
+<p>&lt;&gt;</p></article>
  
 </slide>
 
@@ -213,8 +212,7 @@ for y in range(1, size + 1):
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>def print_row(y: int, size: int):
     for x in range(1, size + 1):
-        val = x * y
-        print(f"{val:3}", end=" ")
+        print(x * y, end="\t")
     print()
 
 def print_table(size: int):

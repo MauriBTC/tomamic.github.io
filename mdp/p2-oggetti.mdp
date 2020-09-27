@@ -112,21 +112,21 @@ code: py
     size = 10
     y = int(input("Insert a value: "))
     for x in range(1, size + 1):
-        print(x * y, end=" ")  # ends with blank
-                               # no newline
+        print(x * y, end="\t")  # ends with tabulation
+                                # instead of newline
 code: py
 
     size = 10
     for y in range(1, size + 1):
         for x in range(1, size + 1):
-            val = x * y
-            print(f"{val:3}", end=" ")  # val represented as text
-                                        # with at least 3 chars
+            print(x * y, end="\t")
         print()
 
 >
 
 <http://www.ce.unipr.it/brython/?p2_for_tables.py>
+
+<>
 
 ---
 
@@ -140,8 +140,7 @@ code: py
 
     def print_row(y: int, size: int):
         for x in range(1, size + 1):
-            val = x * y
-            print(f"{val:3}", end=" ")
+            print(x * y, end="\t")
         print()
 
     def print_table(size: int):

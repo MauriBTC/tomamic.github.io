@@ -8,14 +8,13 @@ title: 1. Introduzione all'informatica
 figure: images/sys/globe.jpg
 
 - Rappresentazione dei dati
-    - Numeri
-    - Testi, immagini e suoni
+    - Numeri, testi, immagini e suoni
+- Logica
+    - Algebra booleana, logica dei predicati
 - Sviluppo del software
-    - Ciclo di vita; qualità e collaudo
+    - Ciclo di vita, qualità e collaudo
 - Teoria della computazione
-    - Linguaggi formali
-    - Automi e calcolatori
-    - Complessità computazionale
+    - Linguaggi, automi, complessità
 
 ---
 
@@ -28,16 +27,16 @@ class: large-figure
 - Liste e composizione
 - Ricorsione
 - File e matrici
-- Modern *C++*
+- *Modern C++*
 
 ---
 
 title: 3. Esercitazioni in laboratorio
 figure: images/dev/geek-girl.jpg
 
-- Esercizi brevi, prima in Python e poi in C++
+- Brevi *esercizi*, prima in Python e poi in C++
     - A riga di comando e con grafica
-- Un paio di progetti più lunghi, in Python
+- Un paio di *progetti* più lunghi, in Python
     - Giochi dinamici e su matrice
 - **Attenzione**: non sono sufficienti le poche ore in laboratorio per imparare a programmare!
     - “Venite già studiati”
@@ -237,6 +236,7 @@ figcaption: Una ricetta di cucina è un esempio di algoritmo
 
 > Goto statement considered harmful *(Dijkstra, 1968)*
 
+- Strutture con: 1 punto di ingresso, 1 punto di uscita
 - Esempi quotidiani di `if` e `while`:
     - “*Se non c'è il lievito, usare due cucchiaini di bicarbonato*”
     - “*Battere gli albumi finché non montano*”

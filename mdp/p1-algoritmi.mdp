@@ -117,10 +117,18 @@ code: py
 
 ---
 
+title: ⏩ Tabella ASCII
+class: large-image
+
+![](images/repr/ascii.png)
+
+---
+
 title: Confronto tra stringhe
 
 - Confronto tra stringhe, in ordine *lessicografico*
     - `<, <=, >, >=, ==, !=`
+    - Prima le cifre, poi le maiuscole, infine le minuscole
 
 code: py
 
@@ -132,13 +140,6 @@ code: py
     'Z'
     >>> ord('Z')
     90
-
----
-
-title: ⏩ Tabella ASCII
-class: large-image
-
-![](images/repr/ascii.png)
 
 ---
 
@@ -160,7 +161,7 @@ code: py
 
 >
 
-<https://www.youtube.com/watch?v=0D7hFHfLEyk>
+<https://www.youtube.com/watch?v=Xel0c6mpqPA>
 
 ---
 
@@ -178,6 +179,10 @@ code: py
     total = a + b + c
 
     print("The sum is", total)
+
+>
+
+<http://www.ce.unipr.it/brython/?p1_sum3.py>
 
 ---
 
