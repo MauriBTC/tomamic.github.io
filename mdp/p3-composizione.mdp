@@ -169,6 +169,29 @@ code: py
 
 >
 
+---
+
+title: 🤔 Stringhe formattate
+
+- Stringhe con `f` prima delle virgolette
+- Possono includere valori, tra graffe
+- Specifiche di formattazione, dopo `:`
+
+code: py
+
+    for a in [0, 45, 90, 135]:
+        v = math.sin(a * math.pi / 180)
+        print(f"Angle: {a:3}; Sin: {v:4.2f}")
+
+code: output
+
+    Angle:   0; Sin: 0.00
+    Angle:  45; Sin: 0.71
+    Angle:  90; Sin: 1.00
+    Angle: 135; Sin: 0.71
+
+>
+
 <https://docs.python.org/3/tutorial/inputoutput.html>
 
 ---

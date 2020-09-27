@@ -241,6 +241,31 @@ txt = "|".join(days)  # "tue|thu|sat"
 days = "mon|wed|fri".split("|")
 # ["mon", "wed", "fri"]
 </code></pre>
+<blockquote></blockquote></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>🤔 Stringhe formattate</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Stringhe con <code>f</code> prima delle virgolette</li>
+<li>Possono includere valori, tra graffe</li>
+<li>Specifiche di formattazione, dopo <code>:</code></li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>for a in [0, 45, 90, 135]:
+    v = math.sin(a * math.pi / 180)
+    print(f"Angle: {a:3}; Sin: {v:4.2f}")
+</code></pre>
+<pre class="" data-lang="output"><code>Angle:   0; Sin: 0.00
+Angle:  45; Sin: 0.71
+Angle:  90; Sin: 1.00
+Angle: 135; Sin: 0.71
+</code></pre>
 <blockquote></blockquote>
 <p><a href="https://docs.python.org/3/tutorial/inputoutput.html">https://docs.python.org/3/tutorial/inputoutput.html</a></p></article>
  
