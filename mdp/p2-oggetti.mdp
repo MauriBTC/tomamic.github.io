@@ -69,17 +69,19 @@ title: Parametri di funzioni
 - Parametri passati “*per oggetto*”
     - Variabili all'esterno: non vengono modificate
     - Liste e oggetti passati ad una funz.: modifiche *permanenti*
-- Si possono restituire più valori, come *tupla*
-    - `return 7, 5, "black"`
 
 code: py
 
     def inc(a):
         a += 1
         print(a)  # just for debug
-    x = 10
-    inc(x)
-    print(x)      # just for debug
+
+    def main():
+        x = 10
+        inc(x)
+        print(x)      # just for debug
+
+    main()
 
 ---
 
@@ -107,6 +109,9 @@ code: py
 title: Cicli e annidamento
 figure: images/fun/multiplication-table.jpg
 
+- Stampare la tavola pitagorica
+- Primo passo: stampare una sola riga
+
 code: py
 
     size = 10
@@ -125,8 +130,6 @@ code: py
 >
 
 <http://www.ce.unipr.it/brython/?p2_for_tables.py>
-
-<>
 
 ---
 
@@ -218,6 +221,20 @@ code: py
         return x, y, dx, dy
 
 <http://www.ce.unipr.it/brython/?p2_fun_ball.py>
+
+---
+
+title: Tupla come risultato
+
+- Si possono restituire più valori, come *tupla*
+- Dopo la chiamata, possono essere assegnati direttamente a più variabili
+
+code: py
+
+    def get_point() -> (int, int, str):
+        return 7, 5, "black"`
+
+    x, y, color = get_point()  # unpacking
 
 ---
 

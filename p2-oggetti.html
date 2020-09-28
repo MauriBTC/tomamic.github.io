@@ -129,17 +129,17 @@ main()  ## remove, if importing the module elsewhere
 <li>Liste e oggetti passati ad una funz.: modifiche <em>permanenti</em></li>
 </ul>
 </li>
-<li>Si possono restituire più valori, come <em>tupla</em><ul>
-<li><code>return 7, 5, "black"</code></li>
-</ul>
-</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>def inc(a):
     a += 1
     print(a)  # just for debug
-x = 10
-inc(x)
-print(x)      # just for debug
+
+def main():
+    x = 10
+    inc(x)
+    print(x)      # just for debug
+
+main()
 </code></pre></article>
  
 </slide>
@@ -178,7 +178,11 @@ print(x)      # just for debug
       <figure>
         <img src="images/fun/multiplication-table.jpg">
         
-      </figure><pre class="prettyprint lang-py" data-lang="py"><code>size = 10
+      </figure><ul>
+<li>Stampare la tavola pitagorica</li>
+<li>Primo passo: stampare una sola riga</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>size = 10
 y = int(input("Insert a value: "))
 for x in range(1, size + 1):
     print(x * y, end="\t")  # ends with tabulation
@@ -191,8 +195,7 @@ for y in range(1, size + 1):
     print()
 </code></pre>
 <blockquote></blockquote>
-<p><a href="http://www.ce.unipr.it/brython/?p2_for_tables.py">http://www.ce.unipr.it/brython/?p2_for_tables.py</a></p>
-<p>&lt;&gt;</p></article>
+<p><a href="http://www.ce.unipr.it/brython/?p2_for_tables.py">http://www.ce.unipr.it/brython/?p2_for_tables.py</a></p></article>
  
 </slide>
 
@@ -316,6 +319,25 @@ def main():
     return x, y, dx, dy
 </code></pre>
 <p><a href="http://www.ce.unipr.it/brython/?p2_fun_ball.py">http://www.ce.unipr.it/brython/?p2_fun_ball.py</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Tupla come risultato</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Si possono restituire più valori, come <em>tupla</em></li>
+<li>Dopo la chiamata, possono essere assegnati direttamente a più variabili</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>def get_point() -&gt; (int, int, str):
+    return 7, 5, "black"`
+
+x, y, color = get_point()  # unpacking
+</code></pre></article>
  
 </slide>
 

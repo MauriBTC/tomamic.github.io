@@ -592,12 +592,12 @@ if count != 0 {
         
       </figure><pre class="prettyprint lang-go" data-lang="go"><code>count := 0
 total := 0
-val := ToInt(Prompt("Val? (0 to finish)"))
+val := ToInt(Prompt("Val? (-1 to finish)"))
 
-for val != 0 {
+for val != -1 {
     total += val
     count += 1
-    val = ToInt(Prompt("Val? (0 to finish)"))
+    val = ToInt(Prompt("Val? (-1 to finish)"))
 }
 if count != 0 {
     Alert("The average is ",

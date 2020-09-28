@@ -627,12 +627,12 @@ if count != 0:
         
       </figure><pre class="prettyprint lang-py" data-lang="py"><code>total = 0
 count = 0
-val = int(input("Val? (0 to finish) "))
+val = int(input("Val? (-1 to finish) "))
 
-while val != 0:
+while val != -1:
     total += val
     count += 1
-    val = int(input("Val? (0 to finish) "))
+    val = int(input("Val? (-1 to finish) "))
 
 if count != 0:
     print("The average is", total / count)
@@ -939,7 +939,7 @@ Altrimenti ...</p></article>
 <li>Miglioramento: disegnare anche le tacche dei minuti, più piccole</li>
 </ul>
 <blockquote></blockquote>
-<p>Usare <code>math.Sin</code> e <code>math.Cos</code> per determinare le posizioni in cui disegnare</p></article>
+<p>Usare <code>math.sin</code> e <code>math.cos</code> per determinare le posizioni in cui disegnare</p></article>
  
 </slide>
 

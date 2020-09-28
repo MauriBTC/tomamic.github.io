@@ -435,12 +435,12 @@ code: py
 
     total = 0
     count = 0
-    val = int(input("Val? (0 to finish) "))
+    val = int(input("Val? (-1 to finish) "))
 
-    while val != 0:
+    while val != -1:
         total += val
         count += 1
-        val = int(input("Val? (0 to finish) "))
+        val = int(input("Val? (-1 to finish) "))
 
     if count != 0:
         print("The average is", total / count)
@@ -654,7 +654,7 @@ figure: images/misc/classical-watch.jpg
 
 >
 
-Usare `math.Sin` e `math.Cos` per determinare le posizioni in cui disegnare
+Usare `math.sin` e `math.cos` per determinare le posizioni in cui disegnare
 
 ---
 
