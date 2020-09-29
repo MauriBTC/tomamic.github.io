@@ -121,24 +121,23 @@ main()  ## remove, if importing the module elsewhere
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
+      <figure>
+        <img src="images/fun/fun-inc.svg">
+        
+      </figure><ul>
 <li><strong>Parametri formali</strong>: nomi usati nella <em>definizione</em></li>
-<li><strong>Parametri effettivi</strong>: oggetti passati alla funz.</li>
+<li><strong>Parametri effettivi</strong>: valori passati alla <em>chiamata</em></li>
 <li>Parametri passati “<em>per oggetto</em>”<ul>
-<li>Variabili all'esterno: non vengono modificate</li>
-<li>Liste e oggetti passati ad una funz.: modifiche <em>permanenti</em></li>
+<li>Variabili esterne: non riassegnate</li>
+<li>Azioni su liste e oggetti: permanenti</li>
 </ul>
 </li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>def inc(a):
-    a += 1
-    print(a)  # just for debug
-
+    a += 1  # what's a now? print it
 def main():
     x = 10
-    inc(x)
-    print(x)      # just for debug
-
+    inc(x)  # what's x now? print it
 main()
 </code></pre></article>
  

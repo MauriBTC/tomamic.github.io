@@ -63,24 +63,21 @@ code: py
 ---
 
 title: Parametri di funzioni
+figure: images/fun/fun-inc.svg
 
 - **Parametri formali**: nomi usati nella *definizione*
-- **Parametri effettivi**: oggetti passati alla funz.
+- **Parametri effettivi**: valori passati alla *chiamata*
 - Parametri passati “*per oggetto*”
-    - Variabili all'esterno: non vengono modificate
-    - Liste e oggetti passati ad una funz.: modifiche *permanenti*
+    - Variabili esterne: non riassegnate
+    - Azioni su liste e oggetti: permanenti
 
 code: py
 
     def inc(a):
-        a += 1
-        print(a)  # just for debug
-
+        a += 1  # what's a now? print it
     def main():
         x = 10
-        inc(x)
-        print(x)      # just for debug
-
+        inc(x)  # what's x now? print it
     main()
 
 ---
