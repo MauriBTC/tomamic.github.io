@@ -1,0 +1,485 @@
+title: Logica matematica
+subtitle: Introduzione all'informatica
+figure: images/repr/logical-problem.png
+
+---
+
+title: Algebra di Boole
+class: segue dark
+
+---
+
+title: Algebra di Boole
+figure: images/hist/george-boole.jpg
+figcaption: George Boole, 1815-1864
+
+- L’algebra di Boole è un formalismo che opera su variabili (dette *variabili booleane*)
+- Le variabili booleane possono assumere due soli valori
+    - `Vero`: 1
+    - `Falso`: 0
+- Sulle variabili booleane è possibile definire delle funzioni (dette *funzioni booleane*)
+- Anche le funzioni booleane possono assumere solo i due valori `vero` e `falso`
+
+---
+
+title: Funzione e tabella di verità
+class: large-table
+
+- Una *tabella di verità* permette di definire una *funzione booleana*
+- Valore risultante per ciascuna configurazione dei valori in ingresso
+
+ A | B | C | F~~1~~
+---|---|---|---
+ 0 | 0 | 0 | 1
+ 0 | 0 | 1 | 0
+ 0 | 1 | 0 | 0
+ 0 | 1 | 1 | 1
+ 1 | 0 | 0 | 0
+ 1 | 0 | 1 | 1
+ 1 | 1 | 0 | 1
+ 1 | 1 | 1 | 1
+
+>
+
+A volte, *specifica incompleta*: certe configurazioni di ingressi non possono verificarsi, perciò non è specificato alcun valore
+
+---
+
+title: Operatori di base
+class: large-table
+
+- Algebra di Boole: basata su un insieme di operatori
+- Semplici funzioni, specificate con tabelle di verità
+
+A | B | A·B | A+B | A⊕B | A⊼B | A⊽B
+--|---|-----|-----|-----|-----|----
+0 | 0 | 0   | 0   | 0   | 1   | 1
+0 | 1 | 0   | 1   | 1   | 1   | 0
+1 | 0 | 0   | 1   | 1   | 1   | 0
+1 | 1 | 1   | 1   | 0   | 0   | 0
+
+A | ¬A
+--|---
+0 | 1
+1 | 0
+
+---
+
+title: Espressione booleana
+figure: images/repr/hair-logic.svg
+
+- Operatori possono essere combinati in espressioni
+- Altra forma di definizione di funzioni booleane
+- Es. `F~~2~~(A, B, C) = A·B + C`
+
+Operatore | Simbolo
+----------|--------
+And       | `∧` (oppure `·`)
+Or        | `∨` (oppure `+`)
+Not       | `¬` (o sovralinea)
+Xor       | `⊕`
+Nand      | `⊼`
+Nor       | `⊽`
+
+---
+
+title: Proprietà degli operatori
+class: large-table
+
+- Dimostrazione: si confrontano le due tabelle di verità
+
+Proprietà    | Not
+-------------|--------
+Complemento  | ¬¬A = A
+
+Proprietà    | And                         | Or
+-------------|-----------------------------|--------------------------
+Commutativa  | `A · B = B · A`             | `A + B = B + A`
+Associativa  | `(A·B) · C = A · (B·C)`     | `(A+B) + C = A + (B+C)`
+Distributiva | `A + (B·C) = (A+B) · (A+C)` | `A · (B+C) = (A·B) + (A·C)`
+Idempotenza  | `A · A = A`                 | `A + A = A`
+Identità     | `A · 1 = A`                 | `A + 0 = A`
+Del limite   | `A · 0 = 0`                 | `A + 1 = 1`
+Assorbimento | `A · (A+B) = A`             | `A + (A·B) = A`
+Inverso      | `A · ¬A = 0`                | `A + ¬A = 1`
+De Morgan    | `¬(A·B·C…) = ¬A + ¬B + ¬C…` | `¬(A+B+C…) = ¬A · ¬B · ¬C…`
+
+>
+
+Attenzione a De Morgan: errore comune!
+
+---
+
+title: De Morgan
+
+code: py
+
+    if x1 == x2 and y1 == y2:
+        print("the points are equal")
+
+code: py
+
+    if x1 != x2 or y1 != y2:  # not (x1 == x2 and y1 == y2)
+        print("the points are different")
+
+- Python permette di confrontare tuple
+
+code: py
+
+    pt1 = x1, y1
+    pt2 = x2, y2
+    if pt1 != pt2:
+        print("the points are different")
+
+---
+
+title: Forme canoniche
+class: large-table
+
+- **Somma di Prodotti (SP)**: si considerano le righe a 1
+    - `F~~1~~(A, B, C) = (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)`
+- **Prodotto di Somme (PS)**: si considerano le righe a 0, *negate*
+    - `F~~1~~(A, B, C) = (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)`
+
+ A | B | C | F~~1~~ | → Forma canonica...
+---|---|---|---|-----
+ 0 | 0 | 0 | 1 | → SP
+ 0 | 0 | 1 | 0 | → PS
+ 0 | 1 | 0 | 0 | → PS
+ 0 | 1 | 1 | 1 | → SP
+ 1 | 0 | 0 | 0 | → PS
+ 1 | 0 | 1 | 1 | → SP
+ 1 | 1 | 0 | 1 | → SP
+ 1 | 1 | 1 | 1 | → SP
+
+---
+
+title: Logica delle proposizioni
+class: segue dark
+
+---
+
+title: Proposizione
+
+- Frase dichiarativa (*enunciato*) di senso compiuto che possa esser riconosciuta come “vera” o “falsa”
+    - **Principio di non contraddizione**: un enunciato non può essere contemporaneamente vero e falso
+    - **Principio del terzo escluso**: un enunciato è vero o falso, non esiste una terza possibilità (*tertium non datur*)
+- Ad esempio, sono proposizioni:
+    - “Il cane è un animale” - “2 = 1” - “I triangoli hanno tre lati”
+- ... Mentre non lo sono:
+    - “Il cane” - “Che ora è?” - “Se 2 = 1” - “Non fumare!” - “Io sono bugiardo” (*)
+
+>
+
+(*) Paradosso: non si può stabilire se la frase è vera o falsa
+
+Tarsia @ UniPI: <http://people.dm.unipi.it/tarsia/dida1011/logins05.pdf>
+
+---
+
+title: Connettivi logici
+
+- Gli operatori booleani si usano anche con le proposizioni
+    - “e” (*congiunzione*, `∧`)
+    - “o” (*disgiunzione*, `∨`)
+    - “non” (*negazione*, `¬`)
+    - Valgono le proprietà già viste
+- In logica, chiamati *connettivi*
+    - Servono a legare proposizioni in forma più complessa
+
+---
+
+title: Implicazione logica
+
+- **Connettivo condizionale**: esprime il legame “se” ... “allora”
+    - `P`: “io penso” (*premessa*)
+    - `Q`: “io esisto” (*conseguenza*)
+    - `P ⇒ Q`: “se penso allora esisto”
+- `P ⇒ Q` si può leggere anche nei seguenti modi:
+    - Da `P` segue `Q`
+    - `P` è *condizione sufficiente* per `Q` (se `P` vera, allora `Q` vera)
+    - `Q` è *condizione necessaria* per `P` (se `Q` falsa, allora `P` falsa)
+- Esempi di implicazioni vere:
+    - “Se 5 è un numero allora Roma è una città”
+    - “Se Parigi è la capitale d'Italia, allora 5 + 5 = 10”
+
+---
+
+title: Verità dell'implicazione
+
+`P` | `Q` | `P ⇒ Q`
+----|-----|--------
+ F  |  F  |  T
+ F  |  T  |  T
+ T  |  F  |  F
+ T  |  T  |  T
+
+- `P ⇒ Q` è falsa solo in un caso: `P` vera e `Q` falsa
+    - `¬(P ⇒ Q) = (P ∧ ¬Q)`
+    - `P ⇒ Q = ¬(P ∧ ¬Q) =` *[De Morgan]* <br> `¬P ∨ ¬(¬Q) =` *[Doppia negazione]* <br> `¬P ∨ Q` (implicazione vera quando: `P` falsa, o `Q` vera)
+- L'implicazione **non** soddisfa la proprietà commutativa:
+    - `(P ⇒ Q) ≠ (Q ⇒ P)`
+
+---
+
+title: Doppia implicazione
+
+`P` | `Q` | `P ⇒ Q` | `Q ⇒ P` | `P ⇔ Q`
+----|-----|---------|---------|--------
+ F  |  F  |  T      |  T      |  T
+ F  |  T  |  T      |  F      |  F
+ T  |  F  |  F      |  T      |  F
+ T  |  T  |  T      |  T      |  T
+
+- `P ⇔ Q`: valgono entrambe le implicazioni, `(P⇒Q) ∧ (Q⇒P)`
+- `P ⇔ Q` vera quando: `P` e `Q` entrambe vere, o entrambe false
+    - Da proprietà distributiva e proprietà dell'inverso
+    - `(P⇒Q) ∧ (Q⇒P) =` <br> `(¬P∨Q) ∧ (¬Q∨P) =` <br> `(¬P ∧ (¬Q∨P)) ∨ (Q ∧ (¬Q∨P)) =` <br> `(¬P∧¬Q) ∨ (¬P∧P) ∨ (¬Q∧Q) ∨ (P∧Q) =` <br> `(P∧Q) ∨ (¬P∧¬Q)`
+
+---
+
+title: Deduzione logica
+
+- Un *teorema* si riconduce all’implicazione `P ⇒ Q`
+    - `P` (*ipotesi*): proposizione che si assume vera
+    - `Q` (*tesi*): proposizione di cui si vuole dedurre la verità
+- Processo di *deduzione logica*, o *dimostrazione*, deve seguire ben precisi schemi di ragionamento
+    - Dimostrazione diretta (*modus ponens*)
+    - Dimostrazione per assurdo (*modus tollens*)
+
+---
+
+title: Dimostrazione diretta
+
+- *Modus ponens*: schema di ragionamento
+
+Premessa | Conseguenza
+---------|------------
+`(P ⇒ Q)` vera <br> `P` vera | `Q` vera
+
+- Esempio
+    - Se c'è sole, Ugo arriva in bici (implicazione, *regola d'inferenza*)
+    - C'è sole (*fatto*)
+    - Ugo arriva in bici (*deduzione*)
+- **Osservazione**: il solo fatto di sapere che `P⇒Q` è vera non consente di concludere niente su `P` e `Q`
+
+---
+
+title: Passaggi intermedi
+
+- Sono possibili dimostrazioni con più passaggi intermedi
+- Se vere le implicazioni `P⇒R`, `R⇒Q`... <br> e se `P` vera... <br> allora vera anche `Q`
+- `((P⇒R) ∧ (R⇒Q) ∧ P) ⇒ Q`
+- Schema di ragionamento
+
+ Premessa | Conseguenza
+ ---------|------------
+ `(P ⇒ R)` vera <br> `(R ⇒ Q)` vera <br> `P` vera | `Q` vera
+
+---
+
+title: Implicazione equivalente
+
+`P` | `Q` | `P ⇒ Q` | `¬Q` | `¬P` | `¬Q ⇒ ¬P`
+----|-----|---------|------|------|----------
+ F  |  F  |  T      |  T   |  T   |  T
+ F  |  T  |  T      |  F   |  T   |  T
+ T  |  F  |  F      |  T   |  F   |  F
+ T  |  T  |  T      |  F   |  F   |  T
+
+- Queste due implicazioni sono equivalenti
+    - `P ⇒ Q`
+    - `¬Q ⇒ ¬P`
+- Nelle dimostrazioni, possiamo usare la seconda implicazione al posto della prima
+
+---
+
+title: Dimostrazione per assurdo
+
+- Se è vera l’implicazione `(¬Q ⇒ ¬P)` ed è vera `P`, allora è vera anche `Q`
+- *Modus tollens*: schema di ragionamento
+
+ Premessa | Conseguenza
+ ---------|------------
+ `(¬Q ⇒ ¬P)` vera <br> `P` vera | `Q` vera
+
+- Esempio di teorema
+    - `P`: `m·n ≠ 0`
+    - `Q`: `(m ≠ 0) ∧ (n ≠ 0)`
+    - Dimostrazione per assurdo: `¬Q ⇒ ¬P`
+    - Se `(m = 0) ∨ (n = 0)`, allora `m·n = 0`
+
+---
+
+title: Logica dei predicati
+class: segue dark
+
+---
+
+title: Predicato, o enunciato aperto
+
+- Frase che contiene *variabili*
+    - La verità della frase dipende dal valore delle variabili
+    - Se variabili sostituite da valori, diventa proposizione
+- Esempio
+    - `P(x)`: “x è un numero dispari”
+- Occorre definire il *dominio* delle variabili
+- *Insieme di verità* del predicato
+    - Valori delle variabili che rendono vero l'enunciato
+    - Sottoinsieme del dominio delle variabili
+
+---
+
+title: Predicati con connettivi
+
+- `P(x) ∧ Q(x)` -- Vero per gli `x` che rendono veri entrambi i pred.
+- `P(x) ∨ Q(x)` -- Vero per gli `x` che rendono vero almeno un pred.
+- `¬P(x)` -- Vero per gli `x` che rendono falso il pred.
+- `P(x) ⇒ Q(x)` -- Vero per gli `x` che rendono falso `P` oppure vero `Q`
+- `P(x) ⇔ Q(x)` -- Vero per gli `x` che rendono i pred. entrambi falsi o entrambi veri
+
+---
+
+title: Quantificatori
+
+- Un predicato può essere trasformato in una proposizione in due modi
+    - Sostituendo la variabili con valori
+    - *Quantificando* le sue variabili
+    - Una variabile legata ad un quantificatore si dice *vincolata*, altrimenti *libera*
+- I quantificatori logici sono due
+    - Quantificatore **universale**
+    - Quantificatore **esistenziale**
+
+---
+
+title: Quantificatore universale
+
+- Una data proprietà vale per tutti i valori possibili delle variabili
+- `∀x, P(x)` -- “Per ogni x, P(x) è vero”
+- Esempi
+    - `∀n ∈ N, n multiplo di 4 ⇒ n pari`
+    - `∀x ∈ R ∀y ∈ R, (x + y)^^2^^ = x^^2^^ + 2xy + y^^2^^`
+
+---
+
+title: Quantificatore esistenziale
+
+- Una data proprietà vale per almeno un valore delle variabili
+- `∃x : P(x)` -- “Esiste almeno un x tale che P(x) è vero”
+- Esempi
+    - `∃n ∈ N : n pari` -- Esiste almeno un numero pari
+    - `∃x ∈ R : 2x + 1 = 0` -- L'equazione ammette almeno una soluzione
+- Enunciati con `∄` riformulati con `∀` e negando il predicato
+    - `∄x : x^^2^^ < 0`
+    - `∀x, x^^2^^ ≥ 0`
+
+---
+
+title: Proprietà dei quantificatori
+
+- I quantificatori sono sostanzialmente *congiunzioni* o *disgiunzioni* allargate a tutti gli elementi di un insieme
+- Due quantificatori dello stesso tipo *possono* essere scambiati di posto senza alterare la verità dell’enunciato
+- Invece, due quantificatori di diverso tipo *non possono* essere scambiati di posto
+- I seguenti enunciati sono ben diversi
+    - `∀x, ∃y : y ≥ x`
+    - `∃y : ∀x, y ≥ x`
+- **Sillogismi** aristotelici: modus ponens con quantificatori
+    - *Premessa maggiore*: “Tutti gli uomini sono mortali”
+    - *Premessa minore*: “Socrate è un uomo”
+    - *Conclusione*: “Socrate è mortale”
+
+---
+
+title: Negazione con quantificatori
+
+- Per negare un enunciato che contiene quantificatori, occorrono due modifiche:
+    - **(1)** Sostituire tutti i `∀` con `∃`, e viceversa
+    - **(2)** Negare il predicato
+- Esempi
+    - `¬(∀x, P(x)) ⇔ ∃x : ¬P(x)`
+    - `¬(∃x : P(x)) ⇔ ∀x, ¬P(x)`
+
+---
+
+title: Operazioni tra insiemi
+
+- Siano definiti due insiemi: `A = {x : P(x)}, B = {x : Q(x)}`
+- Unione: `A ∪ B = {x : x ∈ A ∨ x ∈ B} = {x : P(x) ∨ Q(x)}`
+- Intersezione: `A ∩ B = {x : x ∈ A ∧ x ∈ B} = {x : P(x) ∧ Q(x)}`
+- Complemento: `A' = {x : x ∉ A} = {x : ¬P(x)}`
+
+---
+
+title: Proprietà degli insiemi
+class: large-table
+
+- Siano definiti due insiemi: `A = {x : P(x)}, B = {x : Q(x)}`
+
+Proprietà | Op. tra insiemi | Op. tra predicati
+----------|-----------------|------------------
+Commutativa | `A ∪ B = B ∪ A` | `P ∨ Q ⇔ Q ∨ P`
+Commutativa | `A ∩ B = B ∩ A` | `P ∧ Q ⇔ Q ∧ P`
+Associativa | `(A∪B) ∪ C = A ∪ (B∪C)` | `(P∨Q) ∨ R ⇔ P ∨ (Q∨R)`
+Associativa | `(A∩B) ∩ C = A ∩ (B∩C)` | `(P∧Q) ∧ R ⇔ P ∧ (Q∧R)`
+Distributiva | `(A∪B) ∩ C = (A∩C) ∪ (B∩C)` | `(P∨Q) ∧ R ⇔ (P∧R) ∨ (Q∧R)`
+Distributiva | `(A∩B) ∪ C = (A∪C) ∩ (B∪C)` | `(P∧Q) ∨ R ⇔ (P∨R) ∧ (Q∨R)`
+Doppia negazione | `(B')' = B` | `¬(¬P) ⇔ P`
+De Morgan | `(A ∪ B)' = A' ∩ B'` | `¬(P ∨ Q) ⇔ ¬P ∧ ¬Q`
+De Morgan | `(A ∩ B)' = A' ∪ B'` | `¬(P ∧ Q) ⇔ ¬P ∨ ¬Q`
+
+---
+
+title: Principio di induzione
+figure: images/repr/dominoes.png
+class: large-figure
+
+- Sia `P(n)` un predicato definito su `ℕ`, tale che:
+    - **(1)** `P(1)` è vero
+    - **(2)** `∀n`, supponendo `P(n)` vero, segue che anche `P(n+1)` è vero
+    - Allora `P(n)` risulta vero `∀n`
+- In una formula:
+    - `(P(1) ∧ (∀n, P(n)⇒P(n+1)))` <br> `⇒ (∀n, P(n))`
+
+>
+
+Alcuni predicati sono definiti a partire da un dato `k`, anzichè da 1
+
+---
+
+title: Esempio, formula di Gauss
+
+- Definiamo per comodità `G(n) = n·(n+1) / 2`
+- Definiamo il predicato `P(n)` come: `1 + 2 + ··· + n = G(n)`
+- Dimostriamo *per induzione* che il predicato è vero `∀n`
+- **(1)** Il predicato per `n=1` è vero, infatti:
+    - `G(1) = 1 · (1+1) / 2 = 1`
+- **(2)** Supponiamo `P(n)` vero, ne segue `P(n+1)` vero, infatti:
+    - Per la somma fino ad `n+1`, bisogna aggiungere un termine:
+    - `n+1 + G(n) = n+1 + n·(n+1)/2 =` <br> `= (n^^2^^ + 3·n + 2) / 2 = (n+1)·(n+2)/2 = G(n+1)`
+- Quindi la formula vale `∀n`
+
+---
+
+title: 🤔 Operazioni bit a bit in Python
+class: break
+
+- Operatori *bitwise*, applicati bit a bit
+- Da non confondere con operatori logici (`and`, `or`, `not`)
+
+code: py
+
+    x = 0b1011  # bin value (11 dec)
+    y = 0x2A    # hex value (42 dec)
+
+    bin(42)     # '0b101010', a string
+    hex(42)     # '0x2a', a string
+
+    x & y       # bitwise AND (applied for each couple of bits)
+    x | y       # bitwise OR
+    x ^ y       # bitwise XOR
+    ~x          # bitwise complement, 0b...11110100
+
+    shift = 3  # some int
+    x << shift  # x = x * (2 ** shift)
+    y >> shift  # y = y / (2 ** shift)
+
