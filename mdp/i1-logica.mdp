@@ -1,6 +1,6 @@
 title: Logica matematica
 subtitle: Introduzione all'informatica
-figure: images/repr/logical-problem.png
+figure: images/fun/hanoi-tower.png
 
 ---
 
@@ -178,6 +178,7 @@ Tarsia @ UniPI: <http://people.dm.unipi.it/tarsia/dida1011/logins05.pdf>
 ---
 
 title: Connettivi logici
+figure: images/repr/logical-problem.png
 
 - Gli operatori booleani si usano anche con le proposizioni
     - “e” (*congiunzione*, `∧`)
@@ -456,6 +457,20 @@ title: Esempio, formula di Gauss
 - **(2)** Supponiamo `P(n)` vero, ne segue `P(n+1)` vero, infatti:
     - Per la somma fino ad `n+1`, bisogna aggiungere un termine:
     - `n+1 + G(n) = n+1 + n·(n+1)/2 =` <br> `= (n^^2^^ + 3·n + 2) / 2 = (n+1)·(n+2)/2 = G(n+1)`
+- Quindi la formula vale `∀n`
+
+---
+
+title: Esempio, Torre di Hanoi
+figure: images/fun/hanoi-strategy.png
+
+- (1) Si sposta solo un disco alla volta
+- (2) Non si mette un disco su uno più piccolo
+- Strategia: `n-1` dischi vanno su piolo di appoggio, in `R(n-1)` mosse; poi ultimo disco va a destinazione; infine si sovrappongono gli altri, in `R(n-1)` mosse
+- Dimostrare *per induzione* che il numero di mosse per `n` dischi è `R(n) = 2^^n^^-1`
+- **(1)** Mosse per spostare 1 disco: `1 = 2^^1^^-1 = R(0)`
+- **(2)** Supponiamo servano `R(n)` mosse per `n` dischi, allora per `n+1` dischi:
+    - `R(n) + 1 + R(n) = 2·(2^^n^^-1)+1 = 2^^n+1^^-1 = R(n+1)`
 - Quindi la formula vale `∀n`
 
 ---
