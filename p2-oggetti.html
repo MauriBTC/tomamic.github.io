@@ -446,7 +446,7 @@ def rq(x: int) -&gt; int:
 </li>
 <li>Ma ogni <em>oggetto</em> ha la sua <strong>identità</strong><ul>
 <li>Stato e locazione in memoria distinti da quelli di altri oggetti</li>
-<li>Sia instanze di classi diverse che della stessa classe</li>
+<li>Sia istanze di classi diverse che della stessa classe</li>
 </ul>
 </li>
 </ul></article>
@@ -502,7 +502,7 @@ def rq(x: int) -&gt; int:
 </li>
 <li><strong><code>self</code></strong>: primo parametro di tutti i metodi<ul>
 <li>Non bisogna passare un valore esplicito</li>
-<li>Assegnato l'oggetto di cui si chiama il metodo</li>
+<li>Rappresenta l'<em>oggetto</em> su cui opera il metodo</li>
 <li>Permette ai metodi di accedere ai campi</li>
 </ul>
 </li>
@@ -578,7 +578,8 @@ for i in range(25):
     <article >
       <ul>
 <li>Il primo parametro di ogni metodo si chiama <code>self</code> (per convenzione)</li>
-<li>L'oggetto, di cui viene invocato il metodo, viene assegnato come valore di <code>self</code></li>
+<li>Il valore di <code>self</code> viene assegnato <em>automaticamente</em></li>
+<li>Rappresenta l'<em>oggetto</em> di cui viene invocato il metodo</li>
 <li>In Python, una chiamata a metodo è interpretata così:</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>b1 = Ball(40, 80)
@@ -753,7 +754,7 @@ print('ball @', ball.pos)
 </li>
 <li>La pallina riappare dal bordo opposto, dopo un po' di tempo<ul>
 <li>Permettere alla <code>x</code> della pallina di superare i bordi laterali</li>
-<li>Fissare dei margini esterni di *100px" (p.es.) rispetto ai bordi dell'arena</li>
+<li>Fissare dei margini esterni di <em>100px</em> (p.es.) rispetto ai bordi dell'arena</li>
 <li>Se però la <code>x</code> raggiunge uno dei margini esterni, viene riportata al margine opposto</li>
 </ul>
 </li>

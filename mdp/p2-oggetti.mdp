@@ -295,7 +295,7 @@ figure: images/oop/cookie-cutter.png
     - La classe dà la stessa forma iniziale (campi e metodi) a tutti i suoi oggetti
 - Ma ogni *oggetto* ha la sua **identità**
     - Stato e locazione in memoria distinti da quelli di altri oggetti
-    - Sia instanze di classi diverse che della stessa classe
+    - Sia istanze di classi diverse che della stessa classe
 
 ---
 
@@ -329,7 +329,7 @@ figure: images/oop/bob-builder.jpg
     - *Instantiation is initialization*
 - **`self`**: primo parametro di tutti i metodi
     - Non bisogna passare un valore esplicito
-    - Assegnato l'oggetto di cui si chiama il metodo
+    - Rappresenta l'*oggetto* su cui opera il metodo
     - Permette ai metodi di accedere ai campi
 
 code: py
@@ -387,7 +387,8 @@ code: py
 title: Il primo parametro, self
 
 - Il primo parametro di ogni metodo si chiama `self` (per convenzione)
-- L'oggetto, di cui viene invocato il metodo, viene assegnato come valore di `self`
+- Il valore di `self` viene assegnato *automaticamente*
+- Rappresenta l'*oggetto* di cui viene invocato il metodo
 - In Python, una chiamata a metodo è interpretata così:
 
 code: py
@@ -513,7 +514,7 @@ figure: images/misc/frogger.png
     - Variabile `dx` indica lo spostamento da effettuare ad ogni ciclo
 - La pallina riappare dal bordo opposto, dopo un po' di tempo
     - Permettere alla `x` della pallina di superare i bordi laterali
-    - Fissare dei margini esterni di *100px" (p.es.) rispetto ai bordi dell'arena
+    - Fissare dei margini esterni di *100px* (p.es.) rispetto ai bordi dell'arena
     - Se però la `x` raggiunge uno dei margini esterni, viene riportata al margine opposto
 - Alla pressione del tasto `Enter`, la pallina inverte la direzione
 

@@ -90,19 +90,19 @@ class: large-table
 
 Proprietà    | Not
 -------------|--------
-Complemento  | ¬¬A = A
+Complemento  | ¬¬A ≡ A
 
 Proprietà    | And                         | Or
 -------------|-----------------------------|--------------------------
-Commutativa  | `A · B = B · A`             | `A + B = B + A`
-Associativa  | `(A·B) · C = A · (B·C)`     | `(A+B) + C = A + (B+C)`
-Distributiva | `A + (B·C) = (A+B) · (A+C)` | `A · (B+C) = (A·B) + (A·C)`
-Idempotenza  | `A · A = A`                 | `A + A = A`
-Identità     | `A · 1 = A`                 | `A + 0 = A`
-Del limite   | `A · 0 = 0`                 | `A + 1 = 1`
-Assorbimento | `A · (A+B) = A`             | `A + (A·B) = A`
-Inverso      | `A · ¬A = 0`                | `A + ¬A = 1`
-De Morgan    | `¬(A·B·C…) = ¬A + ¬B + ¬C…` | `¬(A+B+C…) = ¬A · ¬B · ¬C…`
+Commutativa  | `A · B ≡ B · A`             | `A + B ≡ B + A`
+Associativa  | `(A·B) · C ≡ A · (B·C)`     | `(A+B) + C ≡ A + (B+C)`
+Distributiva | `A + (B·C) ≡ (A+B) · (A+C)` | `A · (B+C) ≡ (A·B) + (A·C)`
+Idempotenza  | `A · A ≡ A`                 | `A + A ≡ A`
+Identità     | `A · 1 ≡ A`                 | `A + 0 ≡ A`
+Del limite   | `A · 0 ≡ 0`                 | `A + 1 ≡ 1`
+Assorbimento | `A · (A+B) ≡ A`             | `A + (A·B) ≡ A`
+Inverso      | `A · ¬A ≡ 0`                | `A + ¬A ≡ 1`
+De Morgan    | `¬(A·B·C…) ≡ ¬A + ¬B + ¬C…` | `¬(A+B+C…) ≡ ¬A · ¬B · ¬C…`
 
 >
 
@@ -137,9 +137,9 @@ title: Forme canoniche
 class: large-table
 
 - **Somma di Prodotti (SP)**: si considerano le righe a 1
-    - `F~~1~~(A, B, C) = (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)`
+    - `F~~1~~(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)`
 - **Prodotto di Somme (PS)**: si considerano le righe a 0, *negate*
-    - `F~~1~~(A, B, C) = (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)`
+    - `F~~1~~(A, B, C) ≡ (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)`
 
  A | B | C | F~~1~~ | → Forma canonica...
 ---|---|---|---|-----
@@ -180,21 +180,22 @@ Tarsia @ UniPI: <http://people.dm.unipi.it/tarsia/dida1011/logins05.pdf>
 title: Connettivi logici
 figure: images/repr/logical-problem.png
 
-- Gli operatori booleani si usano anche con le proposizioni
+- In logica, operatori booleani per *legare* proposizioni in forma più complessa
     - “e” (*congiunzione*, `∧`)
     - “o” (*disgiunzione*, `∨`)
     - “non” (*negazione*, `¬`)
     - Valgono le proprietà già viste
-- In logica, chiamati *connettivi*
-    - Servono a legare proposizioni in forma più complessa
+- Esempio di formalizzazione
+    - `P₁` := “Gold is in Chest1” <br> `P₂` := “Gold is in Chest2” <br> `P₃` := “Gold is in Chest3”
+    - `¬P₂ ∧ (P₁ ∨ P₃) ∧ ¬P₃ ≡ P₁ ∧ ¬P₂ ∧ ¬P₃`
 
 ---
 
 title: Implicazione logica
 
-- **Connettivo condizionale**: esprime il legame “se” ... “allora”
-    - `P`: “io penso” (*premessa*)
-    - `Q`: “io esisto” (*conseguenza*)
+- **Connettivo condizionale**: esprime il legame “se ... allora”
+    - `P` := “io penso” (*premessa*)
+    - `Q` := “io esisto” (*conseguenza*)
     - `P ⇒ Q`: “se penso allora esisto”
 - `P ⇒ Q` si può leggere anche nei seguenti modi:
     - Da `P` segue `Q`
@@ -208,22 +209,24 @@ title: Implicazione logica
 
 title: Verità dell'implicazione
 
-`P` | `Q` | `P ⇒ Q`
-----|-----|--------
- F  |  F  |  T
- F  |  T  |  T
- T  |  F  |  F
- T  |  T  |  T
+`P` | `Q` | `P ⇒ Q` | `¬P ∨ Q`
+----|-----|---------|---------
+ F  |  F  |  T      |  T
+ F  |  T  |  T      |  T
+ T  |  F  |  F      |  F
+ T  |  T  |  T      |  T
 
 - `P ⇒ Q` è falsa solo in un caso: `P` vera e `Q` falsa
-    - `¬(P ⇒ Q) = (P ∧ ¬Q)`
-    - `P ⇒ Q = ¬(P ∧ ¬Q) =` *[De Morgan]* <br> `¬P ∨ ¬(¬Q) =` *[Doppia negazione]* <br> `¬P ∨ Q` (implicazione vera quando: `P` falsa, o `Q` vera)
+    - `¬(P ⇒ Q) ≡ (P ∧ ¬Q)`
+    - `P ⇒ Q ≡ ¬(P ∧ ¬Q) ≡` *[De Morgan]* <br> `¬P ∨ ¬(¬Q) ≡` *[Doppia negazione]* <br> `¬P ∨ Q` (implicazione vera quando: `P` falsa, o `Q` vera)
 - L'implicazione **non** soddisfa la proprietà commutativa:
     - `(P ⇒ Q) ≠ (Q ⇒ P)`
 
 ---
 
 title: Doppia implicazione
+
+- *Equivalenza logica*: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”
 
 `P` | `Q` | `P ⇒ Q` | `Q ⇒ P` | `P ⇔ Q`
 ----|-----|---------|---------|--------
@@ -233,9 +236,9 @@ title: Doppia implicazione
  T  |  T  |  T      |  T      |  T
 
 - `P ⇔ Q`: valgono entrambe le implicazioni, `(P⇒Q) ∧ (Q⇒P)`
-- `P ⇔ Q` vera quando: `P` e `Q` entrambe vere, o entrambe false
+    - `P ⇔ Q` vera: `P` e `Q` entrambe vere, o entrambe false
     - Da proprietà distributiva e proprietà dell'inverso
-    - `(P⇒Q) ∧ (Q⇒P) =` <br> `(¬P∨Q) ∧ (¬Q∨P) =` <br> `(¬P ∧ (¬Q∨P)) ∨ (Q ∧ (¬Q∨P)) =` <br> `(¬P∧¬Q) ∨ (¬P∧P) ∨ (¬Q∧Q) ∨ (P∧Q) =` <br> `(P∧Q) ∨ (¬P∧¬Q)`
+    - `(P⇒Q) ∧ (Q⇒P) ≡ (¬P∨Q) ∧ (¬Q∨P) ≡` <br> `(¬P∧¬Q) ∨ (¬P∧P) ∨ (¬Q∧Q) ∨ (P∧Q) ≡` <br> `(P∧Q) ∨ (¬P∧¬Q)`
 
 ---
 
@@ -291,6 +294,7 @@ title: Implicazione equivalente
 - Queste due implicazioni sono equivalenti
     - `P ⇒ Q`
     - `¬Q ⇒ ¬P`
+    - Infatti, `¬P∨Q ≡ ¬(¬Q)∨¬P`
 - Nelle dimostrazioni, possiamo usare la seconda implicazione al posto della prima
 
 ---
@@ -305,8 +309,8 @@ title: Dimostrazione per assurdo
  `(¬Q ⇒ ¬P)` vera <br> `P` vera | `Q` vera
 
 - Esempio di teorema
-    - `P`: `m·n ≠ 0`
-    - `Q`: `(m ≠ 0) ∧ (n ≠ 0)`
+    - `P` := `m·n ≠ 0`
+    - `Q` := `(m ≠ 0) ∧ (n ≠ 0)`
     - Dimostrazione per assurdo: `¬Q ⇒ ¬P`
     - Se `(m = 0) ∨ (n = 0)`, allora `m·n = 0`
 
@@ -323,7 +327,7 @@ title: Predicato, o enunciato aperto
     - La verità della frase dipende dal valore delle variabili
     - Se variabili sostituite da valori, diventa proposizione
 - Esempio
-    - `P(x)`: “x è un numero dispari”
+    - `P(x)` := “x è un numero dispari”
 - Occorre definire il *dominio* delle variabili
 - *Insieme di verità* del predicato
     - Valori delle variabili che rendono vero l'enunciato
@@ -345,8 +349,8 @@ title: Quantificatori
 
 - Un predicato può essere trasformato in una proposizione in due modi
     - Sostituendo la variabili con valori
-    - *Quantificando* le sue variabili
-    - Una variabile legata ad un quantificatore si dice *vincolata*, altrimenti *libera*
+    - Oppure, *quantificando* le sue variabili
+- Una variabile legata ad un quantificatore si dice *vincolata*, altrimenti *libera*
 - I quantificatori logici sono due
     - Quantificatore **universale**
     - Quantificatore **esistenziale**
@@ -358,8 +362,8 @@ title: Quantificatore universale
 - Una data proprietà vale per tutti i valori possibili delle variabili
 - `∀x, P(x)` -- “Per ogni x, P(x) è vero”
 - Esempi
-    - `∀n ∈ N, n multiplo di 4 ⇒ n pari`
-    - `∀x ∈ R ∀y ∈ R, (x + y)^^2^^ = x^^2^^ + 2xy + y^^2^^`
+    - `∀n∊N, n multiplo di 4 ⇒ n pari`
+    - `∀x∊R, ∀y∊R, (x + y)^^2^^ = x^^2^^ + 2xy + y^^2^^`
 
 ---
 
@@ -368,8 +372,8 @@ title: Quantificatore esistenziale
 - Una data proprietà vale per almeno un valore delle variabili
 - `∃x : P(x)` -- “Esiste almeno un x tale che P(x) è vero”
 - Esempi
-    - `∃n ∈ N : n pari` -- Esiste almeno un numero pari
-    - `∃x ∈ R : 2x + 1 = 0` -- L'equazione ammette almeno una soluzione
+    - `∃n∊N : n pari` -- Esiste almeno un numero pari
+    - `∃x∊R : 2x + 1 = 0` -- L'equazione ammette almeno una soluzione
 - Enunciati con `∄` riformulati con `∀` e negando il predicato
     - `∄x : x^^2^^ < 0`
     - `∀x, x^^2^^ ≥ 0`
@@ -384,10 +388,20 @@ title: Proprietà dei quantificatori
 - I seguenti enunciati sono ben diversi
     - `∀x, ∃y : y ≥ x`
     - `∃y : ∀x, y ≥ x`
-- **Sillogismi** aristotelici: modus ponens con quantificatori
-    - *Premessa maggiore*: “Tutti gli uomini sono mortali”
-    - *Premessa minore*: “Socrate è un uomo”
-    - *Conclusione*: “Socrate è mortale”
+
+---
+
+title: Sillogismi aristotelici
+figure: images/hist/plato-aristotle.jpg
+figcaption: Platone ed Aristotele, ~350 a.C.
+
+- Modus ponens con quantificatori
+    - *Premessa maggiore*: “Tutti gli uomini sono mortali” <br> `∀x, uomo(x)⇒mortale(x)`
+    - *Premessa minore*: “Socrate è un uomo” <br> `uomo(Socrate)`
+    - *Conclusione*: “Socrate è mortale” <br> `mortale(Socrate)`
+- Il quantificatore si può eliminare sostituendo alla variabile un valore del dominio
+    - `uomo(Socrate)⇒mortale(Socrate)`
+- Poi si applica il modus ponens
 
 ---
 
@@ -405,9 +419,9 @@ title: Negazione con quantificatori
 title: Operazioni tra insiemi
 
 - Siano definiti due insiemi: `A = {x : P(x)}, B = {x : Q(x)}`
-- Unione: `A ∪ B = {x : x ∈ A ∨ x ∈ B} = {x : P(x) ∨ Q(x)}`
-- Intersezione: `A ∩ B = {x : x ∈ A ∧ x ∈ B} = {x : P(x) ∧ Q(x)}`
-- Complemento: `A' = {x : x ∉ A} = {x : ¬P(x)}`
+- Unione: `A ∪ B = {x : x∊A ∨ x∊B} = {x : P(x) ∨ Q(x)}`
+- Intersezione: `A ∩ B = {x : x∊A ∧ x∊B} = {x : P(x) ∧ Q(x)}`
+- Complemento: `A' = {x : x∉A} = {x : ¬P(x)}`
 
 ---
 
@@ -418,15 +432,15 @@ class: large-table
 
 Proprietà | Op. tra insiemi | Op. tra predicati
 ----------|-----------------|------------------
-Commutativa | `A ∪ B = B ∪ A` | `P ∨ Q ⇔ Q ∨ P`
-Commutativa | `A ∩ B = B ∩ A` | `P ∧ Q ⇔ Q ∧ P`
-Associativa | `(A∪B) ∪ C = A ∪ (B∪C)` | `(P∨Q) ∨ R ⇔ P ∨ (Q∨R)`
-Associativa | `(A∩B) ∩ C = A ∩ (B∩C)` | `(P∧Q) ∧ R ⇔ P ∧ (Q∧R)`
-Distributiva | `(A∪B) ∩ C = (A∩C) ∪ (B∩C)` | `(P∨Q) ∧ R ⇔ (P∧R) ∨ (Q∧R)`
-Distributiva | `(A∩B) ∪ C = (A∪C) ∩ (B∪C)` | `(P∧Q) ∨ R ⇔ (P∨R) ∧ (Q∨R)`
-Doppia negazione | `(B')' = B` | `¬(¬P) ⇔ P`
-De Morgan | `(A ∪ B)' = A' ∩ B'` | `¬(P ∨ Q) ⇔ ¬P ∧ ¬Q`
-De Morgan | `(A ∩ B)' = A' ∪ B'` | `¬(P ∧ Q) ⇔ ¬P ∨ ¬Q`
+Commutativa | `A ∪ B = B ∪ A` | `P ∨ Q ≡ Q ∨ P`
+Commutativa | `A ∩ B = B ∩ A` | `P ∧ Q ≡ Q ∧ P`
+Associativa | `(A∪B) ∪ C = A ∪ (B∪C)` | `(P∨Q) ∨ R ≡ P ∨ (Q∨R)`
+Associativa | `(A∩B) ∩ C = A ∩ (B∩C)` | `(P∧Q) ∧ R ≡ P ∧ (Q∧R)`
+Distributiva | `(A∪B) ∩ C = (A∩C) ∪ (B∩C)` | `(P∨Q) ∧ R ≡ (P∧R) ∨ (Q∧R)`
+Distributiva | `(A∩B) ∪ C = (A∪C) ∩ (B∪C)` | `(P∧Q) ∨ R ≡ (P∨R) ∧ (Q∨R)`
+Doppia negazione | `(B')' = B` | `¬(¬P) ≡ P`
+De Morgan | `(A ∪ B)' = A' ∩ B'` | `¬(P ∨ Q) ≡ ¬P ∧ ¬Q`
+De Morgan | `(A ∩ B)' = A' ∪ B'` | `¬(P ∧ Q) ≡ ¬P ∨ ¬Q`
 
 ---
 
@@ -464,12 +478,13 @@ title: Esempio, formula di Gauss
 title: Esempio, Torre di Hanoi
 figure: images/fun/hanoi-strategy.png
 
-- (1) Si sposta solo un disco alla volta
-- (2) Non si mette un disco su uno più piccolo
-- Strategia: `n-1` dischi vanno su piolo di appoggio, in `R(n-1)` mosse; poi ultimo disco va a destinazione; infine si sovrappongono gli altri, in `R(n-1)` mosse
-- Dimostrare *per induzione* che il numero di mosse per `n` dischi è `R(n) = 2^^n^^-1`
-- **(1)** Mosse per spostare 1 disco: `1 = 2^^1^^-1 = R(0)`
-- **(2)** Supponiamo servano `R(n)` mosse per `n` dischi, allora per `n+1` dischi:
+- *Regola 1*: Spostare solo un disco alla volta
+- *Regola 2*: Poggiarlo solo su uno più grande
+- *Strategia*: `n-1` dischi vanno su piolo di appoggio, in `R(n-1)` mosse; poi ultimo disco va a destinazione; infine si sovrappongono gli altri, in `R(n-1)` mosse
+- Dimostrare *per induzione* che il numero di mosse per spostare `n` dischi è `R(n) = 2^^n^^-1`
+- **(1)** Per 1 disco, 1 mossa: `1 = 2^^1^^-1 = R(0)`
+- **(2)** Supponiamo servano `R(n)` mosse per `n` dischi...
+    - Allora per `n+1` dischi:
     - `R(n) + 1 + R(n) = 2·(2^^n^^-1)+1 = 2^^n+1^^-1 = R(n+1)`
 - Quindi la formula vale `∀n`
 
