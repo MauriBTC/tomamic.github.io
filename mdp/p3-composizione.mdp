@@ -174,7 +174,7 @@ code: py
 title: 🤔 Stringhe formattate
 
 - Stringhe con `f` prima delle virgolette
-- Possono includere valori, tra graffe
+- Possono includere espressioni, tra graffe
 - Specifiche di formattazione, dopo `:`
 
 code: py

@@ -1018,7 +1018,7 @@ code: haskell
     [10,11,12,14,16,17,18,20]
 
 - We can also draw from several lists
-    - Produce all *combinations* of the input lists
+    - Produce the *cartesian product* of the input lists
     - Then join them by the output function
 
 code: haskell

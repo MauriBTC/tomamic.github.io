@@ -924,7 +924,7 @@ code: py
     [-4, -2, 3, 5]
     >>> sorted([3, -4, 5, -2], key=abs)
     [-2, 3, -4, 5]
-    >>> sorted([3, -4, 5, -2], key=lambda x:1/x)
+    >>> sorted([3, -4, 5, -2], key=lambda x: 1/x)
     [-2, -4, 5, 3]
 
 >

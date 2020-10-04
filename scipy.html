@@ -153,7 +153,9 @@ spring = months[2:5]       # ["Mar", "Apr", "May"]
 quart1 = months[:3]        # ["Jan", "Feb", "Mar"]
 quart4 = months[-3:]       # ["Oct", "Nov", "Dec"]
 whole_year = months[:]     # Copy of the whole list
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p>Third value for step, possibly negative</p></article>
  
 </slide>
 
@@ -200,7 +202,12 @@ c is a           # True, same object in memory
                  # (try and modify one of them...)
 
 d = ["sausage", "mushrooms"]
-grocery = c + d  # list concatenation --&gt; new list!
+grocery = c + d  # list concat --&gt; new list! but += in place
+
+# Lexicographical comparison of lists (or strings, tuples...)
+# Compare the first two *different* elements
+[2, 0, 0] &gt; [1, 2, 0]  # True: 2 &gt; 1
+[2, 1, 0] &gt; [2, 0, 1]  # True: 2 == 2, 1 &gt; 0
 </code></pre></article>
  
 </slide>
@@ -309,6 +316,32 @@ main()
 <slide  >
   
     <hgroup>
+      <h2>🤔 Formatted strings</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Strings with <code>f</code> before quotation marks</li>
+<li>They can include expressions, in braces</li>
+<li>Formatting specs, after <code>:</code></li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>for a in [0, 45, 90, 135]:
+    v = math.sin(a * math.pi / 180)
+    print(f"Angle: {a:3}; Sin: {v:4.2f}")
+</code></pre>
+<pre class="" data-lang="output"><code>Angle:   0; Sin: 0.00
+Angle:  45; Sin: 0.71
+Angle:  90; Sin: 1.00
+Angle: 135; Sin: 0.71
+</code></pre>
+<blockquote></blockquote>
+<p><a href="https://docs.python.org/3/tutorial/inputoutput.html">https://docs.python.org/3/tutorial/inputoutput.html</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>List comprehension</h2>
       <h3></h3>
     </hgroup>
@@ -318,8 +351,8 @@ main()
         
       </figure><ul>
 <li>Terse way to create a list</li>
-<li>Each element: result of an operation on a member of another iterable</li>
-<li>Condition on elements, optional</li>
+<li>Each element: result of an <em>output expression</em> on a member of an <em>input iterable</em></li>
+<li>Optional <em>condition</em> on elements</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>squares = [x ** 2 for x in range(12)]
 # squares = []
@@ -327,7 +360,74 @@ main()
 #    squares.append(x ** 2)
 </code></pre>
 <pre class="prettyprint lang-py" data-lang="py"><code>even_nums = [str(x) for x in range(12) if (x % 2) == 0]
+</code></pre>
+<ul>
+<li><em>Lazy</em> generator comprehension</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>even_nums = [str(x) for x in range(12) if (x % 2) == 0]
 </code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Examples of comprehensions</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; xs = range(7, 14)
+&gt;&gt;&gt; ["BOOM!" if x &lt; 10 else "BANG!" for x in xs if x % 2]
+["BOOM!","BOOM!","BANG!","BANG!"]
+</code></pre>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; txt = "IdontLIKEFROGS"
+&gt;&gt;&gt; [c for c in txt if 'A' &lt;= c &lt;= 'Z']
+"ILIKEFROGS"
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>More comprehensions</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>We can include several predicates</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; [x for x in range(10, 21) if x != 13 if x != 15 if x != 19]
+[10, 11, 12, 14, 16, 17, 18, 20]
+</code></pre>
+<ul>
+<li>We can also draw from several lists<ul>
+<li>Produce the <em>cartesian product</em> of the input lists</li>
+<li>Then join them by the output expression</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; [x*y for x in (2, 5, 10) for y in (8, 10, 11)]
+[16, 20, 22, 40, 50, 55, 80, 100, 110]
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pythagoras with comprehensions</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Exercise</strong>: which right triangle...<ul>
+<li>that has integers for all sides...</li>
+<li>and all sides equal to or smaller than 10...</li>
+<li>has a perimeter of 24?</li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 
@@ -371,7 +471,7 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
         <img src="images/fun/zip.png">
         
       </figure><ul>
-<li>Couples elements of two sequences</li>
+<li>Couples elements of two (or <em>more</em>) sequences</li>
 <li>It generates a sequence of tuples (pairs)</li>
 <li>The result has the len of the shortest sequence</li>
 </ul>
@@ -397,7 +497,7 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
         <img src="images/fun/legomap.png">
         
       </figure><ul>
-<li>Takes a function and a sequence as params</li>
+<li>Takes a function and a sequence (or <em>more</em>) as params</li>
 <li><em>Higher order function</em></li>
 <li>Applies the function to each value</li>
 <li>Returns the sequence of results</li>
@@ -407,9 +507,8 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
 &gt;&gt;&gt; list(map(sqrt, values))
 [0.0, 1.0, 1.4142, 1.7320, 2.0]
 </code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; from math import sqrt
-&gt;&gt;&gt; list(map(sqrt, range(5)))
-[0.0, 1.0, 1.4142, 1.7320, 2.0]
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; list(map(pow, range(3), (2, 3, 4)))
+[0, 1, 16]
 </code></pre>
 <blockquote></blockquote>
 <p>Results in a list: only (!) to visualize them</p></article>
@@ -444,6 +543,33 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
 <slide  >
   
     <hgroup>
+      <h2>Lambda functions</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Anonymous function, body is a <em>single expression</em><ul>
+<li>For a longer body, use a (nested) <code>def</code></li>
+</ul>
+</li>
+<li>Closure for referenced variables (<em>by ref</em>)<ul>
+<li>To get stg <em>by val</em>, add it as a default param</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; sorted([3, -4, 5, -2])
+[-4, -2, 3, 5]
+&gt;&gt;&gt; sorted([3, -4, 5, -2], key=abs)
+[-2, 3, -4, 5]
+&gt;&gt;&gt; sorted([3, -4, 5, -2], key=lambda x: 1/x)
+[-2, -4, 5, 3]
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Dictionary</h2>
       <h3></h3>
     </hgroup>
@@ -467,7 +593,7 @@ Otherwise, Python doesn't generate results immediately (<em>lazy</em>)</p></arti
 {"graham": 4127, "terry": 4139, "john": 4098}
 </code></pre>
 <blockquote></blockquote>
-<p>Try also <code>list(tel)</code> and <code>list(tel.items())</code></p></article>
+<p>Try also <code>list(tel)</code> ... and methods <code>keys</code>, <code>values</code>, <code>items</code>, <code>get</code></p></article>
  
 </slide>
 
@@ -656,12 +782,14 @@ with open('matrix.csv', 'r') as file1:
         splitted = line.split(',')
         vals = [int(i) for i in splitted]
         matrix.append(vals)
-        ## matrix += vals  # for a simple list (ex. 4.5)
+        ## matrix += vals  # for a simple list
 
         if cols == 0:
             cols = len(vals)
         rows += 1
-</code></pre></article>
+</code></pre>
+<blockquote></blockquote>
+<p>Try to use <code>map</code></p></article>
  
 </slide>
 
@@ -726,7 +854,7 @@ with io.StringIO() as output:
         
       </figure><ul>
 <li><strong>Exceptions</strong>: to handle unexpected cases separately<ul>
-<li>Error inside <code>try</code>: esecution is interrupted immediately</li>
+<li>Error inside <code>try</code>: execution is interrupted immediately</li>
 <li><code>except</code> section is executed, to handle the specific type of error (multiple <code>except</code> sections are allowed)</li>
 <li>A <code>with</code> section assures the file is closed</li>
 </ul>
@@ -819,6 +947,36 @@ except IOError as err:
  
 </slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>Virtual environments</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Standard Python provides <em>virtual environments</em></li>
+<li>To install different modules for different projects</li>
+<li>Ex.: <em>create</em> <code>myenv</code> env., <em>activate</em> it, <em>install</em> some modules</li>
+</ul>
+<pre class="" data-lang="Shell"><code>$ python3 -m venv myenv
+$ source myenv/bin/activate
+$ python3 -m pip install numpy jupyter
+</code></pre>
+<ul>
+<li>First command creates new folder, with a copy of CPython</li>
+<li>To change to another env, <em>deactivate</em> the current one<ul>
+<li>To delete an env, delete its folder</li>
+</ul>
+</li>
+<li>On Windows, scripts are in the <code>Script</code> folder<ul>
+<li><code>myenv\Scripts\activate.bat</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
 <slide class="large-figure" >
   
     <hgroup>
@@ -837,36 +995,6 @@ except IOError as err:
 <li>Numba: JIT compiler, code vectorization</li>
 <li>Jupyter Notebook: browser-based REPL<ul>
 <li><code>$ jupyter notebook</code></li>
-</ul>
-</li>
-</ul></article>
- 
-</slide>
-
-<slide  >
-  
-    <hgroup>
-      <h2>Virtual environments</h2>
-      <h3></h3>
-    </hgroup>
-    <article >
-      <ul>
-<li>Standard Python provides <em>virtual environments</em></li>
-<li>To install different modules for different projects</li>
-<li>Ex.: <em>create</em> <code>myenv</code> env., <em>activate</em> it, <em>install</em> some modules</li>
-</ul>
-<pre class="" data-lang="Shell"><code>$ python3 -m venv myenv
-$ source myenv/bin/activate
-$ pip install numpy
-</code></pre>
-<ul>
-<li>First command creates new folder, with a copy of CPython</li>
-<li>To change to another env, <em>deactivate</em> the current one<ul>
-<li>To delete an env, delete its folder</li>
-</ul>
-</li>
-<li>On Windows, scripts are in the <code>Script</code> folder<ul>
-<li><code>sci-env\Scripts\activate.bat</code></li>
 </ul>
 </li>
 </ul></article>
@@ -1027,7 +1155,7 @@ array([[0, 1, 2, 3, 4, 5],
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.random.randn(2, 3)  # normal Gaussian, mean=0, variance=1
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.random.randn(2, 3)  # normal Gaussian, mean=0, stddev=1
 array([[-0.452, -1.295, 0.379],
        [1.134, -0.554, -1.007]])
 
@@ -1040,7 +1168,8 @@ array([[1, 9, 3],
        [3, 8, 9]])
 </code></pre>
 <blockquote></blockquote>
-<p><a href="https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html">https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html</a></p></article>
+<p><a href="https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html">https://docs.scipy.org/doc/numpy-1.16.0/reference/routines.random.html</a></p>
+<p><code>np.random.normal(mean, stddev, size=(2, 3))</code> ::= <br> <code>stddev * np.random.randn(2, 3) + mean</code></p></article>
  
 </slide>
 
@@ -1242,7 +1371,7 @@ array([5, 3, 2, 4, 1, 0]])
 <li>Slice, transpose, reshape etc.: data doesn't move<ul>
 <li>Different array object (metadata)</li>
 <li>Different shape, offset, byte order, strides, etc.</li>
-<li>But same shared data buffer</li>
+<li>But same <em>shared data buffer</em></li>
 </ul>
 </li>
 <li>New and independent array: <code>copy()</code> method</li>
