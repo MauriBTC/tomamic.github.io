@@ -397,7 +397,7 @@ if pt1 != pt2:
     <article >
       <ul>
 <li><strong>Somma di Prodotti (SP)</strong>: si considerano le righe a 1<ul>
-<li><code>F(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
+<li><code>F(A, B, C) ::= (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
 </ul>
 </li>
 </ul>
@@ -485,7 +485,7 @@ if pt1 != pt2:
     <article >
       <ul>
 <li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0, <em>negate</em><ul>
-<li><code>F(A, B, C) ≡ (A+B+¬C) · (A+¬B+C) · (¬A+B+C)</code> (<em>PS</em>)</li>
+<li><code>F(A, B, C) ::= (A+B+¬C)·(A+¬B+C)·(¬A+B+C)</code> (<em>PS</em>)</li>
 </ul>
 </li>
 </ul>
@@ -569,9 +569,9 @@ if pt1 != pt2:
 </table>
 <ul>
 <li><em>Principio</em>: quali configurazioni di ingressi rendono <code>¬F</code> vera?<ul>
-<li><code>¬F(A, B, C) ≡ (¬A·¬B·C) + (¬A·B·¬C) + (A·¬B·¬C)</code> <br>
-  <code>F(A, B, C) ≡ ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)) ≡</code> <br>
-  ... De Morgan due volte e si ottiene <em>PS</em></li>
+<li><code>¬F(A, B, C) ::= (¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)</code></li>
+<li><code>F(A, B, C) ::= ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C))</code></li>
+<li>... De Morgan due volte e si ottiene <em>PS</em></li>
 </ul>
 </li>
 </ul></article>

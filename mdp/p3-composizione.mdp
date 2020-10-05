@@ -198,7 +198,7 @@ code: output
 
 title: Cicli su stringhe
 
-- Il ciclo `for` scorre i valori qualsiasi sequenza
+- Il ciclo `for` scorre i valori di qualsiasi sequenza
 - Una stringa è una sequenza di caratteri
 
 code: py
