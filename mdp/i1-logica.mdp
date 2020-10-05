@@ -133,24 +133,48 @@ code: py
 
 ---
 
-title: Forme canoniche
+title: Forma canonica SP
 class: large-table
 
 - **Somma di Prodotti (SP)**: si considerano le righe a 1
-    - `F~~1~~(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)`
-- **Prodotto di Somme (PS)**: si considerano le righe a 0, *negate*
-    - `F~~1~~(A, B, C) ≡ (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)`
+    - `F(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)`
 
- A | B | C | F~~1~~ | → Forma canonica...
+ A | B | C | F | → Forma canonica...
 ---|---|---|---|-----
- 0 | 0 | 0 | 1 | → SP
- 0 | 0 | 1 | 0 | → PS
- 0 | 1 | 0 | 0 | → PS
- 0 | 1 | 1 | 1 | → SP
- 1 | 0 | 0 | 0 | → PS
- 1 | 0 | 1 | 1 | → SP
- 1 | 1 | 0 | 1 | → SP
- 1 | 1 | 1 | 1 | → SP
+ 0 | 0 | 0 | 1 | → *SP*
+ 0 | 0 | 1 | 0 |
+ 0 | 1 | 0 | 0 |
+ 0 | 1 | 1 | 1 | → *SP*
+ 1 | 0 | 0 | 0 |
+ 1 | 0 | 1 | 1 | → *SP*
+ 1 | 1 | 0 | 1 | → *SP*
+ 1 | 1 | 1 | 1 | → *SP*
+
+- *Principio*: quali configurazioni di ingressi rendono `F` vera?
+
+---
+
+title: Forma canonica PS
+class: large-table
+
+- **Prodotto di Somme (PS)**: si considerano le righe a 0, *negate*
+    - `F(A, B, C) ≡ (A+B+¬C) · (A+¬B+C) · (¬A+B+C)` (*PS*)
+
+ A | B | C | F | ¬F |→ Forma canonica...
+---|---|---|---|----|---
+ 0 | 0 | 0 | 1 | 0  |
+ 0 | 0 | 1 | 0 | 1  | → *PS*
+ 0 | 1 | 0 | 0 | 1  | → *PS*
+ 0 | 1 | 1 | 1 | 0  |
+ 1 | 0 | 0 | 0 | 1  | → *PS*
+ 1 | 0 | 1 | 1 | 0  |
+ 1 | 1 | 0 | 1 | 0  |
+ 1 | 1 | 1 | 1 | 0  |
+
+- *Principio*: quali configurazioni di ingressi rendono `¬F` vera?
+    - `¬F(A, B, C) ≡ (¬A·¬B·C) + (¬A·B·¬C) + (A·¬B·¬C)` <br>
+      `F(A, B, C) ≡ ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)) ≡` <br>
+      ... De Morgan due volte e si ottiene *PS*
 
 ---
 
@@ -226,7 +250,7 @@ title: Verità dell'implicazione
 
 title: Doppia implicazione
 
-- *Equivalenza logica*: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”
+- **Equivalenza logica**: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”
 
 `P` | `Q` | `P ⇒ Q` | `Q ⇒ P` | `P ⇔ Q`
 ----|-----|---------|---------|--------

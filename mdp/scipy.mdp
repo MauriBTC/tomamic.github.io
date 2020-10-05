@@ -277,7 +277,7 @@ code: py
 
 code: py
 
-    even_nums = [str(x) for x in range(12) if (x % 2) == 0]
+    even_nums = (str(x) for x in range(12) if (x % 2) == 0)
 
 ---
 

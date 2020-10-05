@@ -391,17 +391,13 @@ if pt1 != pt2:
 <slide class="large-table" >
   
     <hgroup>
-      <h2>Forme canoniche</h2>
+      <h2>Forma canonica SP</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
 <li><strong>Somma di Prodotti (SP)</strong>: si considerano le righe a 1<ul>
-<li><code>F<sub>1</sub>(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
-</ul>
-</li>
-<li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0, <em>negate</em><ul>
-<li><code>F<sub>1</sub>(A, B, C) ≡ (A + B + ¬C) · (A + ¬B + C) · (¬A + B + C)</code></li>
+<li><code>F(A, B, C) ≡ (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
 </ul>
 </li>
 </ul>
@@ -411,7 +407,7 @@ if pt1 != pt2:
 <th>A</th>
 <th>B</th>
 <th>C</th>
-<th>F<sub>1</sub></th>
+<th>F</th>
 <th>→ Forma canonica...</th>
 </tr>
 </thead>
@@ -421,59 +417,164 @@ if pt1 != pt2:
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>→ SP</td>
+<td>→ <em>SP</em></td>
 </tr>
 <tr>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
-<td>→ PS</td>
+<td></td>
 </tr>
 <tr>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>→ PS</td>
+<td></td>
 </tr>
 <tr>
 <td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>→ SP</td>
+<td>→ <em>SP</em></td>
 </tr>
 <tr>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>→ PS</td>
+<td></td>
 </tr>
 <tr>
 <td>1</td>
 <td>0</td>
 <td>1</td>
 <td>1</td>
-<td>→ SP</td>
+<td>→ <em>SP</em></td>
 </tr>
 <tr>
 <td>1</td>
 <td>1</td>
 <td>0</td>
 <td>1</td>
-<td>→ SP</td>
+<td>→ <em>SP</em></td>
 </tr>
 <tr>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>→ SP</td>
+<td>→ <em>SP</em></td>
 </tr>
 </tbody>
-</table></article>
+</table>
+<ul>
+<li><em>Principio</em>: quali configurazioni di ingressi rendono <code>F</code> vera?</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="large-table" >
+  
+    <hgroup>
+      <h2>Forma canonica PS</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0, <em>negate</em><ul>
+<li><code>F(A, B, C) ≡ (A+B+¬C) · (A+¬B+C) · (¬A+B+C)</code> (<em>PS</em>)</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>F</th>
+<th>¬F</th>
+<th>→ Forma canonica...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>→ <em>PS</em></td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>→ <em>PS</em></td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>→ <em>PS</em></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><em>Principio</em>: quali configurazioni di ingressi rendono <code>¬F</code> vera?<ul>
+<li><code>¬F(A, B, C) ≡ (¬A·¬B·C) + (¬A·B·¬C) + (A·¬B·¬C)</code> <br>
+  <code>F(A, B, C) ≡ ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)) ≡</code> <br>
+  ... De Morgan due volte e si ottiene <em>PS</em></li>
+</ul>
+</li>
+</ul></article>
  
 </slide>
 
@@ -636,7 +737,7 @@ if pt1 != pt2:
     </hgroup>
     <article >
       <ul>
-<li><em>Equivalenza logica</em>: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”</li>
+<li><strong>Equivalenza logica</strong>: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”</li>
 </ul>
 <table>
 <thead>
