@@ -397,7 +397,7 @@ if pt1 != pt2:
     <article >
       <ul>
 <li><strong>Somma di Prodotti (SP)</strong>: si considerano le righe a 1<ul>
-<li><code>F(A, B, C) ::= (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
+<li><code>F(A, B, C) := (¬A·¬B·¬C) + (¬A·B·C) + (A·¬B·C) + (A·B·¬C) + (A·B·C)</code></li>
 </ul>
 </li>
 </ul>
@@ -485,7 +485,7 @@ if pt1 != pt2:
     <article >
       <ul>
 <li><strong>Prodotto di Somme (PS)</strong>: si considerano le righe a 0, <em>negate</em><ul>
-<li><code>F(A, B, C) ::= (A+B+¬C)·(A+¬B+C)·(¬A+B+C)</code> (<em>PS</em>)</li>
+<li><code>F(A, B, C) := (A+B+¬C)·(A+¬B+C)·(¬A+B+C)</code> (<em>PS</em>)</li>
 </ul>
 </li>
 </ul>
@@ -569,8 +569,8 @@ if pt1 != pt2:
 </table>
 <ul>
 <li><em>Principio</em>: quali configurazioni di ingressi rendono <code>¬F</code> vera?<ul>
-<li><code>¬F(A, B, C) ::= (¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)</code></li>
-<li><code>F(A, B, C) ::= ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C))</code></li>
+<li><code>¬F(A, B, C) := (¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C)</code></li>
+<li><code>F(A, B, C) := ¬((¬A·¬B·C)+(¬A·B·¬C)+(A·¬B·¬C))</code></li>
 <li>... De Morgan due volte e si ottiene <em>PS</em></li>
 </ul>
 </li>
@@ -729,7 +729,7 @@ if pt1 != pt2:
  
 </slide>
 
-<slide  >
+<slide class="large-table" >
   
     <hgroup>
       <h2>Doppia implicazione</h2>
@@ -747,6 +747,7 @@ if pt1 != pt2:
 <th><code>P ⇒ Q</code></th>
 <th><code>Q ⇒ P</code></th>
 <th><code>P ⇔ Q</code></th>
+<th><code>(P∧Q) ∨ (¬P∧¬Q)</code></th>
 </tr>
 </thead>
 <tbody>
@@ -756,6 +757,7 @@ if pt1 != pt2:
 <td>T</td>
 <td>T</td>
 <td>T</td>
+<td>T</td>
 </tr>
 <tr>
 <td>F</td>
@@ -763,6 +765,7 @@ if pt1 != pt2:
 <td>T</td>
 <td>F</td>
 <td>F</td>
+<td>F</td>
 </tr>
 <tr>
 <td>T</td>
@@ -770,8 +773,10 @@ if pt1 != pt2:
 <td>F</td>
 <td>T</td>
 <td>F</td>
+<td>F</td>
 </tr>
 <tr>
+<td>T</td>
 <td>T</td>
 <td>T</td>
 <td>T</td>
@@ -1066,7 +1071,7 @@ if pt1 != pt2:
     </hgroup>
     <article >
       <ul>
-<li>Una data proprietà vale per tutti i valori possibili delle variabili</li>
+<li>Afferma che una data proprietà valga per <em>tutti i valori</em> nel dominio delle variabili</li>
 <li><code>∀x, P(x)</code> -- “Per ogni x, P(x) è vero”</li>
 <li>Esempi<ul>
 <li><code>∀n∊N, n multiplo di 4 ⇒ n pari</code></li>
@@ -1085,7 +1090,7 @@ if pt1 != pt2:
     </hgroup>
     <article >
       <ul>
-<li>Una data proprietà vale per almeno un valore delle variabili</li>
+<li>Afferma che una data proprietà valga per <em>almeno un valore</em> delle variabili</li>
 <li><code>∃x : P(x)</code> -- “Esiste almeno un x tale che P(x) è vero”</li>
 <li>Esempi<ul>
 <li><code>∃n∊N : n pari</code> -- Esiste almeno un numero pari</li>

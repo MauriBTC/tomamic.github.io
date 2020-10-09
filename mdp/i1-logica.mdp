@@ -249,15 +249,16 @@ title: Verità dell'implicazione
 ---
 
 title: Doppia implicazione
+class: large-table
 
 - **Equivalenza logica**: si legge “P se e solo se Q”, <br> “P condizione necessaria e sufficiente per Q”
 
-`P` | `Q` | `P ⇒ Q` | `Q ⇒ P` | `P ⇔ Q`
-----|-----|---------|---------|--------
- F  |  F  |  T      |  T      |  T
- F  |  T  |  T      |  F      |  F
- T  |  F  |  F      |  T      |  F
- T  |  T  |  T      |  T      |  T
+`P` | `Q` | `P ⇒ Q` | `Q ⇒ P` | `P ⇔ Q` | `(P∧Q) ∨ (¬P∧¬Q)`
+----|-----|---------|---------|---------|------------------
+ F  |  F  |  T      |  T      |  T      |  T
+ F  |  T  |  T      |  F      |  F      |  F
+ T  |  F  |  F      |  T      |  F      |  F
+ T  |  T  |  T      |  T      |  T      |  T
 
 - `P ⇔ Q`: valgono entrambe le implicazioni, `(P⇒Q) ∧ (Q⇒P)`
     - `P ⇔ Q` vera: `P` e `Q` entrambe vere, o entrambe false
@@ -383,7 +384,7 @@ title: Quantificatori
 
 title: Quantificatore universale
 
-- Una data proprietà vale per tutti i valori possibili delle variabili
+- Afferma che una data proprietà valga per *tutti i valori* nel dominio delle variabili
 - `∀x, P(x)` -- “Per ogni x, P(x) è vero”
 - Esempi
     - `∀n∊N, n multiplo di 4 ⇒ n pari`
@@ -393,7 +394,7 @@ title: Quantificatore universale
 
 title: Quantificatore esistenziale
 
-- Una data proprietà vale per almeno un valore delle variabili
+- Afferma che una data proprietà valga per *almeno un valore* delle variabili
 - `∃x : P(x)` -- “Esiste almeno un x tale che P(x) è vero”
 - Esempi
     - `∃n∊N : n pari` -- Esiste almeno un numero pari
