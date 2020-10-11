@@ -1114,12 +1114,17 @@ if pt1 != pt2:
     </hgroup>
     <article >
       <ul>
-<li>I quantificatori sono sostanzialmente <em>congiunzioni</em> o <em>disgiunzioni</em> allargate a tutti gli elementi di un insieme</li>
+<li>I quantificatori sono sostanzialmente <em>congiunzioni</em> o <em>disgiunzioni</em> allargate a tutti gli elementi di un insieme<ul>
+<li>Per semplicità, dominio <code>D = {1, 2, 3}</code></li>
+<li><code>∀x∊D, P(x) ≡ P(1) ∧ P(2) ∧ P(3)</code></li>
+<li><code>∃x∊D : P(x) ≡ P(1) ∨ P(2) ∨ P(3)</code></li>
+</ul>
+</li>
 <li>Due quantificatori dello stesso tipo <em>possono</em> essere scambiati di posto senza alterare la verità dell’enunciato</li>
 <li>Invece, due quantificatori di diverso tipo <em>non possono</em> essere scambiati di posto</li>
 <li>I seguenti enunciati sono ben diversi<ul>
-<li><code>∀x, ∃y : y ≥ x</code></li>
-<li><code>∃y : ∀x, y ≥ x</code></li>
+<li><code>∀x∊R, ∃y∊R : y ≥ x</code></li>
+<li><code>∃y∊R : ∀x∊R, y ≥ x</code></li>
 </ul>
 </li>
 </ul></article>

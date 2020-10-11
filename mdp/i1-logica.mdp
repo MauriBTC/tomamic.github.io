@@ -408,11 +408,14 @@ title: Quantificatore esistenziale
 title: Proprietà dei quantificatori
 
 - I quantificatori sono sostanzialmente *congiunzioni* o *disgiunzioni* allargate a tutti gli elementi di un insieme
+    - Per semplicità, dominio `D = {1, 2, 3}`
+    - `∀x∊D, P(x) ≡ P(1) ∧ P(2) ∧ P(3)`
+    - `∃x∊D : P(x) ≡ P(1) ∨ P(2) ∨ P(3)`
 - Due quantificatori dello stesso tipo *possono* essere scambiati di posto senza alterare la verità dell’enunciato
 - Invece, due quantificatori di diverso tipo *non possono* essere scambiati di posto
 - I seguenti enunciati sono ben diversi
-    - `∀x, ∃y : y ≥ x`
-    - `∃y : ∀x, y ≥ x`
+    - `∀x∊R, ∃y∊R : y ≥ x`
+    - `∃y∊R : ∀x∊R, y ≥ x`
 
 ---
 
