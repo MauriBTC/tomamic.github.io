@@ -301,9 +301,9 @@ title: Passaggi intermedi
 - `((P⇒R) ∧ (R⇒Q) ∧ P) ⇒ Q`
 - Schema di ragionamento
 
- Premessa | Conseguenza
- ---------|------------
- `(P ⇒ R)` vera <br> `(R ⇒ Q)` vera <br> `P` vera | `Q` vera
+Premessa | Conseguenza
+---------|------------
+`(P ⇒ R)` vera <br> `(R ⇒ Q)` vera <br> `P` vera | `Q` vera
 
 ---
 
@@ -362,11 +362,11 @@ title: Predicato, o enunciato aperto
 
 title: Predicati con connettivi
 
-- `P(x) ∧ Q(x)` -- Vero per gli `x` che rendono veri entrambi i pred.
-- `P(x) ∨ Q(x)` -- Vero per gli `x` che rendono vero almeno un pred.
-- `¬P(x)` -- Vero per gli `x` che rendono falso il pred.
+- `P(x) ∧ Q(x)` -- Vero per gli `x` che rendono veri sia `P` che `Q`
+- `P(x) ∨ Q(x)` -- Vero per gli `x` che rendono vero almeno uno tra i predicati `P` e `Q`
+- `¬P(x)` -- Vero per gli `x` che rendono falso `P`
 - `P(x) ⇒ Q(x)` -- Vero per gli `x` che rendono falso `P` oppure vero `Q`
-- `P(x) ⇔ Q(x)` -- Vero per gli `x` che rendono i pred. entrambi falsi o entrambi veri
+- `P(x) ⇔ Q(x)` -- Vero per gli `x` che rendono `P` e `Q` entrambi falsi o entrambi veri
 
 ---
 
@@ -384,7 +384,7 @@ title: Quantificatori
 
 title: Quantificatore universale
 
-- Afferma che una data proprietà valga per *tutti i valori* nel dominio delle variabili
+- Afferma che una data proprietà valga per *tutti i valori* nel dominio della variabile vincolata
 - `∀x, P(x)` -- “Per ogni x, P(x) è vero”
 - Esempi
     - `∀n∊N, n multiplo di 4 ⇒ n pari`
@@ -394,7 +394,7 @@ title: Quantificatore universale
 
 title: Quantificatore esistenziale
 
-- Afferma che una data proprietà valga per *almeno un valore* delle variabili
+- Afferma che una data proprietà valga per *almeno un valore* della variabile vincolata
 - `∃x : P(x)` -- “Esiste almeno un x tale che P(x) è vero”
 - Esempi
     - `∃n∊N : n pari` -- Esiste almeno un numero pari
@@ -407,7 +407,7 @@ title: Quantificatore esistenziale
 
 title: Proprietà dei quantificatori
 
-- I quantificatori sono sostanzialmente *congiunzioni* o *disgiunzioni* allargate a tutti gli elementi di un insieme
+- I quantificatori sono sostanzialmente *congiunzioni* o *disgiunzioni* allargate a tutti gli elementi di un dominio
     - Per semplicità, dominio `D = {1, 2, 3}`
     - `∀x∊D, P(x) ≡ P(1) ∧ P(2) ∧ P(3)`
     - `∃x∊D : P(x) ≡ P(1) ∨ P(2) ∨ P(3)`
@@ -438,6 +438,8 @@ title: Negazione con quantificatori
 - Per negare un enunciato che contiene quantificatori, occorrono due modifiche:
     - **(1)** Sostituire tutti i `∀` con `∃`, e viceversa
     - **(2)** Negare il predicato
+- Proprietà analoga a *De Morgan*
+    - Infatti i quantificatori sono sostanzialmente `∧` o `∨` allargati
 - Esempi
     - `¬(∀x, P(x)) ⇔ ∃x : ¬P(x)`
     - `¬(∃x : P(x)) ⇔ ∀x, ¬P(x)`
@@ -480,8 +482,10 @@ class: large-figure
     - **(1)** `P(1)` è vero
     - **(2)** `∀n`, supponendo `P(n)` vero, segue che anche `P(n+1)` è vero
     - Allora `P(n)` risulta vero `∀n`
-- In una formula:
-    - `(P(1) ∧ (∀n, P(n)⇒P(n+1)))` <br> `⇒ (∀n, P(n))`
+
+Premessa | Conseguenza
+---------|------------
+`P(1)` <br> `∀n, P(n)⇒P(n+1)` | `∀n, P(n)`
 
 >
 
@@ -498,7 +502,7 @@ title: Esempio, formula di Gauss
     - `G(1) = 1 · (1+1) / 2 = 1`
 - **(2)** Supponiamo `P(n)` vero, ne segue `P(n+1)` vero, infatti:
     - Per la somma fino ad `n+1`, bisogna aggiungere un termine:
-    - `n+1 + G(n) = n+1 + n·(n+1)/2 =` <br> `= (n^^2^^ + 3·n + 2) / 2 = (n+1)·(n+2)/2 = G(n+1)`
+    - `1 + 2 + ... + n + n+1 = G(n) + n+1 =` <br> `n·(n+1)/2 + n+1 =` `= (n^^2^^ + 3·n + 2) / 2 =` <br> `(n+1)·(n+2)/2 = G(n+1)`
 - Quindi la formula vale `∀n`
 
 ---
@@ -518,26 +522,14 @@ figure: images/fun/hanoi-strategy.png
 
 ---
 
-title: 🤔 Operazioni bit a bit in Python
-class: break
+title: Sillogismi errati e quiz
+figure: images/repr/homer-genius.png
 
-- Operatori *bitwise*, applicati bit a bit
-- Da non confondere con operatori logici (`and`, `or`, `not`)
+- *Premessa maggiore*: “Tutti i geni sono distratti” <br> `∀x, genio(x)⇒distratto(x)`
+- *Premessa minore*: “Io sono distratto” <br> `distratto(Io)`
+- *Conclusione*: “Io sono un genio” <br> `genio(Io)` -- **Mah! 😕**
+- Attenzione ad usare l'implicazione giusta!
+    - `P⇒Q`: condizione sufficiente, ma non necessaria
+    - “Tutti gli svedesi sono biondi” ...
 
-code: py
-
-    x = 0b1011  # bin value (11 dec)
-    y = 0x2A    # hex value (42 dec)
-
-    bin(42)     # '0b101010', a string
-    hex(42)     # '0x2a', a string
-
-    x & y       # bitwise AND (applied for each couple of bits)
-    x | y       # bitwise OR
-    x ^ y       # bitwise XOR
-    ~x          # bitwise complement, 0b...11110100
-
-    shift = 3  # some int
-    x << shift  # x = x * (2 ** shift)
-    y >> shift  # y = y / (2 ** shift)
-
+<https://www.beniculturali.it/mibac/multimedia/MiBAC/documents/1228312182183_F1_Logica.pdf>
