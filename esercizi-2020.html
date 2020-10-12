@@ -471,6 +471,193 @@ Poi racchiudere tutto in un ciclo for esterno</p></article>
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 3 (10-12)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.1 Conteggio cifre</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/numbers.jpg">
+        
+      </figure><ul>
+<li>Chiedere una riga di testo all'utente</li>
+<li>Contare tutte le cifre presenti, con un unico contatore<ul>
+<li>Prima versione: contare solo gli <code>0</code></li>
+</ul>
+</li>
+<li>Implementare il calcolo in una funzione<ul>
+<li>Parametro: testo (<code>str</code>)</li>
+<li>Risultato: cifre contate (<code>int</code>)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare un ciclo <code>for</code> sulla stringa</p>
+<p>I caratteri si possono confrontare con <code>&lt;=</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.2 Pallina con colore</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/oop/anim-bounce.png">
+        
+      </figure><ul>
+<li>Partire dalla prima classe <code>Ball</code>, vista a lezione<ul>
+<li>Rinominare la classe come <code>ColoredBall</code></li>
+</ul>
+</li>
+<li>Assegnare ad ogni pallina un colore<ul>
+<li>Nel costruttore, scegliere il colore casualmente</li>
+</ul>
+</li>
+<li>Aggiungere un metodo per ottenere il colore di una pallina</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.3 Lista di palline</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Partire dalla classe <code>ColoredBall</code> dell'esercizio 3.2</li>
+<li>Anzichè una solo pallina, crearne diverse ed inserirle in una lista</li>
+<li>Rappresentare graficamente il movimento di tutte le palline<ul>
+<li>Per ogni frame, in un ciclo <code>for</code>, chiamare il metodo <code>move</code> di ogni pallina</li>
+<li>Rappresentare un cerchio o un rettangolo colorato nella posizione aggiornata di ogni pallina</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.4 Conteggio cifre distinte</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/numbers.jpg">
+        
+      </figure><ul>
+<li>Chiedere una riga di testo all'utente</li>
+<li>Contare separatamente le cifre presenti<ul>
+<li>Contare tutti gli <code>0</code>, tutti gli <code>1</code> ecc.</li>
+</ul>
+</li>
+<li>Implementare il calcolo in una funzione<ul>
+<li>Parametro: testo (<code>str</code>)</li>
+<li>Risultato: quanti 0, quanti 1 ecc. sono stati contati (lista o tupla di 10 <code>int</code>)</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Usare una lista di 10 elementi per tenere i conteggi</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.5 Tiro al bersaglio</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/random-circles.png">
+        
+      </figure><ul>
+<li>Definire una classe <code>TargetShooting</code><ul>
+<li>Bersagli: lista di <code>n</code> punti casuali</li>
+<li><code>n</code>: parametro del costruttore</li>
+</ul>
+</li>
+<li>Metodo <em>booleano</em> per fare un tiro<ul>
+<li>Parametro: punto da controllare</li>
+<li>C'è un bersaglio entro 25 pixel (raggio del bersaglio)?</li>
+</ul>
+</li>
+<li>Nella parte principale del programma<ul>
+<li>Istanziare un oggetto <code>TargetShooting</code>; l'utente sceglie il numero di bersagli</li>
+<li>Poi l'utente prova dei tiri, finchè non colpisce</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Campo di gioco di 600x600 pixel; non è richiesta rappresentazione grafica</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.6 Bubble Bobble, draghetto [P1]</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bubble-bobble.png"><img src="images/oop/jumper.png">
+        
+      </figure><ul>
+<li>Ridenominare come <code>Dragon</code> la classe <code>Turtle</code> dell'esempio <code>bounce</code></li>
+<li>Aggiungere al draghetto la gravità (vedi es. 2.7)</li>
+<li>Consentire al draghetto di saltare, alla pressione di <code>ArrowUp</code><ul>
+<li>Solo quando è poggiato sul fondo dello schermo</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Il progetto Bubble Bobble <em>[P1]</em> può essere sviluppato in coppia</p>
+<p><a href="https://www.retrogames.cz/play_216-NES.php">https://www.retrogames.cz/play_216-NES.php</a></p>
+<p><a href="https://play.google.com/store/apps/details?id=com.mobirix.jp.bubblebobble1">https://play.google.com/store/apps/details?id=com.mobirix.jp.bubblebobble1</a></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>3.7 Bubble Bobble, animazione [P1]</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bubble-bobble.png">
+        
+      </figure><ul>
+<li>Cambiare il file con le icone dei personaggi</li>
+<li>Per il draghetto, visualizzare icone diverse durante il salto ed i movimenti</li>
+<li>Nel metodo <code>symbol</code>, utilizzare lo stato del personaggio per scegliere l'icona</li>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://tomamic.github.io/images/sprites/bubble-bobble.png">https://tomamic.github.io/images/sprites/bubble-bobble.png</a></p>
+<p><a href="https://tomamic.github.io/images/sprites/bubble-bobble-maps.png">https://tomamic.github.io/images/sprites/bubble-bobble-maps.png</a></p>
+<p><a href="https://tomamic.github.io/images/sprites/bubble-bobble-tiles.png">https://tomamic.github.io/images/sprites/bubble-bobble-tiles.png</a></p></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
