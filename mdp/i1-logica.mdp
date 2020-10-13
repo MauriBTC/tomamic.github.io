@@ -514,7 +514,7 @@ figure: images/fun/hanoi-strategy.png
 - *Regola 2*: Poggiarlo solo su uno più grande
 - *Strategia*: `n-1` dischi vanno su piolo di appoggio, in `R(n-1)` mosse; poi ultimo disco va a destinazione; infine si sovrappongono gli altri, in `R(n-1)` mosse
 - Dimostrare *per induzione* che il numero di mosse per spostare `n` dischi è `R(n) = 2^^n^^-1`
-- **(1)** Per 1 disco, 1 mossa: `1 = 2^^1^^-1 = R(0)`
+- **(1)** Per 1 disco, 1 mossa: `1 = 2^^1^^-1 = R(1)`
 - **(2)** Supponiamo servano `R(n)` mosse per `n` dischi...
     - Allora per `n+1` dischi:
     - `R(n) + 1 + R(n) = 2·(2^^n^^-1)+1 = 2^^n+1^^-1 = R(n+1)`

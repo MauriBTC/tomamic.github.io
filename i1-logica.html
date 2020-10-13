@@ -1345,7 +1345,7 @@ if pt1 != pt2:
 <li><em>Regola 2</em>: Poggiarlo solo su uno più grande</li>
 <li><em>Strategia</em>: <code>n-1</code> dischi vanno su piolo di appoggio, in <code>R(n-1)</code> mosse; poi ultimo disco va a destinazione; infine si sovrappongono gli altri, in <code>R(n-1)</code> mosse</li>
 <li>Dimostrare <em>per induzione</em> che il numero di mosse per spostare <code>n</code> dischi è <code>R(n) = 2<sup>n</sup>-1</code></li>
-<li><strong>(1)</strong> Per 1 disco, 1 mossa: <code>1 = 2<sup>1</sup>-1 = R(0)</code></li>
+<li><strong>(1)</strong> Per 1 disco, 1 mossa: <code>1 = 2<sup>1</sup>-1 = R(1)</code></li>
 <li><strong>(2)</strong> Supponiamo servano <code>R(n)</code> mosse per <code>n</code> dischi...<ul>
 <li>Allora per <code>n+1</code> dischi:</li>
 <li><code>R(n) + 1 + R(n) = 2·(2<sup>n</sup>-1)+1 = 2<sup>n+1</sup>-1 = R(n+1)</code></li>
