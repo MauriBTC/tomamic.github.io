@@ -70,7 +70,7 @@ figure: images/repr/sum-binary.jpg
 - Base 2; c: `0-1`
 - Informazione digitale nei calcolatori rappresentata con una sequenza di 0 e 1
     - Sistema ideato da Leibniz, ~1700
-    - Calcolatore progr. Zuse, ~1940
+    - Calcolatore programmabile di Zuse, ~1940
 - Ogni elemento di una sequenza binaria viene detto **bit**
 - Una sequenza di *8 bit* viene detta **byte**
 
@@ -224,6 +224,7 @@ figure: images/repr/4bits-sign.png
 - **Modulo e segno**
     - Il primo bit indica il segno
     - 0 positivo, 1 negativo
+    - I restanti bit rappresentano il modulo
 
 ---
 
