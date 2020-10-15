@@ -9,11 +9,11 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="235.4677"
+   width="278.25467"
    height="135.89513"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    version="1.0"
    sodipodi:docname="ieee754-16-ex.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
@@ -38,8 +38,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4"
-     inkscape:cx="107.51195"
-     inkscape:cy="131.98898"
+     inkscape:cx="150.29372"
+     inkscape:cy="111.98898"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="618px"
@@ -62,7 +62,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -70,7 +70,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-8.2953122,-5.3366328)">
+     transform="translate(34.486457,-5.3366328)">
     <rect
        style="fill:#d5ffff;fill-opacity:1;stroke:#000000;stroke-width:1.06666672;stroke-linejoin:bevel;stroke-opacity:1"
        id="rect2223"
@@ -606,12 +606,12 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:12.80000019px;line-height:0%;font-family:sans;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="244.60052"
+       x="240.60052"
        y="106.35934"
        id="text4189-3-6"><tspan
          sodipodi:role="line"
          id="tspan4191-6-1"
-         x="244.60052"
+         x="240.60052"
          y="106.35934"
          style="font-size:10.66666698px;line-height:1.25;text-align:end;text-anchor:end;stroke-width:1.06666672px">= 0.15625</tspan></text>
     <text
@@ -800,5 +800,31 @@
          x="169.41302"
          y="107.30466"
          style="font-size:10.66666698px;line-height:1.25;stroke-width:1.06666672px">0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.80000019px;line-height:0%;font-family:sans;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="14.700523"
+       y="64.359367"
+       id="text4189-3-3"><tspan
+         sodipodi:role="line"
+         id="tspan4191-6-6"
+         x="14.700524"
+         y="64.359367"
+         style="font-size:10.66666698px;line-height:1.25;text-align:end;text-anchor:end;stroke-width:1.06666672px">D76A<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan150">16</tspan> =</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.80000019px;line-height:0%;font-family:sans;text-align:end;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="14.600517"
+       y="106.35934"
+       id="text4189-3-6-7"><tspan
+         sodipodi:role="line"
+         id="tspan4191-6-1-5"
+         x="14.600518"
+         y="106.35934"
+         style="font-size:10.66666698px;line-height:1.25;text-align:end;text-anchor:end;stroke-width:1.06666672px">3100<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan170">16</tspan> =</tspan></text>
   </g>
 </svg>

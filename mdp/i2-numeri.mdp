@@ -336,15 +336,15 @@ class: large-image
 
 ---
 
-title: IEEE 754 single & double
+title: IEEE 754 double & single
 
-- Precisione singola: 32 bit
-    - 1 x segno, 8 x esponente, 23 x frazione
-- Precisione doppia: 64 bit
-    - 1 x segno, 11 x esponente, 52 x frazione
+- **Precisione doppia**: *64 bit* (~ `10^^±308^^`, con 16 cifre decimali)
+    - All'esponente si somma `1023` (`=2^^(11-1)^^ - 1`)
+- **Precisione singola**: *32 bit* (~ `10^^±38^^`, con 7 cifre decimali)
+    - All'esponente si somma `127` (`=2^^(8-1)^^ - 1`)
 
-![](images/repr/ieee754-32-ex.svg)
 ![](images/repr/ieee754-64.svg)
+![](images/repr/ieee754-32-ex.svg)
 
 >
 
@@ -354,9 +354,10 @@ title: IEEE 754 single & double
 
 title: IEEE 754 half-precision
 
-- Rappresentazione usata nelle GPU, per velocizzare i calcoli
+- **Mezza precisione**: *16 bit* (~ `10^^±4.8^^` con 3 cifre decimali)
+    - Usata nelle GPU (↓precisione ↑velocità)
+- All’esponente si somma `15` (`=2^^(5 − 1)^^ − 1`)
 - `-118.625 = -1110110.101~~2~~ = -1.110110101~~2~~ × 2^^6^^`
-- All’esponente, su 5 bit, bisogna sommare `15` (`=2^^(5 − 1)^^ − 1`)
 
 ![](images/repr/ieee754-16-ex.svg)
 

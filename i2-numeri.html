@@ -788,22 +788,22 @@ URL: https://code.google.com/p/io-2012-slides
 <slide  >
   
     <hgroup>
-      <h2>IEEE 754 single & double</h2>
+      <h2>IEEE 754 double & single</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>Precisione singola: 32 bit<ul>
-<li>1 x segno, 8 x esponente, 23 x frazione</li>
+<li><strong>Precisione doppia</strong>: <em>64 bit</em> (~ <code>10<sup>±308</sup></code>, con 16 cifre decimali)<ul>
+<li>All'esponente si somma <code>1023</code> (<code>=2<sup>(11-1)</sup> - 1</code>)</li>
 </ul>
 </li>
-<li>Precisione doppia: 64 bit<ul>
-<li>1 x segno, 11 x esponente, 52 x frazione</li>
+<li><strong>Precisione singola</strong>: <em>32 bit</em> (~ <code>10<sup>±38</sup></code>, con 7 cifre decimali)<ul>
+<li>All'esponente si somma <code>127</code> (<code>=2<sup>(8-1)</sup> - 1</code>)</li>
 </ul>
 </li>
 </ul>
-<p><img alt="" src="images/repr/ieee754-32-ex.svg" />
-<img alt="" src="images/repr/ieee754-64.svg" /></p>
+<p><img alt="" src="images/repr/ieee754-64.svg" />
+<img alt="" src="images/repr/ieee754-32-ex.svg" /></p>
 <blockquote></blockquote>
 <p><a href="https://www.wikihow.com/Convert-a-Number-from-Decimal-to-IEEE-754-Floating-Point-Representation">https://www.wikihow.com/Convert-a-Number-from-Decimal-to-IEEE-754-Floating-Point-Representation</a></p></article>
  
@@ -817,9 +817,12 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <ul>
-<li>Rappresentazione usata nelle GPU, per velocizzare i calcoli</li>
+<li><strong>Mezza precisione</strong>: <em>16 bit</em> (~ <code>10<sup>±4.8</sup></code> con 3 cifre decimali)<ul>
+<li>Usata nelle GPU (↓precisione ↑velocità)</li>
+</ul>
+</li>
+<li>All’esponente si somma <code>15</code> (<code>=2<sup>(5 − 1)</sup> − 1</code>)</li>
 <li><code>-118.625 = -1110110.101<sub>2</sub> = -1.110110101<sub>2</sub> × 2<sup>6</sup></code></li>
-<li>All’esponente, su 5 bit, bisogna sommare <code>15</code> (<code>=2<sup>(5 − 1)</sup> − 1</code>)</li>
 </ul>
 <p><img alt="" src="images/repr/ieee754-16-ex.svg" /></p></article>
  
