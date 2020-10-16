@@ -60,7 +60,7 @@ figure: images/repr/hieroglyphics.jpg images/repr/no-klingon.png
     - Primi 256 code-point = *Latin1*
 - Attualmente >30 sistemi di scrittura
     - Rappresentazione di *geroglifici* e caratteri *cuneiformi*
-    - *Emoticon* ed *emoji* **☺️**: ideogrammi per espressioni facciali, oggetti comuni, posti, eventi meteo e animali
+    - Da *emoticon* **:-)** ad *emoji* **☺️**: ideogrammi per espressioni facciali, oggetti comuni, posti, eventi meteo e animali
     - Proposta per *Klingon* (da Star Trek… rifiutata!)
 
 ---
@@ -80,11 +80,12 @@ figure: images/repr/text-len.png images/repr/utf8-web-growth.svg
 title: UTF-8
 class: large-image
 
-- Se bit più alto a 0:
+- Se bit più alto a `0`:
     - Simbolo ASCII su 7 bit
 - Altrimenti:
-    - Numero 1 in byte iniziale = numero di byte per simbolo <br> (num. *code-unit* per codificare un *code-point*)
+    - Numero `1` in byte iniziale = numero di byte per simbolo <br> (num. *code-unit* per codificare un *code-point*)
     - Byte seguenti cominciano tutti con `10`
+- Bit di payload / lunghezza codifica: `7/8`, `11/16`, `16/24`, `21/32`
 
 ![](images/repr/utf8-examples.png)
 

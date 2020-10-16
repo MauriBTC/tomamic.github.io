@@ -144,7 +144,7 @@ URL: https://code.google.com/p/io-2012-slides
 </li>
 <li>Attualmente &gt;30 sistemi di scrittura<ul>
 <li>Rappresentazione di <em>geroglifici</em> e caratteri <em>cuneiformi</em></li>
-<li><em>Emoticon</em> ed <em>emoji</em> <strong>☺️</strong>: ideogrammi per espressioni facciali, oggetti comuni, posti, eventi meteo e animali</li>
+<li>Da <em>emoticon</em> <strong>:-)</strong> ad <em>emoji</em> <strong>☺️</strong>: ideogrammi per espressioni facciali, oggetti comuni, posti, eventi meteo e animali</li>
 <li>Proposta per <em>Klingon</em> (da Star Trek… rifiutata!)</li>
 </ul>
 </li>
@@ -180,15 +180,16 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <ul>
-<li>Se bit più alto a 0:<ul>
+<li>Se bit più alto a <code>0</code>:<ul>
 <li>Simbolo ASCII su 7 bit</li>
 </ul>
 </li>
 <li>Altrimenti:<ul>
-<li>Numero 1 in byte iniziale = numero di byte per simbolo <br> (num. <em>code-unit</em> per codificare un <em>code-point</em>)</li>
+<li>Numero <code>1</code> in byte iniziale = numero di byte per simbolo <br> (num. <em>code-unit</em> per codificare un <em>code-point</em>)</li>
 <li>Byte seguenti cominciano tutti con <code>10</code></li>
 </ul>
 </li>
+<li>Bit di payload / lunghezza codifica: <code>7/8</code>, <code>11/16</code>, <code>16/24</code>, <code>21/32</code></li>
 </ul>
 <p><img alt="" src="images/repr/utf8-examples.png" /></p>
 <blockquote></blockquote>
