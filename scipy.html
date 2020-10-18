@@ -1548,10 +1548,10 @@ array([20, 29, 38, 47])
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.array([[1, 2, 3],
                   [4, 5, 6]])
-&gt;&gt;&gt; b * np.array([1, 2, 3])
+&gt;&gt;&gt; b * np.array([1, 2, 3])  # [[1, 2, 3], [1, 2, 3]]
 array([[ 1,  4,  9],
        [ 4, 10, 18]])
-&gt;&gt;&gt; b * np.array([[1], [2]])
+&gt;&gt;&gt; b * np.array([[1], [2]])  # [[1, 1, 1], [2, 2, 2]]
 array([[ 1,  2,  3],
        [ 8, 10, 12]])
 </code></pre></article>
