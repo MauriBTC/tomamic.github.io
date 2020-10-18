@@ -1076,17 +1076,17 @@ $ conda remove --name myenv --all
     </hgroup>
     <article >
       <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; a = np.array([2, 3, 4])
+&gt;&gt;&gt; a = np.array([2, 3, 4])  # type inference
 &gt;&gt;&gt; a
 array([2, 3, 4])
 &gt;&gt;&gt; a.dtype
 dtype('int64')
 </code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.array([1.2, 3.5, 5.1])
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.array([1.2, 3.5, 5.1])  # type inference
 &gt;&gt;&gt; b.dtype
 dtype('float64')
 </code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>c = np.array([[1, 2], [3, 4]], dtype=np.float64)
+<pre class="prettyprint lang-py" data-lang="py"><code>c = np.array([[1, 2], [3, 4]], dtype=np.float64)  # explicit type
 &gt;&gt;&gt; c
 array([[1., 2.],
        [3., 4.]])
@@ -1101,8 +1101,8 @@ array([[1., 2.],
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.zeros(4)
-array([0, 0, 0, 0])
+      <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; np.zeros(4)  # default dtype is np.float64
+array([0., 0., 0., 0.])
 
 &gt;&gt;&gt; np.ones((2, 3), dtype=np.int16)  # dtype can also be specified
 array([[[1, 1, 1],
@@ -1132,15 +1132,15 @@ array([0, 0.5, 1, 1.5, 2])
 <li><strong>Shape</strong>: the number of elements along each axis</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.arange(12)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-&gt;&gt;&gt; a = a.reshape(3, 4)  # a new array
-&gt;&gt;&gt; a
+&gt;&gt;&gt; b = a.reshape(3, 4)  # a new array
+&gt;&gt;&gt; b
 array([[0, 1, 2, 3],
        [4, 5, 6, 7],
        [8, 9, 10, 11]])
-&gt;&gt;&gt; a.shape
+&gt;&gt;&gt; b.shape
 (3, 4)
 
-&gt;&gt;&gt; a.resize(2, 6)  # modifies the array itself
+&gt;&gt;&gt; a.resize(2, 6)  # modifies the array in-place
 &gt;&gt;&gt; a
 array([[0, 1, 2, 3, 4, 5],
        [6, 7, 8, 9, 10, 11]])
@@ -1404,7 +1404,8 @@ a.dtype = "&gt;i2"
 a  # array([256, 512, 768, 1024], dtype=int16)
 a.dtype = "f2, 2i1"
 a  # array([(6.e-08, [2, 0]), (2.e-07, [4, 0])],
-   #       dtype=[('f0', '&lt;i2'), ('f1', 'i1', (2,))])
+   #       dtype=[('f0', '&lt;f2'), ('f1', 'i1', (2,))])
+   # aka: field named f0 holds a float16, field f1 holds two int8s
 </code></pre></article>
  
 </slide>
@@ -1537,6 +1538,29 @@ array([20, 29, 38, 47])
 <slide  >
   
     <hgroup>
+      <h2>Operations by column or row</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Operations with a horizontal or vertical vector</li>
+<li>Each value in the vector is applied to a whole column, or row in the matrix</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.array([[1, 2, 3],
+                  [4, 5, 6]])
+&gt;&gt;&gt; b * np.array([1, 2, 3])
+array([[ 1,  4,  9],
+       [ 4, 10, 18]])
+&gt;&gt;&gt; b * np.array([[1], [2]])
+array([[ 1,  2,  3],
+       [ 8, 10, 12]])
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
       <h2>Matrix multiplication</h2>
       <h3></h3>
     </hgroup>
@@ -1569,7 +1593,9 @@ array([[5, 4],
     </hgroup>
     <article >
       <ul>
+<li><code>sum</code>, <code>prod</code>, <code>mean</code>, <code>median</code>, <code>std</code>, <code>var</code>, ...</li>
 <li>By default, array handled as a list of numbers, regardless of shape</li>
+<li>Aggegation can also be performed along a given axis</li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.arange(12).reshape(3, 4)
 &gt;&gt;&gt; b
@@ -1580,10 +1606,58 @@ array([[0, 1, 2, 3],
 66
 &gt;&gt;&gt; b.sum(axis=1)        # sum of each row
 array([6, 22, 38])
-&gt;&gt;&gt; b / b.max(axis=0)    # norm each column
-array([[0., 0.11, 0.2, 0.27],
-       [0.5, 0.55, 0.6, 0.63],
-       [1., 1., 1., 1.  ]])
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Normalizing and standardizing</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/scipy/normalization.png">
+        
+      </figure><ul>
+<li><strong>Rescaling</strong> a vector: add/sub a constant, then mult/div by a constant; e.g. <code>celsius = (fahrenheit - 32) * 5/9</code></li>
+<li><strong>Normalizing</strong>: rescaling by the <em>min</em> and <em>range</em> of the vector, to bring all the elements to a common <code>(0, 1)</code> interval<ul>
+<li>SVM, K-means etc.: Euclidean distance between points</li>
+<li>Features with broader ranges would dominate; e.g. age vs. income</li>
+</ul>
+</li>
+<li><strong>Standardizing</strong>: rescaling by the <em>mean</em> and <em>stddev</em> of the vector, to get <em>normal</em> distributions (mean <code>0</code>, stddev <code>1</code>)</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>x = randn(1000) * 10
+y = np.concatenate([randn(500), randn(500) + 5])
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Normalization by column</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Normalization and standardization by column</li>
+<li>To work by row, transpose data</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.arange(12).reshape(3, 4)
+&gt;&gt;&gt; b_min = b.min(axis=0)
+&gt;&gt;&gt; b_range = b.max(axis=0) - b_min
+&gt;&gt;&gt; (b - b_min) / b_range
+array([[0. , 0. , 0. , 0. ],
+       [0.5, 0.5, 0.5, 0.5],
+       [1. , 1. , 1. , 1. ]])
+</code></pre>
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; (b - b.mean(axis=0)) / b.std(axis=0)
+array([[-1.22474487, -1.22474487, -1.22474487, -1.22474487],
+       [ 0.        ,  0.        ,  0.        ,  0.        ],
+       [ 1.22474487,  1.22474487,  1.22474487,  1.22474487]])
 </code></pre></article>
  
 </slide>
@@ -1602,16 +1676,16 @@ array([[0., 0.11, 0.2, 0.27],
 </ul>
 </li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; A = np.linspace(0, np.pi/2, 4)
-&gt;&gt;&gt; np.sin(A)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; a = np.linspace(0, np.pi/2, 4)
+&gt;&gt;&gt; np.sin(a)
 array([0, 0.5, 0.8660254, 1])
 </code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; B = np.arange(3)
+<pre class="prettyprint lang-py" data-lang="py"><code>&gt;&gt;&gt; b = np.arange(3)
 &gt;&gt;&gt; B
 array([0, 1, 2])
-&gt;&gt;&gt; np.exp(B)
+&gt;&gt;&gt; np.exp(b)
 array([1, 2.71828183, 7.3890561])
-&gt;&gt;&gt; np.sqrt(B)
+&gt;&gt;&gt; np.sqrt(b)
 array([0, 1, 1.41421356])
 </code></pre></article>
  

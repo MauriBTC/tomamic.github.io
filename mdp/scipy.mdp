@@ -804,7 +804,7 @@ title: NumPy arrays
 code: py
 
     >>> import numpy as np
-    >>> a = np.array([2, 3, 4])
+    >>> a = np.array([2, 3, 4])  # type inference
     >>> a
     array([2, 3, 4])
     >>> a.dtype
@@ -812,13 +812,13 @@ code: py
 
 code: py
 
-    >>> b = np.array([1.2, 3.5, 5.1])
+    >>> b = np.array([1.2, 3.5, 5.1])  # type inference
     >>> b.dtype
     dtype('float64')
 
 code: py
 
-    c = np.array([[1, 2], [3, 4]], dtype=np.float64)
+    c = np.array([[1, 2], [3, 4]], dtype=np.float64)  # explicit type
     >>> c
     array([[1., 2.],
            [3., 4.]])
@@ -829,8 +829,8 @@ title: Zeros, ones, ranges
 
 code: py
 
-    >>> np.zeros(4)
-    array([0, 0, 0, 0])
+    >>> np.zeros(4)  # default dtype is np.float64
+    array([0., 0., 0., 0.])
 
     >>> np.ones((2, 3), dtype=np.int16)  # dtype can also be specified
     array([[[1, 1, 1],
@@ -855,15 +855,15 @@ title: Reshape and resize
 code: py
 
     >>> a = np.arange(12)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    >>> a = a.reshape(3, 4)  # a new array
-    >>> a
+    >>> b = a.reshape(3, 4)  # a new array
+    >>> b
     array([[0, 1, 2, 3],
            [4, 5, 6, 7],
            [8, 9, 10, 11]])
-    >>> a.shape
+    >>> b.shape
     (3, 4)
 
-    >>> a.resize(2, 6)  # modifies the array itself
+    >>> a.resize(2, 6)  # modifies the array in-place
     >>> a
     array([[0, 1, 2, 3, 4, 5],
            [6, 7, 8, 9, 10, 11]])
@@ -1028,7 +1028,8 @@ code: py
     a  # array([256, 512, 768, 1024], dtype=int16)
     a.dtype = "f2, 2i1"
     a  # array([(6.e-08, [2, 0]), (2.e-07, [4, 0])],
-       #       dtype=[('f0', '<i2'), ('f1', 'i1', (2,))])
+       #       dtype=[('f0', '<f2'), ('f1', 'i1', (2,))])
+       # aka: field named f0 holds a float16, field f1 holds two int8s
 
 ---
 
@@ -1136,6 +1137,24 @@ code: py
 
 ---
 
+title: Operations by column or row
+
+- Operations with a horizontal or vertical vector
+- Each value in the vector is applied to a whole column, or row in the matrix
+
+code: py
+
+    >>> b = np.array([[1, 2, 3],
+                      [4, 5, 6]])
+    >>> b * np.array([1, 2, 3])
+    array([[ 1,  4,  9],
+           [ 4, 10, 18]])
+    >>> b * np.array([[1], [2]])
+    array([[ 1,  2,  3],
+           [ 8, 10, 12]])
+
+---
+
 title: Matrix multiplication
 figure: images/scipy/matrix-mult.svg
 
@@ -1159,7 +1178,9 @@ code: py
 
 title: Aggregate functions
 
+- `sum`, `prod`, `mean`, `median`, `std`, `var`, ...
 - By default, array handled as a list of numbers, regardless of shape
+- Aggegation can also be performed along a given axis
 
 code: py
 
@@ -1172,10 +1193,46 @@ code: py
     66
     >>> b.sum(axis=1)        # sum of each row
     array([6, 22, 38])
-    >>> b / b.max(axis=0)    # norm each column
-    array([[0., 0.11, 0.2, 0.27],
-           [0.5, 0.55, 0.6, 0.63],
-           [1., 1., 1., 1.  ]])
+
+---
+
+title: Normalizing and standardizing
+figure: images/scipy/normalization.png
+
+- **Rescaling** a vector: add/sub a constant, then mult/div by a constant; e.g. `celsius = (fahrenheit - 32) * 5/9`
+- **Normalizing**: rescaling by the *min* and *range* of the vector, to bring all the elements to a common `(0, 1)` interval
+    - SVM, K-means etc.: Euclidean distance between points
+    - Features with broader ranges would dominate; e.g. age vs. income
+- **Standardizing**: rescaling by the *mean* and *stddev* of the vector, to get *normal* distributions (mean `0`, stddev `1`)
+
+code:py
+
+    x = randn(1000) * 10
+    y = np.concatenate([randn(500), randn(500) + 5])
+
+---
+
+title: Normalization by column
+
+- Normalization and standardization by column
+- To work by row, transpose data
+
+code: py
+
+    >>> b = np.arange(12).reshape(3, 4)
+    >>> b_min = b.min(axis=0)
+    >>> b_range = b.max(axis=0) - b_min
+    >>> (b - b_min) / b_range
+    array([[0. , 0. , 0. , 0. ],
+           [0.5, 0.5, 0.5, 0.5],
+           [1. , 1. , 1. , 1. ]])
+
+code: py
+
+    >>> (b - b.mean(axis=0)) / b.std(axis=0)
+    array([[-1.22474487, -1.22474487, -1.22474487, -1.22474487],
+           [ 0.        ,  0.        ,  0.        ,  0.        ],
+           [ 1.22474487,  1.22474487,  1.22474487,  1.22474487]])
 
 ---
 
@@ -1187,18 +1244,18 @@ title: Universal functions
 
 code: py
 
-    >>> A = np.linspace(0, np.pi/2, 4)
-    >>> np.sin(A)
+    >>> a = np.linspace(0, np.pi/2, 4)
+    >>> np.sin(a)
     array([0, 0.5, 0.8660254, 1])
 
 code: py
 
-    >>> B = np.arange(3)
+    >>> b = np.arange(3)
     >>> B
     array([0, 1, 2])
-    >>> np.exp(B)
+    >>> np.exp(b)
     array([1, 2.71828183, 7.3890561])
-    >>> np.sqrt(B)
+    >>> np.sqrt(b)
     array([0, 1, 1.41421356])
 
 ---
