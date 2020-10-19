@@ -658,6 +658,212 @@ Poi racchiudere tutto in un ciclo for esterno</p></article>
  
 </slide>
 
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="theme/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Esercitazione 4 (10-19 *)</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.1 Segmento e retta</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/slope.svg">
+        <figcaption>y = m·x + b</figcaption>
+      </figure><ul>
+<li>Definire <em>funzione</em> <code>slope</code> per una retta<ul>
+<li>Parametri: due punti attraversati</li>
+<li>Risultato: coefficiente angolare <code>m</code></li>
+</ul>
+</li>
+<li>Definire <em>funzione</em> <code>intercept</code> per una retta<ul>
+<li>Parametri: due punti attraversati</li>
+<li>Risultato: quota all'origine <code>b</code></li>
+</ul>
+</li>
+<li>In una <em>funzione</em> <code>main</code><ul>
+<li>Chiedere all'utente le coordinate di due punti</li>
+<li>Chiamare le due funzioni e mostrare i risultati</li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p><code>m = (y2-y1) / (x2-x1)</code> <br> Nota <code>m</code>, <code>b</code> si ottiene da <code>y1 = m·x1 + b</code></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.2 Classe dei segmenti</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/slope.svg">
+        <figcaption>y = m·x + b</figcaption>
+      </figure><ul>
+<li>Definire una classe dei segmenti<ul>
+<li>Parametri del <em>costruttore</em>: coordinate dei due estremi</li>
+<li><em>Metodo</em> che restituisce il coefficiente angolare <code>m</code> della retta passante</li>
+<li><em>Metodo</em> che restituisce la quota all'origine <code>b</code> della retta passante</li>
+</ul>
+</li>
+<li>In una funzione <code>main</code><ul>
+<li>Chiedere all'utente le coordinate di due punti</li>
+<li>Istanziare un oggetto segmento con questi due punti</li>
+<li>Chiamare i due metodi e mostrare i risultati</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.3 Righe di testo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Definire una funzione <code>long_lines</code><ul>
+<li>Parametri: una lista di stringhe ed una soglia intera</li>
+<li>Risultato: numero di stringhe più lunghe della soglia</li>
+</ul>
+</li>
+<li>Nella funzione <code>main</code><ul>
+<li>Chiedere all'utente di digitare delle righe di testo</li>
+<li>Inserire tutte le righe in una lista</li>
+<li>L'input termina quando l'utente inerisce una riga vuota</li>
+</ul>
+</li>
+<li>Sempre nella funzione <code>main</code>, in un altro ciclo<ul>
+<li>Chiedere all'utente una soglia</li>
+<li>Contare con la funzione <code>long_lines</code> le righe più lunghe della soglia</li>
+<li>Il programma termina quando la soglia inserita è <code>&lt; 0</code></li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.4 Classe per testo</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Definire una classe <code>Text</code> che gestisce una lista di stringhe<ul>
+<li>Inizialmente la lista (<em>campo</em>) è vuota</li>
+<li><em>Metodo</em> per aggiungere una riga di testo</li>
+<li><em>Metodo</em> per contare le righe più lunghe di una certa soglia (parametro)</li>
+</ul>
+</li>
+<li>Nella parte principale del programma<ul>
+<li>Istanziare un oggetto di tipo <code>Text</code></li>
+<li>Chiedere all'utente delle righe di testo ed inserirle nell'oggetto</li>
+<li>L'input termina quando l'utente inerisce una riga vuota</li>
+<li>Chiedere all'utente un valore soglia</li>
+<li>Mostrare il numero di righe più lunga della soglia</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.5 Configurazioni di simboli</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/fun/bike-lock.png">
+        
+      </figure><ul>
+<li>Scrivere una funzione per generare tutte le configurazioni di lunghezza 3 (<em>disposizioni con ripetizione</em>)<ul>
+<li>Parametri: <code>str</code> contenente l'insieme dei simboli (presenti su ogni ruota)</li>
+<li>Risultato: lista di <code>str</code> (configurazioni)</li>
+</ul>
+</li>
+<li>Per test, fornire in input le vocali <code>"AEIOU"</code>, per ottenere:<ul>
+<li><code>["AAA", "AAE", "AAI", "AAO", "AAU", "AEA", "AEE", "AEI", "AEO", "AEU", "AIA", ...</code></li>
+</ul>
+</li>
+</ul>
+<blockquote></blockquote>
+<p>Possibile approccio con 3 cicli <code>for</code> annidati <br>
+Ogni <code>for</code> scorre tutto l'insieme di simboli <br>
+Configurazione: <code>str</code> con i 3 simboli correnti</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.6 High scores</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/high-scores.jpg">
+        
+      </figure><ul>
+<li>Definire una classe <code>HighScores</code></li>
+<li><em>Campo</em>: lista di punteggi, all'inizio vuota<ul>
+<li>Memorizza 10 migliori punteggi, <em>in ordine</em> decrescente</li>
+<li>Punteggio: coppia punti ottenuti (<code>int</code>) e nome (<code>str</code>)</li>
+</ul>
+</li>
+<li><em>Metodo</em> per inserire nuovo punteggio, con punti e nome<ul>
+<li>Scelto il posto che mantiene la lista ordinata</li>
+<li>Punteggi oltre il decimo posto: troncati</li>
+</ul>
+</li>
+<li><em>Metodo</em> per ottenere la lista di punteggi</li>
+<li>Nella funzione <code>main</code>, in un ciclo, l'utente sceglie:<ul>
+<li>Inserire un nuovo punteggio</li>
+<li>Vedere i migliori risultati, o uscire</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>4.7 Bubble Bobble, piattaforme [P1]</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <figure>
+        <img src="images/misc/bubble-bobble.png">
+        
+      </figure><ul>
+<li>Se urta una piattaforma, il draghetto viene fermato sopra di essa<ul>
+<li>Prima versione, semplicistica</li>
+</ul>
+</li>
+<li>Il draghetto cade, se non poggia su una piattaforma</li>
+<li>Il draghetto può saltare solo se poggia su una piattaforma</li>
+<li>Il draghetto muore se raggiunge il fondo dello schermo</li>
+</ul></article>
+ 
+</slide>
+
 
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="theme/logo.png"></aside>
