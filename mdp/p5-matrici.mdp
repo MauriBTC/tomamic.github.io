@@ -5,7 +5,7 @@ figure: images/misc/tic-tac-toe.svg
 ---
 
 title: Flussi di dati
-figure: images/fun/magnetic-tape.png
+figure: images/fun/cassette-tape.png
 
 - **Stream**: astrazione per flussi di informazione
     - Lettura o scrittura di informazioni su *qualunque* dispositivo I/O (*file, ma non solo*)
@@ -16,79 +16,87 @@ figure: images/fun/magnetic-tape.png
     - I/O preciso byte a byte, senza nessuna conversione
     - Qualsiasi file... anche di testo!
 
+>
+
+[docs.python.org/tutorial](https://docs.python.org/3/tutorial/inputoutput.html#tut-files)
+
 ---
 
 title: Scrittura su file
+figure: images/hist/typewriter.png
 
-- Funzione `open` per accedere ad un file (di testo)
-    - Modalità scrittura o lettura: `"w"`, o `"r"`
-- Scrittura su file: funzione `print`, o metodo `write`
-- Blocco `with`: chiude il file al termine delle operazioni (anche in caso di errore)
+- Funzione **`open`** per accedere ad un file (di testo)
+    - Modalità *scrittura* o *lettura*: `"w"`, o `"r"`
+- Blocco **`with`**: chiude il file al termine delle operazioni (anche in caso di errore)
+- Scrittura su file: funzione **`print`**
 
 code: py
 
-    with open("some_file.txt", "w") as f1:
-        f1.write("First line\n")   # explicit newline
-        f1.write("Second line\n")  # continue writing here...
-
-    with open("other_file.txt", "w") as f2:
+    with open("squares.txt", "w") as squares:
         for x in range(10):
-            print(x, x ** 2, file=f2)
+            print(x, x ** 2, file=squares)
 
 ---
 
-title: Lettura da file
+title: Ciclo di lettura da file
+figure: images/fun/shopping-list.png
+
+
+- File di input come *sequenza* di righe di testo
+    - Ciclo **`for`** per scorrere le righe (`str`)
+- Le righe lette contengono `'\n'` alla fine
+    - `strip()` toglie spaziature iniziali e finali
 
 code: py
 
-    with open("some_file.txt", "r") as f1:
-        first_line = f1.readline()
-        second_line = f1.readline()
+    with open("shopping_list.txt", "r") as grocery:
+        for line in grocery:
+            # process line
+            print(line.strip(), ":", len(line))
+
+---
+
+title: Lettura di una riga
+
+- **`readline`** legge e “*consuma*” una sola riga
+- Letture successive saltano le righe già “*consumate*”
+    - Il “*nastro*” del file avanza sotto la “*testina di lettura*”
+- Alla fine del file, viene letta una stringa vuota
+
+code: py
+
+    with open("some_file.txt", "r") as txt_file:
+        first_line = txt_file.readline()
+        second_line = txt_file.readline()
         # both strings contain '\n' at the end
-        # at end of file, an empty string is read
-
-    with open("other_file.txt", "r") as f2:
-        whole_text = f2.read()
-        # do stg with whole_text
-
-    with open("last_file.txt", "r") as f3:
-        for line in f3:
-            # line contains '\n' at the end
-            # strip() removes withespaces at both ends
-            print(line.strip(), ':', len(line))
 
 ---
 
-title: 🤔 I/O su stringhe e console
+title: 🤔 Gestione errori
 
-- Stringhe come stream: `io.StringIO`
-- Console come stream: `sys.stdin`, `sys.stdout`, `sys.stderr`
-
-code: py
-
-    import io, sys
-
-    with io.StringIO() as output:
-        output.write("First line.\n")
-        print("Second line.", file=output)
-        # Retrieve stream contents, i.e. "First line.\nSecond line.\n"
-        contents = output.getvalue()
-        sys.stdout.write(contents)
+- **Eccezioni**: per gestire separatamente i casi inattesi
+- Errore all'interno di `try`: esecuzione interrotta subito
+- Possibile avere diversi blocchi `except`
+    - Eseguito il *primo* che gestisce il tipo di errore verificatosi
 
 code: py
 
-    for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
-        print(len(line))    # notice '\n' at the end
+    x = None
+    while x is None:
+        try:
+            x = int(input("Please enter a number: "))
+            print("That's fine")
+        except ValueError:
+            print("Oops! That was no valid number. Try again...")
+    print("The square is", x ** 2)
 
 ---
 
 title: 🤔 Errori da file
-figure: images/fun/garbled-tape.png
+figure: images/fun/tape-pencil.png
 
-- **Eccezioni**: per gestire separatamente i casi inattesi
-    - Errore all'interno di `try`: esecuzione interrotta subito
-    - Eseguito il blocco `except` che gestisce il tipo di errore verificatosi (possibile avere diversi blocchi `except`)
-    - Il blocco `with` assicura la chiusura del file
+- Il blocco `with` assicura comunque la chiusura del file
+- **`read`** legge tutto il file come unica *stringa*
 
 code: py
 
@@ -98,6 +106,30 @@ code: py
             # do stg with whole_text
     except IOError as err:
         print("Oh, my!")
+        print(err)
+
+---
+
+title: 🤔 I/O su stringhe e console
+
+- Stringhe come stream di I/O: `io.StringIO`
+- Console come stream: `sys.stdin`, `sys.stdout`, `sys.stderr`
+- Metodo `write` dei file: scrive una stringa, senza `\n` implicito
+
+code: py
+
+    import io, sys
+
+    with io.StringIO() as output:
+        output.write("First line.\n")
+        print("Second line.", file=output)
+        contents = output.getvalue()  # retrieve text, with both lines
+        sys.stdout.write(contents)
+
+code: py
+
+    for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
+        print(len(line))    # notice '\n' at the end
 
 ---
 

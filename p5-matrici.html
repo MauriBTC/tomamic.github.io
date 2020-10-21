@@ -43,7 +43,7 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article >
       <figure>
-        <img src="images/fun/magnetic-tape.png">
+        <img src="images/fun/cassette-tape.png">
         
       </figure><ul>
 <li><strong>Stream</strong>: astrazione per flussi di informazione<ul>
@@ -60,7 +60,9 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Qualsiasi file... anche di testo!</li>
 </ul>
 </li>
-</ul></article>
+</ul>
+<blockquote></blockquote>
+<p><a href="https://docs.python.org/3/tutorial/inputoutput.html#tut-files">docs.python.org/tutorial</a></p></article>
  
 </slide>
 
@@ -71,21 +73,20 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article >
-      <ul>
-<li>Funzione <code>open</code> per accedere ad un file (di testo)<ul>
-<li>Modalità scrittura o lettura: <code>"w"</code>, o <code>"r"</code></li>
+      <figure>
+        <img src="images/hist/typewriter.png">
+        
+      </figure><ul>
+<li>Funzione <strong><code>open</code></strong> per accedere ad un file (di testo)<ul>
+<li>Modalità <em>scrittura</em> o <em>lettura</em>: <code>"w"</code>, o <code>"r"</code></li>
 </ul>
 </li>
-<li>Scrittura su file: funzione <code>print</code>, o metodo <code>write</code></li>
-<li>Blocco <code>with</code>: chiude il file al termine delle operazioni (anche in caso di errore)</li>
+<li>Blocco <strong><code>with</code></strong>: chiude il file al termine delle operazioni (anche in caso di errore)</li>
+<li>Scrittura su file: funzione <strong><code>print</code></strong></li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>with open("some_file.txt", "w") as f1:
-    f1.write("First line\n")   # explicit newline
-    f1.write("Second line\n")  # continue writing here...
-
-with open("other_file.txt", "w") as f2:
+<pre class="prettyprint lang-py" data-lang="py"><code>with open("squares.txt", "w") as squares:
     for x in range(10):
-        print(x, x ** 2, file=f2)
+        print(x, x ** 2, file=squares)
 </code></pre></article>
  
 </slide>
@@ -93,25 +94,27 @@ with open("other_file.txt", "w") as f2:
 <slide  >
   
     <hgroup>
-      <h2>Lettura da file</h2>
+      <h2>Ciclo di lettura da file</h2>
       <h3></h3>
     </hgroup>
     <article >
-      <pre class="prettyprint lang-py" data-lang="py"><code>with open("some_file.txt", "r") as f1:
-    first_line = f1.readline()
-    second_line = f1.readline()
-    # both strings contain '\n' at the end
-    # at end of file, an empty string is read
-
-with open("other_file.txt", "r") as f2:
-    whole_text = f2.read()
-    # do stg with whole_text
-
-with open("last_file.txt", "r") as f3:
-    for line in f3:
-        # line contains '\n' at the end
-        # strip() removes withespaces at both ends
-        print(line.strip(), ':', len(line))
+      <figure>
+        <img src="images/fun/shopping-list.png">
+        
+      </figure><ul>
+<li>File di input come <em>sequenza</em> di righe di testo<ul>
+<li>Ciclo <strong><code>for</code></strong> per scorrere le righe (<code>str</code>)</li>
+</ul>
+</li>
+<li>Le righe lette contengono <code>'\n'</code> alla fine<ul>
+<li><code>strip()</code> toglie spaziature iniziali e finali</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>with open("shopping_list.txt", "r") as grocery:
+    for line in grocery:
+        # process line
+        print(line.strip(), ":", len(line))
 </code></pre></article>
  
 </slide>
@@ -119,25 +122,49 @@ with open("last_file.txt", "r") as f3:
 <slide  >
   
     <hgroup>
-      <h2>🤔 I/O su stringhe e console</h2>
+      <h2>Lettura di una riga</h2>
       <h3></h3>
     </hgroup>
     <article >
       <ul>
-<li>Stringhe come stream: <code>io.StringIO</code></li>
-<li>Console come stream: <code>sys.stdin</code>, <code>sys.stdout</code>, <code>sys.stderr</code></li>
+<li><strong><code>readline</code></strong> legge e “<em>consuma</em>” una sola riga</li>
+<li>Letture successive saltano le righe già “<em>consumate</em>”<ul>
+<li>Il “<em>nastro</em>” del file avanza sotto la “<em>testina di lettura</em>”</li>
 </ul>
-<pre class="prettyprint lang-py" data-lang="py"><code>import io, sys
+</li>
+<li>Alla fine del file, viene letta una stringa vuota</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>with open("some_file.txt", "r") as txt_file:
+    first_line = txt_file.readline()
+    second_line = txt_file.readline()
+    # both strings contain '\n' at the end
+</code></pre></article>
+ 
+</slide>
 
-with io.StringIO() as output:
-    output.write("First line.\n")
-    print("Second line.", file=output)
-    # Retrieve stream contents, i.e. "First line.\nSecond line.\n"
-    contents = output.getvalue()
-    sys.stdout.write(contents)
-</code></pre>
-<pre class="prettyprint lang-py" data-lang="py"><code>for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
-    print(len(line))    # notice '\n' at the end
+<slide  >
+  
+    <hgroup>
+      <h2>🤔 Gestione errori</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li><strong>Eccezioni</strong>: per gestire separatamente i casi inattesi</li>
+<li>Errore all'interno di <code>try</code>: esecuzione interrotta subito</li>
+<li>Possibile avere diversi blocchi <code>except</code><ul>
+<li>Eseguito il <em>primo</em> che gestisce il tipo di errore verificatosi</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>x = None
+while x is None:
+    try:
+        x = int(input("Please enter a number: "))
+        print("That's fine")
+    except ValueError:
+        print("Oops! That was no valid number. Try again...")
+print("The square is", x ** 2)
 </code></pre></article>
  
 </slide>
@@ -150,15 +177,11 @@ with io.StringIO() as output:
     </hgroup>
     <article >
       <figure>
-        <img src="images/fun/garbled-tape.png">
+        <img src="images/fun/tape-pencil.png">
         
       </figure><ul>
-<li><strong>Eccezioni</strong>: per gestire separatamente i casi inattesi<ul>
-<li>Errore all'interno di <code>try</code>: esecuzione interrotta subito</li>
-<li>Eseguito il blocco <code>except</code> che gestisce il tipo di errore verificatosi (possibile avere diversi blocchi <code>except</code>)</li>
-<li>Il blocco <code>with</code> assicura la chiusura del file</li>
-</ul>
-</li>
+<li>Il blocco <code>with</code> assicura comunque la chiusura del file</li>
+<li><strong><code>read</code></strong> legge tutto il file come unica <em>stringa</em></li>
 </ul>
 <pre class="prettyprint lang-py" data-lang="py"><code>try:
     with open("other_file.txt", "r") as f:
@@ -166,6 +189,33 @@ with io.StringIO() as output:
         # do stg with whole_text
 except IOError as err:
     print("Oh, my!")
+    print(err)
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>🤔 I/O su stringhe e console</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <ul>
+<li>Stringhe come stream di I/O: <code>io.StringIO</code></li>
+<li>Console come stream: <code>sys.stdin</code>, <code>sys.stdout</code>, <code>sys.stderr</code></li>
+<li>Metodo <code>write</code> dei file: scrive una stringa, senza <code>\n</code> implicito</li>
+</ul>
+<pre class="prettyprint lang-py" data-lang="py"><code>import io, sys
+
+with io.StringIO() as output:
+    output.write("First line.\n")
+    print("Second line.", file=output)
+    contents = output.getvalue()  # retrieve text, with both lines
+    sys.stdout.write(contents)
+</code></pre>
+<pre class="prettyprint lang-py" data-lang="py"><code>for line in sys.stdin:  # CTRL-D (Lin) or CTRL-Z (Win) to end the input
+    print(len(line))    # notice '\n' at the end
 </code></pre></article>
  
 </slide>
